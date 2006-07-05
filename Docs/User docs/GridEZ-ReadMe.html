@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>GridEZ-ReadMe</title>
+<style type="text/css">
+/*
+
+Default style sheet for commands that output HTML.  Please use this (and customize
+locally if needed) for all commands, as it will help provide a unified look.
+Changes to this document should be coordinated (with me, for instance :-p).
+
+Most css was originally derived and adapted from the Objective-C bundle.
+The color scheme is gray-ish.
+
+If someone disagrees with the look.. well.. I'm no designer, so let's talk about it
+then :-). Especially applies to the authors of the Objective-C bundle from which I
+derived much.
+
+By Sune Foldager.
+Version 1, 2005-05-20.
+
+*/
+
+
+/* General formatting. */
+
+body {
+   font-family: "Lucida Grande", sans-serif;
+   font-size: 11pt;
+}
+
+h3 {
+   font-size: 16pt;
+   text-shadow: #ddd 2px 3px 3px;
+}
+
+hr {
+	color: #bbb;
+   margin: 2px;
+   margin-top: 6px;
+   margin-bottom: 6px;
+	background-color: #bbb;
+	height: 1px;
+	border: 0px;
+}
+
+/** The “pro” table look (used in Apple’s documentation)
+
+	Example:
+
+		<table class="graybox" cellspacing="0" cellpadding="5">
+			<tr>
+				<th>First</th>
+				<th>Last</th>
+			</tr>
+
+			<tr>
+				<td><p>Allan</p></td>
+				<td><p>Odgaard</p></td>
+			</tr>
+		</table>
+
+**/
+
+.graybox {
+	border-top: 1px solid #919699;
+	border-left: 1px solid #919699;
+}
+.graybox th {
+	background: #E2E2E2;
+	border-bottom: 1px solid #919699;
+	border-right: 1px solid #919699;
+	font-weight: bold;
+	padding: 4px 8px 4px 8px;
+}
+.graybox td {
+	border-bottom: 1px solid #919699;
+	border-right: 1px solid #919699;
+	padding: 4px;
+	vertical-align: top;
+}
+.graybox p {
+	margin: 0;
+}
+.graybox p + p {
+	margin-top: 1em;
+}
+
+/* Sidebars and boxes. */
+
+div.sideBar {
+   display: block;
+   position: relative;
+   border-left: 2px solid #888;
+   background: #eee;
+   color: #888;
+   padding: 2px;
+   margin: 3px;
+   font-size: 10pt;
+}
+
+div.sideBar strong {
+   color: #555;
+}
+
+div.box {
+   display: block;
+   position: relative;
+   border: 2px solid #888;
+   background: #eee;
+   color: #888;
+   padding: 2px;
+   margin: 3px;
+   font-size: 10pt;
+}
+
+div.box strong {
+   color: #555;
+}
+
+.toggle {
+   position: absolute;
+   color: #00a;
+   top: 0px;
+   right: 8px;
+   font-size: 8pt;
+   margin: 0px;
+   margin-top: 2px;
+   margin-bottom: 2px;
+}
+
+.sideBar .toggle {
+   right: 10px;
+}
+
+.toggle :link, .toggle :visited {
+   color: #00a;
+   font-size: 8pt;
+}
+
+.toggle :active {
+   color: #e00;
+}
+
+.sideBar .details, .box .details {
+   font-size: 9pt;
+}
+
+.warning {
+    color: orange;
+}
+
+.error {
+    color: red;
+}
+
+/* a */
+td.added {
+   color: green;
+   background-color: #bbffb3;	
+}
+
+/* M */
+td.modified {
+	color: #eb6400;
+	background-color: #f7e1ad;
+}
+
+/* D */
+td.deleted {
+	color: red;
+	background-color: #f59696;
+}
+
+/* C, !, " */
+td.conflict, td.missing, td.typeconflict {
+	color: teal;
+	background-color: #A3CED0;
+}
+
+/* ?, I, X */
+td.unknown, td.ignore, td.external {
+	color: purple;
+	background-color: #edaef5;
+}
+
+pre {
+    font-family: "Lucida Grande", sans-serif;
+    font-size: medium;
+}
+
+div.bibtex {
+    background-color: #EBD3DF;
+}
+
+div.mkindex {
+    background-color: #C9EDCC;
+}</style>
+<script type="text/javascript">
+/*
+
+Default JavaScript for HTML output. _UNDER CONSTRUCTION - PLEASE DON'T TINKER YET_
+By Sune Foldager.
+
+*/
+
+function showElement(id)
+{
+   var b = document.getElementById(id + "_b");
+   var s = document.getElementById(id + "_s");
+   var h = document.getElementById(id + "_h");
+   b.style.display = "block";
+   s.style.display = "none";
+   h.style.display = "inline";
+}
+
+function hideElement(id)
+{
+   var b = document.getElementById(id + "_b");
+   var s = document.getElementById(id + "_s");
+   var h = document.getElementById(id + "_h");
+   b.style.display = "none";
+   s.style.display = "inline";
+   h.style.display = "none";
+}
+</script>
+<style type="text/css">
+	body {
+		background-color: #fff;
+	}
+	.contents {	
+		background: white;
+		font-family: Georgia, serif;
+		font-size: 13px;
+		border: 1px #888 solid;
+		padding: 0 1em;
+	}
+	</style>
+</head><body>
+	
+<h1>GridEZ.framework</h1>
+
+<p>The GridEZ framework was written to make Xgrid integration in your application very easy. The XgridFoundation API is powerful, but complicated to use. To allow the user to connect to a Controller, submit a job and get the results back, you have to write hundreds of lines of code using the XgridFoundation, and manage a complex chain of asynchronous callbacks that XgridFoundation requires you to follow. The GridEZ framework provides easy-to-use objects that hide this complexity, and yet provide most of the functionality you need. For instance, when you submit a job, the results will be automatically loaded in your application when the job finishes and all is left to you is to write the delegate method to handle it. If you have never used the XgridFoundation APIs, you might wonder what the big deal is. But if you have, you probably already realize how GridEZ might make your life much much easier...</p>
+
+<h3>Examples</h3>
+
+<p>To better see what you can do with GridEZ, the best place to start is in the Examples folder in the GridEZ distribution. The code used in these examples is released under the modified BSD license, so you can freely use it and modify it for your application. The PolyShell example is explained in greater detail in a <a href="GridEZ-Tutorial1.html">tutorial</a>.</p>
+
+<ul>
+<li><em>PolyShell</em>: this is a very simple example application, with just one class, 8 methods, and ~30 lines of actual code; yet, it is already quite powerful; the user can connect to an Xgrid Controller, type a list of shell commands, and have PolyShell submit them all in one job, and browse the results when they are done</li>
+<li><em>XgridCal</em>: a slightly more complex application, with 3 classes; the Scheduler class included in this project can be used in any application where you want to submit a bunch of independent tasks that can be run in any order on the grid (for instance, 3D rendering of the frames of an animation movie). Just provide a dataSource to provide the number of tasks, the task specifications and handle the results, and the Scheduler takes care of the rest. When all the tasks are done, the Scheduler delegate is notified.</li>
+</ul>
+
+<h3>Features</h3>
+
+<ul>
+<li>the XgridFoundation API is powerful, but complicated to use; the GridEZ framework provides easy-to-use objects that hide the complex chain of asynchronous callbacks that XgridFoundation requires you to follow:
+<ul>
+<li>GEZServer: easy-to-use wrapper for XGController/XGConnection</li>
+<li>GEZJob: wrapper for XGJob; submission and result retrieval as it should be: submit a job and get the results in a delegate method</li>
+<li>GEZGrid: for more advanced uses, you may need to occasionally specify a specific grid to submit jobs to (by default, submitting to a server will submit to the default grid)</li>
+</ul></li>
+<li>Bonjour browser: with just one call to the startBrowsing method, you get all the local Xgrid Controllers available to the user and ready to be used by your application</li>
+<li>Controller Connection Window: without writing any code, your application can let the user connect to any Xgrid Controllers she has access to using the prebuilt connection panel that handles local and remote connections, authentication,...; your application can then easily access these servers or be notified when the user connects to them</li>
+<li>integration with CoreData; with just one call to the save method, your application will automatically save all the information about the jobs it submitted and the server it connected to in the past; for instance, the user may quit your application and come back later to retrieve all the jobs that are now finished, and you don't have to write any code to provide that functionality</li>
+</ul>
+
+<h3>Adding GridEZ.framework to your Xcode project</h3>
+
+<p>The integration of GridEZ.framework into your application is similar to the use of any other framework. The following instructions are for Xcode 2.2. For a more detailed example, read the PolyShell <a href="GridEZ-Tutorial1.html">tutorial</a>.</p>
+
+<p>To be able to compile your application and link it to the GridEZ framework, you should do the following:</p>
+
+<ul>
+<li>Copy GridEZ.framework to a location that Xcode can find, for instance ~/Library/Frameworks</li>
+<li>Select the menu Project ... Add to Project... and select the GridEZ.framework package in the file selection sheet</li>
+<li>In the next panel, make sure the check box for you target is selected</li>
+<li>In this same panel, you probably don't want to make a copy of it if it is already in ~/Library/Frameworks or a location Xcode can find</li>
+<li>Ideally, you want to place the GridEZ.framework item in the the 'Linked Frameworks' group in the 'Groups &amp; Files' pane</li>
+<li>Add an <code>#import <GridEZ/GridEZ.h></code> where needed, for instance in your prefix header</li>
+</ul>
+
+<p>The easiest way to have GridEZ.framework available at runtime is to embed it in your application (the binary of the framework was compiled with the installation path "@executable_path/../Frameworks"). To use it this way, you should add a copy phase to the target:</p>
+
+<ul>
+<li>If you have more than one target in your project, make sure you select the target of interest</li>
+<li>Select the menu Project ... New Build Phase ... New Copy Files Build Phase</li>
+<li>This will add an item in the 'Groups &amp; Files' pane: Targets > YourTarget > CopyFiles</li>
+<li>The inspector panel for that 'Copy Files' item will open automatically, but you can always go back to it by selecting it the 'Groups &amp; Files' pane, and selecting the menu File ... Get Info</li>
+<li>In this inspector panel, select Frameworks in the pop-up menu for Destination</li>
+<li>You can close the inspector panel</li>
+<li>In the 'Groups &amp; Files' pane, drag the GridEZ.framework item into the newly created 'CopyFiles' group</li>
+</ul>
+
+<p>Finally, you will usually want to link to the XgridFoundation.framework, installed by Apple in /System/Library/Frameworks. For convenience, the GridEZ header already #import the header, but you still have to explicity link to XgridFoundation if you use any of its symbols. In particular, you will probably want to use the keys defined by XgridFoundation to build the specification dictionary needed to submit a job.</p>
+
+<p>Here are some relevant internet links with more details on linking/embedding frameworks:</p>
+
+<ul>
+<li><a href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html#//apple_ref/doc/uid/20002258-106880-BAJJBIEF">Apple documentation</a></li>
+<li><a href="http://www.cocoadevcentral.com/articles/000042.php">CocoaDevCentral tutorial</a> (somewhat outdated)</li>
+</ul>
+</body></html>

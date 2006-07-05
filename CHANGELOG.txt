@@ -1,0 +1,9 @@
+
+
+
+Version 0.3.0
+-------------
+
+April 2006
+
+* First public release

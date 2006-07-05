@@ -1,0 +1,59 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addAndConnectController = id; 
+                addController = id; 
+                addItem = id; 
+                cancelControllerAddition = id; 
+                changeInspectorType = id; 
+                connect = id; 
+            }; 
+            CLASS = GEZJobPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                addControllerAddressField = NSTextField; 
+                addControllerSheet = NSWindow; 
+                filesController = NSTreeController; 
+                filesView = NSOutlineView; 
+                gridsController = NSTreeController; 
+                gridsView = NSOutlineView; 
+                jobsController = NSArrayController; 
+                jobsView = NSTableView; 
+                tasksController = NSArrayController; 
+                tasksView = NSTableView; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = GEZOutlineView; LANGUAGE = ObjC; SUPERCLASS = NSOutlineView; }, 
+        {
+            ACTIONS = {
+                addAndConnectController = id; 
+                addController = id; 
+                addItem = id; 
+                cancelControllerAddition = id; 
+                changeInspectorType = id; 
+                connect = id; 
+                disconnect = id; 
+                removeItem = id; 
+            }; 
+            CLASS = GEZXgridPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                addControllerAddressField = NSTextField; 
+                addControllerSheet = NSWindow; 
+                filesController = NSTreeController; 
+                filesView = NSOutlineView; 
+                gridsController = NSTreeController; 
+                gridsView = NSOutlineView; 
+                jobsController = NSArrayController; 
+                jobsView = NSTableView; 
+                tasksController = NSArrayController; 
+                tasksView = NSTableView; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

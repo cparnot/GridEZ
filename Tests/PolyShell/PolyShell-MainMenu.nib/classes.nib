@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {save = id; submit = id; }; 
+            CLASS = PolyShellDelegate; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {commandView = NSTextView; gridsController = NSArrayController; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

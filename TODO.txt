@@ -1,0 +1,59 @@
+Roadmap
+
+Done for v0.3 release:
+* Finish GEZGridHook implementation
+* Add code to handle GEZGridHook in GEZServerHook
+* Test the implementation so far
+* Add data model
+* Add GEZManager --> how is the persistent store created?
+* Add GEZServerBrowser
+* Add GEZServer
+* Add a nib + a window controller to bring a standard 'Xgrid Controller' window that can be used for connections
+* Test that with a GUI
+* Make the framework embeddable
+* Add GEZGrid
+* Test that with a GUI
+* Make the server hook <--> grid hook interaction a delegate (or use the notifications)
+* Add GEZJob
+* Get the license messages right --> LPGL
+* Update GEZJOb to have a complete interface to check state, including isSubmitting, is RetrievingResults, XGResourceState,...
+* Update GEZJOb delegate method to be more consistent with state, e.g. jobDidSubmit instead of jobDidStart
+* Get the context/server issue right: create new entities in the default context for *any* server added in *any* context:
+
+Todo for v0.3 release:
+ALL DONE!
+
+
+---------------
+Other things todo (some maybe):
+
+* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet)
+
+* Have a system-wide database of servers, shared by all applications run by the user
+
+* Do a better job at using CoreData callbacks for object creation, fetching, deletion,...
+
+* Put GUI stuff in separate headers, AppKit categories:
+	* Controller window in GEZServer
+	* Pasteboard name for drag and drop of GEZServer (in GEZServer category too)
+
+* GEZGridHook
+	* monitor jobs to be considered 'loaded' --> right now, GEZGridHook objects NEVER GET "LOADED"
+	* monitor state in case it goes away? Probably not necessary, if the server is monitoring its 'grids'
+
+* GEZManager
+	* Give the option to change the location of the persistent store
+	* Give the option to have a store 'in-memory', maybe even thru an entry in the info.plist of the main application that will use the framework
+	* Remove the GUI stuff (see above)
+
+* GEZServer
+	* make the object smarter, so it remembers which way it connected before, e.g. not ask single sign on if already used that in the past --> how to make that work with GEZServerHook??
+	* handle deletion in a smart way --> delete all server entities across mocs? allow deletion of connected servers? disconnect first?
+
+* GEZJOb
+	* when setServer is used, should defer the decision on the grid to the submission time, in case a default grid is changed by then
+
+* GEZGrid
+	* Load all jobs into the moc, not just the job submitted previously
+
+

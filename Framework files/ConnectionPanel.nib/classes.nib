@@ -1,0 +1,18 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {cancel = id; connect = id; }; 
+            CLASS = GEZConnectionPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                authenticationTypeMatrix = NSMatrix; 
+                connectionProgress = NSProgressIndicator; 
+                passwordField = NSSecureTextField; 
+                statusField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

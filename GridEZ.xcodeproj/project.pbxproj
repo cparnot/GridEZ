@@ -1,0 +1,1292 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5617D12009621D8200505CDC /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5617D12109621D8200505CDC /* GEZManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D11F09621D8200505CDC /* GEZManager.m */; };
+		5617D1450962214900505CDC /* GridEZ_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */; };
+		5617D14F0962222A00505CDC /* GEZServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D14D0962222A00505CDC /* GEZServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5617D1500962222A00505CDC /* GEZServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D14E0962222A00505CDC /* GEZServer.m */; };
+		5617D1550962223B00505CDC /* GEZGrid.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D1530962223B00505CDC /* GEZGrid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5617D1560962223B00505CDC /* GEZGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D1540962223B00505CDC /* GEZGrid.m */; };
+		5617D15B0962224C00505CDC /* GEZJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D1590962224C00505CDC /* GEZJob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5617D15C0962224C00505CDC /* GEZJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D15A0962224C00505CDC /* GEZJob.m */; };
+		5617D1DB0962568C00505CDC /* GEZServerBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */; };
+		5617D25909625F0000505CDC /* GEZDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D25709625F0000505CDC /* GEZDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5617D25A09625F0000505CDC /* GEZDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D25809625F0000505CDC /* GEZDefines.m */; };
+		5617D32B096357CC00505CDC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		5617D32C096357CC00505CDC /* GridEZ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC4B2095FB4CB00463A1F /* GridEZ.framework */; };
+		5617D3350963584000505CDC /* XgridControllersApp_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D3340963584000505CDC /* XgridControllersApp_main.m */; };
+		5617D3B909635CEF00505CDC /* XgridControllersAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D3B809635CEF00505CDC /* XgridControllersAppDelegate.m */; };
+		5617D3EF0963A70900505CDC /* ServerWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5617D3EE0963A70900505CDC /* ServerWindow.nib */; };
+		5617D3F60963A7B000505CDC /* GEZServerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */; };
+		5617D4440963ABB000505CDC /* Available.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4310963ABB000505CDC /* Available.tiff */; };
+		5617D4450963ABB000505CDC /* Completed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4320963ABB000505CDC /* Completed.tiff */; };
+		5617D4460963ABB100505CDC /* Connected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4330963ABB000505CDC /* Connected.tiff */; };
+		5617D4470963ABB100505CDC /* Connecting.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4340963ABB000505CDC /* Connecting.tiff */; };
+		5617D4480963ABB100505CDC /* Deleted.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4350963ABB000505CDC /* Deleted.tiff */; };
+		5617D4490963ABB100505CDC /* Deleting.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4360963ABB000505CDC /* Deleting.tiff */; };
+		5617D44A0963ABB100505CDC /* Disconnected.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4370963ABB000505CDC /* Disconnected.tiff */; };
+		5617D44B0963ABB100505CDC /* Dismissed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4380963ABB000505CDC /* Dismissed.tiff */; };
+		5617D44C0963ABB100505CDC /* Failed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4390963ABB000505CDC /* Failed.tiff */; };
+		5617D44D0963ABB100505CDC /* Finished.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D43A0963ABB000505CDC /* Finished.tiff */; };
+		5617D44E0963ABB100505CDC /* Invalid.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D43B0963ABB000505CDC /* Invalid.tiff */; };
+		5617D44F0963ABB100505CDC /* Loading.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D43C0963ABB000505CDC /* Loading.tiff */; };
+		5617D4500963ABB100505CDC /* Offline.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D43D0963ABB000505CDC /* Offline.tiff */; };
+		5617D4510963ABB100505CDC /* Pending.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D43E0963ABB000505CDC /* Pending.tiff */; };
+		5617D4520963ABB100505CDC /* Running.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D43F0963ABB000505CDC /* Running.tiff */; };
+		5617D4530963ABB100505CDC /* Submitted.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4400963ABB000505CDC /* Submitted.tiff */; };
+		5617D4540963ABB100505CDC /* Submitting.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4410963ABB000505CDC /* Submitting.tiff */; };
+		5617D4550963ABB100505CDC /* Suspended.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4420963ABB000505CDC /* Suspended.tiff */; };
+		5617D4560963ABB100505CDC /* Uninitialized.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4430963ABB000505CDC /* Uninitialized.tiff */; };
+		5617D45C0963ABE500505CDC /* GEZTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D45A0963ABE500505CDC /* GEZTransformers.m */; };
+		5617D5830963B98A00505CDC /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5617D5820963B98A00505CDC /* MainMenu.nib */; };
+		5678207C09907ED500D78584 /* GEZResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678207A09907ED500D78584 /* GEZResults.m */; };
+		5678213D0991DE0400D78584 /* GEZCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678213B0991DE0400D78584 /* GEZCategories.m */; };
+		5678253409A30BF500D78584 /* GridEZ.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* GridEZ.framework */; };
+		5678267309A6EF5100D78584 /* GEZXgridPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */; };
+		5678267509A6EF9900D78584 /* XgridPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5678267409A6EF9900D78584 /* XgridPanel.nib */; };
+		567826FD09A6F57800D78584 /* GEZBindingsCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 567826FB09A6F57800D78584 /* GEZBindingsCategories.m */; };
+		5695ACC509D2814300C92AF7 /* GEZOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5695ACC309D2814200C92AF7 /* GEZOutlineView.m */; };
+		569CD3F70974E393009E977F /* PolyShell-MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 569CD3F40974E393009E977F /* PolyShell-MainMenu.nib */; };
+		569CD3F80974E393009E977F /* PolyShell-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CD3F50974E393009E977F /* PolyShell-Info.plist */; };
+		569CD3F90974E393009E977F /* PolyShell-main.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CD3F60974E393009E977F /* PolyShell-main.m */; };
+		569CD4390974E5D2009E977F /* PolyShellDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 569CD4380974E5D2009E977F /* PolyShellDelegate.m */; };
+		569CD4410974E661009E977F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		569CD4420974E662009E977F /* GridEZ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC4B2095FB4CB00463A1F /* GridEZ.framework */; };
+		569CD4430974E665009E977F /* XgridFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC446095FB08400463A1F /* XgridFoundation.framework */; };
+		56BFC447095FB08400463A1F /* XgridFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC446095FB08400463A1F /* XgridFoundation.framework */; };
+		56BFC489095FB25400463A1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		56BFC49A095FB37400463A1F /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC494095FB37400463A1F /* DebugLog.m */; };
+		56BFC49E095FB37400463A1F /* GEZServerHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */; };
+		56BFC4AC095FB45900463A1F /* TestServerHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC466095FB11200463A1F /* TestServerHook.m */; };
+		56BFC4AD095FB45C00463A1F /* TestServerHook-main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC464095FB11200463A1F /* TestServerHook-main.m */; };
+		56BFC4B3095FB4CB00463A1F /* GridEZ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC4B2095FB4CB00463A1F /* GridEZ.framework */; };
+		56BFC4C3095FB57100463A1F /* GridEZ.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC4C2095FB57100463A1F /* GridEZ.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56BFC50D095FBD3300463A1F /* GEZGridHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC50B095FBD3300463A1F /* GEZGridHook.m */; };
+		56CD11130964AE8900DA6C36 /* GridEZ.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* GridEZ.framework */; };
+		56EDCF7A09E39AB500293DB1 /* Retrieved.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EDCF7809E39AB500293DB1 /* Retrieved.tiff */; };
+		56EDCF7B09E39AB500293DB1 /* Retrieving.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EDCF7909E39AB500293DB1 /* Retrieving.tiff */; };
+		56F0A5A209ABEDD0004FB9E1 /* GEZTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F0A5A009ABEDD0004FB9E1 /* GEZTask.m */; };
+		56F0A89609AEE7F1004FB9E1 /* connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A89209AEE7F1004FB9E1 /* connect.png */; };
+		56F0A89709AEE7F1004FB9E1 /* disconnect.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A89309AEE7F1004FB9E1 /* disconnect.png */; };
+		56F0A89809AEE7F1004FB9E1 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A89409AEE7F1004FB9E1 /* minus.png */; };
+		56F0A89909AEE7F1004FB9E1 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A89509AEE7F1004FB9E1 /* plus.png */; };
+		56F0A8AE09AFC37E004FB9E1 /* text-back-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A8AB09AFC37E004FB9E1 /* text-back-left.png */; };
+		56F0A8AF09AFC37E004FB9E1 /* text-back-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A8AC09AFC37E004FB9E1 /* text-back-right.png */; };
+		56F0A8B009AFC37E004FB9E1 /* text-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A8AD09AFC37E004FB9E1 /* text-back.png */; };
+		56F0A95C09B57D6F004FB9E1 /* ConnectionPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A95B09B57D6F004FB9E1 /* ConnectionPanel.nib */; };
+		56F0A95F09B58170004FB9E1 /* NetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A95D09B58170004FB9E1 /* NetworkIcon.icns */; };
+		56F0A96009B58170004FB9E1 /* XgridIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A95E09B58170004FB9E1 /* XgridIcon.icns */; };
+		56F0A96209B585DD004FB9E1 /* cancel-connection.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F0A96109B585DD004FB9E1 /* cancel-connection.png */; };
+		56F0A9DE09B6CAF2004FB9E1 /* GEZConnectionPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F0A9DC09B6CAF2004FB9E1 /* GEZConnectionPanelController.m */; };
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5617D5180963B24F00505CDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = GridEZ;
+		};
+		567820030988A28600D78584 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = GridEZ;
+		};
+		56BFC4CA095FB64E00463A1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = GridEZ;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5678252C09A30BE300D78584 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5678253409A30BF500D78584 /* GridEZ.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56CD110A0964ACDF00DA6C36 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				56CD11130964AE8900DA6C36 /* GridEZ.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* GridEZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridEZ_Prefix.pch; sourceTree = "<group>"; };
+		5617D11E09621D8200505CDC /* GEZManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZManager.h; path = "Framework files/GEZManager.h"; sourceTree = "<group>"; };
+		5617D11F09621D8200505CDC /* GEZManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZManager.m; path = "Framework files/GEZManager.m"; sourceTree = "<group>"; };
+		5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GridEZ_DataModel.xcdatamodel; sourceTree = "<group>"; };
+		5617D14D0962222A00505CDC /* GEZServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZServer.h; path = "Framework files/GEZServer.h"; sourceTree = "<group>"; };
+		5617D14E0962222A00505CDC /* GEZServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZServer.m; path = "Framework files/GEZServer.m"; sourceTree = "<group>"; };
+		5617D1530962223B00505CDC /* GEZGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZGrid.h; path = "Framework files/GEZGrid.h"; sourceTree = "<group>"; };
+		5617D1540962223B00505CDC /* GEZGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZGrid.m; path = "Framework files/GEZGrid.m"; sourceTree = "<group>"; };
+		5617D1590962224C00505CDC /* GEZJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZJob.h; path = "Framework files/GEZJob.h"; sourceTree = "<group>"; };
+		5617D15A0962224C00505CDC /* GEZJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZJob.m; path = "Framework files/GEZJob.m"; sourceTree = "<group>"; };
+		5617D25709625F0000505CDC /* GEZDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZDefines.h; path = "Framework files/GEZDefines.h"; sourceTree = "<group>"; };
+		5617D25809625F0000505CDC /* GEZDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZDefines.m; path = "Framework files/GEZDefines.m"; sourceTree = "<group>"; };
+		5617D3120963565A00505CDC /* Xgrid Controllers.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Xgrid Controllers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5617D3140963565B00505CDC /* XgridControllersApp_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = XgridControllersApp_Info.plist; path = Tests/XgridControllersApp/XgridControllersApp_Info.plist; sourceTree = "<group>"; };
+		5617D3220963579B00505CDC /* XgridControllersApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XgridControllersApp_Prefix.pch; path = Tests/XgridControllersApp/XgridControllersApp_Prefix.pch; sourceTree = "<group>"; };
+		5617D3340963584000505CDC /* XgridControllersApp_main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XgridControllersApp_main.m; path = Tests/XgridControllersApp/XgridControllersApp_main.m; sourceTree = "<group>"; };
+		5617D3B709635CEF00505CDC /* XgridControllersAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XgridControllersAppDelegate.h; path = Tests/XgridControllersApp/XgridControllersAppDelegate.h; sourceTree = "<group>"; };
+		5617D3B809635CEF00505CDC /* XgridControllersAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XgridControllersAppDelegate.m; path = Tests/XgridControllersApp/XgridControllersAppDelegate.m; sourceTree = "<group>"; };
+		5617D3EE0963A70900505CDC /* ServerWindow.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ServerWindow.nib; path = "Framework files/ServerWindow.nib"; sourceTree = "<group>"; };
+		5617D3F30963A7B000505CDC /* GEZServerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZServerWindowController.h; path = "Framework files/GEZServerWindowController.h"; sourceTree = "<group>"; };
+		5617D3F40963A7B000505CDC /* GEZServerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZServerWindowController.m; path = "Framework files/GEZServerWindowController.m"; sourceTree = "<group>"; };
+		5617D4310963ABB000505CDC /* Available.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Available.tiff; sourceTree = "<group>"; };
+		5617D4320963ABB000505CDC /* Completed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Completed.tiff; sourceTree = "<group>"; };
+		5617D4330963ABB000505CDC /* Connected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Connected.tiff; sourceTree = "<group>"; };
+		5617D4340963ABB000505CDC /* Connecting.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Connecting.tiff; sourceTree = "<group>"; };
+		5617D4350963ABB000505CDC /* Deleted.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Deleted.tiff; sourceTree = "<group>"; };
+		5617D4360963ABB000505CDC /* Deleting.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Deleting.tiff; sourceTree = "<group>"; };
+		5617D4370963ABB000505CDC /* Disconnected.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Disconnected.tiff; sourceTree = "<group>"; };
+		5617D4380963ABB000505CDC /* Dismissed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Dismissed.tiff; sourceTree = "<group>"; };
+		5617D4390963ABB000505CDC /* Failed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Failed.tiff; sourceTree = "<group>"; };
+		5617D43A0963ABB000505CDC /* Finished.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Finished.tiff; sourceTree = "<group>"; };
+		5617D43B0963ABB000505CDC /* Invalid.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Invalid.tiff; sourceTree = "<group>"; };
+		5617D43C0963ABB000505CDC /* Loading.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Loading.tiff; sourceTree = "<group>"; };
+		5617D43D0963ABB000505CDC /* Offline.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Offline.tiff; sourceTree = "<group>"; };
+		5617D43E0963ABB000505CDC /* Pending.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Pending.tiff; sourceTree = "<group>"; };
+		5617D43F0963ABB000505CDC /* Running.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Running.tiff; sourceTree = "<group>"; };
+		5617D4400963ABB000505CDC /* Submitted.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Submitted.tiff; sourceTree = "<group>"; };
+		5617D4410963ABB000505CDC /* Submitting.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Submitting.tiff; sourceTree = "<group>"; };
+		5617D4420963ABB000505CDC /* Suspended.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Suspended.tiff; sourceTree = "<group>"; };
+		5617D4430963ABB000505CDC /* Uninitialized.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Uninitialized.tiff; sourceTree = "<group>"; };
+		5617D4590963ABE500505CDC /* GEZTransformers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZTransformers.h; path = "Framework files/GEZTransformers.h"; sourceTree = "<group>"; };
+		5617D45A0963ABE500505CDC /* GEZTransformers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZTransformers.m; path = "Framework files/GEZTransformers.m"; sourceTree = "<group>"; };
+		5617D5820963B98A00505CDC /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = MainMenu.nib; path = Tests/XgridControllersApp/MainMenu.nib; sourceTree = "<group>"; };
+		561A067A09F9A2CE00BFC1B3 /* LICENSE-LGPL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-LGPL.txt"; sourceTree = "<group>"; };
+		561A069009F9A32200BFC1B3 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		561A074209FD985200BFC1B3 /* LICENSE-BSD.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-BSD.txt"; sourceTree = "<group>"; };
+		561A079309FD9C2500BFC1B3 /* CHANGELOG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.txt; sourceTree = "<group>"; };
+		5678207909907ED500D78584 /* GEZResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZResults.h; path = "Framework files/GEZResults.h"; sourceTree = "<group>"; };
+		5678207A09907ED500D78584 /* GEZResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZResults.m; path = "Framework files/GEZResults.m"; sourceTree = "<group>"; };
+		5678213A0991DE0400D78584 /* GEZCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZCategories.h; path = "Framework files/GEZCategories.h"; sourceTree = "<group>"; };
+		5678213B0991DE0400D78584 /* GEZCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZCategories.m; path = "Framework files/GEZCategories.m"; sourceTree = "<group>"; };
+		567825E509A448B800D78584 /* GEZTaskNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZTaskNode.h; path = "Framework files/GEZTaskNode.h"; sourceTree = "<group>"; };
+		567825E609A448B800D78584 /* GEZTaskNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZTaskNode.m; path = "Framework files/GEZTaskNode.m"; sourceTree = "<group>"; };
+		5678267009A6EF5100D78584 /* GEZXgridPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZXgridPanelController.h; path = "Framework files/GEZXgridPanelController.h"; sourceTree = "<group>"; };
+		5678267109A6EF5100D78584 /* GEZXgridPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZXgridPanelController.m; path = "Framework files/GEZXgridPanelController.m"; sourceTree = "<group>"; };
+		5678267409A6EF9900D78584 /* XgridPanel.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = XgridPanel.nib; path = "Framework files/XgridPanel.nib"; sourceTree = "<group>"; };
+		567826FA09A6F57800D78584 /* GEZBindingsCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZBindingsCategories.h; path = "Framework files/GEZBindingsCategories.h"; sourceTree = "<group>"; };
+		567826FB09A6F57800D78584 /* GEZBindingsCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZBindingsCategories.m; path = "Framework files/GEZBindingsCategories.m"; sourceTree = "<group>"; };
+		568EB6BF095FC83A0014CCE9 /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
+		5695A9EB09C934D700C92AF7 /* Tests.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Tests.markdown; path = "Docs/Dev docs/Tests.markdown"; sourceTree = "<group>"; };
+		5695AA2D09C9417700C92AF7 /* GEZJob-diagram.graffle */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "GEZJob-diagram.graffle"; path = "Docs/Dev docs/GEZJob-diagram.graffle"; sourceTree = "<group>"; };
+		5695ACC209D2814200C92AF7 /* GEZOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZOutlineView.h; path = "Framework files/GEZOutlineView.h"; sourceTree = "<group>"; };
+		5695ACC309D2814200C92AF7 /* GEZOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZOutlineView.m; path = "Framework files/GEZOutlineView.m"; sourceTree = "<group>"; };
+		5695AEBB09DBBBA700C92AF7 /* PolyShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		569CD3D20974E07E009E977F /* Targets-used-for-testing.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Targets-used-for-testing.markdown"; path = "Docs/Dev docs/Targets-used-for-testing.markdown"; sourceTree = "<group>"; };
+		569CD3F40974E393009E977F /* PolyShell-MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = "PolyShell-MainMenu.nib"; path = "Tests/PolyShell/PolyShell-MainMenu.nib"; sourceTree = "<group>"; };
+		569CD3F50974E393009E977F /* PolyShell-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "PolyShell-Info.plist"; path = "Tests/PolyShell/PolyShell-Info.plist"; sourceTree = "<group>"; };
+		569CD3F60974E393009E977F /* PolyShell-main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "PolyShell-main.m"; path = "Tests/PolyShell/PolyShell-main.m"; sourceTree = "<group>"; };
+		569CD4230974E551009E977F /* PolyShell-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "PolyShell-Prefix.pch"; path = "Tests/PolyShell/PolyShell-Prefix.pch"; sourceTree = "<group>"; };
+		569CD4370974E5D2009E977F /* PolyShellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolyShellDelegate.h; path = Tests/PolyShell/PolyShellDelegate.h; sourceTree = "<group>"; };
+		569CD4380974E5D2009E977F /* PolyShellDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PolyShellDelegate.m; path = Tests/PolyShell/PolyShellDelegate.m; sourceTree = "<group>"; };
+		56BFC446095FB08400463A1F /* XgridFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XgridFoundation.framework; path = /System/Library/Frameworks/XgridFoundation.framework; sourceTree = "<absolute>"; };
+		56BFC464095FB11200463A1F /* TestServerHook-main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "TestServerHook-main.m"; path = "Tests/TestServerHook/TestServerHook-main.m"; sourceTree = "<group>"; };
+		56BFC465095FB11200463A1F /* TestServerHook.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TestServerHook.h; path = Tests/TestServerHook/TestServerHook.h; sourceTree = "<group>"; };
+		56BFC466095FB11200463A1F /* TestServerHook.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TestServerHook.m; path = Tests/TestServerHook/TestServerHook.m; sourceTree = "<group>"; };
+		56BFC471095FB1A600463A1F /* TestServerHook */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestServerHook; sourceTree = BUILT_PRODUCTS_DIR; };
+		56BFC47F095FB20C00463A1F /* TestServerHook-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "TestServerHook-Prefix.pch"; path = "Tests/TestServerHook/TestServerHook-Prefix.pch"; sourceTree = "<group>"; };
+		56BFC493095FB37400463A1F /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = DebugLog.h; path = "Framework files/DebugLog.h"; sourceTree = "<group>"; };
+		56BFC494095FB37400463A1F /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = DebugLog.m; path = "Framework files/DebugLog.m"; sourceTree = "<group>"; };
+		56BFC495095FB37400463A1F /* GEZServerBrowser.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZServerBrowser.h; path = "Framework files/GEZServerBrowser.h"; sourceTree = "<group>"; };
+		56BFC496095FB37400463A1F /* GEZServerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZServerBrowser.m; path = "Framework files/GEZServerBrowser.m"; sourceTree = "<group>"; };
+		56BFC497095FB37400463A1F /* GEZServerHook.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZServerHook.h; path = "Framework files/GEZServerHook.h"; sourceTree = "<group>"; };
+		56BFC498095FB37400463A1F /* GEZServerHook.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZServerHook.m; path = "Framework files/GEZServerHook.m"; sourceTree = "<group>"; };
+		56BFC4B2095FB4CB00463A1F /* GridEZ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GridEZ.framework; path = /Users/charles/Library/Frameworks/GridEZ.framework; sourceTree = "<absolute>"; };
+		56BFC4C2095FB57100463A1F /* GridEZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridEZ.h; path = "Framework files/GridEZ.h"; sourceTree = "<group>"; };
+		56BFC50A095FBD3300463A1F /* GEZGridHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZGridHook.h; path = "Framework files/GEZGridHook.h"; sourceTree = "<group>"; };
+		56BFC50B095FBD3300463A1F /* GEZGridHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZGridHook.m; path = "Framework files/GEZGridHook.m"; sourceTree = "<group>"; };
+		56CD111C096500D300DA6C36 /* Making-GridEZ-embeddable.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Making-GridEZ-embeddable.markdown"; path = "Docs/Dev docs/Making-GridEZ-embeddable.markdown"; sourceTree = "<group>"; };
+		56CD11CE096A420000DA6C36 /* Dev-Notes.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Dev-Notes.markdown"; path = "Docs/Dev docs/Dev-Notes.markdown"; sourceTree = "<group>"; };
+		56EDCF7809E39AB500293DB1 /* Retrieved.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Retrieved.tiff; sourceTree = "<group>"; };
+		56EDCF7909E39AB500293DB1 /* Retrieving.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Retrieving.tiff; sourceTree = "<group>"; };
+		56F0A59F09ABEDD0004FB9E1 /* GEZTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZTask.h; path = "Framework files/GEZTask.h"; sourceTree = "<group>"; };
+		56F0A5A009ABEDD0004FB9E1 /* GEZTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZTask.m; path = "Framework files/GEZTask.m"; sourceTree = "<group>"; };
+		56F0A89209AEE7F1004FB9E1 /* connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connect.png; sourceTree = "<group>"; };
+		56F0A89309AEE7F1004FB9E1 /* disconnect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disconnect.png; sourceTree = "<group>"; };
+		56F0A89409AEE7F1004FB9E1 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
+		56F0A89509AEE7F1004FB9E1 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		56F0A8AB09AFC37E004FB9E1 /* text-back-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-back-left.png"; sourceTree = "<group>"; };
+		56F0A8AC09AFC37E004FB9E1 /* text-back-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-back-right.png"; sourceTree = "<group>"; };
+		56F0A8AD09AFC37E004FB9E1 /* text-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-back.png"; sourceTree = "<group>"; };
+		56F0A95B09B57D6F004FB9E1 /* ConnectionPanel.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ConnectionPanel.nib; path = "Framework files/ConnectionPanel.nib"; sourceTree = "<group>"; };
+		56F0A95D09B58170004FB9E1 /* NetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = NetworkIcon.icns; sourceTree = "<group>"; };
+		56F0A95E09B58170004FB9E1 /* XgridIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = XgridIcon.icns; sourceTree = "<group>"; };
+		56F0A96109B585DD004FB9E1 /* cancel-connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel-connection.png"; sourceTree = "<group>"; };
+		56F0A9DB09B6CAF2004FB9E1 /* GEZConnectionPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZConnectionPanelController.h; path = "Framework files/GEZConnectionPanelController.h"; sourceTree = "<group>"; };
+		56F0A9DC09B6CAF2004FB9E1 /* GEZConnectionPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZConnectionPanelController.m; path = "Framework files/GEZConnectionPanelController.m"; sourceTree = "<group>"; };
+		56FB078C0A3770030022B65C /* GridEZ-ReadMe.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = "GridEZ-ReadMe.html"; path = "Docs/User docs/GridEZ-ReadMe.html"; sourceTree = "<group>"; };
+		56FB078D0A3770030022B65C /* GridEZ-ReadMe.markdown */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = "GridEZ-ReadMe.markdown"; path = "Docs/User docs/GridEZ-ReadMe.markdown"; sourceTree = "<group>"; };
+		56FB078E0A3770030022B65C /* GridEZ-Tutorial1.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = "GridEZ-Tutorial1.html"; path = "Docs/User docs/GridEZ-Tutorial1.html"; sourceTree = "<group>"; };
+		56FB078F0A3770030022B65C /* GridEZ-Tutorial1.markdown */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = "GridEZ-Tutorial1.markdown"; path = "Docs/User docs/GridEZ-Tutorial1.markdown"; sourceTree = "<group>"; };
+		56FB07900A3770030022B65C /* index.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = index.html; path = "Docs/User docs/index.html"; sourceTree = "<group>"; };
+		56FB07920A37701F0022B65C /* shot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot1.png; sourceTree = "<group>"; };
+		56FB07930A37701F0022B65C /* shot10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot10.png; sourceTree = "<group>"; };
+		56FB07940A37701F0022B65C /* shot11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot11.png; sourceTree = "<group>"; };
+		56FB07950A37701F0022B65C /* shot12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot12.png; sourceTree = "<group>"; };
+		56FB07960A37701F0022B65C /* shot13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot13.png; sourceTree = "<group>"; };
+		56FB07970A37701F0022B65C /* shot14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot14.png; sourceTree = "<group>"; };
+		56FB07980A37701F0022B65C /* shot14.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = shot14.tiff; sourceTree = "<group>"; };
+		56FB07990A37701F0022B65C /* shot15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot15.png; sourceTree = "<group>"; };
+		56FB079A0A37701F0022B65C /* shot16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot16.png; sourceTree = "<group>"; };
+		56FB079B0A37701F0022B65C /* shot17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot17.png; sourceTree = "<group>"; };
+		56FB079C0A37701F0022B65C /* shot18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot18.png; sourceTree = "<group>"; };
+		56FB079D0A37701F0022B65C /* shot19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot19.png; sourceTree = "<group>"; };
+		56FB079E0A37701F0022B65C /* shot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot2.png; sourceTree = "<group>"; };
+		56FB079F0A37701F0022B65C /* shot20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot20.png; sourceTree = "<group>"; };
+		56FB07A00A37701F0022B65C /* shot21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot21.png; sourceTree = "<group>"; };
+		56FB07A10A37701F0022B65C /* shot22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot22.png; sourceTree = "<group>"; };
+		56FB07A20A37701F0022B65C /* shot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot3.png; sourceTree = "<group>"; };
+		56FB07A30A37701F0022B65C /* shot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot4.png; sourceTree = "<group>"; };
+		56FB07A40A37701F0022B65C /* shot5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot5.png; sourceTree = "<group>"; };
+		56FB07A50A37701F0022B65C /* shot6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot6.png; sourceTree = "<group>"; };
+		56FB07A60A37701F0022B65C /* shot7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot7.png; sourceTree = "<group>"; };
+		56FB07A70A37701F0022B65C /* shot8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot8.png; sourceTree = "<group>"; };
+		56FB07A80A37701F0022B65C /* shot9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot9.png; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* GridEZ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GridEZ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5617D3100963565A00505CDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5617D32B096357CC00505CDC /* Cocoa.framework in Frameworks */,
+				5617D32C096357CC00505CDC /* GridEZ.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569CD3EA0974E2D6009E977F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569CD4410974E661009E977F /* Cocoa.framework in Frameworks */,
+				569CD4420974E662009E977F /* GridEZ.framework in Frameworks */,
+				569CD4430974E665009E977F /* XgridFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56BFC46F095FB1A600463A1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BFC489095FB25400463A1F /* Cocoa.framework in Frameworks */,
+				56BFC4B3095FB4CB00463A1F /* GridEZ.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+				56BFC447095FB08400463A1F /* XgridFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* GridEZ.framework */,
+				56BFC471095FB1A600463A1F /* TestServerHook */,
+				5617D3120963565A00505CDC /* Xgrid Controllers.app */,
+				5695AEBB09DBBBA700C92AF7 /* PolyShell.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* GridEZ */ = {
+			isa = PBXGroup;
+			children = (
+				568EB6BF095FC83A0014CCE9 /* TODO.txt */,
+				561A069009F9A32200BFC1B3 /* README.txt */,
+				561A079309FD9C2500BFC1B3 /* CHANGELOG.txt */,
+				561A067A09F9A2CE00BFC1B3 /* LICENSE-LGPL.txt */,
+				561A074209FD985200BFC1B3 /* LICENSE-BSD.txt */,
+				56CD10FA0964AC5700DA6C36 /* Docs */,
+				08FB77AEFE84172EC02AAC07 /* Framework */,
+				56BFC45A095FB0A500463A1F /* Tests */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = GridEZ;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				5617D3ED0963A6E600505CDC /* Resources */,
+				56BFC4E7095FB88500463A1F /* Misc sources */,
+				56BFC4D6095FB76500463A1F /* Private */,
+				56BFC4DC095FB79100463A1F /* Public */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56BFC4B2095FB4CB00463A1F /* GridEZ.framework */,
+				56BFC446095FB08400463A1F /* XgridFoundation.framework */,
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		5617D3210963577C00505CDC /* Xgrid Controllers App */ = {
+			isa = PBXGroup;
+			children = (
+				5617D5820963B98A00505CDC /* MainMenu.nib */,
+				5617D3140963565B00505CDC /* XgridControllersApp_Info.plist */,
+				5617D3220963579B00505CDC /* XgridControllersApp_Prefix.pch */,
+				5617D3340963584000505CDC /* XgridControllersApp_main.m */,
+				5617D3B709635CEF00505CDC /* XgridControllersAppDelegate.h */,
+				5617D3B809635CEF00505CDC /* XgridControllersAppDelegate.m */,
+			);
+			name = "Xgrid Controllers App";
+			sourceTree = "<group>";
+		};
+		5617D3ED0963A6E600505CDC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				56F0A89109AEE7F1004FB9E1 /* Images */,
+				5617D4300963ABB000505CDC /* Dots */,
+				5617D3EE0963A70900505CDC /* ServerWindow.nib */,
+				5678267409A6EF9900D78584 /* XgridPanel.nib */,
+				56F0A95B09B57D6F004FB9E1 /* ConnectionPanel.nib */,
+				5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */,
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5617D4300963ABB000505CDC /* Dots */ = {
+			isa = PBXGroup;
+			children = (
+				5617D4310963ABB000505CDC /* Available.tiff */,
+				5617D4320963ABB000505CDC /* Completed.tiff */,
+				5617D4330963ABB000505CDC /* Connected.tiff */,
+				5617D4340963ABB000505CDC /* Connecting.tiff */,
+				5617D4350963ABB000505CDC /* Deleted.tiff */,
+				5617D4360963ABB000505CDC /* Deleting.tiff */,
+				5617D4370963ABB000505CDC /* Disconnected.tiff */,
+				5617D4380963ABB000505CDC /* Dismissed.tiff */,
+				5617D4390963ABB000505CDC /* Failed.tiff */,
+				5617D43A0963ABB000505CDC /* Finished.tiff */,
+				5617D43B0963ABB000505CDC /* Invalid.tiff */,
+				5617D43C0963ABB000505CDC /* Loading.tiff */,
+				5617D43D0963ABB000505CDC /* Offline.tiff */,
+				56EDCF7809E39AB500293DB1 /* Retrieved.tiff */,
+				56EDCF7909E39AB500293DB1 /* Retrieving.tiff */,
+				5617D43E0963ABB000505CDC /* Pending.tiff */,
+				5617D43F0963ABB000505CDC /* Running.tiff */,
+				5617D4400963ABB000505CDC /* Submitted.tiff */,
+				5617D4410963ABB000505CDC /* Submitting.tiff */,
+				5617D4420963ABB000505CDC /* Suspended.tiff */,
+				5617D4430963ABB000505CDC /* Uninitialized.tiff */,
+			);
+			name = Dots;
+			path = "Framework files/Dots";
+			sourceTree = "<group>";
+		};
+		5678266B09A6EEED00D78584 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				5617D3F30963A7B000505CDC /* GEZServerWindowController.h */,
+				5617D3F40963A7B000505CDC /* GEZServerWindowController.m */,
+				5678267009A6EF5100D78584 /* GEZXgridPanelController.h */,
+				5678267109A6EF5100D78584 /* GEZXgridPanelController.m */,
+				56F0A9DB09B6CAF2004FB9E1 /* GEZConnectionPanelController.h */,
+				56F0A9DC09B6CAF2004FB9E1 /* GEZConnectionPanelController.m */,
+				5617D4590963ABE500505CDC /* GEZTransformers.h */,
+				5617D45A0963ABE500505CDC /* GEZTransformers.m */,
+				567826FA09A6F57800D78584 /* GEZBindingsCategories.h */,
+				567826FB09A6F57800D78584 /* GEZBindingsCategories.m */,
+				567825E509A448B800D78584 /* GEZTaskNode.h */,
+				567825E609A448B800D78584 /* GEZTaskNode.m */,
+				5695ACC209D2814200C92AF7 /* GEZOutlineView.h */,
+				5695ACC309D2814200C92AF7 /* GEZOutlineView.m */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		569CD3DB0974E262009E977F /* PolyShell */ = {
+			isa = PBXGroup;
+			children = (
+				569CD3F40974E393009E977F /* PolyShell-MainMenu.nib */,
+				569CD3F50974E393009E977F /* PolyShell-Info.plist */,
+				569CD4230974E551009E977F /* PolyShell-Prefix.pch */,
+				569CD3F60974E393009E977F /* PolyShell-main.m */,
+				569CD4370974E5D2009E977F /* PolyShellDelegate.h */,
+				569CD4380974E5D2009E977F /* PolyShellDelegate.m */,
+			);
+			name = PolyShell;
+			sourceTree = "<group>";
+		};
+		56BFC45A095FB0A500463A1F /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				56BFC45E095FB0B200463A1F /* TestServerHook */,
+				5617D3210963577C00505CDC /* Xgrid Controllers App */,
+				569CD3DB0974E262009E977F /* PolyShell */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		56BFC45E095FB0B200463A1F /* TestServerHook */ = {
+			isa = PBXGroup;
+			children = (
+				56BFC47F095FB20C00463A1F /* TestServerHook-Prefix.pch */,
+				56BFC464095FB11200463A1F /* TestServerHook-main.m */,
+				56BFC465095FB11200463A1F /* TestServerHook.h */,
+				56BFC466095FB11200463A1F /* TestServerHook.m */,
+			);
+			name = TestServerHook;
+			sourceTree = "<group>";
+		};
+		56BFC4D6095FB76500463A1F /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				5678266B09A6EEED00D78584 /* GUI */,
+				5617D25709625F0000505CDC /* GEZDefines.h */,
+				5617D25809625F0000505CDC /* GEZDefines.m */,
+				56BFC495095FB37400463A1F /* GEZServerBrowser.h */,
+				56BFC496095FB37400463A1F /* GEZServerBrowser.m */,
+				56BFC497095FB37400463A1F /* GEZServerHook.h */,
+				56BFC498095FB37400463A1F /* GEZServerHook.m */,
+				56BFC50A095FBD3300463A1F /* GEZGridHook.h */,
+				56BFC50B095FBD3300463A1F /* GEZGridHook.m */,
+				5678207909907ED500D78584 /* GEZResults.h */,
+				5678207A09907ED500D78584 /* GEZResults.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
+		56BFC4DC095FB79100463A1F /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				5617D11E09621D8200505CDC /* GEZManager.h */,
+				5617D11F09621D8200505CDC /* GEZManager.m */,
+				5617D14D0962222A00505CDC /* GEZServer.h */,
+				5617D14E0962222A00505CDC /* GEZServer.m */,
+				5617D1590962224C00505CDC /* GEZJob.h */,
+				5617D15A0962224C00505CDC /* GEZJob.m */,
+				5617D1530962223B00505CDC /* GEZGrid.h */,
+				5617D1540962223B00505CDC /* GEZGrid.m */,
+				56F0A59F09ABEDD0004FB9E1 /* GEZTask.h */,
+				56F0A5A009ABEDD0004FB9E1 /* GEZTask.m */,
+			);
+			name = Public;
+			sourceTree = "<group>";
+		};
+		56BFC4E7095FB88500463A1F /* Misc sources */ = {
+			isa = PBXGroup;
+			children = (
+				56BFC4C2095FB57100463A1F /* GridEZ.h */,
+				5678213A0991DE0400D78584 /* GEZCategories.h */,
+				5678213B0991DE0400D78584 /* GEZCategories.m */,
+				56BFC493095FB37400463A1F /* DebugLog.h */,
+				56BFC494095FB37400463A1F /* DebugLog.m */,
+				32DBCF5E0370ADEE00C91783 /* GridEZ_Prefix.pch */,
+			);
+			name = "Misc sources";
+			sourceTree = "<group>";
+		};
+		56CD10FA0964AC5700DA6C36 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				56CD11010964AC6D00DA6C36 /* Dev doc */,
+				56CD10FE0964AC6700DA6C36 /* User doc */,
+			);
+			name = Docs;
+			sourceTree = "<group>";
+		};
+		56CD10FE0964AC6700DA6C36 /* User doc */ = {
+			isa = PBXGroup;
+			children = (
+				56FB078D0A3770030022B65C /* GridEZ-ReadMe.markdown */,
+				56FB078F0A3770030022B65C /* GridEZ-Tutorial1.markdown */,
+				56FB07900A3770030022B65C /* index.html */,
+				56FB078C0A3770030022B65C /* GridEZ-ReadMe.html */,
+				56FB078E0A3770030022B65C /* GridEZ-Tutorial1.html */,
+				56FB07910A37701F0022B65C /* tutorial */,
+			);
+			name = "User doc";
+			sourceTree = "<group>";
+		};
+		56CD11010964AC6D00DA6C36 /* Dev doc */ = {
+			isa = PBXGroup;
+			children = (
+				56CD111C096500D300DA6C36 /* Making-GridEZ-embeddable.markdown */,
+				56CD11CE096A420000DA6C36 /* Dev-Notes.markdown */,
+				569CD3D20974E07E009E977F /* Targets-used-for-testing.markdown */,
+				5695A9EB09C934D700C92AF7 /* Tests.markdown */,
+				5695AA2D09C9417700C92AF7 /* GEZJob-diagram.graffle */,
+			);
+			name = "Dev doc";
+			sourceTree = "<group>";
+		};
+		56F0A89109AEE7F1004FB9E1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				56F0A89209AEE7F1004FB9E1 /* connect.png */,
+				56F0A89309AEE7F1004FB9E1 /* disconnect.png */,
+				56F0A89409AEE7F1004FB9E1 /* minus.png */,
+				56F0A89509AEE7F1004FB9E1 /* plus.png */,
+				56F0A8AB09AFC37E004FB9E1 /* text-back-left.png */,
+				56F0A8AC09AFC37E004FB9E1 /* text-back-right.png */,
+				56F0A8AD09AFC37E004FB9E1 /* text-back.png */,
+				56F0A95D09B58170004FB9E1 /* NetworkIcon.icns */,
+				56F0A95E09B58170004FB9E1 /* XgridIcon.icns */,
+				56F0A96109B585DD004FB9E1 /* cancel-connection.png */,
+			);
+			name = Images;
+			path = "Framework files/Images";
+			sourceTree = "<group>";
+		};
+		56FB07910A37701F0022B65C /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				56FB07920A37701F0022B65C /* shot1.png */,
+				56FB07930A37701F0022B65C /* shot10.png */,
+				56FB07940A37701F0022B65C /* shot11.png */,
+				56FB07950A37701F0022B65C /* shot12.png */,
+				56FB07960A37701F0022B65C /* shot13.png */,
+				56FB07970A37701F0022B65C /* shot14.png */,
+				56FB07980A37701F0022B65C /* shot14.tiff */,
+				56FB07990A37701F0022B65C /* shot15.png */,
+				56FB079A0A37701F0022B65C /* shot16.png */,
+				56FB079B0A37701F0022B65C /* shot17.png */,
+				56FB079C0A37701F0022B65C /* shot18.png */,
+				56FB079D0A37701F0022B65C /* shot19.png */,
+				56FB079E0A37701F0022B65C /* shot2.png */,
+				56FB079F0A37701F0022B65C /* shot20.png */,
+				56FB07A00A37701F0022B65C /* shot21.png */,
+				56FB07A10A37701F0022B65C /* shot22.png */,
+				56FB07A20A37701F0022B65C /* shot3.png */,
+				56FB07A30A37701F0022B65C /* shot4.png */,
+				56FB07A40A37701F0022B65C /* shot5.png */,
+				56FB07A50A37701F0022B65C /* shot6.png */,
+				56FB07A60A37701F0022B65C /* shot7.png */,
+				56FB07A70A37701F0022B65C /* shot8.png */,
+				56FB07A80A37701F0022B65C /* shot9.png */,
+			);
+			name = tutorial;
+			path = "Docs/User docs/tutorial";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BFC4C3095FB57100463A1F /* GridEZ.h in Headers */,
+				5617D12009621D8200505CDC /* GEZManager.h in Headers */,
+				5617D14F0962222A00505CDC /* GEZServer.h in Headers */,
+				5617D1550962223B00505CDC /* GEZGrid.h in Headers */,
+				5617D15B0962224C00505CDC /* GEZJob.h in Headers */,
+				5617D25909625F0000505CDC /* GEZDefines.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		5617D3110963565A00505CDC /* Xgrid Controllers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5617D3150963565E00505CDC /* Build configuration list for PBXNativeTarget "Xgrid Controllers" */;
+			buildPhases = (
+				56CD110A0964ACDF00DA6C36 /* CopyFiles */,
+				5617D30E0963565A00505CDC /* Resources */,
+				5617D30F0963565A00505CDC /* Sources */,
+				5617D3100963565A00505CDC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5617D5190963B24F00505CDC /* PBXTargetDependency */,
+			);
+			name = "Xgrid Controllers";
+			productName = "Xgrid Controllers";
+			productReference = 5617D3120963565A00505CDC /* Xgrid Controllers.app */;
+			productType = "com.apple.product-type.application";
+		};
+		569CD3EB0974E2D6009E977F /* PolyShell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 569CD3EF0974E2D8009E977F /* Build configuration list for PBXNativeTarget "PolyShell" */;
+			buildPhases = (
+				5678252C09A30BE300D78584 /* CopyFiles */,
+				569CD3E80974E2D6009E977F /* Resources */,
+				569CD3E90974E2D6009E977F /* Sources */,
+				569CD3EA0974E2D6009E977F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				567820040988A28600D78584 /* PBXTargetDependency */,
+			);
+			name = PolyShell;
+			productName = VeryEZShell;
+			productReference = 5695AEBB09DBBBA700C92AF7 /* PolyShell.app */;
+			productType = "com.apple.product-type.application";
+		};
+		56BFC470095FB1A600463A1F /* TestServerHook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56BFC475095FB1C500463A1F /* Build configuration list for PBXNativeTarget "TestServerHook" */;
+			buildPhases = (
+				56BFC46E095FB1A600463A1F /* Sources */,
+				56BFC46F095FB1A600463A1F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				56BFC4CB095FB64E00463A1F /* PBXTargetDependency */,
+			);
+			name = TestServerHook;
+			productName = TestServerConnection;
+			productReference = 56BFC471095FB1A600463A1F /* TestServerHook */;
+			productType = "com.apple.product-type.tool";
+		};
+		8DC2EF4F0486A6940098B216 /* GridEZ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 56FA39EB095FADF0004AB027 /* Build configuration list for PBXNativeTarget "GridEZ" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GridEZ;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = GridEZ;
+			productReference = 8DC2EF5B0486A6940098B216 /* GridEZ.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 56FA39EF095FADF0004AB027 /* Build configuration list for PBXProject "GridEZ" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* GridEZ */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* GridEZ */,
+				56BFC470095FB1A600463A1F /* TestServerHook */,
+				5617D3110963565A00505CDC /* Xgrid Controllers */,
+				569CD3EB0974E2D6009E977F /* PolyShell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5617D30E0963565A00505CDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5617D5830963B98A00505CDC /* MainMenu.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569CD3E80974E2D6009E977F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569CD3F70974E393009E977F /* PolyShell-MainMenu.nib in Resources */,
+				569CD3F80974E393009E977F /* PolyShell-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+				5617D3EF0963A70900505CDC /* ServerWindow.nib in Resources */,
+				5617D4440963ABB000505CDC /* Available.tiff in Resources */,
+				5617D4450963ABB000505CDC /* Completed.tiff in Resources */,
+				5617D4460963ABB100505CDC /* Connected.tiff in Resources */,
+				5617D4470963ABB100505CDC /* Connecting.tiff in Resources */,
+				5617D4480963ABB100505CDC /* Deleted.tiff in Resources */,
+				5617D4490963ABB100505CDC /* Deleting.tiff in Resources */,
+				5617D44A0963ABB100505CDC /* Disconnected.tiff in Resources */,
+				5617D44B0963ABB100505CDC /* Dismissed.tiff in Resources */,
+				5617D44C0963ABB100505CDC /* Failed.tiff in Resources */,
+				5617D44D0963ABB100505CDC /* Finished.tiff in Resources */,
+				5617D44E0963ABB100505CDC /* Invalid.tiff in Resources */,
+				5617D44F0963ABB100505CDC /* Loading.tiff in Resources */,
+				5617D4500963ABB100505CDC /* Offline.tiff in Resources */,
+				5617D4510963ABB100505CDC /* Pending.tiff in Resources */,
+				5617D4520963ABB100505CDC /* Running.tiff in Resources */,
+				5617D4530963ABB100505CDC /* Submitted.tiff in Resources */,
+				5617D4540963ABB100505CDC /* Submitting.tiff in Resources */,
+				5617D4550963ABB100505CDC /* Suspended.tiff in Resources */,
+				5617D4560963ABB100505CDC /* Uninitialized.tiff in Resources */,
+				5678267509A6EF9900D78584 /* XgridPanel.nib in Resources */,
+				56F0A89609AEE7F1004FB9E1 /* connect.png in Resources */,
+				56F0A89709AEE7F1004FB9E1 /* disconnect.png in Resources */,
+				56F0A89809AEE7F1004FB9E1 /* minus.png in Resources */,
+				56F0A89909AEE7F1004FB9E1 /* plus.png in Resources */,
+				56F0A8AE09AFC37E004FB9E1 /* text-back-left.png in Resources */,
+				56F0A8AF09AFC37E004FB9E1 /* text-back-right.png in Resources */,
+				56F0A8B009AFC37E004FB9E1 /* text-back.png in Resources */,
+				56F0A95C09B57D6F004FB9E1 /* ConnectionPanel.nib in Resources */,
+				56F0A95F09B58170004FB9E1 /* NetworkIcon.icns in Resources */,
+				56F0A96009B58170004FB9E1 /* XgridIcon.icns in Resources */,
+				56F0A96209B585DD004FB9E1 /* cancel-connection.png in Resources */,
+				56EDCF7A09E39AB500293DB1 /* Retrieved.tiff in Resources */,
+				56EDCF7B09E39AB500293DB1 /* Retrieving.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5617D30F0963565A00505CDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5617D3350963584000505CDC /* XgridControllersApp_main.m in Sources */,
+				5617D3B909635CEF00505CDC /* XgridControllersAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		569CD3E90974E2D6009E977F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569CD3F90974E393009E977F /* PolyShell-main.m in Sources */,
+				569CD4390974E5D2009E977F /* PolyShellDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56BFC46E095FB1A600463A1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BFC4AC095FB45900463A1F /* TestServerHook.m in Sources */,
+				56BFC4AD095FB45C00463A1F /* TestServerHook-main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56BFC49A095FB37400463A1F /* DebugLog.m in Sources */,
+				56BFC49E095FB37400463A1F /* GEZServerHook.m in Sources */,
+				56BFC50D095FBD3300463A1F /* GEZGridHook.m in Sources */,
+				5617D12109621D8200505CDC /* GEZManager.m in Sources */,
+				5617D1450962214900505CDC /* GridEZ_DataModel.xcdatamodel in Sources */,
+				5617D1500962222A00505CDC /* GEZServer.m in Sources */,
+				5617D1560962223B00505CDC /* GEZGrid.m in Sources */,
+				5617D15C0962224C00505CDC /* GEZJob.m in Sources */,
+				5617D1DB0962568C00505CDC /* GEZServerBrowser.m in Sources */,
+				5617D25A09625F0000505CDC /* GEZDefines.m in Sources */,
+				5617D3F60963A7B000505CDC /* GEZServerWindowController.m in Sources */,
+				5617D45C0963ABE500505CDC /* GEZTransformers.m in Sources */,
+				5678207C09907ED500D78584 /* GEZResults.m in Sources */,
+				5678213D0991DE0400D78584 /* GEZCategories.m in Sources */,
+				5678267309A6EF5100D78584 /* GEZXgridPanelController.m in Sources */,
+				567826FD09A6F57800D78584 /* GEZBindingsCategories.m in Sources */,
+				56F0A5A209ABEDD0004FB9E1 /* GEZTask.m in Sources */,
+				56F0A9DE09B6CAF2004FB9E1 /* GEZConnectionPanelController.m in Sources */,
+				5695ACC509D2814300C92AF7 /* GEZOutlineView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5617D5190963B24F00505CDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* GridEZ */;
+			targetProxy = 5617D5180963B24F00505CDC /* PBXContainerItemProxy */;
+		};
+		567820040988A28600D78584 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* GridEZ */;
+			targetProxy = 567820030988A28600D78584 /* PBXContainerItemProxy */;
+		};
+		56BFC4CB095FB64E00463A1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* GridEZ */;
+			targetProxy = 56BFC4CA095FB64E00463A1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5617D3160963565E00505CDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Tests/XgridControllersApp/XgridControllersApp_Prefix.pch;
+				INFOPLIST_FILE = Tests/XgridControllersApp/XgridControllersApp_Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Xgrid Controllers";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		5617D3170963565E00505CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Tests/XgridControllersApp/XgridControllersApp_Prefix.pch;
+				INFOPLIST_FILE = Tests/XgridControllersApp/XgridControllersApp_Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Xgrid Controllers";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		5617D3180963565E00505CDC /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Tests/XgridControllersApp/XgridControllersApp_Prefix.pch;
+				INFOPLIST_FILE = Tests/XgridControllersApp/XgridControllersApp_Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Xgrid Controllers";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Default;
+		};
+		569CD3F00974E2D8009E977F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/PolyShell/PolyShell-Prefix.pch";
+				INFOPLIST_FILE = "Tests/PolyShell/PolyShell-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PolyShell;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		569CD3F10974E2D8009E977F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/PolyShell/PolyShell-Prefix.pch";
+				INFOPLIST_FILE = "Tests/PolyShell/PolyShell-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PolyShell;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		569CD3F20974E2D8009E977F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/PolyShell/PolyShell-Prefix.pch";
+				INFOPLIST_FILE = "Tests/PolyShell/PolyShell-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = PolyShell;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Default;
+		};
+		56BFC476095FB1C500463A1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/TestServerHook/TestServerHook-Prefix.pch";
+				INSTALL_PATH = /usr/local/bin;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TestServerHook;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Debug;
+		};
+		56BFC477095FB1C500463A1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/TestServerHook/TestServerHook-Prefix.pch";
+				INSTALL_PATH = /usr/local/bin;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TestServerHook;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Release;
+		};
+		56BFC478095FB1C500463A1F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/TestServerHook/TestServerHook-Prefix.pch";
+				INSTALL_PATH = /usr/local/bin;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = TestServerHook;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		56FA39EC095FADF0004AB027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GridEZ_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				PREBINDING = NO;
+				PRODUCT_NAME = GridEZ;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		56FA39ED095FADF0004AB027 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GridEZ_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				PREBINDING = NO;
+				PRODUCT_NAME = GridEZ;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		56FA39EE095FADF0004AB027 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GridEZ_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				LIBRARY_STYLE = DYNAMIC;
+				MACH_O_TYPE = mh_dylib;
+				PREBINDING = NO;
+				PRODUCT_NAME = GridEZ;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Default;
+		};
+		56FA39F0095FADF0004AB027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		56FA39F1095FADF0004AB027 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		56FA39F2095FADF0004AB027 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5617D3150963565E00505CDC /* Build configuration list for PBXNativeTarget "Xgrid Controllers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5617D3160963565E00505CDC /* Debug */,
+				5617D3170963565E00505CDC /* Release */,
+				5617D3180963565E00505CDC /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		569CD3EF0974E2D8009E977F /* Build configuration list for PBXNativeTarget "PolyShell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				569CD3F00974E2D8009E977F /* Debug */,
+				569CD3F10974E2D8009E977F /* Release */,
+				569CD3F20974E2D8009E977F /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		56BFC475095FB1C500463A1F /* Build configuration list for PBXNativeTarget "TestServerHook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56BFC476095FB1C500463A1F /* Debug */,
+				56BFC477095FB1C500463A1F /* Release */,
+				56BFC478095FB1C500463A1F /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		56FA39EB095FADF0004AB027 /* Build configuration list for PBXNativeTarget "GridEZ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FA39EC095FADF0004AB027 /* Debug */,
+				56FA39ED095FADF0004AB027 /* Release */,
+				56FA39EE095FADF0004AB027 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		56FA39EF095FADF0004AB027 /* Build configuration list for PBXProject "GridEZ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				56FA39F0095FADF0004AB027 /* Debug */,
+				56FA39F1095FADF0004AB027 /* Release */,
+				56FA39F2095FADF0004AB027 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
