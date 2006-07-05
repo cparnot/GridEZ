@@ -1,5 +1,19 @@
 Roadmap
 
+Todo for v0.4 release:
+* Add GEZMetaJob
+* Add Keychain support
+* REmove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle
+* Format of the store: make it an option to be set in the info.plist of the app bundle
+* User-level store, to remember servers used by different apps (do not store jobs)
+* allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
+
+
+-------------
+
+Todo for v0.3 release:
+ALL DONE!
+
 Done for v0.3 release:
 * Finish GEZGridHook implementation
 * Add code to handle GEZGridHook in GEZServerHook
@@ -19,9 +33,6 @@ Done for v0.3 release:
 * Update GEZJOb to have a complete interface to check state, including isSubmitting, is RetrievingResults, XGResourceState,...
 * Update GEZJOb delegate method to be more consistent with state, e.g. jobDidSubmit instead of jobDidStart
 * Get the context/server issue right: create new entities in the default context for *any* server added in *any* context:
-
-Todo for v0.3 release:
-ALL DONE!
 
 
 ---------------

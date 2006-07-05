@@ -17,6 +17,7 @@ __END_LICENSE__ */
 #import "GEZTransformers.h"
 #import "GEZServerWindowController.h"
 #import "GEZXgridPanelController.h"
+#import "GEZDefines.h"
 
 @implementation GEZManager
 
@@ -141,11 +142,16 @@ BOOL CreateFolder (NSString *path)
 	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     NSError *error;
 	
-	//in the near future, I will add more control over that choice. For now, it is a convenient place to change the store type for testing
-	NSString *storeType;
-	
-	//storeType = NSXMLStoreType;
-	storeType = NSSQLiteStoreType;
+	//by default, the default managed object context created by the framework will create a store of type SQLLite; this setting can be changed by the developer by using the Info.plist of the application (see user docs)
+	NSString *storeType = [[[NSBundle mainBundle] infoDictionary] objectForKey:GEZStoreType];
+	if ( [storeType isEqualToString:@"XML"] )
+		storeType = NSXMLStoreType;
+	else if ( [storeType isEqualToString:@"Binary"] )
+		storeType = NSBinaryStoreType;
+	else if ( [storeType isEqualToString:@"InMemory"] )
+		storeType = NSInMemoryStoreType;
+	else
+		storeType = NSSQLiteStoreType;
 	
     if ([coordinator addPersistentStoreWithType:storeType configuration:nil URL:url options:nil error:&error]){
         managedObjectContext = [[NSManagedObjectContext alloc] init];
@@ -155,6 +161,13 @@ BOOL CreateFolder (NSString *path)
         [NSApp presentError:error];
     }    
     [coordinator release];
+	
+	//in general, it is better not to have any NSUndoManager
+	//however, this option can be overriden in the application bundle options (Info.plist) to keep an active NSUndoManager (see user docs)
+	if ( [[[[NSBundle mainBundle] infoDictionary] objectForKey:GEZShouldUseUndoManager] boolValue] == NO ) {
+		DLog(NSStringFromClass([self class]),10,@"Removing NSUndoManager");
+		[managedObjectContext setUndoManager:nil];
+	}
     
     return managedObjectContext;
 }

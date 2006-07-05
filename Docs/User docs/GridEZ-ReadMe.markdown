@@ -56,4 +56,21 @@ Here are some relevant internet links with more details on linking/embedding fra
 
 
 
+### Advanced options
 
+Some options can be set by editing the Info.plist file of the application that uses the GridEZ.framework. Here is a list of the supported keys:
+
+* GEZShouldUseUndoManager: by default, the default managed object context created by the framework will not have an NSUndoManager attached to it; you can force the addition of one using this key
+* GEZStoreType: by default, the default managed object context created by the framework will create a store of type SQLLite; you can change this by setting the value of this key to one of these strings:
+	* SQLite
+	* XML
+	* Binary
+	* InMemory
+
+
+For instance, you would add the following lines in the Info.plist file to add an NSUndoManager to the application-wide managedObjectContext and to use an XML store:
+
+	<key>GEZShouldUseUndoManager</key>
+	<string>YES</string>
+	<key>GEZStoreType</key>
+	<string>XML</string>

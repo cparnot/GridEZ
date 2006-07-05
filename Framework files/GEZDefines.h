@@ -16,3 +16,7 @@ APPKIT_EXTERN NSString *GEZGridEntityName;
 APPKIT_EXTERN NSString *GEZJobEntityName;
 APPKIT_EXTERN NSString *GEZTaskEntityName;
 APPKIT_EXTERN NSString *GEZFileEntityName;
+
+//Keys used in the application bundle Info.plist to set some advanced options (see documentation)
+APPKIT_EXTERN NSString *GEZShouldUseUndoManager;
+APPKIT_EXTERN NSString *GEZStoreType;

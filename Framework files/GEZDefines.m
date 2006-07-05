@@ -19,3 +19,7 @@ NSString *GEZGridEntityName = @"GridEZ_Grid";
 NSString *GEZJobEntityName = @"GridEZ_Job";
 NSString *GEZTaskEntityName = @"GridEZ_Task";
 NSString *GEZFileEntityName = @"GridEZ_File";
+
+
+NSString *GEZShouldUseUndoManager = @"GEZShouldUseUndoManager";
+NSString *GEZStoreType = @"GEZStoreType";
