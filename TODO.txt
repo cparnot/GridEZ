@@ -1,13 +1,17 @@
 Roadmap
 
 Todo for v0.4 release:
-* Add GEZMetaJob
+* Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * Add Keychain support
-* REmove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle
-* Format of the store: make it an option to be set in the info.plist of the app bundle
+	* at the level of GEZServer
+	* add property "shouldUseKeychain"
+	* allow user-level access, not restricted to one app (maybe make that optional in the Info.plist, easy to do)
 * User-level store, to remember servers used by different apps (do not store jobs)
 * allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
 
+done:
+* Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
+* Format of the store: make it an option to be set in the info.plist of the app bundle
 
 -------------
 

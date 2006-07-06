@@ -106,10 +106,15 @@ BOOL CreateFolder (NSString *path)
 		return nil;
 
 	//...now a subfolder with the version number
-	//major version are compatible with each other (e.g. 1.1 and 1.5  are)
-	NSString *version = [[self gridezFramework] objectForInfoDictionaryKey:@"CFBundleVersion"];
-	if ( [version length] > 1 )
-		version = [version substringToIndex:1];
+	//major version are compatible with each other (e.g. 1.1 and 1.5 are compatible)
+	//except before 1.0 where minor versions are not compatible (0.3.0 and 0.3.1 are compatible, but not 0.3 and 0.4)
+	NSString *bundleVersion = [[self gridezFramework] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	NSString *version = @"0";
+	if ( [bundleVersion length] > 0 ) {
+		version = [bundleVersion substringToIndex:1];
+			if ( [version isEqualToString:@"0"] && [bundleVersion length] > 2 )
+				version = [bundleVersion substringToIndex:3];
+	}
 	version = [@"Version " stringByAppendingString:version];
 	//use a different name in debug mode, I found this was useful, can't remember why
 #ifdef DEBUG
