@@ -245,29 +245,35 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
     return flag;
 }
 
-- (BOOL)shouldRememberPassword
+- (BOOL)shouldStorePasswordInKeychain;
 {
-    [self willAccessValueForKey:@"shouldRememberPassword"];
-    BOOL flag = [[self primitiveValueForKey:@"shouldRememberPassword"] boolValue];
-    [self didAccessValueForKey:@"shouldRememberPassword"];
+    [self willAccessValueForKey:@"shouldStorePasswordInKeychain"];
+    BOOL flag = [[self primitiveValueForKey:@"shouldStorePasswordInKeychain"] boolValue];
+    [self didAccessValueForKey:@"shouldStorePasswordInKeychain"];
     return flag;
 }
 
-- (void)setShouldRememberPassword:(BOOL)flag
+- (void)setShouldStorePasswordInKeychain:(BOOL)flag
 {
-	[self willChangeValueForKey:@"shouldRememberPassword"];
-	[self setValue:[NSNumber numberWithBool:flag] forKey:@"shouldRememberPassword"];
-	[self didChangeValueForKey:@"shouldRememberPassword"];
+	[self willChangeValueForKey:@"shouldStorePasswordInKeychain"];
+	[self setPrimitiveValue:[NSNumber numberWithBool:flag] forKey:@"shouldStorePasswordInKeychain"];
+	[self didChangeValueForKey:@"shouldStorePasswordInKeychain"];
 }
 
+- (BOOL)hasPasswordInKeychain
+{
+	[self hook];
+	return [serverHook hasPasswordInKeychain];
+}
 
+/*
 - (void)setPassword:(NSString *)aString
 {
 	[self willChangeValueForKey:@"password"];
-	[self setValue:aString forKey:@"password"];
+	[self setPrimitiveValue:aString forKey:@"password"];
 	[self didChangeValueForKey:@"password"];
 }
-
+*/
 
 - (NSSet *)grids
 {
@@ -340,10 +346,20 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	[serverHook connectWithoutAuthentication];
 }
 
+- (void)connectWithKeychainPassword
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self hook];
+	[serverHook setPassword:nil];
+	[serverHook connectWithPassword];
+}
+
 - (void)connectWithPassword:(NSString *)password
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self hook];
+	if ( [self shouldStorePasswordInKeychain] )
+		[serverHook storePasswordInKeychain:password];
 	[serverHook setPassword:password];
 	[serverHook connectWithPassword];
 }

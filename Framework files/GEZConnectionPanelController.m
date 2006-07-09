@@ -64,21 +64,34 @@ static NSMutableDictionary *connectionPanelControllers;
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 	[self hideAuthentication];
 	[[self window] setTitle:[server address]];
+	[passwordField setStringValue:@""];
+	//[shouldRememberPasswordCheckBox setState:[server shouldStorePasswordInKeychain]];
 }
 
 #pragma mark *** start and stop ***
 
 - (void)startConnectionProcess
 {
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+
 	connecting = YES;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverDidConnectNotification:) name:GEZServerDidConnectNotification object:server];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverDidNotConnectNotification:) name:GEZServerDidNotConnectNotification object:server];
 	//show the window if connection takes more than 2 seconds
 	[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(showWindow:) userInfo:nil repeats:NO];
-	[statusField setStringValue:@"Connecting without authentication..."];
-	[server connectWithoutAuthentication];
+	if ( [server hasPasswordInKeychain] ) {
+		[statusField setStringValue:@"Connecting using the keychain password..."];
+		[server connectWithKeychainPassword];
+	}
+	else {
+		[statusField setStringValue:@"Connecting without authentication..."];
+		[server connectWithoutAuthentication];
+	}
 }
 
+
+//this is the only public method to start a session with a GEZConnectionPanelController
+//it is not necessarily going to result in any panel being displayed (only after 2 seconds or if authentication is needed)
 + (void)runConnectionPanelWithServer:(GEZServer *)aServer
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
@@ -129,6 +142,11 @@ static NSMutableDictionary *connectionPanelControllers;
 	[connectionProgress stopAnimation:nil];
 }
 
+- (GEZServer *)server
+{
+	return server;
+}
+
 #pragma mark *** Actions ***
 
 - (IBAction)cancel:(id)sender
@@ -150,6 +168,14 @@ static NSMutableDictionary *connectionPanelControllers;
 	}
 	[self hideAuthentication];
 	[connectionProgress startAnimation:nil];
+}
+
+- (IBAction)rememberPassword:(id)sender
+{
+	if ( [sender state] == NSOnState )
+		[server setShouldStorePasswordInKeychain:YES];
+	else
+		[server setShouldStorePasswordInKeychain:NO];
 }
 
 #pragma mark *** NSTextField delegate ***
@@ -180,7 +206,7 @@ static NSMutableDictionary *connectionPanelControllers;
 
 //these values are the two possible heights for the connection window
 #define HEIGHT_WITHOUT_AUTHENTICATION 61
-#define HEIGHT_WITH_AUTHENTICATION 146
+#define HEIGHT_WITH_AUTHENTICATION 176
 
 - (void)resizeWithHeight:(float)target
 {
@@ -195,11 +221,13 @@ static NSMutableDictionary *connectionPanelControllers;
 
 - (void)hideAuthentication
 {
+	[passwordField setStringValue:@""];
 	[self resizeWithHeight:HEIGHT_WITHOUT_AUTHENTICATION];
 }
 
 - (void)showAuthentication
 {
+	[passwordField setStringValue:@""];
 	[self resizeWithHeight:HEIGHT_WITH_AUTHENTICATION];
 }
 

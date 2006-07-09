@@ -87,6 +87,7 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 - (void)connectWithoutAuthentication;
 - (void)connectWithSingleSignOnCredentials;
 - (void)connectWithPassword:(NSString *)password;
+- (void)connectWithKeychainPassword;
 
 //Submitting jobs using the default grid (notifications received by the GEZJob object, see header for that class)
 //The GEZJob is added to the same managed object context as the server
@@ -103,12 +104,12 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 - (BOOL)isConnected;
 - (BOOL)isLoaded;
 - (NSString *)status;
-- (BOOL)shouldRememberPassword;
-- (void)setShouldRememberPassword:(BOOL)flag;
-- (void)setPassword:(NSString *)aString;
+- (BOOL)shouldStorePasswordInKeychain;
+- (void)setShouldStorePasswordInKeychain:(BOOL)flag;
 - (GEZServerType)serverType;
 
-//grid accessors
+//non KVO/KVC-compliant accessors
+- (BOOL)hasPasswordInKeychain;
 - (GEZGrid *)defaultGrid;
 - (GEZGrid *)gridWithIdentifier:(NSString *)identifier;
 

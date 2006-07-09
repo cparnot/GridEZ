@@ -67,11 +67,19 @@ typedef enum {
 - (NSString *)address;
 - (XGConnection *)xgridConnection;
 - (XGController *)xgridController;
-- (void)setPassword:(NSString *)newPassword;
 - (BOOL)isConnecting;
 - (BOOL)isConnected;
 - (BOOL)isSynced;
 - (BOOL)isLoaded;
+
+//the password will only be stored until the connection is successfull or failed
+- (void)setPassword:(NSString *)newPassword;
+
+//once a password is stored in the keychain, it will be automatically be used in future sessions again
+//the password is only stored for the duration of the function (note: still stored in the heap)
+- (void)storePasswordInKeychain:(NSString *)newPassword;
+- (BOOL)hasPasswordInKeychain;
+
 
 //set the server type to favor connection protocol to one type of server (remote or local)
 //default is 'undefined' and will make an educated guess based on the address format
@@ -79,11 +87,18 @@ typedef enum {
 - (void)setServerType:(GEZServerHookType)newType;
 
 //connection
+//in general, these methods try to connect in different ways, starting with the most likely possibility, based on the server name (is it local or remote server?) and the availability of a password (either set in clear or in the keychain)
+
+- (void)connectWithoutAuthentication;
+- (void)connectWithSingleSignOnCredentials;
+
+//if a password is stored in the keychain, it will be tried first, then the password set by 'setPassword:' if any
+//these alternatives also applies to the method '-connect'
+- (void)connectWithPassword;
+
+//the method 'connect' will try the different authentication methods in the order that seems to make the most sense, based on the server name/address and the password settings
 - (void)connect;
 - (void)disconnect;
-- (void)connectWithoutAuthentication;
-- (void)connectWithPassword;
-- (void)connectWithSingleSignOnCredentials;
 
 
 @end

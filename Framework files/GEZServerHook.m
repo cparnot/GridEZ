@@ -15,6 +15,12 @@ __END_LICENSE__ */
 #import "GEZServerHook.h"
 #import "GEZGridHook.h"
 
+//needed for Keychain stuff
+#include <Security/Security.h>
+//#include <CoreFoundation/CoreFoundation.h>
+//#include <CoreServices/CoreServices.h>
+
+
 /*
 
 From birth to death, an GEZServerHook object goes through a series of states.
@@ -186,6 +192,145 @@ NSMutableDictionary *serverHookInstances=nil;
 	serverPassword = newPassword;
 }
 
+
+- (BOOL)isConnecting
+{
+	return serverHookState == GEZServerHookStateConnecting;
+}
+
+- (BOOL)isConnected
+{
+	return serverHookState == GEZServerHookStateConnected || serverHookState == GEZServerHookStateSynced || serverHookState == GEZServerHookStateLoaded;
+}
+
+- (BOOL)isSynced
+{
+	return serverHookState == GEZServerHookStateSynced || serverHookState == GEZServerHookStateLoaded;
+}
+
+- (BOOL)isLoaded
+{
+	return serverHookState == GEZServerHookStateLoaded;
+}
+
+//set the server type to favor connection protocol to one type of server (remote or local)
+//default is 'undefined' and will make an educated guess based on the address format
+- (GEZServerHookType)serverType
+{
+	return serverType;
+}
+
+- (void)setServerType:(GEZServerHookType)newType
+{
+	serverType = newType;
+}
+
+
+//public
+- (void)storePasswordInKeychain:(NSString *)newPassword
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
+	//the service is shared with all applications using the GridEZ framework
+	const char *serviceName = "GridEZ";
+	UInt32 serviceLength = 6;
+
+	//the account name is the address of the Xgrid server
+	const char *accountName = [[self address] UTF8String];
+	UInt32 accountLength = [[self address] length];
+
+	//the password needs to be a C string
+	const void *passwordData = [newPassword UTF8String];
+	UInt32 passwordLength = [newPassword length];
+	
+	//determine wether a password is already stored and get the itemRef if it exists
+	SecKeychainItemRef itemRef = NULL;
+	OSStatus status = SecKeychainFindGenericPassword ( NULL, serviceLength, serviceName, accountLength, accountName, NULL, NULL, &itemRef);
+
+	
+	//if not existing, we need to create a keychain item
+	if ( status == errSecItemNotFound ) {
+		DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s --> add the keychain password for %@",[self class],self,_cmd,[self address]);
+		status = SecKeychainAddGenericPassword ( NULL, serviceLength, serviceName, accountLength, accountName, passwordLength, passwordData, NULL );
+	}
+	
+	//if the password is already stored, we need to update the keychain instead
+	else  {
+		DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s --> change the keychain password for %@",[self class],self,_cmd,[self address]);
+		// Set up attribute vector (each attribute consists of {tag, length, pointer}):
+		SecKeychainAttribute attrs[] = {
+        { kSecAccountItemAttr, strlen(accountName), (char *)accountName },
+        { kSecServiceItemAttr, strlen(serviceName), (char *)serviceName }
+		};
+		const SecKeychainAttributeList attributes = { sizeof(attrs) / sizeof(attrs[0]), attrs };
+		status = SecKeychainItemModifyAttributesAndData ( itemRef, &attributes, passwordLength, passwordData );
+	}
+
+	//an error may have occur on the first or the second attempt, a little logging won't hurt
+	if ( status != noErr )
+		NSLog(@"Error occured when attempting to store the password in the user keychain: error %d",status);
+
+	//we are in charge of releasing the item reference (see Apple docs)
+	if (itemRef)
+		CFRelease(itemRef);
+}
+
+- (BOOL)hasPasswordInKeychain
+{
+	
+	//the service is shared with all applications using the GridEZ framework
+	const char *serviceName = "GridEZ";
+	UInt32 serviceLength = 6;
+	
+	//the account name is the address of the Xgrid server
+	const char *accountName = [[self address] UTF8String];
+	UInt32 accountLength = [[self address] length];
+	
+	//do a request without providing a pointer for the password
+	OSStatus status = SecKeychainFindGenericPassword ( NULL, serviceLength, serviceName, accountLength, accountName, NULL, NULL, NULL);
+
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s --> %@",[self class],self,_cmd,( status == noErr )?@"YES":@"NO");
+
+	return ( status == noErr );
+}
+
+//private
+- (NSString *)passwordFromKeychain
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
+	//the service is shared with all applications using the GridEZ framework
+	const char *serviceName = "GridEZ";
+	UInt32 serviceLength = 6;
+	
+	//the account name is the address of the Xgrid server
+	const char *accountName = [[self address] UTF8String];
+	UInt32 accountLength = [[self address] length];
+	
+	//will be allocated and filled in by SecKeychainFindGenericPassword
+	void *passwordData = nil;
+	UInt32 passwordLength = nil;
+	
+	OSStatus status = SecKeychainFindGenericPassword ( NULL, serviceLength, serviceName, accountLength, accountName, &passwordLength, &passwordData, NULL);
+	
+	//an error may have occured, in which case we just return nil
+	if ( status != noErr ) {
+		NSLog(@"Error occured when attempting to retrieve the password in the user keychain: error %d",status);
+		return nil;
+	}
+
+	//generate a NSString from the buffer returned
+	NSString *passwordFromKeychain = nil;
+	if ( passwordData != nil ) {
+		passwordFromKeychain = [[[NSString alloc] initWithBytes:passwordData length:passwordLength encoding:NSUTF8StringEncoding] autorelease];
+		status = SecKeychainItemFreeContent ( NULL, passwordData );
+	}
+	return passwordFromKeychain;
+}
+
+
+
+
 //PRIVATE
 //when the xgridConnection is set, always use self as its delegate
 - (void)setXgridConnection:(XGConnection *)newXgridConnection
@@ -227,38 +372,6 @@ NSMutableDictionary *serverHookInstances=nil;
 		selectorEnumerator = nil;
 	else
 		selectorEnumerator = [[connectionSelectors objectEnumerator] retain];
-}
-
-- (BOOL)isConnecting
-{
-	return serverHookState == GEZServerHookStateConnecting;
-}
-
-- (BOOL)isConnected
-{
-	return serverHookState == GEZServerHookStateConnected || serverHookState == GEZServerHookStateSynced || serverHookState == GEZServerHookStateLoaded;
-}
-
-- (BOOL)isSynced
-{
-	return serverHookState == GEZServerHookStateSynced || serverHookState == GEZServerHookStateLoaded;
-}
-
-- (BOOL)isLoaded
-{
-	return serverHookState == GEZServerHookStateLoaded;
-}
-
-//set the server type to favor connection protocol to one type of server (remote or local)
-//default is 'undefined' and will make an educated guess based on the address format
-- (GEZServerHookType)serverType
-{
-	return serverType;
-}
-
-- (void)setServerType:(GEZServerHookType)newType
-{
-	serverType = newType;
 }
 
 
@@ -368,7 +481,33 @@ NSMutableDictionary *serverHookInstances=nil;
 	[newConnection release];
 }
 
-//fourth attempt to connect
+
+//trying to use a Bonjour connection with password from the keychain
+- (void)connect_B4
+{
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	//create a new XGConnection with a NSNetService
+	NSNetService *netService = [[NSNetService alloc] initWithDomain:@"local."
+															   type:@"_xgrid._tcp."
+															   name:serverName];
+	XGConnection *newConnection = [[XGConnection alloc] initWithNetService:netService];
+	[netService release];
+	
+	//set the authenticator
+	XGTwoWayRandomAuthenticator *authenticator = [[XGTwoWayRandomAuthenticator alloc] init];
+	[authenticator setUsername:@"one-xgrid-client"];
+	[authenticator setPassword:[self passwordFromKeychain]];
+	[newConnection setAuthenticator:authenticator];
+	[authenticator release];
+	
+	//... and go!!
+	[self setXgridConnection:newConnection];
+	[newConnection open];
+	[newConnection release];
+}
+
+
 //trying to use a remote connection without a password
 - (void)connect_H1
 {
@@ -429,6 +568,28 @@ NSMutableDictionary *serverHookInstances=nil;
 	[newConnection open];
 	[newConnection release];
 }
+
+//trying to use a remote connection with password from the keychain
+- (void)connect_H4
+{
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	//create a new XGConnection
+	XGConnection *newConnection = [[XGConnection alloc] initWithHostname:serverName portnumber:0];
+	
+	//set the authenticator
+	XGTwoWayRandomAuthenticator *authenticator = [[XGTwoWayRandomAuthenticator alloc] init];
+	[authenticator setUsername:@"one-xgrid-client"];
+	[authenticator setPassword:[self passwordFromKeychain]];
+	[newConnection setAuthenticator:authenticator];
+	[authenticator release];
+	
+	//... and go!!
+	[self setXgridConnection:newConnection];
+	[newConnection open];
+	[newConnection release];
+}
+
 
 - (void)startNextConnectionAttempt
 {
@@ -654,6 +815,7 @@ BOOL isRemoteHost (NSString *anAddress)
 	[self startNextConnectionAttempt];
 }
 
+
 - (void)connectWithPassword
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
@@ -666,13 +828,23 @@ BOOL isRemoteHost (NSString *anAddress)
 	serverHookState = GEZServerHookStateConnecting;
 	
 	//decide on the successive attempts that will be made to connect
-	//the choice depends on the address name (Bonjour or remote?) and on the password
+	//the choice depends on the address name (Bonjour or remote?) and on the password (keychain or not?)
 	NSArray *selectors = nil;
-	if ( isRemoteHost(serverName) )
-		selectors = [NSArray arrayWithObjects:@"H2",@"B2",@"H3",@"B3",nil];
-	else
-		selectors = [NSArray arrayWithObjects:@"B2",@"H2",@"B3",@"H3",nil];
-	[self setConnectionSelectors:selectors];
+	if ( isRemoteHost(serverName) ) {
+		if ( [self hasPasswordInKeychain] && ( [serverPassword length] > 0) )
+			selectors = [NSArray arrayWithObjects:@"H4",@"H2",@"B4",@"B2",nil];
+		else if ( [self hasPasswordInKeychain] && ( [serverPassword length] < 1 ) )
+			selectors = [NSArray arrayWithObjects:@"H4",@"B4",nil];
+		else
+			selectors = [NSArray arrayWithObjects:@"H2",@"B2",nil];
+	} else {
+		if ( [self hasPasswordInKeychain] && ( [serverPassword length] > 0) )
+			selectors = [NSArray arrayWithObjects:@"B4",@"B2",@"H4",@"H2",nil];
+		else if ( [self hasPasswordInKeychain] && ( [serverPassword length] < 1 ) )
+			selectors = [NSArray arrayWithObjects:@"B4",@"H4",nil];
+		else
+			selectors = [NSArray arrayWithObjects:@"B2",@"H2",nil];
+	}	[self setConnectionSelectors:selectors];
 	
 	//start the connection process
 	[self startNextConnectionAttempt];
@@ -690,17 +862,28 @@ BOOL isRemoteHost (NSString *anAddress)
 	serverHookState = GEZServerHookStateConnecting;
 	
 	//decide on the successive attempts that will be made to connect
-	//the choice depends on the address name (Bonjour or remote?) and on the password
+	//the choice depends on the address name (Bonjour or remote?) and on the password (ivar set? keychain?)
+	//there are 2 x 2 x 2 = 8 possibilities, just dumbly tested using if...else if...else if...
+	//the order chosen for the different connections is quite logical, but is partly a matter of taste and is an empirical choice
 	NSArray *selectors = nil;
 	BOOL remoteHost = isRemoteHost(serverName);
 	BOOL usePassword = ( [serverPassword length] > 0 );
-	if ( usePassword && remoteHost )
+	BOOL useKeychain = ( [self passwordFromKeychain] != nil );
+	if ( usePassword && remoteHost && useKeychain )
+		selectors = [NSArray arrayWithObjects:@"H4",@"H2",@"B4",@"B2",@"H1",@"H3",@"B1",@"B3",nil];
+	else if ( usePassword && remoteHost && !useKeychain )
 		selectors = [NSArray arrayWithObjects:@"H2",@"B2",@"H1",@"H3",@"B1",@"B3",nil];
-	else if ( usePassword && !remoteHost )
+	else if ( !usePassword && remoteHost && useKeychain )
+		selectors = [NSArray arrayWithObjects:@"H4",@"B4",@"H1",@"H3",@"B1",@"B3",nil];
+	else if ( usePassword && !remoteHost && useKeychain )
+		selectors = [NSArray arrayWithObjects:@"B4",@"B2",@"H4",@"H2",@"B1",@"B3",@"H1",@"H3",nil];
+	else if ( usePassword && !remoteHost && !useKeychain )
 		selectors = [NSArray arrayWithObjects:@"B2",@"H2",@"B1",@"B3",@"H1",@"H3",nil];
-	else if ( !usePassword && remoteHost )
+	else if ( !usePassword && !remoteHost && useKeychain )
+		selectors = [NSArray arrayWithObjects:@"B4",@"H4",@"B1",@"B3",@"H1",@"H3",nil];
+	else if ( !usePassword && remoteHost && !useKeychain )
 		selectors = [NSArray arrayWithObjects:@"H1",@"H3",@"B1",@"B3",nil];
-	else if ( !usePassword && !remoteHost )
+	else if ( !usePassword && !remoteHost && !useKeychain )
 		selectors = [NSArray arrayWithObjects:@"B1",@"B3",@"H1",@"H3",nil];
 	[self setConnectionSelectors:selectors];
 	

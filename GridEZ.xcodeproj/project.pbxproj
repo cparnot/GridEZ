@@ -60,6 +60,7 @@
 		569CD4410974E661009E977F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		569CD4420974E662009E977F /* GridEZ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC4B2095FB4CB00463A1F /* GridEZ.framework */; };
 		569CD4430974E665009E977F /* XgridFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC446095FB08400463A1F /* XgridFoundation.framework */; };
+		56A0030C0A5F363600D5DA44 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A0030B0A5F363600D5DA44 /* Security.framework */; };
 		56BFC447095FB08400463A1F /* XgridFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC446095FB08400463A1F /* XgridFoundation.framework */; };
 		56BFC489095FB25400463A1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		56BFC49A095FB37400463A1F /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC494095FB37400463A1F /* DebugLog.m */; };
@@ -212,6 +213,7 @@
 		569CD4230974E551009E977F /* PolyShell-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "PolyShell-Prefix.pch"; path = "Tests/PolyShell/PolyShell-Prefix.pch"; sourceTree = "<group>"; };
 		569CD4370974E5D2009E977F /* PolyShellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolyShellDelegate.h; path = Tests/PolyShell/PolyShellDelegate.h; sourceTree = "<group>"; };
 		569CD4380974E5D2009E977F /* PolyShellDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PolyShellDelegate.m; path = Tests/PolyShell/PolyShellDelegate.m; sourceTree = "<group>"; };
+		56A0030B0A5F363600D5DA44 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		56BFC446095FB08400463A1F /* XgridFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XgridFoundation.framework; path = /System/Library/Frameworks/XgridFoundation.framework; sourceTree = "<absolute>"; };
 		56BFC464095FB11200463A1F /* TestServerHook-main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "TestServerHook-main.m"; path = "Tests/TestServerHook/TestServerHook-main.m"; sourceTree = "<group>"; };
 		56BFC465095FB11200463A1F /* TestServerHook.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TestServerHook.h; path = Tests/TestServerHook/TestServerHook.h; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			files = (
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				56BFC447095FB08400463A1F /* XgridFoundation.framework in Frameworks */,
+				56A0030C0A5F363600D5DA44 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +364,7 @@
 		08FB77AEFE84172EC02AAC07 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */,
 				5617D3ED0963A6E600505CDC /* Resources */,
 				56BFC4E7095FB88500463A1F /* Misc sources */,
 				56BFC4D6095FB76500463A1F /* Private */,
@@ -374,6 +378,7 @@
 			children = (
 				56BFC4B2095FB4CB00463A1F /* GridEZ.framework */,
 				56BFC446095FB08400463A1F /* XgridFoundation.framework */,
+				56A0030B0A5F363600D5DA44 /* Security.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -410,7 +415,6 @@
 				5617D3EE0963A70900505CDC /* ServerWindow.nib */,
 				5678267409A6EF9900D78584 /* XgridPanel.nib */,
 				56F0A95B09B57D6F004FB9E1 /* ConnectionPanel.nib */,
-				5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
 			);
