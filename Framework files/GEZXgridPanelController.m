@@ -62,6 +62,9 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 
+	//double-click in the servers/grids is equivalent to connect: action
+	[gridsView setDoubleAction:@selector(connect:)];
+	
 	//this is used together with focusedTableView to keep track of the table view that has the focus
 	tableViews[0] = gridsView;
 	tableViews[1] = jobsView;

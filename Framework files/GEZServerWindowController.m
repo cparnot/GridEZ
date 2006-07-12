@@ -22,6 +22,7 @@ __END_LICENSE__ */
 #import "GEZServerWindowController.h"
 #import "GEZServer.h"
 #import "GEZManager.h"
+#import "GEZConnectionPanelController.h"
 
 //see implementation for details
 @interface GEZServerWindowController (GEZServerWindowControllerPrivate)
@@ -59,6 +60,12 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	return self;
 }
 
+- (void)awakeFromNib
+{
+	//double-click in the table view is equivalent to clicking the connect button
+	[serverListTableView setDoubleAction:@selector(connect:)];
+}
+
 #pragma mark *** Public class methods ***
 
 + (void)showServerWindow
@@ -88,6 +95,10 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 {	
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
+	[GEZConnectionPanelController runConnectionPanelWithServer:[self selectedServer]];
+	return;
+	
+	//we never get there - this is previous code that triggers connect sheet + etc...
 	[self startConnectionWithoutAuthentication];
 }
 

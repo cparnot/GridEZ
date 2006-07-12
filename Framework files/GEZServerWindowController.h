@@ -23,6 +23,7 @@ __END_LICENSE__ */
 	GEZServer *currentServer;
 
 	//for the main window
+	IBOutlet NSTableView *serverListTableView;
 	IBOutlet NSArrayController *serverArrayController;
 	IBOutlet NSTextField *serverAddressTextField;
 	IBOutlet NSButton *connectButton1;

@@ -16,6 +16,7 @@
                 progressIndicator2 = NSProgressIndicator; 
                 serverAddressTextField = NSTextField; 
                 serverArrayController = NSArrayController; 
+                serverListTableView = NSTableView; 
                 serverNameField = NSTextField; 
             }; 
             SUPERCLASS = NSWindowController; 
