@@ -13,6 +13,7 @@ __END_LICENSE__ */
 
 
 #import "GEZManager.h"
+#import "GEZServer.h"
 #import "GEZGrid.h"
 #import "GEZTransformers.h"
 #import "GEZServerWindowController.h"
@@ -54,10 +55,11 @@ GEZManager *sharedManager = nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[managedObjectContext release];
 	[managedObjectModel release];
+	[registeredContexts release];
 	[super dealloc];
 }
 
-#pragma mark *** Managed Object Context ***
+#pragma mark *** Main Managed Object Context ***
 
 - (NSBundle *)gridezFramework
 {
@@ -178,11 +180,43 @@ BOOL CreateFolder (NSString *path)
 }
 
 
+#pragma mark *** Other managed object contexts ***
+
+//when using additional managed object contexts to create and manage GridEZ objects, we should register them so the GEZServer objects are added to the main managedObjectContext
+//NOTE:it is not clear at this point that we really need to keep all of these registered contexts in an NSSet
+- (void)registerManagedObjectContext:(NSManagedObjectContext *)context
+{
+	if ( registeredContexts == nil )
+		registeredContexts = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	//we could have used a NSMutableSet, but anyway we might as well verify that the context is not already in the list to avoid loading the list of servers again
+	if ( [registeredContexts indexOfObjectIdenticalTo:context] == NSNotFound ) {
+		[registeredContexts addObject:context];
+		//retrieve all GEZServer from the context to register
+		NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+		[request setEntity:[NSEntityDescription entityForName:GEZServerEntityName inManagedObjectContext:context]];
+		NSError *error;
+		NSEnumerator *e = [[context executeFetchRequest:request error:&error] objectEnumerator];
+		//add these to the main context
+		GEZServer *newServer;
+		while ( newServer = [e nextObject] )
+			newServer = [newServer serverInManagedObjectContext:[self managedObjectContext]];
+	}
+	
+}
+
 #pragma mark *** Public class methods ***
 
 + (NSManagedObjectContext *)managedObjectContext
 {
 	return [[self sharedManager] managedObjectContext];
+}
+
+
+//when using additional managed object contexts to create and manage GridEZ objects, we should register them so the GEZServer objects are added to the main managedObjectContext
++ (void)registerManagedObjectContext:(NSManagedObjectContext *)context
+{
+	return [[self sharedManager] registerManagedObjectContext:context];
 }
 
 //brings the generic server window to the front and make it key; this window can be used by any application just like the Font panel or one of these application-level panels and windows; it is automatically connected to the managed object context that keeps track of Servers and Grids; the user can connect to different Xgrid Servers, aka Controllers, and can control everything from there

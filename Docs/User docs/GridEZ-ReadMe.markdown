@@ -23,6 +23,19 @@ To better see what you can do with GridEZ, the best place to start is in the Exa
 * integration with CoreData; with just one call to the save method, your application will automatically save all the information about the jobs it submitted and the server it connected to in the past; for instance, the user may quit your application and come back later to retrieve all the jobs that are now finished, and you don't have to write any code to provide that functionality
 
 
+
+### Side effects
+
+Because some users are sensitive to that issue, it is important for you to realize that when using the GridEZ.framework, your application will now create the following folder and add some files inside this location, in the user's folder:
+
+* ~/Library/Application Support/_THE_NAME_OF_YOUR_APP_/GridEZ
+* ~/Library/Application Support/GridEZ
+
+This is where persistent information about the xgrid servers and jobs is stored.
+
+The creation of these files can be disabled using appropriate keys in the Info.plist file of your application (see below section on Advanced Options). At present, it can't be disabled for standalone non-GUI tools.
+
+
 ### Adding GridEZ.framework to your Xcode project
 
 The integration of GridEZ.framework into your application is similar to the use of any other framework. The following instructions are for Xcode 2.2. For a more detailed example, read the PolyShell [tutorial](GridEZ-Tutorial1.html).

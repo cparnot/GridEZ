@@ -24,10 +24,15 @@ __END_LICENSE__ */
 {
 	NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;
+	NSMutableArray *registeredContexts;
 }
 
 //the managed object context is used to store objects at the application level; this context is unique for the whole application. In particular, it is used to store GEZServer objects. A persistent store is automatically created too, in the 'Application Support' folder. This path is specific for the running application and will not be the same when the framework is used in two different applications.
 + (NSManagedObjectContext *)managedObjectContext;
+
+
+//when using additional managed object contexts to create and manage GridEZ objects, you should register them so the GEZServer objects are added to the main managedObjectContext
++ (void)registerManagedObjectContext:(NSManagedObjectContext *)context;
 
 
 //brings the generic server window to the front and make it key; this window can be used by any application just like the Font panel or one of these application-level panels and windows; it is automatically connected to the managed object context that keeps track of Servers and Grids; the user can connect to different Xgrid Servers, aka Controllers, and can control everything from there
@@ -36,5 +41,7 @@ __END_LICENSE__ */
 
 + (void)showXgridPanel;
 + (void)hideXgridPanel;
+
+
 
 @end

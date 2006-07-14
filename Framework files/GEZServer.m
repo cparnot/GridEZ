@@ -121,7 +121,6 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	//this way, that server is registered with the application and available to all managed object contexts
 	if ( context != [GEZManager managedObjectContext] ) {
 		/*GEZServer *newServer =*/ [self serverWithAddress:address];
-		
 	}
 	
 	return returnedServer;
