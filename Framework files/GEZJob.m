@@ -694,8 +694,6 @@ NSString *GEZJobResultsStandardErrorKey;
 		if ( outcome == XGActionMonitorOutcomeSuccess) {
 			NSString *identifier = [[submissionAction results] objectForKey:@"jobIdentifier"];
 			[self setValue:identifier forKey:@"identifier"];
-			[jobSpecification release];
-			jobSpecification = nil;
 			[self setState:GEZJobStatePending];
 			if ( [delegate respondsToSelector:@selector(jobDidSubmit:)] )
 				[delegate jobDidSubmit:self];
@@ -786,6 +784,8 @@ NSString *GEZJobResultsStandardErrorKey;
 	[submissionAction release];
 	GEZServer *server = [grid server];
 	[self setSubmissionAction:[[server xgridController] performSubmitJobActionWithJobSpecification:jobSpecification gridIdentifier:[grid identifier]]];
+	[jobSpecification autorelease];
+	jobSpecification = nil;
 	
 	//if the server disconnects before the submission process is done, we need to invalidate the job
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidDisconnect:) name:GEZServerHookDidDisconnectNotification object:serverHook];
@@ -806,8 +806,11 @@ NSString *GEZJobResultsStandardErrorKey;
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
-	if ( ( [self state] == GEZJobStateSubmitting || [self state] == GEZJobStateSubmitted ) )
+	if ( ( [self state] == GEZJobStateSubmitting || [self state] == GEZJobStateSubmitted ) ) {
 		[self setState:GEZJobStateInvalid];
+		[jobSpecification release];
+		jobSpecification = nil;
+	}
 	else
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZServerHookDidDisconnectNotification object:nil];
 }

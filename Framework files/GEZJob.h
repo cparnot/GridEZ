@@ -34,13 +34,14 @@ extern NSString *GEZJobResultsStandardErrorKey;
 }
 
 //Creating GEZJob objects
+//Calling the methods below does not submit a job, it only creates one that can later be submitted using "submitJobWithSpecification:"
 //The managed object will be attached to the context of the server (or grid) to which it is submitted, or to a custom context
 + (GEZJob *)job;
 + (GEZJob *)jobWithServer:(GEZServer *)server; //same rules as '-setServer:', see below
 + (GEZJob *)jobWithGrid:(GEZGrid *)grid; //same rules as '-setGrid:', see below
 + (GEZJob *)jobWithManagedObjectContext:(NSManagedObjectContext *)context;
 
-//the server (or a specific grid) is the one to which the job is submitted
+//a job can be affected to a specific server or grid using the factory methods above, but this can still be set or changed using the accessors below
 //	- if set before submission, the job will try to use it and will fail to start if the grid is diconnected
 //	- if not set, or set to nil, the job will use the first available server connected
 //	- after submission and even if the submission fails, the grid cannot be modified
@@ -49,9 +50,9 @@ extern NSString *GEZJobResultsStandardErrorKey;
 - (void)setServer:(GEZServer *)newServer;
 - (void)setGrid:(GEZGrid *)newGrid;
 
-//job actions
+
 //the 'submit' method can only be used once on a given job
-//the job specification is only cached during submission, and is discarded if submission succedeed or failed (this is because it can be big)
+//the job specification is only cached during submission, and is discarded if submission succeeds or fails (this is because it can be big)
 - (void)submitWithJobSpecification:(NSDictionary *)jobSpecification;
 
 //the job will be stopped and then deleted from the Xgrid server and then from the managed object context. A notification is sent when the deletion is successful or if it failed
