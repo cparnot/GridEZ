@@ -240,15 +240,19 @@ NSString *GEZJobResultsStandardErrorKey;
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
-	GEZGrid *oldGrid = [self primitiveValueForKey:@"grid"];
-	if ( newGrid == oldGrid )
-		return;
-	
 	//do not change the grid if already submitted
 	GEZJobState state = [self state];
 	if ( state != GEZJobStateUninitialized && state != GEZJobStateSubmitting )
 		return;
 
+	//make sure the newGrid is in the right managedObjectContext
+	if ( [self managedObjectContext] != [newGrid managedObjectContext] )
+		newGrid = [GEZGrid gridWithIdentifier:[newGrid identifier] server:[[newGrid server] serverInManagedObjectContext:[self managedObjectContext]]];
+	
+	GEZGrid *oldGrid = [self primitiveValueForKey:@"grid"];
+	if ( newGrid == oldGrid )
+		return;
+	
 	//set up the new grid
 	if ( oldGrid != nil )
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:oldGrid];

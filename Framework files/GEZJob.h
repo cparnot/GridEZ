@@ -42,7 +42,7 @@ extern NSString *GEZJobResultsStandardErrorKey;
 + (GEZJob *)jobWithManagedObjectContext:(NSManagedObjectContext *)context;
 
 //a job can be affected to a specific server or grid using the factory methods above, but this can still be set or changed using the accessors below
-//	- if set before submission, the job will try to use it and will fail to start if the grid is diconnected
+//	- if set before submission, the job will try to use it and will fail to start if the grid is disconnected
 //	- if not set, or set to nil, the job will use the first available server connected
 //	- after submission and even if the submission fails, the grid cannot be modified
 //	- during submission, the grid may change several times, but will be fixed once the submission has successed or failed

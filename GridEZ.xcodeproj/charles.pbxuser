@@ -20,12 +20,12 @@
 			5695AE8F09DBB7B100C92AF7 /* PolyShellDelegate.m:45 */,
 			5695AEA509DBB85E00C92AF7 /* PolyShellDelegate.m:51 */,
 			561A07B409FD9CB700BFC1B3 /* GEZGrid.m:254 */,
-			563B95AC0A01F117004EA694 /* GEZJob.m:872 */,
+			563B95AC0A01F117004EA694 /* GEZJob.m:876 */,
 			569CD39A0974DDBC009E977F /* GEZGridHook.m:49 */,
 			567823C209A15D2500D78584 /* GEZResults.m:106 */,
 			56F0A6D309AD3537004FB9E1 /* GEZTask.m:54 */,
-			562D8E9409C211A300E4CAF4 /* GEZJob.m:578 */,
-			562D8EEA09C25BDC00E4CAF4 /* GEZJob.m:555 */,
+			562D8E9409C211A300E4CAF4 /* GEZJob.m:582 */,
+			562D8EEA09C25BDC00E4CAF4 /* GEZJob.m:559 */,
 			567826C109A6F2E400D78584 /* GEZManager.m:248 */,
 			56A003FF0A5F839800D5DA44 /* GEZServerHook.m:303 */,
 		);
@@ -507,15 +507,15 @@
 			567827E509A9A6C300D78584 /* GEZBindingsCategories.m:71 */,
 			56F0A6D309AD3537004FB9E1 /* GEZTask.m:54 */,
 			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:152 */,
-			562D8E9409C211A300E4CAF4 /* GEZJob.m:578 */,
-			562D8EEA09C25BDC00E4CAF4 /* GEZJob.m:555 */,
+			562D8E9409C211A300E4CAF4 /* GEZJob.m:582 */,
+			562D8EEA09C25BDC00E4CAF4 /* GEZJob.m:559 */,
 			5695A94A09C8F28C00C92AF7 /* GEZXgridPanelController.m:272 */,
 			5695AB4309D0C89400C92AF7 /* GEZJob.m:170 */,
 			5695AE8C09DBB7A000C92AF7 /* PolyShellDelegate.m:106 */,
 			5695AE8F09DBB7B100C92AF7 /* PolyShellDelegate.m:45 */,
 			5695AEA509DBB85E00C92AF7 /* PolyShellDelegate.m:51 */,
 			561A07B409FD9CB700BFC1B3 /* GEZGrid.m:254 */,
-			563B95AC0A01F117004EA694 /* GEZJob.m:872 */,
+			563B95AC0A01F117004EA694 /* GEZJob.m:876 */,
 			56A003FF0A5F839800D5DA44 /* GEZServerHook.m:303 */,
 		);
 	};
@@ -719,30 +719,30 @@
 	5617D1530962223B00505CDC /* GEZGrid.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {793, 966}}";
-			sepNavSelRange = "{1513, 0}";
-			sepNavVisRect = "{{0, 283}, {793, 683}}";
+			sepNavSelRange = "{1591, 0}";
+			sepNavVisRect = "{{0, 192}, {793, 683}}";
 		};
 	};
 	5617D1540962223B00505CDC /* GEZGrid.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {793, 3990}}";
 			sepNavSelRange = "{3616, 0}";
-			sepNavVisRect = "{{0, 792}, {793, 687}}";
+			sepNavVisRect = "{{0, 796}, {793, 683}}";
 			sepNavWindowFrame = "{{15, 64}, {999, 763}}";
 		};
 	};
 	5617D1590962224C00505CDC /* GEZJob.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {793, 1834}}";
-			sepNavSelRange = "{4901, 0}";
-			sepNavVisRect = "{{0, 0}, {0, 0}}";
+			sepNavSelRange = "{2864, 0}";
+			sepNavVisRect = "{{0, 372}, {793, 683}}";
 		};
 	};
 	5617D15A0962224C00505CDC /* GEZJob.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {793, 15050}}";
-			sepNavSelRange = "{23660, 0}";
-			sepNavVisRect = "{{0, 9786}, {793, 683}}";
+			sepNavSelRange = "{10635, 41}";
+			sepNavVisRect = "{{0, 3587}, {793, 683}}";
 		};
 	};
 	5617D25709625F0000505CDC /* GEZDefines.h */ = {
@@ -1427,7 +1427,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -1447,7 +1447,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -1697,7 +1697,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -1857,7 +1857,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -1927,7 +1927,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: jobDidNotSubmit:";
 		rLen = 0;
-		rLoc = 5257;
+		rLoc = 5258;
 		rType = 0;
 		vrLen = 2469;
 		vrLoc = 89;
@@ -1937,7 +1937,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 809";
 		rLen = 0;
-		rLoc = 27756;
+		rLoc = 28036;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 26612;
@@ -1967,7 +1967,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "- (void)awakeFromFetch";
 		rLen = 23;
-		rLoc = 16972;
+		rLoc = 17252;
 		rType = 0;
 		vrLen = 1732;
 		vrLoc = 18260;
@@ -2007,7 +2007,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "*** Submission ***";
 		rLen = 18;
-		rLoc = 25379;
+		rLoc = 25659;
 		rType = 0;
 		vrLen = 1800;
 		vrLoc = 25456;
@@ -2027,7 +2027,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 791";
 		rLen = 0;
-		rLoc = 27123;
+		rLoc = 27403;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 25422;
@@ -2047,7 +2047,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 809";
 		rLen = 0;
-		rLoc = 27756;
+		rLoc = 28036;
 		rType = 0;
 		vrLen = 1574;
 		vrLoc = 26612;
@@ -2057,7 +2057,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: jobDidNotSubmit:";
 		rLen = 0;
-		rLoc = 5257;
+		rLoc = 5258;
 		rType = 0;
 		vrLen = 2469;
 		vrLoc = 89;
@@ -2067,7 +2067,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 813";
 		rLen = 0;
-		rLoc = 27981;
+		rLoc = 28261;
 		rType = 0;
 		vrLen = 1602;
 		vrLoc = 26602;
@@ -2077,7 +2077,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -2087,7 +2087,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 813";
 		rLen = 0;
-		rLoc = 27981;
+		rLoc = 28261;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 26602;
@@ -2097,7 +2097,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 813";
 		rLen = 0;
-		rLoc = 27981;
+		rLoc = 28261;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 26602;
@@ -2117,7 +2117,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 93";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -2147,7 +2147,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 813";
 		rLen = 0;
-		rLoc = 27981;
+		rLoc = 28261;
 		rType = 0;
 		vrLen = 1659;
 		vrLoc = 26544;
@@ -2177,7 +2177,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 813";
 		rLen = 0;
-		rLoc = 27981;
+		rLoc = 28261;
 		rType = 0;
 		vrLen = 1659;
 		vrLoc = 26544;
@@ -2197,7 +2197,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 697";
 		rLen = 0;
-		rLoc = 23660;
+		rLoc = 23940;
 		rType = 0;
 		vrLen = 2179;
 		vrLoc = 22224;
@@ -2217,7 +2217,7 @@
 		modificationTime = 174031777.391609;
 		state = 1;
 	};
-	562D8E9409C211A300E4CAF4 /* GEZJob.m:578 */ = {
+	562D8E9409C211A300E4CAF4 /* GEZJob.m:582 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -2227,12 +2227,12 @@
 		fileReference = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		functionName = "-xgridJobDidLoad:";
 		hitCount = 1;
-		lineNumber = 578;
+		lineNumber = 582;
 		location = GridEZ;
 		modificationTime = 174031777.391908;
 		state = 1;
 	};
-	562D8EEA09C25BDC00E4CAF4 /* GEZJob.m:555 */ = {
+	562D8EEA09C25BDC00E4CAF4 /* GEZJob.m:559 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -2242,7 +2242,7 @@
 		fileReference = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		functionName = "-hook:";
 		hitCount = 1;
-		lineNumber = 555;
+		lineNumber = 559;
 		location = GridEZ;
 		modificationTime = 174031777.391923;
 		state = 1;
@@ -2257,7 +2257,7 @@
 		vrLen = 3734;
 		vrLoc = 18366;
 	};
-	563B95AC0A01F117004EA694 /* GEZJob.m:872 */ = {
+	563B95AC0A01F117004EA694 /* GEZJob.m:876 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -2267,7 +2267,7 @@
 		fileReference = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		functionName = "-didRetrieveResults:";
 		hitCount = 1;
-		lineNumber = 872;
+		lineNumber = 876;
 		location = GridEZ;
 		modificationTime = 174031777.39181;
 		state = 1;
@@ -2865,7 +2865,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -3287,7 +3287,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "- (unsigned int)taskCount;";
 		rLen = 27;
-		rLoc = 4974;
+		rLoc = 4975;
 		rType = 0;
 		vrLen = 2147;
 		vrLoc = 30;
@@ -3727,7 +3727,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: 92";
 		rLen = 0;
-		rLoc = 4901;
+		rLoc = 4902;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -4302,7 +4302,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 706";
 		rLen = 0;
-		rLoc = 25931;
+		rLoc = 26211;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 23701;
@@ -4312,7 +4312,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 404";
 		rLen = 0;
-		rLoc = 14509;
+		rLoc = 14789;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 13643;
@@ -4342,7 +4342,7 @@
 		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
 		name = "GEZJob.h: jobDidNotSubmit:";
 		rLen = 0;
-		rLoc = 5257;
+		rLoc = 5258;
 		rType = 0;
 		vrLen = 1580;
 		vrLoc = 3826;
@@ -4480,7 +4480,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "- (void)awakeFromFetch";
 		rLen = 23;
-		rLoc = 16972;
+		rLoc = 17252;
 		rType = 0;
 		vrLen = 2078;
 		vrLoc = 17622;
