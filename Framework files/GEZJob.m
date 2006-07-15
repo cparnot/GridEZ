@@ -520,6 +520,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	// Get invalid jobs out of the way
 	GEZJobState state = [self state];
 	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [[self identifier] intValue] < 1 || [self grid] == nil ) {
+		[self setState:GEZJobStateInvalid];
 		[self deleteFromStoreSoon];
 		return;
 	}
@@ -537,8 +538,11 @@ NSString *GEZJobResultsStandardErrorKey;
 	GEZJobState state = [self state];
 	GEZGrid *grid = [self grid];
 	NSString *identifier = [self identifier];
-	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [identifier intValue] < 0 || grid == nil )
+	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [identifier intValue] < 0 || grid == nil ) {
+		//[self setState:GEZJobStateInvalid];
+		//[self deleteFromStoreSoon];
 		return;
+	}
 	
 	// Maybe we have to wait for the grid to be synced, so that the array of XGJob is loaded
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidSync:) name:GEZGridDidSyncNotification object:grid];
@@ -782,6 +786,9 @@ NSString *GEZJobResultsStandardErrorKey;
 	[submissionAction release];
 	GEZServer *server = [grid server];
 	[self setSubmissionAction:[[server xgridController] performSubmitJobActionWithJobSpecification:jobSpecification gridIdentifier:[grid identifier]]];
+	
+	//if the server disconnects before the submission process is done, we need to invalidate the job
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidDisconnect:) name:GEZServerHookDidDisconnectNotification object:serverHook];
 }
 
 - (void)serverHookDidSync:(NSNotification *)notification
@@ -792,6 +799,17 @@ NSString *GEZJobResultsStandardErrorKey;
 		[self submitSoon];
 	else
 		[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZServerHookDidSyncNotification object:nil];
+}
+
+
+- (void)serverHookDidDisconnect:(NSNotification *)notification
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	if ( ( [self state] == GEZJobStateSubmitting || [self state] == GEZJobStateSubmitted ) )
+		[self setState:GEZJobStateInvalid];
+	else
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZServerHookDidDisconnectNotification object:nil];
 }
 
 
