@@ -209,6 +209,7 @@ NSString *GEZJobResultsStandardErrorKey;
 + (GEZJob *)jobWithGrid:(GEZGrid *)grid
 {
 	GEZJob *newJob = [self jobWithManagedObjectContext:[grid managedObjectContext]];
+	//note that setGrid: also sets the server so no need to do it too
 	[newJob setGrid:grid];
 	return newJob;
 }
@@ -218,6 +219,14 @@ NSString *GEZJobResultsStandardErrorKey;
 	return [self jobWithGrid:[server defaultGrid]];
 }
 
++ (GEZJob *)jobWithGrid:(GEZGrid *)grid identifier:(NSString *)identifier;
+{
+	GEZJob *newJob = [self jobWithManagedObjectContext:[grid managedObjectContext]];
+	[newJob setGrid:grid];
+	[newJob setValue:identifier forKey:@"identifier"];
+	[newJob hookSoon];
+	return newJob;
+}
 
 
 #pragma mark *** Public accessors ***
@@ -523,7 +532,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	
 	// Get invalid jobs out of the way
 	GEZJobState state = [self state];
-	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [[self identifier] intValue] < 1 || [self grid] == nil ) {
+	if ( /* state == GEZJobStateUninitialized || */ state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [[self identifier] intValue] < 1 || [self grid] == nil ) {
 		[self setState:GEZJobStateInvalid];
 		[self deleteFromStoreSoon];
 		return;
@@ -542,7 +551,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	GEZJobState state = [self state];
 	GEZGrid *grid = [self grid];
 	NSString *identifier = [self identifier];
-	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [identifier intValue] < 0 || grid == nil ) {
+	if ( /*state == GEZJobStateUninitialized || */ state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [identifier intValue] < 0 || grid == nil ) {
 		//[self setState:GEZJobStateInvalid];
 		//[self deleteFromStoreSoon];
 		return;
@@ -565,8 +574,10 @@ NSString *GEZJobResultsStandardErrorKey;
 	
 	//maybe the XGJob is already loaded, which would be true if its name is not nil
 	//then we have to do whatever is needed once loaded (but it is best to wait for the next iteration of the run loop)
-	if ( [xgridJob name] != nil )
+	if ( [xgridJob name] != nil ) {
+		[self setValue:[xgridJob name] forKey:@"name"];
 		[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridJobDidLoad:) userInfo:nil repeats:NO];
+	}
 }
 
 - (void)hookSoon

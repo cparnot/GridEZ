@@ -14,6 +14,7 @@ __END_LICENSE__ */
 
 #import "GEZXgridPanelController.h"
 #import "GEZServer.h"
+#import "GEZGrid.h"
 #import "GEZJob.h"
 #import "GEZManager.h"
 #import "GEZConnectionPanelController.h"
@@ -250,6 +251,31 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 	NSEnumerator *e = [selection objectEnumerator];
 	while ( selectedServer = [e nextObject] )
 		[selectedServer disconnect];
+}
+
+
+- (IBAction)loadAllJobs:(id)sender
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	
+	//selection may contain servers or grid, and we justs want grids
+	NSArray *selection = [gridsController selectedObjects];
+	GEZServer *selectedObject;
+	NSEnumerator *e = [selection objectEnumerator];
+	NSMutableSet *selectedGrids = [NSMutableSet setWithCapacity:[selection count]];
+	while ( selectedObject = [e nextObject] ) {
+		if ( [selectedObject isKindOfClass:[GEZServer class]] )
+			[selectedGrids unionSet:[selectedObject grids]];
+		else if ( [selectedObject isKindOfClass:[GEZGrid class]] )
+			[selectedGrids addObject:selectedObject];
+	}
+	
+	//now, load all jobs for each of the selected grids
+	GEZGrid *oneGrid;
+	e = [selectedGrids objectEnumerator];
+	while ( oneGrid = [e nextObject] )
+		[oneGrid loadAllJobs];
+	
 }
 
 - (IBAction)addItem:(id)sender

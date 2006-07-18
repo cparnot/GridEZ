@@ -46,11 +46,13 @@ __END_LICENSE__ */
 //used by the nib to get the managed object context
 - (NSManagedObjectContext *)managedObjectContext;
 
+//used with Bindings to switch the contents of the bottom "inspector" panel
 - (IBAction)changeInspectorType:(id)sender;
 
+//actions for servers and grids
 - (IBAction)connect:(id)sender;
 - (IBAction)disconnect:(id)sender;
-
+- (IBAction)loadAllJobs:(id)sender;
 
 - (IBAction)addItem:(id)sender;
 - (IBAction)removeItem:(id)sender;

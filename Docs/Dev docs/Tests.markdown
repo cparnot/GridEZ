@@ -32,3 +32,7 @@ One way to test the framework is manually using the GUI of the example PolyShell
 * submit, then disconnect, then delete, then reconnect --> results are downloaded? the job is deleted automatically after reconnection?
 
 
+Other tests based on bugs I have fixed:
+* make sure the GEZGrid used for submission of a GEZJob is in the same managed object context, when using the setGrid: method
+* jobSpecification would not always be released when needed in GEZJob after the submission
+* when server disconnected while job is submitted, should do something to kill the submission

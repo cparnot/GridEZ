@@ -55,6 +55,10 @@ extern NSString *GEZJobResultsStandardErrorKey;
 //the job specification is only cached during submission, and is discarded if submission succeeds or fails (this is because it can be big)
 - (void)submitWithJobSpecification:(NSDictionary *)jobSpecification;
 
+
+//this method is different from the other factory methods in that it creates a GEZJob object from a job already existing on the corresponding Xgrid server, and thus potentially submitted by another application; the managedObjectContext in which the new GEZJob lives is the same as the GEZGrid object; this factory method may or may not create a new GEZJob object on every call (so please do not assume one or the other); in general, you don't need to use this method as your application will usually only be interested in jobs it submitted itself; note that the job properties other than its identifier may not be available immediately if the corresponding grid is not connected, but everything will be uploaded as soon as connection is established
++ (GEZJob *)jobWithGrid:(GEZGrid *)grid identifier:(NSString *)identifier;
+
 //the job will be stopped and then deleted from the Xgrid server and then from the managed object context. A notification is sent when the deletion is successful or if it failed
 - (void)delete;
 

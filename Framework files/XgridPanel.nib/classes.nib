@@ -36,6 +36,7 @@
                 changeInspectorType = id; 
                 connect = id; 
                 disconnect = id; 
+                loadAllJobs = id; 
                 removeItem = id; 
             }; 
             CLASS = GEZXgridPanelController; 

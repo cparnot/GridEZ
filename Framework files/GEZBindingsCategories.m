@@ -48,9 +48,9 @@ __END_LICENSE__ */
 @implementation GEZGrid (GEZGridBindings)
 
 //this will allow GEZGrid entities to be used in an Outline view where GEZServer entities are at the root
-- (NSArray *)grids
+- (NSSet *)grids
 {
-	return [NSArray array];
+	return [NSSet set];
 }
 
 //this key is only meaniningful for GEZServer, and not GEZGrid, so it can be used in an outline view to only show the status of the server (parent) and not of the grids (children)

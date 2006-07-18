@@ -26,6 +26,7 @@ __END_LICENSE__ */
 #import "GEZServer.h"
 #import "GEZGridHook.h"
 #import "GEZServerHook.h"
+#import "GEZJob.h"
 #import "GEZDefines.h"
 
 NSString *GEZGridDidSyncNotification = @"GEZGridDidSyncNotification";
@@ -86,6 +87,31 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	gridHook = nil;
 	[super dealloc];
 }
+
+
+- (NSArray *)loadAllJobs
+{
+	//these are the XGJob
+	NSArray *xgridJobs = [[self xgridGrid] jobs];
+	if ( [xgridJobs count] < 1 )
+		return [NSArray array];
+	
+	//jobs already loaded will be ignored
+	NSSet *currentJobIdentifiers = [self valueForKeyPath:@"jobs.identifier"];
+	
+	//loop through the XGJob and add GEZJob if not existing
+	NSMutableArray *addedJobs = [NSMutableArray arrayWithCapacity:[currentJobIdentifiers count]];
+	NSEnumerator *e = [xgridJobs objectEnumerator];
+	XGJob *oneJob;
+	while ( oneJob = [e nextObject] ) {
+		NSString *identifier = [oneJob identifier];
+		if ( [currentJobIdentifiers member:identifier] == nil )
+			[addedJobs addObject:[GEZJob jobWithGrid:self identifier:identifier]];
+	}
+	
+	return [NSArray arrayWithArray:addedJobs];
+}
+
 
 #pragma mark *** Job submissions ***
 
