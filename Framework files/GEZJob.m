@@ -113,6 +113,7 @@ NSString *GEZJobResultsStandardErrorKey;
 - (void)stateDidChange;
 - (void)taskCountDidChange;
 - (void)completedTaskCountDidChange;
+- (void)nameDidChange;
 
 //submission
 - (void)submitSoon;
@@ -575,7 +576,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	//maybe the XGJob is already loaded, which would be true if its name is not nil
 	//then we have to do whatever is needed once loaded (but it is best to wait for the next iteration of the run loop)
 	if ( [xgridJob name] != nil ) {
-		[self setValue:[xgridJob name] forKey:@"name"];
+		[self nameDidChange];
 		[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridJobDidLoad:) userInfo:nil repeats:NO];
 	}
 }
@@ -591,6 +592,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	//get notification of state and completedTaskCount changes to keep things in sync
+	[self nameDidChange];
 	[self stateDidChange];
 	[self completedTaskCountDidChange];
 	[self taskCountDidChange];
@@ -680,6 +682,14 @@ NSString *GEZJobResultsStandardErrorKey;
 	}
 }
 
+//keep name in sync
+//the name saved in GEZJob will really change only if the job is loaded from an already existing XGJob on the grid
+- (void)nameDidChange
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	if ( [[xgridJob name] length] > 0 )
+		[self setValue:[xgridJob name] forKey:@"name"];
+}
 
 
 #pragma mark *** KVO callback ***
@@ -694,6 +704,7 @@ NSString *GEZJobResultsStandardErrorKey;
 			//we only observe the name to know when XGJob is loaded
 			// at the next iteration of the run loop, all XGJob ivars will be set and XGJob will then be "loaded"
 			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridJobDidLoad:) userInfo:nil repeats:NO];
+			[self nameDidChange];
 		}
 		else if ( [keyPath isEqualToString:@"state"] )
 			[self stateDidChange];

@@ -1,16 +1,55 @@
 Roadmap
 
 Todo for v0.4 release:
-* allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
 * bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
 * Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * User-level store, to remember servers used by different apps (do not store jobs)
+* fix code in GEZGrid, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
+* fix code in GEZServer, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
+
 
 done:
 * Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
 * Format of the store: make it an option to be set in the info.plist of the app bundle
 * Add Keychain support
 * bug: when server disconnected while job is submitted, should do something to kill the submission ÐÐ> check with James that the fix does the job
+* allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
+	* still need to add code for GEZServer when grids added + support for observeAllJobs
+
+
+---------------
+Other things todo (some maybe):
+
+* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet)
+
+* Have a system-wide database of servers, shared by all applications run by the user
+
+* Do a better job at using CoreData callbacks for object creation, fetching, deletion,...
+
+* Try to use some of XGResource methods and ivars like "isUpdated" and "actionMonitors", that would make my code simpler
+
+* A job should be marked as deleted when deleted from the grid from outside --> need to observe its deletion in XGGrid; but maybe this is not a good idea to delete the GEZJob in fact (?)
+
+* Put GUI stuff in separate headers, AppKit categories:
+	* Controller window in GEZServer
+	* Pasteboard name for drag and drop of GEZServer (in GEZServer category too)
+
+* GEZGridHook
+	* monitor jobs to be considered 'loaded' --> right now, GEZGridHook objects NEVER GET "LOADED"
+	* monitor state in case it goes away? Probably not necessary, if the server is monitoring its 'grids'
+
+* GEZManager
+	* Give the option to change the location of the persistent store
+	* Remove the GUI stuff (see above)
+
+* GEZServer
+	* make the object smarter, so it remembers which way it connected before, e.g. not ask single sign on if already used that in the past --> how to make that work with GEZServerHook??
+	* handle deletion in a smart way --> delete all server entities across mocs? allow deletion of connected servers? disconnect first?
+
+* GEZJOb
+	* when setServer is used, should defer the decision on the grid to the submission time, in case a default grid is changed by then
+	
+
 
 -------------
 
@@ -36,38 +75,5 @@ Done for v0.3 release:
 * Update GEZJOb to have a complete interface to check state, including isSubmitting, is RetrievingResults, XGResourceState,...
 * Update GEZJOb delegate method to be more consistent with state, e.g. jobDidSubmit instead of jobDidStart
 * Get the context/server issue right: create new entities in the default context for *any* server added in *any* context:
-
-
----------------
-Other things todo (some maybe):
-
-* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet)
-
-* Have a system-wide database of servers, shared by all applications run by the user
-
-* Do a better job at using CoreData callbacks for object creation, fetching, deletion,...
-
-* Put GUI stuff in separate headers, AppKit categories:
-	* Controller window in GEZServer
-	* Pasteboard name for drag and drop of GEZServer (in GEZServer category too)
-
-* GEZGridHook
-	* monitor jobs to be considered 'loaded' --> right now, GEZGridHook objects NEVER GET "LOADED"
-	* monitor state in case it goes away? Probably not necessary, if the server is monitoring its 'grids'
-
-* GEZManager
-	* Give the option to change the location of the persistent store
-	* Give the option to have a store 'in-memory', maybe even thru an entry in the info.plist of the main application that will use the framework
-	* Remove the GUI stuff (see above)
-
-* GEZServer
-	* make the object smarter, so it remembers which way it connected before, e.g. not ask single sign on if already used that in the past --> how to make that work with GEZServerHook??
-	* handle deletion in a smart way --> delete all server entities across mocs? allow deletion of connected servers? disconnect first?
-
-* GEZJOb
-	* when setServer is used, should defer the decision on the grid to the submission time, in case a default grid is changed by then
-
-* GEZGrid
-	* Load all jobs into the moc, not just the job submitted previously
 
 

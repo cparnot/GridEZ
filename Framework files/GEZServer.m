@@ -265,6 +265,30 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	return [serverHook hasPasswordInKeychain];
 }
 
+
+- (BOOL)shouldObserveAllJobs;
+{
+    [self willAccessValueForKey:@"shouldObserveAllJobs"];
+    BOOL flag = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
+    [self didAccessValueForKey:@"shouldObserveAllJobs"];
+    return flag;
+}
+
+- (void)setShouldObserveAllJobs:(BOOL)new
+{
+	BOOL old = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
+	if ( new != old ) {
+		[self willChangeValueForKey:@"shouldObserveAllJobs"];
+		[self setPrimitiveValue:[NSNumber numberWithBool:new] forKey:@"shouldObserveAllJobs"];
+		[self didChangeValueForKey:@"shouldObserveAllJobs"];
+		NSEnumerator *e = [[self grids] objectEnumerator];
+		GEZGrid *oneGrid;
+		while ( oneGrid = [e nextObject] )
+			[oneGrid setShouldObserveAllJobs:new];
+	}
+	/*TODO: ideally, this setting should also apply to future grids potentially added*/
+}
+
 /*
 - (void)setPassword:(NSString *)aString
 {
@@ -474,8 +498,11 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	NSMutableSet *grids = [self mutableSetValueForKey:@"grids"];
 	NSEnumerator *e = [[[serverHook xgridController] grids] objectEnumerator];
 	XGGrid *aGrid;
-	while ( aGrid = [e nextObject] )
-		[grids addObject:[GEZGrid gridWithIdentifier:[aGrid identifier] server:self]];
+	while ( aGrid = [e nextObject] ) {
+		GEZGrid *newGrid = [GEZGrid gridWithIdentifier:[aGrid identifier] server:self];
+		[newGrid setShouldObserveAllJobs:[self shouldObserveAllJobs]];
+		[grids addObject:newGrid];
+	}
 }
 
 - (void)serverHookDidLoad:(NSNotification *)aNotification

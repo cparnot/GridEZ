@@ -109,6 +109,11 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 - (void)setShouldStorePasswordInKeychain:(BOOL)flag;
 - (GEZServerType)serverType;
 
+//See GEZGrid for more on that
+- (BOOL)shouldObserveAllJobs; 
+- (void)setShouldObserveAllJobs:(BOOL)flag;
+
+
 //non KVO/KVC-compliant accessors
 - (BOOL)hasPasswordInKeychain;
 - (GEZGrid *)defaultGrid;

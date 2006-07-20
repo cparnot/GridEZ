@@ -59,6 +59,8 @@ APPKIT_EXTERN NSString *GEZGridDidLoadNotification;
 - (XGGrid *)xgridGrid;
 
 //setup the GEZGrid so that all of the jobs submitted to the grid are available as GEZJob, not just the jobs submitted by the application itself, and the jobs actually added are returned; in general, you don't want to use that feature, as you are probably only interested in jobs submitted by the app itself; the current implementation does not keep track of new jobs added to the grid by other applications; in addition, there is no callback to let you know when all the jobs have indeed be loaded, but you could get notifications from each of them; in some instances, jobs might exist in duplicate
+- (BOOL)shouldObserveAllJobs;
+- (void)setShouldObserveAllJobs:(BOOL)flag;
 - (NSArray *)loadAllJobs;
 
 

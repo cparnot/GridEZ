@@ -19,6 +19,7 @@ __END_LICENSE__ */
 NSString *GEZGridHookDidSyncNotification = @"GEZGridHookDidSyncNotification";
 NSString *GEZGridHookDidLoadNotification = @"GEZGridHookDidLoadNotification";
 NSString *GEZGridHookDidChangeNameNotification = @"GEZGridHookDidChangeNameNotification";
+NSString *GEZGridHookDidChangeJobsNotification = @"GEZGridHookDidChangeNameNotification";
 
 
 //the state changes as the connection progresses from not being connected to having loaded all the attributes of the server
@@ -105,11 +106,19 @@ typedef enum {
 - (void)setXgridGrid:(XGGrid *)newGrid
 {
 	if ( newGrid != xgridGrid ) {
+		
+		//clean the old ivar
+		if ( shouldObserveJobs == YES )
+			[xgridGrid removeObserver:self forKeyPath:@"jobs"];
 		[xgridGrid removeObserver:self forKeyPath:@"name"];
 		[xgridGrid release];
+
+		//setup the new ivar
 		xgridGrid = [newGrid retain];
-		//if the XGGrid object does not have its ivars set, we need to observe its instance variables
 		[xgridGrid addObserver:self forKeyPath:@"name" options:0 context:NULL];
+		if ( shouldObserveJobs == YES )
+			[xgridGrid addObserver:self forKeyPath:@"jobs" options:0 context:NULL];
+		
 		//if ready, notify self to be synced on the next iteration of the run loop
 		if ( [xgridGrid name] != nil )
 			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridGridDidSyncInstanceVariables:) userInfo:nil repeats:NO];
@@ -131,6 +140,20 @@ typedef enum {
 	return gridHookState == GEZGridHookStateLoaded;
 }
 
+- (BOOL)shouldObserveJobs
+{
+	return shouldObserveJobs;
+}
+
+- (void)setShouldObserveJobs:(BOOL)flag
+{
+	if ( shouldObserveJobs == flag )
+		return;
+
+	shouldObserveJobs = flag;
+	if ( flag )
+		[xgridGrid addObserver:self forKeyPath:@"jobs" options:0 context:NULL];
+}
 
 
 #pragma mark *** XGGrid observing, going from "Connected" to "Synced" ***
@@ -141,13 +164,19 @@ typedef enum {
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@\nObject = <%@:%p>\nKey Path = %@\nChange = %@",[self class],self,_cmd, [self shortDescription], [object class], object, keyPath, [change description]);
 	
-	//the first change in value is when the name is set, which means in the next run loop, all the ivars will be set
-	if ( gridHookState == GEZGridHookStateUninitialized && [xgridGrid state] != 0 )
-			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridGridDidSyncInstanceVariables:) userInfo:nil repeats:NO];
-
-	//otherwise, it means the name of the grid was changed
-	else
-		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeNameNotification object:self];
+	if ( [keyPath isEqualToString:@"name"] ) {
+		//the first change in value is when the name is set, which means in the next run loop, all the ivars will be set
+		if ( gridHookState == GEZGridHookStateUninitialized && [xgridGrid state] != 0 )
+			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridGridDidSyncInstanceVariables:) userInfo:nil repeats:NO];		
+		//otherwise, it means the name of the grid was changed
+		else
+			[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeNameNotification object:self];
+	}
+	
+	//the first change for the "jobs" value is when the jobs are set during the initialization, so we ignore that
+	else if ( [keyPath isEqualToString:@"jobs"] && gridHookState != GEZGridHookStateUninitialized ) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeJobsNotification object:self];
+	}
 }
 
 //callback on the iteration of the run loop following the change in the state of the XGGrid

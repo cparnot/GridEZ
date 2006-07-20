@@ -22,6 +22,7 @@ __END_LICENSE__ */
 APPKIT_EXTERN NSString *GEZGridHookDidSyncNotification;
 APPKIT_EXTERN NSString *GEZGridHookDidLoadNotification;
 APPKIT_EXTERN NSString *GEZGridHookDidChangeNameNotification;
+APPKIT_EXTERN NSString *GEZGridHookDidChangeJobsNotification;
 
 
 @class GEZServerHook;
@@ -31,6 +32,7 @@ APPKIT_EXTERN NSString *GEZGridHookDidChangeNameNotification;
 	XGGrid *xgridGrid;
 	GEZServerHook *serverHook;
 	int gridHookState; //private enum
+	BOOL shouldObserveJobs;
 }
 
 + (GEZGridHook *)gridHookWithXgridGrid:(XGGrid *)aGrid serverHook:(GEZServerHook *)aServer;
@@ -41,6 +43,8 @@ APPKIT_EXTERN NSString *GEZGridHookDidChangeNameNotification;
 - (XGGrid *)xgridGrid;
 - (BOOL)isSynced;
 - (BOOL)isLoaded;
+- (BOOL)shouldObserveJobs;
+- (void)setShouldObserveJobs:(BOOL)flag;
 
 @end
 

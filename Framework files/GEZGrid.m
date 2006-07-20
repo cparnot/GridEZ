@@ -161,6 +161,40 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 }
 
 
+- (BOOL)shouldObserveAllJobs;
+{
+    [self willAccessValueForKey:@"shouldObserveAllJobs"];
+    BOOL flag = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
+    [self didAccessValueForKey:@"shouldObserveAllJobs"];
+    return flag;
+}
+
+- (void)setShouldObserveAllJobs:(BOOL)new
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
+	BOOL old = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
+	if ( new != old ) {
+		[self willChangeValueForKey:@"shouldObserveAllJobs"];
+		[self setPrimitiveValue:[NSNumber numberWithBool:new] forKey:@"shouldObserveAllJobs"];
+		[self didChangeValueForKey:@"shouldObserveAllJobs"];
+		if ( new == YES ) {
+			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOW OBSERVING ALL JOBS",[self class],self,_cmd);
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:gridHook];
+			[gridHook setShouldObserveJobs:YES];
+			[self loadAllJobs];
+		}
+		else {
+			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOT OBSERVING ALL JOBS ANYMORE",[self class],self,_cmd);
+			[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZGridHookDidChangeJobsNotification object:gridHook];
+			[gridHook setShouldObserveJobs:NO];
+			[[self server] setShouldObserveAllJobs:NO];
+		}
+
+	}
+}
+
+
 //these are NOT complicant with KVO/KVC
 - (BOOL)isAvailable
 {
@@ -253,8 +287,9 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 		[self setValue:@"undefined" forKey:@"name"];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidSync:) name:GEZGridHookDidSyncNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidLoad:) name:GEZGridHookDidLoadNotification object:gridHook];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeName:) name:GEZGridHookDidChangeNameNotification object:gridHook];	
-	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeName:) name:GEZGridHookDidChangeNameNotification object:gridHook];
+	if ( [gridHook isSynced] && [self shouldObserveAllJobs] )
+		[self loadAllJobs];
 }
 
 - (void)gridHookDidSync:(NSNotification *)notification
@@ -263,6 +298,8 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 	[self setValue:[[gridHook xgridGrid] name] forKey:@"name"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridDidSyncNotification object:self];
+	if ( [self shouldObserveAllJobs] )
+		[self loadAllJobs];	
 }
 
 - (void)gridHookDidLoad:(NSNotification *)notification
@@ -271,6 +308,8 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 	[self setValue:[[gridHook xgridGrid] name] forKey:@"name"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridDidLoadNotification object:self];
+	if ( [self shouldObserveAllJobs] )
+		[self loadAllJobs];	
 }
 
 - (void)gridHookDidChangeName:(NSNotification *)notification
@@ -278,6 +317,11 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	[self setValue:[[gridHook xgridGrid] name] forKey:@"name"];
+}
+
+- (void)gridHookDidChangeJobs:(NSNotification *)notification
+{
+	[self loadAllJobs];
 }
 
 @end
