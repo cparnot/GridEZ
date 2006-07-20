@@ -120,7 +120,9 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
-	return nil;
+	GEZJob *newJob = [GEZJob jobWithGrid:self];
+	[newJob submitWithJobSpecification:specs];
+	return newJob;
 }
 
 

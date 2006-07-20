@@ -22,6 +22,7 @@ __END_LICENSE__ */
 #import "GEZServer.h"
 #import "GEZServerHook.h"
 #import "GEZGrid.h"
+#import "GEZJob.h"
 #import "GEZServerBrowser.h"
 #import "GEZManager.h"
 #import "GEZDefines.h"
@@ -411,7 +412,11 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 
 - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
 {
-	return nil;
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	GEZJob *newJob = [GEZJob jobWithServer:self];
+	[newJob submitWithJobSpecification:specs];
+	return newJob;
 }
 
 @end
