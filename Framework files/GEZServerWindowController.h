@@ -20,24 +20,10 @@ __END_LICENSE__ */
 
 @interface GEZServerWindowController : NSWindowController
 {
-	GEZServer *currentServer;
-
-	//for the main window
 	IBOutlet NSTableView *serverListTableView;
 	IBOutlet NSArrayController *serverArrayController;
 	IBOutlet NSTextField *serverAddressTextField;
 	IBOutlet NSButton *connectButton1;
-	IBOutlet NSProgressIndicator *progressIndicator1;
-	
-	//for the connection sheet
-	IBOutlet NSWindow *connectSheet;
-	IBOutlet NSMatrix *authenticationTypeMatrix;
-	IBOutlet NSTextField *serverNameField;
-	IBOutlet NSSecureTextField *passwordField;
-	IBOutlet NSTextField *authenticationFailedTextField;
-	IBOutlet NSButton *connectButton2;
-	IBOutlet NSProgressIndicator *progressIndicator2;
-
 }
 
 //brings the server window to the front and make it key
@@ -51,7 +37,5 @@ __END_LICENSE__ */
 
 //Actions used for connections
 - (IBAction)connect:(id)sender;
-- (IBAction)connectWithAuthentication:(id)sender;
-- (IBAction)cancelConnect:(id)sender;
 
 @end

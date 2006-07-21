@@ -264,6 +264,7 @@
 								<string>08FB77AEFE84172EC02AAC07</string>
 								<string>5617D3ED0963A6E600505CDC</string>
 								<string>56BFC4D6095FB76500463A1F</string>
+								<string>5678266B09A6EEED00D78584</string>
 								<string>56BFC4DC095FB79100463A1F</string>
 								<string>0867D69AFE84028FC02AAC07</string>
 								<string>1058C7B0FEA5585E11CA2CBB</string>
@@ -272,8 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>70</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -324,7 +324,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>561C526A0A6F51A200212BEC</string>
+										<string>561C53090A70591000212BEC</string>
 										<key>history</key>
 										<array>
 											<string>5650F8670960A36E001A3F09</string>
@@ -508,7 +508,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TODO.txt</string>
+								<string>GEZServerWindowController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -516,11 +516,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TODO.txt</string>
+										<string>GEZServerWindowController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>561C526D0A6F51A200212BEC</string>
+										<string>561C530A0A70591000212BEC</string>
 										<key>history</key>
 										<array>
 											<string>5650F8670960A36E001A3F09</string>
@@ -576,8 +576,6 @@
 											<string>56A001D70A5CCFE200D5DA44</string>
 											<string>56A001DB0A5CCFE200D5DA44</string>
 											<string>568398D10A6470B200A99663</string>
-											<string>568398F00A647A0700A99663</string>
-											<string>5683990B0A6687F300A99663</string>
 											<string>561C4F5F0A676B2A00212BEC</string>
 											<string>561C4F7F0A686C8700212BEC</string>
 											<string>561C4FCA0A68A82100212BEC</string>
@@ -600,15 +598,17 @@
 											<string>561C50F90A6DA4A600212BEC</string>
 											<string>561C50FA0A6DA4A600212BEC</string>
 											<string>561C51590A6DB0E900212BEC</string>
-											<string>561C515B0A6DB0E900212BEC</string>
 											<string>561C515D0A6DB0E900212BEC</string>
-											<string>561C515F0A6DB0E900212BEC</string>
 											<string>561C524C0A6F504600212BEC</string>
 											<string>561C524D0A6F504600212BEC</string>
 											<string>561C524E0A6F504600212BEC</string>
 											<string>561C52640A6F517400212BEC</string>
 											<string>561C526B0A6F51A200212BEC</string>
-											<string>561C52500A6F504600212BEC</string>
+											<string>561C52710A6F524E00212BEC</string>
+											<string>561C52720A6F524E00212BEC</string>
+											<string>561C52E30A704F9100212BEC</string>
+											<string>561C52F90A70550200212BEC</string>
+											<string>561C52FA0A70550200212BEC</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -819,6 +819,15 @@
 											<string>561C52570A6F504600212BEC</string>
 											<string>561C52660A6F517400212BEC</string>
 											<string>561C526C0A6F51A200212BEC</string>
+											<string>561C52740A6F524E00212BEC</string>
+											<string>561C52750A6F524E00212BEC</string>
+											<string>561C52760A6F524E00212BEC</string>
+											<string>561C52E60A704F9100212BEC</string>
+											<string>561C52E70A704F9100212BEC</string>
+											<string>561C52E80A704F9100212BEC</string>
+											<string>561C52FB0A70550200212BEC</string>
+											<string>561C52FC0A70550200212BEC</string>
+											<string>561C52FD0A70550200212BEC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1014,6 +1023,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>561C517A0A6DB24400212BEC</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>5650F83F0960985A001A3F09</string>
@@ -1246,7 +1256,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GEZServerHook.m</string>
+										<string>GEZServerWindowController.h</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1302,8 +1312,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>56A0021B0A5DDFDD00D5DA44</string>
-				<string>56A0021C0A5DDFDD00D5DA44</string>
+				<string>561C52F40A7054FA00212BEC</string>
+				<string>561C52F50A7054FA00212BEC</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

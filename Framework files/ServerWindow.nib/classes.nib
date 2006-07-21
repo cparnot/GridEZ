@@ -2,22 +2,14 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {cancelConnect = id; connect = id; connectWithAuthentication = id; }; 
+            ACTIONS = {connect = id; }; 
             CLASS = GEZServerWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                authenticationFailedTextField = NSTextField; 
-                authenticationTypeMatrix = NSMatrix; 
                 connectButton1 = NSButton; 
-                connectButton2 = NSButton; 
-                connectSheet = NSWindow; 
-                passwordField = NSSecureTextField; 
-                progressIndicator1 = NSProgressIndicator; 
-                progressIndicator2 = NSProgressIndicator; 
                 serverAddressTextField = NSTextField; 
                 serverArrayController = NSArrayController; 
                 serverListTableView = NSTableView; 
-                serverNameField = NSTextField; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
