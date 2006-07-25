@@ -2,17 +2,26 @@
     IBClasses = (
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {connect = id; }; 
+            ACTIONS = {
+                addAndConnectServer = id; 
+                addItem = id; 
+                addServer = id; 
+                cancelServerAddition = id; 
+                connect = id; 
+                disconnect = id; 
+                removeItem = id; 
+            }; 
             CLASS = GEZServerWindowController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                connectButton1 = NSButton; 
-                serverAddressTextField = NSTextField; 
-                serverArrayController = NSArrayController; 
-                serverListTableView = NSTableView; 
+                addServerAddressField = NSTextField; 
+                addServerSheet = NSWindow; 
+                gridsController = NSTreeController; 
+                gridsOutlineView = NSOutlineView; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
+        {CLASS = GEZWIndowHack; LANGUAGE = ObjC; SUPERCLASS = NSWindow; }, 
         {
             ACTIONS = {
                 cancelConnect = id; 

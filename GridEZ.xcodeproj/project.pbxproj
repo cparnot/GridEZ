@@ -46,6 +46,10 @@
 		5617D4560963ABB100505CDC /* Uninitialized.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 5617D4430963ABB000505CDC /* Uninitialized.tiff */; };
 		5617D45C0963ABE500505CDC /* GEZTransformers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D45A0963ABE500505CDC /* GEZTransformers.m */; };
 		5617D5830963B98A00505CDC /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 5617D5820963B98A00505CDC /* MainMenu.nib */; };
+		561C53B60A70B04600212BEC /* AddServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B30A70B04600212BEC /* AddServerToolbarIcon.png */; };
+		561C53B70A70B04600212BEC /* ConnectServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B40A70B04600212BEC /* ConnectServerToolbarIcon.png */; };
+		561C53B80A70B04600212BEC /* DisconnectServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B50A70B04600212BEC /* DisconnectServerToolbarIcon.png */; };
+		561C53FC0A71A60700212BEC /* RemoveServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53FB0A71A60700212BEC /* RemoveServerToolbarIcon.png */; };
 		5678207C09907ED500D78584 /* GEZResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678207A09907ED500D78584 /* GEZResults.m */; };
 		5678213D0991DE0400D78584 /* GEZCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678213B0991DE0400D78584 /* GEZCategories.m */; };
 		5678253409A30BF500D78584 /* GridEZ.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* GridEZ.framework */; };
@@ -189,6 +193,10 @@
 		561A069009F9A32200BFC1B3 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		561A074209FD985200BFC1B3 /* LICENSE-BSD.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "LICENSE-BSD.txt"; sourceTree = "<group>"; };
 		561A079309FD9C2500BFC1B3 /* CHANGELOG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.txt; sourceTree = "<group>"; };
+		561C53B30A70B04600212BEC /* AddServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddServerToolbarIcon.png; sourceTree = "<group>"; };
+		561C53B40A70B04600212BEC /* ConnectServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ConnectServerToolbarIcon.png; sourceTree = "<group>"; };
+		561C53B50A70B04600212BEC /* DisconnectServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisconnectServerToolbarIcon.png; sourceTree = "<group>"; };
+		561C53FB0A71A60700212BEC /* RemoveServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveServerToolbarIcon.png; sourceTree = "<group>"; };
 		5678207909907ED500D78584 /* GEZResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZResults.h; path = "Framework files/GEZResults.h"; sourceTree = "<group>"; };
 		5678207A09907ED500D78584 /* GEZResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZResults.m; path = "Framework files/GEZResults.m"; sourceTree = "<group>"; };
 		5678213A0991DE0400D78584 /* GEZCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZCategories.h; path = "Framework files/GEZCategories.h"; sourceTree = "<group>"; };
@@ -590,6 +598,10 @@
 		56F0A89109AEE7F1004FB9E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				561C53B30A70B04600212BEC /* AddServerToolbarIcon.png */,
+				561C53B40A70B04600212BEC /* ConnectServerToolbarIcon.png */,
+				561C53B50A70B04600212BEC /* DisconnectServerToolbarIcon.png */,
+				561C53FB0A71A60700212BEC /* RemoveServerToolbarIcon.png */,
 				56F0A89209AEE7F1004FB9E1 /* connect.png */,
 				56F0A89309AEE7F1004FB9E1 /* disconnect.png */,
 				56F0A89409AEE7F1004FB9E1 /* minus.png */,
@@ -805,6 +817,10 @@
 				56F0A96209B585DD004FB9E1 /* cancel-connection.png in Resources */,
 				56EDCF7A09E39AB500293DB1 /* Retrieved.tiff in Resources */,
 				56EDCF7B09E39AB500293DB1 /* Retrieving.tiff in Resources */,
+				561C53B60A70B04600212BEC /* AddServerToolbarIcon.png in Resources */,
+				561C53B70A70B04600212BEC /* ConnectServerToolbarIcon.png in Resources */,
+				561C53B80A70B04600212BEC /* DisconnectServerToolbarIcon.png in Resources */,
+				561C53FC0A71A60700212BEC /* RemoveServerToolbarIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,13 +17,19 @@ __END_LICENSE__ */
 #import "GEZJob.h"
 
 @interface GEZServer (GEZServerBindings)
-//nothing there yet
+- (NSString *)serverStatus;
+- (GEZServer *)server;
+- (NSString *)identifier;
+- (BOOL)isBusy;
 @end
 
 @interface GEZGrid (GEZGridBindings)
-//nothing there yet
+- (NSSet *)grids;
+- (NSString *)serverStatus;
 @end
 
+/*
 @interface GEZJob (GEZJobBindings)
 //nothing there yet
 @end
+*/

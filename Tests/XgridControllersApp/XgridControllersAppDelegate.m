@@ -20,6 +20,7 @@ __END_LICENSE__ */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[GEZManager showServerWindow];
+	//[GEZManager showXgridPanel];
 }
 
 - (NSManagedObjectContext *)managedObjectContext

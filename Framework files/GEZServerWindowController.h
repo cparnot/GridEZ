@@ -20,22 +20,32 @@ __END_LICENSE__ */
 
 @interface GEZServerWindowController : NSWindowController
 {
-	IBOutlet NSTableView *serverListTableView;
-	IBOutlet NSArrayController *serverArrayController;
-	IBOutlet NSTextField *serverAddressTextField;
-	IBOutlet NSButton *connectButton1;
+	//main window with the list of controllers/grids
+	IBOutlet NSOutlineView *gridsOutlineView;
+	IBOutlet NSTreeController *gridsController;
+
+	//sheet used to add a server
+	IBOutlet NSTextField *addServerAddressField;
+	IBOutlet NSWindow *addServerSheet;
+	
 }
 
-//brings the server window to the front and make it key
+//these are the only methods that needs to be called from another class
 + (void)showServerWindow;
-
-//does what it says
 + (void)hideServerWindow;
 
 //used by the nib to get the managed object context
 - (NSManagedObjectContext *)managedObjectContext;
 
-//Actions used for connections
+//Actions in the main window
 - (IBAction)connect:(id)sender;
+- (IBAction)disconnect:(id)sender;
+- (IBAction)addItem:(id)sender;
+- (IBAction)removeItem:(id)sender;
+
+//Actions in the "Add Server" sheet
+- (IBAction)addAndConnectServer:(id)sender;
+- (IBAction)addServer:(id)sender;
+- (IBAction)cancelServerAddition:(id)sender;
 
 @end

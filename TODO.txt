@@ -4,7 +4,6 @@ Todo for v0.4 release:
 * bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
 * Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * User-level store, to remember servers used by different apps (do not store jobs)
-* Fix the Server Window to allow disconnect
 
 done:
 * Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
@@ -14,6 +13,7 @@ done:
 * allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
 * fix code in GEZGrid, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
 * fix code in GEZServer, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
+* Fix the Server Window to allow disconnect and make it slicker
 
 
 
@@ -32,7 +32,9 @@ Other things todo (some maybe):
 
 * Put GUI stuff in separate headers, AppKit categories:
 	* Controller window in GEZServer
-	* Pasteboard name for drag and drop of GEZServer (in GEZServer category too)
+	* Pasteboard name for drag and drop of GEZServer and GEZGrid (GEZServer and GEZGrid category too)
+
+* GEZXgridPanelController could be made a subclass of GEZServerWindowController, but only do it if I make large changes, then they would share all the basic code
 
 * GEZGridHook
 	* monitor jobs to be considered 'loaded' --> right now, GEZGridHook objects NEVER GET "LOADED"
