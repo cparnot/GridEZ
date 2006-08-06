@@ -19,7 +19,7 @@ __END_LICENSE__ */
 NSString *GEZGridHookDidSyncNotification = @"GEZGridHookDidSyncNotification";
 NSString *GEZGridHookDidLoadNotification = @"GEZGridHookDidLoadNotification";
 NSString *GEZGridHookDidChangeNameNotification = @"GEZGridHookDidChangeNameNotification";
-NSString *GEZGridHookDidChangeJobsNotification = @"GEZGridHookDidChangeNameNotification";
+NSString *GEZGridHookDidChangeJobsNotification = @"GEZGridHookDidChangeJobsNotification";
 
 
 //the state changes as the connection progresses from not being connected to having loaded all the attributes of the server
