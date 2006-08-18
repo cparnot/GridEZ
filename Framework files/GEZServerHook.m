@@ -299,6 +299,9 @@ NSMutableDictionary *serverHookInstances=nil;
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
+	if ( [self hasPasswordInKeychain] == NO )
+		return nil;
+	
 	//the service is shared with all applications using the GridEZ framework
 	const char *serviceName = "GridEZ";
 	UInt32 serviceLength = 6;
