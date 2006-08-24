@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		560F88C30A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.h in Headers */ = {isa = PBXBuildFile; fileRef = 560F88C10A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.h */; };
-		560F88C40A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 560F88C20A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.m */; };
 		5617D12009621D8200505CDC /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5617D12109621D8200505CDC /* GEZManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D11F09621D8200505CDC /* GEZManager.m */; };
 		5617D1450962214900505CDC /* GridEZ_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */; };
@@ -149,8 +147,6 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* GridEZ_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridEZ_Prefix.pch; sourceTree = "<group>"; };
-		560F88C10A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEZToolbarWithUnremovableItems.h; sourceTree = "<group>"; };
-		560F88C20A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEZToolbarWithUnremovableItems.m; sourceTree = "<group>"; };
 		5617D11E09621D8200505CDC /* GEZManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZManager.h; path = "Framework files/GEZManager.h"; sourceTree = "<group>"; };
 		5617D11F09621D8200505CDC /* GEZManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZManager.m; path = "Framework files/GEZManager.m"; sourceTree = "<group>"; };
 		5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GridEZ_DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -479,8 +475,6 @@
 				567825E609A448B800D78584 /* GEZTaskNode.m */,
 				5695ACC209D2814200C92AF7 /* GEZOutlineView.h */,
 				5695ACC309D2814200C92AF7 /* GEZOutlineView.m */,
-				560F88C10A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.h */,
-				560F88C20A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.m */,
 			);
 			name = GUI;
 			sourceTree = "<group>";
@@ -667,7 +661,6 @@
 				5617D1550962223B00505CDC /* GEZGrid.h in Headers */,
 				5617D15B0962224C00505CDC /* GEZJob.h in Headers */,
 				5617D25909625F0000505CDC /* GEZDefines.h in Headers */,
-				560F88C30A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,7 +877,6 @@
 				56F0A5A209ABEDD0004FB9E1 /* GEZTask.m in Sources */,
 				56F0A9DE09B6CAF2004FB9E1 /* GEZConnectionPanelController.m in Sources */,
 				5695ACC509D2814300C92AF7 /* GEZOutlineView.m in Sources */,
-				560F88C40A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

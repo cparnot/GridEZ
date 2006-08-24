@@ -79,7 +79,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					626,
-					70,
+					45.2085,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXErrorsWarningsDataSource_TypeID,
@@ -252,6 +252,14 @@
 			560F89350A9D6EE100D97702 /* PBXTextBookmark */ = 560F89350A9D6EE100D97702 /* PBXTextBookmark */;
 			560F89360A9D6EE300D97702 /* PBXTextBookmark */ = 560F89360A9D6EE300D97702 /* PBXTextBookmark */;
 			560F89370A9D6EE300D97702 /* PBXTextBookmark */ = 560F89370A9D6EE300D97702 /* PBXTextBookmark */;
+			560F89440A9D701400D97702 /* PBXTextBookmark */ = 560F89440A9D701400D97702 /* PBXTextBookmark */;
+			560F89450A9D701400D97702 /* PBXTextBookmark */ = 560F89450A9D701400D97702 /* PBXTextBookmark */;
+			560F89460A9D701400D97702 /* PBXTextBookmark */ = 560F89460A9D701400D97702 /* PBXTextBookmark */;
+			560F89470A9D701400D97702 /* PBXTextBookmark */ = 560F89470A9D701400D97702 /* PBXTextBookmark */;
+			560F89480A9D706900D97702 /* PBXTextBookmark */ = 560F89480A9D706900D97702 /* PBXTextBookmark */;
+			560F89490A9D706900D97702 /* PBXTextBookmark */ = 560F89490A9D706900D97702 /* PBXTextBookmark */;
+			560F894A0A9D706E00D97702 /* PBXTextBookmark */ = 560F894A0A9D706E00D97702 /* PBXTextBookmark */;
+			560F894B0A9D706E00D97702 /* PBXTextBookmark */ = 560F894B0A9D706E00D97702 /* PBXTextBookmark */;
 			5617D0C30961113900505CDC = 5617D0C30961113900505CDC /* PBXTextBookmark */;
 			5617D2A00962686F00505CDC = 5617D2A00962686F00505CDC /* PBXTextBookmark */;
 			5617D3CB09635F3A00505CDC = 5617D3CB09635F3A00505CDC /* PBXTextBookmark */;
@@ -646,8 +654,8 @@
 	560F88AA0A9D2C5B00D97702 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 560F88940A9D228600D97702 /* GEZServerWindowController.m */;
-		rLen = 1;
-		rLoc = 96;
+		rLen = 0;
+		rLoc = 91;
 		rType = 1;
 	};
 	560F88AB0A9D2C5B00D97702 /* PBXTextBookmark */ = {
@@ -665,7 +673,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "_userRemoveItemAtIndex:";
 		rLen = 0;
-		rLoc = 4516;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 2199;
 		vrLoc = 3648;
@@ -685,12 +693,18 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "_userRemoveItemAtIndex:";
 		rLen = 0;
-		rLoc = 4516;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 2199;
 		vrLoc = 3648;
 	};
 	560F88C10A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = GEZToolbarWithUnremovableItems.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridEZ/GEZToolbarWithUnremovableItems.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {669, 465}}";
 			sepNavSelRange = "{158, 0}";
@@ -698,6 +712,12 @@
 		};
 	};
 	560F88C20A9D2D2300D97702 /* GEZToolbarWithUnremovableItems.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = GEZToolbarWithUnremovableItems.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridEZ/GEZToolbarWithUnremovableItems.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {669, 465}}";
 			sepNavSelRange = "{676, 0}";
@@ -709,15 +729,15 @@
 		comments = "error: 'GEZToolbarWithUnremovableItems' undeclared (first use in this function)";
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		rLen = 1;
-		rLoc = 83;
+		rLoc = 82;
 		rType = 1;
 	};
 	560F88D10A9D2DBA00D97702 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -787,7 +807,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 27";
 		rLen = 0;
-		rLoc = 1460;
+		rLoc = 1418;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 913;
@@ -807,7 +827,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "_userRemoveItemAtIndex:";
 		rLen = 0;
-		rLoc = 4516;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 2199;
 		vrLoc = 3648;
@@ -886,7 +906,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "#import \"GEZToolbarWithUnremovableItems.h\"";
-		rLen = 43;
+		rLen = 0;
 		rLoc = 1418;
 		rType = 0;
 		vrLen = 1198;
@@ -907,7 +927,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 27";
 		rLen = 0;
-		rLoc = 1460;
+		rLoc = 1418;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 913;
@@ -926,8 +946,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -936,8 +956,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -947,7 +967,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 112";
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 4920;
@@ -964,7 +984,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 112";
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 4920;
@@ -983,8 +1003,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -1003,8 +1023,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -1043,7 +1063,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 4374;
 		rType = 0;
 	};
 	560F88FB0A9D2E3400D97702 /* PBXTextBookmark */ = {
@@ -1061,7 +1081,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = NSLog;
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 4747;
@@ -1081,7 +1101,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = NSLog;
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 4747;
@@ -1090,8 +1110,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -1110,8 +1130,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -1130,8 +1150,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -1161,7 +1181,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 116";
 		rLen = 0;
-		rLoc = 4921;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 4747;
@@ -1181,7 +1201,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 116";
 		rLen = 0;
-		rLoc = 4921;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 4747;
@@ -1280,8 +1300,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 3584;
@@ -1341,7 +1361,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 116";
 		rLen = 0;
-		rLoc = 4921;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 1975;
 		vrLoc = 4515;
@@ -1361,7 +1381,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 106";
 		rLen = 0;
-		rLoc = 5054;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 2079;
 		vrLoc = 3966;
@@ -1381,7 +1401,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 106";
 		rLen = 0;
-		rLoc = 5054;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 2079;
 		vrLoc = 3966;
@@ -1390,8 +1410,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@\"ServerWindowToolbar\"] autorelease];";
-		rLen = 120;
-		rLoc = 3988;
+		rLen = 99;
+		rLoc = 3945;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 3584;
@@ -1421,10 +1441,93 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 106";
 		rLen = 0;
-		rLoc = 5054;
+		rLoc = 4374;
 		rType = 0;
 		vrLen = 2079;
 		vrLoc = 3966;
+	};
+	560F89400A9D6FFB00D97702 /* GEZServerWindowController.m */ = {
+		isa = PBXFileReference;
+		name = GEZServerWindowController.m;
+		path = "/Users/charles/Docs/Development/cocoa_dev/GridEZ/Framework files/GEZServerWindowController.m";
+		sourceTree = "<absolute>";
+	};
+	560F89440A9D701400D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
+		name = "GEZJob.h: 97";
+		rLen = 0;
+		rLoc = 5728;
+		rType = 0;
+		vrLen = 0;
+		vrLoc = 0;
+	};
+	560F89450A9D701400D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F89400A9D6FFB00D97702 /* GEZServerWindowController.m */;
+		rLen = 1;
+		rLoc = 83;
+		rType = 1;
+	};
+	560F89460A9D701400D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 106";
+		rLen = 0;
+		rLoc = 4374;
+		rType = 0;
+		vrLen = 2079;
+		vrLoc = 3966;
+	};
+	560F89470A9D701400D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 83";
+		rLen = 0;
+		rLoc = 3979;
+		rType = 0;
+		vrLen = 1229;
+		vrLoc = 3466;
+	};
+	560F89480A9D706900D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 83";
+		rLen = 0;
+		rLoc = 3979;
+		rType = 0;
+		vrLen = 941;
+		vrLoc = 3542;
+	};
+	560F89490A9D706900D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 93";
+		rLen = 0;
+		rLoc = 4375;
+		rType = 0;
+		vrLen = 783;
+		vrLoc = 4695;
+	};
+	560F894A0A9D706E00D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
+		name = "GEZJob.h: 97";
+		rLen = 0;
+		rLoc = 5728;
+		rType = 0;
+		vrLen = 0;
+		vrLoc = 0;
+	};
+	560F894B0A9D706E00D97702 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 83";
+		rLen = 0;
+		rLoc = 3979;
+		rType = 0;
+		vrLen = 1229;
+		vrLoc = 3466;
 	};
 	5617D0870960C96800505CDC /* GridEZ.h */ = {
 		isa = PBXFileReference;
@@ -1857,9 +1960,9 @@
 	};
 	5617D3F40963A7B000505CDC /* GEZServerWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {669, 4746}}";
-			sepNavSelRange = "{5054, 0}";
-			sepNavVisRect = "{{0, 1409}, {669, 672}}";
+			sepNavIntBoundsRect = "{{0, 0}, {669, 4438}}";
+			sepNavSelRange = "{3979, 0}";
+			sepNavVisRect = "{{0, 1203}, {669, 465}}";
 			sepNavWindowFrame = "{{15, 18}, {1016, 809}}";
 		};
 	};
@@ -2705,7 +2808,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 80";
 		rLen = 0;
-		rLoc = 4228;
+		rLoc = 4164;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 1253;
@@ -3179,7 +3282,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 135";
 		rLen = 0;
-		rLoc = 12130;
+		rLoc = 11074;
 		rType = 0;
 		vrLen = 1980;
 		vrLoc = 2435;
