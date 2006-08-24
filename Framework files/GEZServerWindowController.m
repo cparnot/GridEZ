@@ -24,6 +24,7 @@ __END_LICENSE__ */
 #import "GEZBindingsCategories.h"
 #import "GEZManager.h"
 #import "GEZConnectionPanelController.h"
+#import "GEZToolbarWithUnremovableItems.h"
 
 
 @implementation GEZServerWindowController
@@ -80,7 +81,7 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	[gridsController setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(compareNumerically:)] autorelease]]];
 	
 	//adding the toolbar
-	NSToolbar *toolbar = [[[NSToolbar alloc] initWithIdentifier:@"ServerWindowToolbar"] autorelease];
+	NSToolbar *toolbar = [[[GEZToolbarWithUnremovableItems alloc] initWithIdentifier:@"ServerWindowToolbar"] autorelease];
 	[toolbar setDelegate:self];
 	[toolbar setAllowsUserCustomization:YES];
 	[toolbar setSizeMode:NSToolbarSizeModeRegular];
@@ -90,22 +91,18 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	[toolbar setVisible:YES];
 	[[self window] setShowsToolbarButton:NO];
 	
-	//fiddling with the toolbar contextual menu
-	NSView *borderView = [[self window] valueForKey:@"_borderView"];
-	NSEnumerator *e =[[borderView subviews] objectEnumerator];
-	NSView *toolbarView;
-	while ( ( toolbarView = [e nextObject] ) && ( ![toolbarView isMemberOfClass:NSClassFromString(@"NSToolbarView")] ) )
-			;
+	//fiddling with the toolbar contextual menu to remove the "Customize" item	
+	NSView *toolbarView = [[self window] valueForKey:@"_toolbarView"];
 	NSMenu *toolbarContextualMenu = [toolbarView menu];
-	e = [[toolbarContextualMenu itemArray] objectEnumerator];
+	NSEnumerator *e = [[toolbarContextualMenu itemArray] objectEnumerator];
 	NSMenuItem *customizeMenuItem;
 	while ( ( customizeMenuItem = [e nextObject] ) && ( [customizeMenuItem action] != @selector(runToolbarCustomizationPalette:) ) )
 			;
 	if ( customizeMenuItem == nil )
 		return;
+	
 	//remove also the separation if this is the last item
 	int customizeIndex = [toolbarContextualMenu indexOfItem:customizeMenuItem];
-	NSLog (@"customizeIndex = %d",customizeIndex);
 	if ( ( customizeIndex > 0 ) && ( customizeIndex == [[toolbarContextualMenu itemArray] count] - 1 ) && ( [[toolbarContextualMenu itemAtIndex:customizeIndex-1] isSeparatorItem] ) ) {
 		[toolbarContextualMenu removeItemAtIndex:customizeIndex];
 		[toolbarContextualMenu removeItemAtIndex:customizeIndex-1];
@@ -114,11 +111,13 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	}
 }
 
+//validation of the actions triggered by the toolbar items and the hidden 'delete' and 'connect' buttons
 - (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)anItem
 {
 	BOOL validate = NO;
 	
 	SEL action = [anItem action];
+	//NSLog(@"Validate action: %s", action);
 	if ( action == @selector(addItem:) )
 		validate = YES;
 	else {
