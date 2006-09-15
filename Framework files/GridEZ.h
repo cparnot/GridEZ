@@ -19,3 +19,4 @@ __END_LICENSE__ */
 #import <GridEZ/GEZManager.h>
 #import <GridEZ/GEZGrid.h>
 #import <GridEZ/GEZDefines.h>
+#import <GridEZ/GEZMetaJob.h>
