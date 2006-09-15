@@ -14,7 +14,7 @@ __END_LICENSE__ */
 
 #import "GEZGridHook.h"
 #import "GEZServerHook.h"
-
+#import "GEZResourceObserver.h"
 
 NSString *GEZGridHookDidSyncNotification = @"GEZGridHookDidSyncNotification";
 NSString *GEZGridHookDidLoadNotification = @"GEZGridHookDidLoadNotification";
@@ -40,14 +40,15 @@ typedef enum {
 - (id)initWithXgridGrid:(XGGrid *)aGrid serverHook:(GEZServerHook *)aServer
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
+	
 	if ( self = [super init] ) {
 		
 		//set up ivars
-		[self setXgridGrid:aGrid];
-		serverHook = aServer; //no retain to avoid cycles
 		gridHookState = GEZGridHookStateUninitialized;
-				
+		serverHook = aServer; //no retain to avoid cycles
+		[self setXgridGrid:aGrid];
+		
+		
 	}
 	return self;
 }
@@ -55,17 +56,18 @@ typedef enum {
 
 - (id)initWithIdentifier:(NSString *)identifier serverHook:(GEZServerHook *)aServer;
 {
-
+	
 	//get the XGGrid object
 	NSEnumerator *e = [[[serverHook xgridController] grids] objectEnumerator];
 	XGGrid *aGrid = nil;
 	while ( ( aGrid = [e nextObject] ) && ( ! [[aGrid identifier] isEqualToString:identifier] ) ) ;
 	if ( aGrid == nil ) {
 		[self release];
+		self = nil;
 		return nil;
 	} else
 		return [self initWithXgridGrid:aGrid serverHook:aServer];
-
+	
 }
 
 + (GEZGridHook *)gridHookWithXgridGrid:(XGGrid *)aGrid serverHook:(GEZServerHook *)aServer
@@ -89,7 +91,7 @@ typedef enum {
 - (void)dealloc
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
+	
 	gridHookState = GEZGridHookStateUninitialized;
 	serverHook = nil;
 	[self setXgridGrid:nil];
@@ -108,20 +110,23 @@ typedef enum {
 	if ( newGrid != xgridGrid ) {
 		
 		//clean the old ivar
-		if ( shouldObserveJobs == YES )
-			[xgridGrid removeObserver:self forKeyPath:@"jobs"];
-		[xgridGrid removeObserver:self forKeyPath:@"name"];
+		[xgridGridObserver setDelegate:nil];
+		[xgridGridObserver release];
 		[xgridGrid release];
-
+		
 		//setup the new ivar
 		xgridGrid = [newGrid retain];
-		[xgridGrid addObserver:self forKeyPath:@"name" options:0 context:NULL];
-		if ( shouldObserveJobs == YES )
-			[xgridGrid addObserver:self forKeyPath:@"jobs" options:0 context:NULL];
+		xgridGridObserver = [[GEZResourceObserver alloc] initWithResource:xgridGrid observedKeys:[NSSet setWithObjects:@"name",@"state",@"jobs",nil]];
+		[xgridGridObserver setDelegate:self];
 		
 		//if ready, notify self to be synced on the next iteration of the run loop
-		if ( [xgridGrid name] != nil )
-			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridGridDidSyncInstanceVariables:) userInfo:nil repeats:NO];
+		if ( [xgridGrid isUpdated] == YES ) {
+			NSInvocation *updateInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:@selector(xgridResourceDidUpdate:)]];
+			[updateInvocation setSelector:@selector(xgridResourceDidUpdate:)];
+			[updateInvocation setTarget:self];
+			[updateInvocation setArgument:&xgridGrid atIndex:2];
+			[NSTimer scheduledTimerWithTimeInterval:0 invocation:updateInvocation repeats:NO];
+		}
 	}
 }
 
@@ -140,68 +145,117 @@ typedef enum {
 	return gridHookState == GEZGridHookStateLoaded;
 }
 
-- (BOOL)shouldObserveJobs
+#pragma mark *** job observing ***
+
+- (BOOL)checkAllJobsUpdated
 {
-	return shouldObserveJobs;
-}
-
-- (void)setShouldObserveJobs:(BOOL)flag
-{
-	if ( shouldObserveJobs == flag )
-		return;
-
-	shouldObserveJobs = flag;
-	if ( flag )
-		[xgridGrid addObserver:self forKeyPath:@"jobs" options:0 context:NULL];
-}
-
-
-#pragma mark *** XGGrid observing, going from "Connected" to "Synced" ***
-
-//when the state of the XGGrid is modified by the XgridFoundation framework, we know all its instance variables will be set by the end of this run loop
-//so we call a timer with interval 0 to be back when all the instance variables are set (e.g. grids,...)
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@\nObject = <%@:%p>\nKey Path = %@\nChange = %@",[self class],self,_cmd, [self shortDescription], [object class], object, keyPath, [change description]);
+	if ( [self isLoaded] == YES )
+		return YES;
 	
-	if ( [keyPath isEqualToString:@"name"] ) {
-		//the first change in value is when the name is set, which means in the next run loop, all the ivars will be set
-		if ( gridHookState == GEZGridHookStateUninitialized && [xgridGrid state] != 0 )
-			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridGridDidSyncInstanceVariables:) userInfo:nil repeats:NO];		
-		//otherwise, it means the name of the grid was changed
-		else
-			[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeNameNotification object:self];
+	BOOL allJobsUpdated = YES;
+	NSEnumerator *e = [[xgridGrid jobs] objectEnumerator];
+	XGJob *oneJob;
+	while ( oneJob = [e nextObject] ) {
+		if ( [oneJob isUpdated] == NO ) {
+			allJobsUpdated = NO;
+			[e allObjects];
+		}
+	}
+	if ( allJobsUpdated ) {
+		gridHookState = GEZGridHookStateLoaded;
+		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidLoadNotification object:self];
+		[xgridJobObservers release];
+		xgridJobObservers = nil;
 	}
 	
-	//the first change for the "jobs" value is when the jobs are set during the initialization, so we ignore that
-	else if ( [keyPath isEqualToString:@"jobs"] && gridHookState != GEZGridHookStateUninitialized ) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeJobsNotification object:self];
-	}
+	return [self isLoaded];
 }
 
-//callback on the iteration of the run loop following the change in the state of the XGGrid
-- (void)xgridGridDidSyncInstanceVariables:(NSTimer *)aTimer
+- (void)startJobObservation
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
-	if ( gridHookState != GEZGridHookStateUninitialized )
+	//maybe jobs are already observed or already updated
+	if ( xgridJobObservers != nil )
+		return;
+	if ( [self checkAllJobsUpdated] )
 		return;
 	
-	//update gridHookState to be consistent with XGGrid state
-	XGResourceState gridState = [xgridGrid state];
-	if ( gridState == XGResourceStateAvailable )
-		gridHookState = GEZGridHookStateSynced;
-	else if ( gridState == XGResourceStateOffline || gridState == XGResourceStateUnavailable )
-		gridHookState = GEZGridHookStateDisconnected;
-
-	//this log shows that the jobs are loaded, but only their identifier is properly set
-	//which means -jobWithIdentifier will work if the identifier is valid, but will return a job that is not yet "loaded" from the grid
-	DLog(NSStringFromClass([self class]),12,@"<%@:%p> jobs:\n%@",[self class],self,[[self xgridGrid] jobs]);
-
-	//notify of the change of state
-	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidSyncNotification object:self];
-
+	//create GEZResourceObserver objects to observe them until they are all updated
+	NSArray *xgridJobs = [xgridGrid jobs];
+	NSMutableSet *observers = [NSMutableSet setWithCapacity:[xgridJobs count]];
+	NSEnumerator *e = [xgridJobs objectEnumerator];
+	XGJob *oneJob;
+	while ( oneJob = [e nextObject] ) {
+		GEZResourceObserver *resourceObserver = [[[GEZResourceObserver alloc] initWithResource:oneJob] autorelease];
+		[resourceObserver setDelegate:self];
+		[observers addObject:resourceObserver];
+		
+	}
+	xgridJobObservers = [observers copy];
+	
 }
 
+#pragma mark *** XGGrid observing, going from "Connected" to "Synced" ***
+
+- (void)logStatus
+{
+	NSLog(@"***********");
+	NSLog(@"State: %d",[[self xgridGrid] state]);
+	NSLog(@"Jobs: %@",[[self xgridGrid] jobs]);
+	NSLog(@"Name: %@",[[self xgridGrid] name]);
+	NSLog(@"isUpdating: %@",[[self xgridGrid] isUpdating]?@"YES":@"NO");
+	NSLog(@"isUpdated: %@",[[self xgridGrid] isUpdated]?@"YES":@"NO");
+}
+
+
+//delegate  callback from GEZResourceObserver, when the XGGrid object is updated or when one of the XGJob objects is updated
+- (void)xgridResourceDidUpdate:(XGResource *)resource
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s : %@",[self class],self,_cmd,resource);	
+	//[self logStatus];
+	
+	//Case 1: the XGGrid is now updated and synced with the values on the remote server		
+	if ( resource == xgridGrid ) {
+		if ( gridHookState != GEZGridHookStateUninitialized )
+			return;
+		
+		//update gridHookState to be consistent with XGGrid state
+		XGResourceState gridState = [xgridGrid state];
+		if ( gridState == XGResourceStateAvailable )
+			gridHookState = GEZGridHookStateSynced;
+		else if ( gridState == XGResourceStateOffline || gridState == XGResourceStateUnavailable )
+			gridHookState = GEZGridHookStateDisconnected;
+		
+		//this log shows that the XGJob instances are available when calling 'jobs', but only their identifier is properly set, and they are not "updated" yet (no name, status, starting date,...)
+		DLog(NSStringFromClass([self class]),12,@"<%@:%p> jobs:\n%@",[self class],self,[[self xgridGrid] jobs]);
+		if ( [self checkAllJobsUpdated] == NO )
+			[self startJobObservation];
+		
+		//notify of the change of state
+		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidSyncNotification object:self];
+	}
+	
+	//Case 2: one of the XGJob did update
+	else
+		[self checkAllJobsUpdated];
+	
+}
+
+//delegate callback from GEZResourceObserver
+- (void)xgridResourceNameDidChange:(XGResource *)resource
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);	
+	//[self logStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeNameNotification object:self];	
+}
+
+//delegate callback from GEZResourceObserver
+- (void)xgridResourceJobsDidChange:(XGResource *)resource
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);	
+	//[self logStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidChangeJobsNotification object:self];	
+}
 
 @end

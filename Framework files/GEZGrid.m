@@ -183,13 +183,11 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 		if ( new == YES ) {
 			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOW OBSERVING ALL JOBS",[self class],self,_cmd);
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:gridHook];
-			[gridHook setShouldObserveJobs:YES];
 			[self loadAllJobs];
 		}
 		else {
 			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOT OBSERVING ALL JOBS ANYMORE",[self class],self,_cmd);
 			[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZGridHookDidChangeJobsNotification object:gridHook];
-			[gridHook setShouldObserveJobs:NO];
 			[[self server] setShouldObserveAllJobs:NO];
 		}
 

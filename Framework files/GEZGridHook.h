@@ -26,25 +26,25 @@ APPKIT_EXTERN NSString *GEZGridHookDidChangeJobsNotification;
 
 
 @class GEZServerHook;
+@class GEZResourceObserver;
 
 @interface GEZGridHook : NSObject
 {
 	XGGrid *xgridGrid;
 	GEZServerHook *serverHook;
 	int gridHookState; //private enum
-	BOOL shouldObserveJobs;
+	NSSet *xgridJobObservers;
+	GEZResourceObserver *xgridGridObserver;
 }
 
 + (GEZGridHook *)gridHookWithXgridGrid:(XGGrid *)aGrid serverHook:(GEZServerHook *)aServer;
 + (GEZGridHook *)gridHookWithIdentifier:(NSString *)identifier serverHook:(GEZServerHook *)aServer;
 
-//accessors
+	//accessors
 - (void)setXgridGrid:(XGGrid *)newGrid;
 - (XGGrid *)xgridGrid;
 - (BOOL)isSynced;
 - (BOOL)isLoaded;
-- (BOOL)shouldObserveJobs;
-- (void)setShouldObserveJobs:(BOOL)flag;
 
 @end
 
