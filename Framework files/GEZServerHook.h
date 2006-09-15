@@ -15,9 +15,9 @@ __END_LICENSE__ */
 /*
  The GEZServerHook class is a private class and this header is not intended for the users of the framework.
  
- The GEZServerHook class is a wrapper around the XGController and XGConnection class provided by the Xgrid APIs. The implementation ensures that there is only one instance of GEZServerHook for each different address, which ensures that network traffic, notifications,... are not duplicated when communicating with the same server. The XGSServer class use the GEZServerHook class for its network operations. There might thus be several XGSServer objects (living in different managed contexts, see the header) that all use the same GEZServerHook. The XGSServeConnection sends notifications to keep the XGSServer objects in sync.
+ The GEZServerHook class is a wrapper around the XGController and XGConnection class provided by the Xgrid APIs. The implementation ensures that there is only one instance of GEZServerHook for each different address, which ensures that network traffic, notifications,... are not duplicated when communicating with the same server. The GEZServer class use the GEZServerHook class for its network operations. There might thus be several GEZServer objects (living in different managed contexts, see the header) that all use the same GEZServerHook. The GEZServerHook sends notifications to keep the GEZServer objects in sync.
 
-So the two classes, GEZServerHook & XGSServer, are somewhat coupled, though the implementation tries to keep them encapsulated.
+So the two classes, GEZServerHook & GEZServer, are somewhat coupled, though the implementation tries to keep them encapsulated.
 */
 
 @class GEZGridHook;
