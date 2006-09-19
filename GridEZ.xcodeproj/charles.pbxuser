@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	0867D690FE84028FC02AAC07 /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 5695AEBC09DBBBA700C92AF7 /* PolyShell */;
 		activeTarget = 8DC2EF4F0486A6940098B216 /* GridEZ */;
 		addToTargets = (
@@ -140,7 +140,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					200,
-					326,
+					297,
 					20,
 					48,
 					43,
@@ -345,6 +345,9 @@
 			562D36E30AC091A200B4A99D /* PBXTextBookmark */ = 562D36E30AC091A200B4A99D /* PBXTextBookmark */;
 			562D36E40AC091A200B4A99D /* PBXTextBookmark */ = 562D36E40AC091A200B4A99D /* PBXTextBookmark */;
 			562D36E50AC091A200B4A99D /* PBXTextBookmark */ = 562D36E50AC091A200B4A99D /* PBXTextBookmark */;
+			562D36E60AC0930E00B4A99D /* PBXTextBookmark */ = 562D36E60AC0930E00B4A99D /* PBXTextBookmark */;
+			562D36E80AC0931900B4A99D /* PBXTextBookmark */ = 562D36E80AC0931900B4A99D /* PBXTextBookmark */;
+			562D36E90AC0935B00B4A99D /* PBXTextBookmark */ = 562D36E90AC0935B00B4A99D /* PBXTextBookmark */;
 			5638DD060A41B87000C59222 = 5638DD060A41B87000C59222 /* PBXTextBookmark */;
 			563B95BE0A01F24D004EA694 = 563B95BE0A01F24D004EA694 /* PBXTextBookmark */;
 			563B95BF0A01F24D004EA694 = 563B95BF0A01F24D004EA694 /* PBXTextBookmark */;
@@ -506,7 +509,7 @@
 		fRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */;
 		name = "GEZServerHook.h: isSynced";
 		rLen = 0;
-		rLoc = 3351;
+		rLoc = 3354;
 		rType = 0;
 		vrLen = 1705;
 		vrLoc = 2361;
@@ -586,7 +589,7 @@
 		fRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */;
 		name = "GEZServerHook.h: isSynced";
 		rLen = 0;
-		rLoc = 3351;
+		rLoc = 3354;
 		rType = 0;
 		vrLen = 1705;
 		vrLoc = 2361;
@@ -776,7 +779,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = GEZGridHookDidLoadNotification;
 		rLen = 30;
-		rLoc = 26344;
+		rLoc = 26368;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 25235;
@@ -876,7 +879,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = "GEZServerHook.m: 296";
 		rLen = 0;
-		rLoc = 12029;
+		rLoc = 12037;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 11575;
@@ -886,7 +889,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = GEZGridHookDidLoadNotification;
 		rLen = 30;
-		rLoc = 1341;
+		rLoc = 1344;
 		rType = 0;
 		vrLen = 1871;
 		vrLoc = 3;
@@ -896,7 +899,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = GEZGridHookDidLoadNotification;
 		rLen = 30;
-		rLoc = 26344;
+		rLoc = 26368;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 25235;
@@ -906,7 +909,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = "GEZGridHook.h: 17";
 		rLen = 0;
-		rLoc = 1165;
+		rLoc = 1166;
 		rType = 0;
 		vrLen = 1808;
 		vrLoc = 235;
@@ -916,7 +919,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = GEZGridHookDidLoadNotification;
 		rLen = 30;
-		rLoc = 26344;
+		rLoc = 26368;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 25235;
@@ -926,7 +929,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = "GEZGridHook.h: 18";
 		rLen = 0;
-		rLoc = 1248;
+		rLoc = 1249;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 0;
@@ -1002,7 +1005,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "[self loadAllJobs];";
 		rLen = 23;
-		rLoc = 6906;
+		rLoc = 6913;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 6173;
@@ -1072,7 +1075,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 186";
 		rLen = 0;
-		rLoc = 6906;
+		rLoc = 6913;
 		rType = 0;
 		vrLen = 1148;
 		vrLoc = 6190;
@@ -1092,7 +1095,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "[self loadAllJobs];";
 		rLen = 23;
-		rLoc = 6906;
+		rLoc = 6913;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 6173;
@@ -1821,7 +1824,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = "GEZGridHook.h: gridHookWithIdentifier:serverHook:";
 		rLen = 0;
-		rLoc = 1521;
+		rLoc = 1524;
 		rType = 0;
 		vrLen = 1129;
 		vrLoc = 0;
@@ -2030,7 +2033,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = "- (NSArray *)grids";
 		rLen = 19;
-		rLoc = 15079;
+		rLoc = 15087;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 10087;
@@ -2114,7 +2117,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 75";
 		rLen = 0;
-		rLoc = 3635;
+		rLoc = 3642;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 2658;
@@ -2251,7 +2254,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = XGResourceStateFinished;
 		rLen = 23;
-		rLoc = 21604;
+		rLoc = 21619;
 		rType = 0;
 		vrLen = 1400;
 		vrLoc = 20557;
@@ -2278,7 +2281,7 @@
 		fRef = 5617D1530962223B00505CDC /* GEZGrid.h */;
 		name = "GEZGrid.h: loadAllJobs";
 		rLen = 0;
-		rLoc = 2992;
+		rLoc = 2997;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 1574;
@@ -2469,7 +2472,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = "GEZGridHook.h: 50";
 		rLen = 0;
-		rLoc = 2051;
+		rLoc = 2055;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 0;
@@ -2489,7 +2492,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = "GEZGridHook.h: 50";
 		rLen = 0;
-		rLoc = 2051;
+		rLoc = 2055;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 0;
@@ -2508,8 +2511,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 24872;
+		rLen = 6;
+		rLoc = 24881;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 23918;
@@ -2518,8 +2521,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 19387;
+		rLen = 6;
+		rLoc = 19398;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 18063;
@@ -2532,8 +2535,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 24872;
+		rLen = 6;
+		rLoc = 24881;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 23918;
@@ -2542,8 +2545,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 19387;
+		rLen = 6;
+		rLoc = 19398;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 18063;
@@ -2572,8 +2575,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 3345;
+		rLen = 6;
+		rLoc = 3347;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 2962;
@@ -2581,8 +2584,8 @@
 	562D36D00AC0919E00B4A99D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
-		rLen = 4;
-		rLoc = 8605;
+		rLen = 6;
+		rLoc = 8611;
 		rType = 0;
 	};
 	562D36D10AC0919E00B4A99D /* PBXTextBookmark */ = {
@@ -2599,8 +2602,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 3345;
+		rLen = 6;
+		rLoc = 3347;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 2962;
@@ -2609,8 +2612,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = Sync;
-		rLen = 4;
-		rLoc = 8605;
+		rLen = 6;
+		rLoc = 8611;
 		rType = 0;
 		vrLen = 540;
 		vrLoc = 8252;
@@ -2650,7 +2653,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = "GEZServerHook.m: 683";
 		rLen = 0;
-		rLoc = 24616;
+		rLoc = 24625;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 23460;
@@ -2670,7 +2673,7 @@
 		fRef = 56BFC50B095FBD3300463A1F /* GEZGridHook.m */;
 		name = "*** job observing ***";
 		rLen = 21;
-		rLoc = 4764;
+		rLoc = 4772;
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 5351;
@@ -2680,7 +2683,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)hook";
 		rLen = 13;
-		rLoc = 15357;
+		rLoc = 15358;
 		rType = 0;
 		vrLen = 2237;
 		vrLoc = 14783;
@@ -2740,7 +2743,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = "GEZServerHook.m: 683";
 		rLen = 0;
-		rLoc = 24616;
+		rLoc = 24625;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 23460;
@@ -2760,7 +2763,7 @@
 		fRef = 56BFC50B095FBD3300463A1F /* GEZGridHook.m */;
 		name = "*** job observing ***";
 		rLen = 21;
-		rLoc = 4764;
+		rLoc = 4772;
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 5351;
@@ -2780,7 +2783,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)hook";
 		rLen = 13;
-		rLoc = 15357;
+		rLoc = 15358;
 		rType = 0;
 		vrLen = 2237;
 		vrLoc = 14783;
@@ -2794,6 +2797,36 @@
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 5339;
+	};
+	562D36E60AC0930E00B4A99D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
+		name = "GEZServerHook.m: 748";
+		rLen = 0;
+		rLoc = 27350;
+		rType = 0;
+		vrLen = 543;
+		vrLoc = 8257;
+	};
+	562D36E80AC0931900B4A99D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "GEZServer.h: isLoaded";
+		rLen = 0;
+		rLoc = 6349;
+		rType = 0;
+		vrLen = 1492;
+		vrLoc = 5339;
+	};
+	562D36E90AC0935B00B4A99D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
+		name = "GEZServerHook.m: 748";
+		rLen = 0;
+		rLoc = 27350;
+		rType = 0;
+		vrLen = 543;
+		vrLoc = 8257;
 	};
 	562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:153 */ = {
 		isa = PBXFileBreakpoint;
@@ -3525,7 +3558,7 @@
 		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
 		name = "GEZServerHook.m: 559";
 		rLen = 0;
-		rLoc = 26543;
+		rLoc = 26569;
 		rType = 0;
 		vrLen = 2128;
 		vrLoc = 2494;
@@ -4032,8 +4065,8 @@
 	};
 	56BFC498095FB37400463A1F /* GEZServerHook.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {902, 13076}}";
-			sepNavSelRange = "{8605, 4}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 13090}}";
+			sepNavSelRange = "{27350, 0}";
 			sepNavVisRect = "{{0, 2895}, {902, 357}}";
 		};
 	};
@@ -4322,7 +4355,7 @@
 		fRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */;
 		name = XGGrid;
 		rLen = 0;
-		rLoc = 1521;
+		rLoc = 1524;
 		rType = 0;
 		vrLen = 1886;
 		vrLoc = 0;
@@ -4332,7 +4365,7 @@
 		fRef = 5617D1530962223B00505CDC /* GEZGrid.h */;
 		name = "GEZGrid.h: 31";
 		rLen = 0;
-		rLoc = 1513;
+		rLoc = 1517;
 		rType = 0;
 		vrLen = 1952;
 		vrLoc = 0;
@@ -4352,7 +4385,7 @@
 		fRef = 5617D1530962223B00505CDC /* GEZGrid.h */;
 		name = "GEZGrid.h: 31";
 		rLen = 0;
-		rLoc = 1513;
+		rLoc = 1517;
 		rType = 0;
 		vrLen = 1952;
 		vrLoc = 0;
@@ -4432,7 +4465,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 706";
 		rLen = 0;
-		rLoc = 26990;
+		rLoc = 27005;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 23701;
@@ -4442,7 +4475,7 @@
 		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
 		name = "GEZJob.m: 404";
 		rLen = 0;
-		rLoc = 15152;
+		rLoc = 15156;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 13643;

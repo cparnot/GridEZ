@@ -228,7 +228,7 @@
 		5695AA2D09C9417700C92AF7 /* GEZJob-diagram.graffle */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "GEZJob-diagram.graffle"; path = "Docs/Dev docs/GEZJob-diagram.graffle"; sourceTree = "<group>"; };
 		5695ACC209D2814200C92AF7 /* GEZOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZOutlineView.h; path = "Framework files/GEZOutlineView.h"; sourceTree = "<group>"; };
 		5695ACC309D2814200C92AF7 /* GEZOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZOutlineView.m; path = "Framework files/GEZOutlineView.m"; sourceTree = "<group>"; };
-		5695AEBB09DBBBA700C92AF7 /* PolyShell.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PolyShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5695AEBB09DBBBA700C92AF7 /* PolyShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569CD3D20974E07E009E977F /* Targets-used-for-testing.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Targets-used-for-testing.markdown"; path = "Docs/Dev docs/Targets-used-for-testing.markdown"; sourceTree = "<group>"; };
 		569CD3F40974E393009E977F /* PolyShell-MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = "PolyShell-MainMenu.nib"; path = "Tests/PolyShell/PolyShell-MainMenu.nib"; sourceTree = "<group>"; };
 		569CD3F50974E393009E977F /* PolyShell-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "PolyShell-Info.plist"; path = "Tests/PolyShell/PolyShell-Info.plist"; sourceTree = "<group>"; };
@@ -945,6 +945,7 @@
 		5617D3160963565E00505CDC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1017,6 +1018,7 @@
 		569CD3F00974E2D8009E977F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -1090,6 +1092,7 @@
 		56BFC476095FB1C500463A1F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -1176,10 +1179,7 @@
 		56FA39EC095FADF0004AB027 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(NATIVE_ARCH)";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

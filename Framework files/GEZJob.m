@@ -270,7 +270,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	[self setPrimitiveValue:newGrid forKey:@"grid"];
 	[self didChangeValueForKey:@"grid"];
 	if ( newGrid != nil )
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidSync:) name:GEZGridDidSyncNotification object:newGrid];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidUpdate:) name:GEZGridDidUpdateNotification object:newGrid];
 
 	//the server should be changed too
 	[self willChangeValueForKey:@"server"];
@@ -558,14 +558,14 @@ NSString *GEZJobResultsStandardErrorKey;
 		return;
 	}
 	
-	// Maybe we have to wait for the grid to be synced, so that the array of XGJob is loaded
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidSync:) name:GEZGridDidSyncNotification object:grid];
-	if ( [grid isSynced] == NO )
+	// Maybe we have to wait for the grid to be updated, so that the array of XGJob is loaded
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidUpdate:) name:GEZGridDidUpdateNotification object:grid];
+	if ( [grid isUpdated] == NO )
 		return;
 
 	// Hook GEZJob to its XGJob
-	// When the XGGrid is "synced", it has all the jobs in an array, but only their identifier is set, which means -jobWithIdentifier will work if the identifier is valid, but will return a job that is not yet "loaded" from the grid, with all other ivars set to 0 or nil (except the state = 4 = Available ?!?)
-	// See GEZGridHook implementation of 'xgridGridDidSyncIvars" for the log that showed me that this is true
+	// When the XGGrid is "updated", it has all the jobs in an array, but only their identifier is set, which means -jobWithIdentifier will work if the identifier is valid, but will return a job that is not yet "loaded" from the grid, with all other ivars set to 0 or nil (except the state = 4 = Available ?!?)
+	// See GEZGridHook implementation of 'xgridGridDidUpdateIvars" for the log that showed me that this is true
 	[self setXgridJob:[[grid xgridGrid] jobForIdentifier:identifier]];
 	if ( xgridJob == nil ) {
 		//no job with the identifier
@@ -605,7 +605,7 @@ NSString *GEZJobResultsStandardErrorKey;
 	
 }
 
-- (void)gridDidSync:(NSNotification *)notification
+- (void)gridDidUpdate:(NSNotification *)notification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self hookSoon];
@@ -794,15 +794,15 @@ NSString *GEZJobResultsStandardErrorKey;
 		   [self setGrid:grid];
 		else {
 			//any server that connects in the future will do
-			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidSync:) name:GEZServerHookDidSyncNotification object:nil];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidUpdate:) name:GEZServerHookDidUpdateNotification object:nil];
 			return;
 		}
 	}
 
-	//make sure the grid can be accessed: the GEZServerHook has to be "Synced", so the XGGrid object can be obtained
+	//make sure the grid can be accessed: the GEZServerHook has to be "Updated", so the XGGrid object can be obtained
 	GEZServerHook *serverHook = [GEZServerHook serverHookWithAddress:[[grid server] address]];
-	if ( ![serverHook isSynced] ) {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidSync:) name:GEZServerHookDidSyncNotification object:serverHook];
+	if ( ![serverHook isUpdated] ) {
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidUpdate:) name:GEZServerHookDidUpdateNotification object:serverHook];
 		return;
 	}
 	
@@ -817,14 +817,14 @@ NSString *GEZJobResultsStandardErrorKey;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidDisconnect:) name:GEZServerHookDidDisconnectNotification object:serverHook];
 }
 
-- (void)serverHookDidSync:(NSNotification *)notification
+- (void)serverHookDidUpdate:(NSNotification *)notification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	if ( [self state] == GEZJobStateSubmitting )
 		[self submitSoon];
 	else
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZServerHookDidSyncNotification object:nil];
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZServerHookDidUpdateNotification object:nil];
 }
 
 

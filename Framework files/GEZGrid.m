@@ -17,7 +17,7 @@ __END_LICENSE__ */
  
  GEZGrid instances are objects managed by the Core Data framework. Their functionality is built on top of GEZServerHook and GEZGridHook. When first created and when fetched from store, a GEZGrid instance needs to be 'hooked' to a GEZGridHook. When is a good time to set the hook? GEZGrid is a subclass of NSManagedObject, and has thus no init methods. The initialization methods for managed objects are normally 'awakeFromInsert' and 'awakeFromFetch'. However, the implementation is such that instances have to be created via a factory method declared in the public interface. When a new object is added to the context, first 'awakeFromInsert' and 'awakeFromFetch' get called, and only then the factory method sets the properties of the GEZGrid object, like the identifier and the GEZServer. Thus, it is too early in 'awakeFromInsert' to hook the GEZGrid to its GEZGridHook.
  
- The question is thus still: when is a good time to set the hook? It only needs to be done if the GEZServer is itself connected, and there is some real network stuff going on. Thus, in 'AwakeFromFetch', the instance is immediately hooked if the server is synced (XGGrid objects are created), or registers for GEZServerHookDidSync notification. In general, it seems to also be a better idea to let the run loop finish before actually doing anything. So the hook is actually called with a timer set to 0.
+ The question is thus still: when is a good time to set the hook? It only needs to be done if the GEZServer is itself connected, and there is some real network stuff going on. Thus, in 'AwakeFromFetch', the instance is immediately hooked if the server is updated (XGGrid objects are created), or registers for GEZServerHookDidUpdate notification. In general, it seems to also be a better idea to let the run loop finish before actually doing anything. So the hook is actually called with a timer set to 0.
  
  */
 
@@ -29,7 +29,7 @@ __END_LICENSE__ */
 #import "GEZJob.h"
 #import "GEZDefines.h"
 
-NSString *GEZGridDidSyncNotification = @"GEZGridDidSyncNotification";
+NSString *GEZGridDidUpdateNotification = @"GEZGridDidUpdateNotification";
 NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 @interface GEZGrid (GEZGridPrivate)
@@ -211,9 +211,9 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	return [[self server] isConnected];
 }
 
-- (BOOL)isSynced
+- (BOOL)isUpdated
 {
-	return [gridHook isSynced];
+	return [gridHook isUpdated];
 }
 
 - (BOOL)isLoaded;
@@ -245,14 +245,14 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	
 	//in any case, we need to be always listening to notifications from the ServerHook to know when we can expect the GEZGridHook objects to be ready
 	GEZServerHook *serverHook = [GEZServerHook serverHookWithAddress:[[self server] address]];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidSync:) name:GEZServerHookDidSyncNotification object:serverHook];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidUpdate:) name:GEZServerHookDidUpdateNotification object:serverHook];
 	
-	//if server is already synced, the GEZGrid is ready to be hooked to its GEZGridHook, and we can do it at the next iteration of the run loop
-	if ( [serverHook isSynced] )
+	//if server is already updated, the GEZGrid is ready to be hooked to its GEZGridHook, and we can do it at the next iteration of the run loop
+	if ( [serverHook isUpdated] )
 		[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(hookWithTimer:) userInfo:nil repeats:NO];
 }
 
-- (void)serverHookDidSync:(NSNotification *)notification
+- (void)serverHookDidUpdate:(NSNotification *)notification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self hookWhenNecessary];
@@ -285,19 +285,19 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 		[self setValue:name forKey:@"name"];
 	else
 		[self setValue:@"undefined" forKey:@"name"];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidSync:) name:GEZGridHookDidSyncNotification object:gridHook];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidUpdate:) name:GEZGridHookDidUpdateNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidLoad:) name:GEZGridHookDidLoadNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeName:) name:GEZGridHookDidChangeNameNotification object:gridHook];
-	if ( [gridHook isSynced] && [self shouldObserveAllJobs] )
+	if ( [gridHook isUpdated] && [self shouldObserveAllJobs] )
 		[self loadAllJobs];
 }
 
-- (void)gridHookDidSync:(NSNotification *)notification
+- (void)gridHookDidUpdate:(NSNotification *)notification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	[self setValue:[[gridHook xgridGrid] name] forKey:@"name"];
-	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridDidSyncNotification object:self];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridDidUpdateNotification object:self];
 	if ( [self shouldObserveAllJobs] )
 		[self loadAllJobs];	
 }

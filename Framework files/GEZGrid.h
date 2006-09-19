@@ -11,8 +11,8 @@ This file is part of "GridEZ.framework". "GridEZ.framework" is free software; yo
 __END_LICENSE__ */
 
 
-//a grid is considered synced after all its attributes (name, jobs,...) have been uploaded from the server, but the jobs may not be synced yet
-APPKIT_EXTERN NSString *GEZGridDidSyncNotification;
+//a grid is considered updated after all its attributes (name, jobs,...) have been uploaded from the server, but the jobs may not be updated yet
+APPKIT_EXTERN NSString *GEZGridDidUpdateNotification;
 
 //a grid is considered loaded after all its attributes (name, jobs,...) have been uploaded from the server
 APPKIT_EXTERN NSString *GEZGridDidLoadNotification;
@@ -51,7 +51,7 @@ APPKIT_EXTERN NSString *GEZGridDidLoadNotification;
 - (BOOL)isAvailable;
 - (BOOL)isConnecting;
 - (BOOL)isConnected;
-- (BOOL)isSynced;
+- (BOOL)isUpdated;
 - (BOOL)isLoaded;
 - (NSString *)status;
 

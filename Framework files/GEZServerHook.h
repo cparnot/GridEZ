@@ -26,7 +26,7 @@ So the two classes, GEZServerHook & GEZServer, are somewhat coupled, though the 
 APPKIT_EXTERN NSString *GEZServerHookDidConnectNotification;
 APPKIT_EXTERN NSString *GEZServerHookDidNotConnectNotification;
 APPKIT_EXTERN NSString *GEZServerHookDidDisconnectNotification;
-APPKIT_EXTERN NSString *GEZServerHookDidSyncNotification;
+APPKIT_EXTERN NSString *GEZServerHookDidUpdateNotification;
 APPKIT_EXTERN NSString *GEZServerHookDidLoadNotification;
 
 //server type is determined at connection
@@ -69,7 +69,7 @@ typedef enum {
 - (XGController *)xgridController;
 - (BOOL)isConnecting;
 - (BOOL)isConnected;
-- (BOOL)isSynced;
+- (BOOL)isUpdated;
 - (BOOL)isLoaded;
 
 //the password will only be stored until the connection is successfull or failed

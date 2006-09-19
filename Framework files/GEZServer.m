@@ -430,7 +430,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 - (void)updateStatus
 {
 	BOOL l = [serverHook isLoaded];
-	BOOL s = [serverHook isSynced];
+	BOOL s = [serverHook isUpdated];
 	BOOL c = [serverHook isConnected];
 	BOOL lsc = l || s || c;
 	BOOL n = [serverHook isConnecting];
@@ -463,7 +463,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	//We need to be notified of all the activity of the GEZServerHook object
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidConnect:) name:GEZServerHookDidConnectNotification object:serverHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidLoad:) name:GEZServerHookDidLoadNotification object:serverHook];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidSync:) name:GEZServerHookDidSyncNotification object:serverHook];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidUpdate:) name:GEZServerHookDidUpdateNotification object:serverHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidNotConnect:) name:GEZServerHookDidNotConnectNotification object:serverHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidDisconnect:) name:GEZServerHookDidDisconnectNotification object:serverHook];
 	
@@ -496,7 +496,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerDidDisconnectNotification object:self];
 }
 
-- (void)serverHookDidSync:(NSNotification *)aNotification
+- (void)serverHookDidUpdate:(NSNotification *)aNotification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self updateStatus];

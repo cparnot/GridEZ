@@ -54,7 +54,7 @@ typedef enum {
 	GEZServerHookStateUninitialized = 1,
 	GEZServerHookStateConnecting,
 	GEZServerHookStateConnected,
-	GEZServerHookStateSynced,
+	GEZServerHookStateUpdated,
 	GEZServerHookStateLoaded,
 	GEZServerHookStateDisconnected,
 	GEZServerHookStateFailed
@@ -63,7 +63,7 @@ typedef enum {
 //global constants used for notifications
 NSString *GEZServerHookDidConnectNotification = @"GEZServerHookDidConnectNotification";
 NSString *GEZServerHookDidLoadNotification = @"GEZServerHookDidLoadNotification";
-NSString *GEZServerHookDidSyncNotification = @"GEZServerHookDidSyncNotification";
+NSString *GEZServerHookDidUpdateNotification = @"GEZServerHookDidUpdateNotification";
 NSString *GEZServerHookDidNotConnectNotification = @"GEZServerHookDidNotConnectNotification";
 NSString *GEZServerHookDidDisconnectNotification = @"GEZServerHookDidDisconnectNotification";
 
@@ -200,12 +200,12 @@ NSMutableDictionary *serverHookInstances=nil;
 
 - (BOOL)isConnected
 {
-	return serverHookState == GEZServerHookStateConnected || serverHookState == GEZServerHookStateSynced || serverHookState == GEZServerHookStateLoaded;
+	return serverHookState == GEZServerHookStateConnected || serverHookState == GEZServerHookStateUpdated || serverHookState == GEZServerHookStateLoaded;
 }
 
-- (BOOL)isSynced
+- (BOOL)isUpdated
 {
-	return serverHookState == GEZServerHookStateSynced || serverHookState == GEZServerHookStateLoaded;
+	return serverHookState == GEZServerHookStateUpdated || serverHookState == GEZServerHookStateLoaded;
 }
 
 - (BOOL)isLoaded
@@ -672,7 +672,7 @@ NSMutableDictionary *serverHookInstances=nil;
 }
 
 
-#pragma mark *** XGController observing, going from "Connected" to "Synced" ***
+#pragma mark *** XGController observing, going from "Connected" to "Updated" ***
 
 //when the state of the XGController is modified by the XgridFoundation framework, we know all its instance variables will be set by the end of this run loop
 //so we call a timer with interval 0 to be back when all the instance variables are set (e.g. grids,...)
@@ -683,26 +683,26 @@ NSMutableDictionary *serverHookInstances=nil;
 	if ( serverHookState == GEZServerHookStateConnected ) {
 		if ( [xgridController state] == XGResourceStateAvailable ) {
 			[xgridController removeObserver:self forKeyPath:@"state"];
-			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(controllerDidSyncInstanceVariables:) userInfo:nil repeats:NO];
+			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(controllerDidUpdateInstanceVariables:) userInfo:nil repeats:NO];
 		}
 	} else {
 		[xgridController removeObserver:self forKeyPath:@"state"];
 	}
 }
 
-//checks wether all grids are "synced"
-- (BOOL)allGridsSynced
+//checks wether all grids are "updated"
+- (BOOL)allGridsUpdated
 {
-	BOOL allSynced = YES;
+	BOOL allUpdated = YES;
 	NSEnumerator *e = [grids objectEnumerator];
 	GEZGridHook *aGrid;
 	while ( aGrid = [e nextObject] )
-		allSynced = allSynced && [aGrid isSynced];
-	return allSynced;
+		allUpdated = allUpdated && [aGrid isUpdated];
+	return allUpdated;
 }
 
 //callback on the iteration of the run loop following the change in the state of the XGController
-- (void)controllerDidSyncInstanceVariables:(NSTimer *)aTimer
+- (void)controllerDidUpdateInstanceVariables:(NSTimer *)aTimer
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
@@ -718,34 +718,34 @@ NSMutableDictionary *serverHookInstances=nil;
 		GEZGridHook *gridHook = [GEZGridHook gridHookWithXgridGrid:aGrid serverHook:self];
 		NSAssert(gridHook!=nil,@"[GEZGridHook gridHookWithXgridGrid:aGrid serverHook:self] returning nil");
 		[tempGrids addObject:gridHook];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidSync:) name:GEZGridHookDidSyncNotification object:gridHook];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidUpdate:) name:GEZGridHookDidUpdateNotification object:gridHook];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidLoad:) name:GEZGridHookDidLoadNotification object:gridHook];
 	}
 	[grids release];
 	grids = [[NSArray alloc] initWithArray:tempGrids];
 	
-	//now, the server is synced!
-	serverHookState = GEZServerHookStateSynced;
-	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidSyncNotification object:self];
+	//now, the server is updated!
+	serverHookState = GEZServerHookStateUpdated;
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidUpdateNotification object:self];
 	
-	//next is to wait for the grids to be synced... except if they already are
-	if ( [self allGridsSynced] ) {
+	//next is to wait for the grids to be updated... except if they already are
+	if ( [self allGridsUpdated] ) {
 		serverHookState = GEZServerHookStateLoaded;
 		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidLoadNotification object:self];		
 	}
 }
 
-#pragma mark *** GEZGridHook callbacks, going from "Synced" to "Loaded" ***
+#pragma mark *** GEZGridHook callbacks, going from "Updated" to "Loaded" ***
 
-- (void)gridHookDidSync:(NSNotification *)notification
+- (void)gridHookDidUpdate:(NSNotification *)notification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s %@",[self class],self,_cmd, [[[notification object] xgridGrid] name]);
 	
-	if ( serverHookState != GEZServerHookStateSynced )
+	if ( serverHookState != GEZServerHookStateUpdated )
 		return;
 	
 	//is the server now considered "loaded"?
-	if ( [self allGridsSynced] ) {
+	if ( [self allGridsUpdated] ) {
 		serverHookState = GEZServerHookStateLoaded;
 		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidLoadNotification object:self];
 	}

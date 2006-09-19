@@ -30,7 +30,7 @@ __END_LICENSE__ */
 		[nc addObserver:self selector:@selector(changeNotification:) name:GEZServerHookDidConnectNotification object:serverHook];
 		[nc addObserver:self selector:@selector(changeNotification:) name:GEZServerHookDidDisconnectNotification object:serverHook];
 		[nc addObserver:self selector:@selector(changeNotification:) name:GEZServerHookDidNotConnectNotification object:serverHook];
-		[nc addObserver:self selector:@selector(changeNotification:) name:GEZServerHookDidSyncNotification object:serverHook];
+		[nc addObserver:self selector:@selector(changeNotification:) name:GEZServerHookDidUpdateNotification object:serverHook];
 		[nc addObserver:self selector:@selector(changeNotification:) name:GEZServerHookDidLoadNotification object:serverHook];
 	}
 	return self;
@@ -41,7 +41,7 @@ __END_LICENSE__ */
 	//report status
 	NSLog(@"Connecting: %@",[serverHook isConnecting]?@"YES":@"NO");
 	NSLog(@"Connected : %@", [serverHook isConnected]?@"YES":@"NO");
-	NSLog(@"Synced    : %@",    [serverHook isSynced]?@"YES":@"NO");
+	NSLog(@"Updated    : %@",    [serverHook isUpdated]?@"YES":@"NO");
 	NSLog(@"Loaded    : %@",    [serverHook isLoaded]?@"YES":@"NO");
 	
 	//report grids

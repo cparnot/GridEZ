@@ -16,7 +16,7 @@ __END_LICENSE__ */
 #import "GEZServerHook.h"
 #import "GEZResourceObserver.h"
 
-NSString *GEZGridHookDidSyncNotification = @"GEZGridHookDidSyncNotification";
+NSString *GEZGridHookDidUpdateNotification = @"GEZGridHookDidUpdateNotification";
 NSString *GEZGridHookDidLoadNotification = @"GEZGridHookDidLoadNotification";
 NSString *GEZGridHookDidChangeNameNotification = @"GEZGridHookDidChangeNameNotification";
 NSString *GEZGridHookDidChangeJobsNotification = @"GEZGridHookDidChangeJobsNotification";
@@ -26,7 +26,7 @@ NSString *GEZGridHookDidChangeJobsNotification = @"GEZGridHookDidChangeJobsNotif
 typedef enum {
 	GEZGridHookStateUninitialized = 1,
 	GEZGridHookStateConnected,
-	GEZGridHookStateSynced,
+	GEZGridHookStateUpdated,
 	GEZGridHookStateLoaded,
 	GEZGridHookStateDisconnected,
 } GEZGridHookState;
@@ -119,7 +119,7 @@ typedef enum {
 		xgridGridObserver = [[GEZResourceObserver alloc] initWithResource:xgridGrid observedKeys:[NSSet setWithObjects:@"name",@"state",@"jobs",nil]];
 		[xgridGridObserver setDelegate:self];
 		
-		//if ready, notify self to be synced on the next iteration of the run loop
+		//if ready, notify self to be updated on the next iteration of the run loop
 		if ( [xgridGrid isUpdated] == YES ) {
 			NSInvocation *updateInvocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:@selector(xgridResourceDidUpdate:)]];
 			[updateInvocation setSelector:@selector(xgridResourceDidUpdate:)];
@@ -135,9 +135,9 @@ typedef enum {
 	return xgridGrid;
 }
 
-- (BOOL)isSynced
+- (BOOL)isUpdated
 {
-	return ( gridHookState == GEZGridHookStateSynced ) || ( gridHookState == GEZGridHookStateLoaded );
+	return ( gridHookState == GEZGridHookStateUpdated ) || ( gridHookState == GEZGridHookStateLoaded );
 }
 
 - (BOOL)isLoaded
@@ -196,7 +196,7 @@ typedef enum {
 	
 }
 
-#pragma mark *** XGGrid observing, going from "Connected" to "Synced" ***
+#pragma mark *** XGGrid observing, going from "Connected" to "Updated" ***
 
 - (void)logStatus
 {
@@ -215,7 +215,7 @@ typedef enum {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s : %@",[self class],self,_cmd,resource);	
 	//[self logStatus];
 	
-	//Case 1: the XGGrid is now updated and synced with the values on the remote server		
+	//Case 1: the XGGrid is now updated and updated with the values on the remote server		
 	if ( resource == xgridGrid ) {
 		if ( gridHookState != GEZGridHookStateUninitialized )
 			return;
@@ -223,7 +223,7 @@ typedef enum {
 		//update gridHookState to be consistent with XGGrid state
 		XGResourceState gridState = [xgridGrid state];
 		if ( gridState == XGResourceStateAvailable )
-			gridHookState = GEZGridHookStateSynced;
+			gridHookState = GEZGridHookStateUpdated;
 		else if ( gridState == XGResourceStateOffline || gridState == XGResourceStateUnavailable )
 			gridHookState = GEZGridHookStateDisconnected;
 		
@@ -233,7 +233,7 @@ typedef enum {
 			[self startJobObservation];
 		
 		//notify of the change of state
-		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidSyncNotification object:self];
+		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidUpdateNotification object:self];
 	}
 	
 	//Case 2: one of the XGJob did update

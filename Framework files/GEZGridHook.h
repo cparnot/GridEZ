@@ -14,12 +14,12 @@ __END_LICENSE__ */
 
 /*
  The GEZGridHook class is a private class.
- It is only used by GEZServerHook to monitor XGGrid objects owned by an XGController. The GEZServerHook simply implements the GEZGridHookServerProtocol to receive callbacks when the grid is synced, loaded, deleted,...
+ It is only used by GEZServerHook to monitor XGGrid objects owned by an XGController. The GEZServerHook simply implements the GEZGridHookServerProtocol to receive callbacks when the grid is updated, loaded, deleted,...
  The code for this class is designed to work with GEZServerHook and is not very portable
  */
 
 
-APPKIT_EXTERN NSString *GEZGridHookDidSyncNotification;
+APPKIT_EXTERN NSString *GEZGridHookDidUpdateNotification;
 APPKIT_EXTERN NSString *GEZGridHookDidLoadNotification;
 APPKIT_EXTERN NSString *GEZGridHookDidChangeNameNotification;
 APPKIT_EXTERN NSString *GEZGridHookDidChangeJobsNotification;
@@ -43,7 +43,7 @@ APPKIT_EXTERN NSString *GEZGridHookDidChangeJobsNotification;
 	//accessors
 - (void)setXgridGrid:(XGGrid *)newGrid;
 - (XGGrid *)xgridGrid;
-- (BOOL)isSynced;
+- (BOOL)isUpdated;
 - (BOOL)isLoaded;
 
 @end
