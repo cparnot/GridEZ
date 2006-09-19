@@ -5,6 +5,7 @@ Todo for v0.4 release:
   ÐÐ> I should use a separate object for each KVO instance to make it more like NSNotification system
 * Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * User-level store, to remember servers used by different apps (do not store jobs)
+* do not allow connection to empty string
 
 done:
 * Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
