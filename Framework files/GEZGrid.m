@@ -67,6 +67,9 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	//prepare it for hooking
 	[resultGrid hookWhenNecessary];
 	
+	//Make sure the insertion is registered by observers
+	[[server managedObjectContext] processPendingChanges];
+	
 	return resultGrid;
 }
 

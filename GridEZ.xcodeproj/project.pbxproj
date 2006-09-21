@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5606BEFA0AB8C0F100CA3CAE /* GEZResourceObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 5606BEF80AB8C0F100CA3CAE /* GEZResourceObserver.h */; };
 		5606BEFB0AB8C0F100CA3CAE /* GEZResourceObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5606BEF90AB8C0F100CA3CAE /* GEZResourceObserver.m */; };
-		560F8E4B0AA6641A00D97702 /* GEZMetaJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 560F8E490AA6641900D97702 /* GEZMetaJob.h */; };
+		560F8E4B0AA6641A00D97702 /* GEZMetaJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 560F8E490AA6641900D97702 /* GEZMetaJob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		560F8E4C0AA6641A00D97702 /* GEZMetaJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */; };
 		5617D1450962214900505CDC /* GridEZ_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */; };
 		5617D14F0962222A00505CDC /* GEZServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D14D0962222A00505CDC /* GEZServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,9 +51,8 @@
 		561C53B70A70B04600212BEC /* ConnectServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B40A70B04600212BEC /* ConnectServerToolbarIcon.png */; };
 		561C53B80A70B04600212BEC /* DisconnectServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B50A70B04600212BEC /* DisconnectServerToolbarIcon.png */; };
 		561C53FC0A71A60700212BEC /* RemoveServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53FB0A71A60700212BEC /* RemoveServerToolbarIcon.png */; };
-		56720AB50AAF89B400066417 /* GEZMetaTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 56720AB30AAF89B400066417 /* GEZMetaTask.h */; };
+		562D37390AC0977D00B4A99D /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56720AB60AAF89B400066417 /* GEZMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720AB40AAF89B400066417 /* GEZMetaTask.m */; };
-		56720B370AAFEE1C00066417 /* GEZIntegerArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 56720B350AAFEE1C00066417 /* GEZIntegerArray.h */; };
 		56720B380AAFEE1C00066417 /* GEZIntegerArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720B360AAFEE1C00066417 /* GEZIntegerArray.m */; };
 		56720BAC0AB0D94900066417 /* GEZManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D11F09621D8200505CDC /* GEZManager.m */; };
 		5678207C09907ED500D78584 /* GEZResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 5678207A09907ED500D78584 /* GEZResults.m */; };
@@ -678,15 +676,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562D37390AC0977D00B4A99D /* GEZManager.h in Headers */,
 				56BFC4C3095FB57100463A1F /* GridEZ.h in Headers */,
 				5617D14F0962222A00505CDC /* GEZServer.h in Headers */,
 				5617D1550962223B00505CDC /* GEZGrid.h in Headers */,
 				5617D15B0962224C00505CDC /* GEZJob.h in Headers */,
 				5617D25909625F0000505CDC /* GEZDefines.h in Headers */,
 				560F8E4B0AA6641A00D97702 /* GEZMetaJob.h in Headers */,
-				56720AB50AAF89B400066417 /* GEZMetaTask.h in Headers */,
-				56720B370AAFEE1C00066417 /* GEZIntegerArray.h in Headers */,
-				5606BEFA0AB8C0F100CA3CAE /* GEZResourceObserver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

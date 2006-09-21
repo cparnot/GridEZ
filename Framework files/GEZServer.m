@@ -116,6 +116,8 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	else {
 		returnedServer = [NSEntityDescription insertNewObjectForEntityForName:GEZServerEntityName inManagedObjectContext:context];
 		[returnedServer setValue:address forKey:@"name"];
+		//Make sure the insertion is registered by observers
+		[context processPendingChanges];
 	}
 	
 	//create a copy of that server instance in the default managed object context returned by [GEZManager managedObjectContext]
@@ -320,23 +322,15 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	return [serverHook xgridController];
 }
 
-//get the corresponding GEZGrid, creating it if necessary
+//get the corresponding GEZGrid, returning nil if not existing
 - (GEZGrid *)gridWithIdentifier:(NSString *)identifier
 {
-	//'aGrid' will be the GEZGrid object with the right id
 	GEZGrid *aGrid;
-	//maybe the grid already exists
-	//NSSet *currentIDs = [self valueForKeyPath:@"grids.identifier"];
-	//if ( [currentIDs member:identifier] == nil )
-	//	aGrid = [GEZGrid gridWithIdentifier:identifier server:self];
-	//else {
-		//yes, then get it
-		NSSet *currentGrids = [self valueForKey:@"grids"];
-		NSEnumerator *e = [currentGrids objectEnumerator];
-		while ( (aGrid = [e nextObject]) && [[aGrid valueForKey:@"identifier"] isEqualToString:identifier]==NO )
-			;
-	//}
-	
+	NSSet *currentGrids = [self valueForKey:@"grids"];
+	NSEnumerator *e = [currentGrids objectEnumerator];
+	while ( (aGrid = [e nextObject]) && ( [[aGrid valueForKey:@"identifier"] isEqualToString:identifier]==NO ) )
+		;
+	[e allObjects];
 	return aGrid;
 }
 
@@ -500,13 +494,11 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self updateStatus];
-	NSMutableSet *grids = [self mutableSetValueForKey:@"grids"];
 	NSEnumerator *e = [[[serverHook xgridController] grids] objectEnumerator];
 	XGGrid *aGrid;
 	while ( aGrid = [e nextObject] ) {
 		GEZGrid *newGrid = [GEZGrid gridWithIdentifier:[aGrid identifier] server:self];
 		[newGrid setShouldObserveAllJobs:[self shouldObserveAllJobs]];
-		[grids addObject:newGrid];
 	}
 }
 

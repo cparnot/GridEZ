@@ -198,6 +198,8 @@ NSString *GEZJobResultsStandardErrorKey;
 
 	GEZJob *newJob = [NSEntityDescription insertNewObjectForEntityForName:GEZJobEntityName inManagedObjectContext:context];
 	[newJob setValue:[NSNumber numberWithInt:GEZJobStateUninitialized] forKey:@"state"];
+	//Make sure the insertion is registered by observers
+	[context processPendingChanges];
 	return newJob;
 }
 
@@ -679,6 +681,9 @@ NSString *GEZJobResultsStandardErrorKey;
 		GEZTask *newTask = [NSEntityDescription insertNewObjectForEntityForName:GEZTaskEntityName inManagedObjectContext:[self managedObjectContext]];
 		[newTask setValue:[NSString stringWithFormat:@"%d",i] forKey:@"name"];
 		[newTask setValue:self forKey:@"job"];
+		//Make sure the insertion is registered by observers
+		[[self managedObjectContext] processPendingChanges];
+
 	}
 }
 
@@ -931,6 +936,9 @@ NSString *GEZJobResultsStandardErrorKey;
 					parentPath = [parentPath stringByDeletingLastPathComponent];
 					newFile = parentFile;
 				}
+				//Make sure the insertion is registered by observers
+				[[self managedObjectContext] processPendingChanges];
+
 			}
 		}
 	}
