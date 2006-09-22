@@ -21,6 +21,7 @@ So the two classes, GEZServerHook & GEZServer, are somewhat coupled, though the 
 */
 
 @class GEZGridHook;
+@class GEZResourceObserver;
 
 //Constants to use to subscribe to notifications
 APPKIT_EXTERN NSString *GEZServerHookDidConnectNotification;
@@ -46,6 +47,8 @@ typedef enum {
 	GEZServerHookType serverType;
 	
 	NSArray *grids; //array of GEZGridHook
+	
+	GEZResourceObserver *xgridControllerObserver;
 	
 	//keeping track of connection attempts
 	NSArray *connectionSelectors;
