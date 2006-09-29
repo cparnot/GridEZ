@@ -15,6 +15,7 @@ __END_LICENSE__ */
 @class GEZGrid;
 @class GEZServer;
 @class GEZResults;
+@class GEZResourceObserver;
 
 //keys used in the result dictionary of each task for the stdout and sterr data streams
 //other keys are the paths (on the agent) of the new or modified files
@@ -31,6 +32,7 @@ extern NSString *GEZJobResultsStandardErrorKey;
 	unsigned int countDeletionAttempts;
 	id jobInfo;
 	GEZResults *results;
+	GEZResourceObserver *xgridJobObserver;
 }
 
 //Creating GEZJob objects

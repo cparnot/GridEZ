@@ -26,19 +26,21 @@ __END_LICENSE__ */
 	* in all other cases, 'hook' the job
 
  * What should be done to hook a GEZjob (when 'hook' is called):
-	* if the grid is not connected yet, wait for the connection and then come back
+	* if the grid is not updated yet (no XGJob list, ivar jobs = nil), wait for that and then come back
 	* if there is no XGJob with the correct identifier, mark the GEZJob as 'Invalid'
-	* if XGJob is loaded already, call 'xgridJobDidLoad'
-	* else, get the XGJob and observe it until it is loaded --> observe state
- 
- * What should be done when the GEZJob is finally loaded (when 'xgridJobDidLoad' is called):
-	* if the job is marked for deletion (state "Deleting"), start the deletion process
-	* if the job is finished, and 'shouldRetrieveResultsAutomatically == YES', start the job retrieval process
-	* update the state
- 
+	* if XGJob is already updated, call 'xgridJobDidUpdate'
+	* else, get the XGJob and observe it until it is updated
+
  * What should be done if a job is marked as Invalid (when 'markAsInvalid' is called):
 	* if 'shouldDeleteAutomatically == YES', delete from store
   
+ * What should be done when the GEZJob is finally updated (when 'xgridJobDidUpdate' is called):
+	* if the job is marked for deletion (state "Deleting"), start the deletion process
+	* if the job is finished, and 'shouldRetrieveResultsAutomatically == YES', start the job retrieval process
+	* update the state, name,...
+
+ * GEZJob needs to observe its XGJob for changes in its mutable ivars: state, completedTaskCount, ...?... ***TODO***: this needs to be better defined when the implementation is finished
+ 
  * when a new job is created:
 	* it is not submitted immediately
 	* the grid to be used for submission can still be changed while Uninitialized or Submitting
@@ -50,8 +52,6 @@ __END_LICENSE__ */
  
  * Deletion requires first deletion from the grid and then deletion from the store; an ActionMonitor needs to be observed for the deletion from the grid; the deletion from the grid does not need to happen if there is no job with the right identifier in the grid and the grid is connected: the job is already gone
  
- * GEZJob needs to observe its XGJob: state, ...?... ***TODO***: this needs to be better defined when the implementation is finished
-
  */
 
 #define MAX_COUNT_DELETION_ATTEMPTS 3
@@ -64,6 +64,7 @@ __END_LICENSE__ */
 #import "GEZResults.h"
 #import "GEZDefines.h"
 #import "GEZManager.h"
+#import "GEZResourceObserver.h"
 
 //internal state
 typedef enum {
@@ -109,11 +110,10 @@ NSString *GEZJobResultsStandardErrorKey;
 
 //hooking the GEZJob to a XGJob
 - (void)hookSoon;
-- (void)xgridJobDidLoad:(NSTimer *)timer;
-- (void)stateDidChange;
-- (void)taskCountDidChange;
-- (void)completedTaskCountDidChange;
-- (void)nameDidChange;
+- (void)xgridResourceDidUpdate:(XGResource *)resource;
+- (void)xgridResourceStateDidChange:(XGResource *)resource;
+- (void)xgridResourceCompletedTaskCountDidChange:(XGResource *)resource;
+
 
 //submission
 - (void)submitSoon;
@@ -499,12 +499,12 @@ NSString *GEZJobResultsStandardErrorKey;
 
 	//clean state
 	[self setState:GEZJobStateDeleted];
-	[xgridJob release];
-	xgridJob = nil;
+	[self setXgridJob:nil];
 	[self setGrid:nil];
 	[self setValue:@"-1" forKey:@"identifier"];
 	
 	[[self managedObjectContext] deleteObject:self];
+	[[self managedObjectContext] processPendingChanges];
 }
 
 - (void)retrieveResults
@@ -566,8 +566,7 @@ NSString *GEZJobResultsStandardErrorKey;
 		return;
 
 	// Hook GEZJob to its XGJob
-	// When the XGGrid is "updated", it has all the jobs in an array, but only their identifier is set, which means -jobWithIdentifier will work if the identifier is valid, but will return a job that is not yet "loaded" from the grid, with all other ivars set to 0 or nil (except the state = 4 = Available ?!?)
-	// See GEZGridHook implementation of 'xgridGridDidUpdateIvars" for the log that showed me that this is true
+	// When the XGGrid is "updated", it has all the jobs in an array, but only their identifier is set, which means -jobWithIdentifier will work if the identifier is valid, but will return a job that is not yet "updated", with all other ivars set to 0 or nil (except the state = 4 = Available ?!?)
 	[self setXgridJob:[[grid xgridGrid] jobForIdentifier:identifier]];
 	if ( xgridJob == nil ) {
 		//no job with the identifier
@@ -575,12 +574,10 @@ NSString *GEZJobResultsStandardErrorKey;
 		return;
 	}
 	
-	//maybe the XGJob is already loaded, which would be true if its name is not nil
+	//maybe the XGJob is already updated, which would be true if its name is not nil
 	//then we have to do whatever is needed once loaded (but it is best to wait for the next iteration of the run loop)
-	if ( [xgridJob name] != nil ) {
-		[self nameDidChange];
-		[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridJobDidLoad:) userInfo:nil repeats:NO];
-	}
+	if ( [xgridJob isUpdated] == YES )
+		[self xgridResourceDidUpdate:xgridJob];
 }
 
 - (void)hookSoon
@@ -589,35 +586,48 @@ NSString *GEZJobResultsStandardErrorKey;
 }
 
 
-- (void)xgridJobDidLoad:(NSTimer *)timer
+#pragma mark *** Observing XGJob - delegate methods of GEZResourceObserver ***
+
+//called when XGJob is updated = all ivars set, so we are ready to sync/process GEZJob as necessary
+- (void)xgridResourceDidUpdate:(XGResource *)resource
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
-	//get notification of state and completedTaskCount changes to keep things in sync
-	[self nameDidChange];
-	[self stateDidChange];
-	[self completedTaskCountDidChange];
-	[self taskCountDidChange];
-
+	
+	//set the name (just in case it is not yet set)
+	[self setValue:[xgridJob name] forKey:@"name"];
+	
+	//set taskCount + GEZTask objects if necessary
+	int taskCount = [xgridJob taskCount];
+	if ( [self taskCount] != taskCount )
+		[self setValue:[NSNumber numberWithInt:taskCount] forKey:@"taskCount"];
+	if ( taskCount > 0 && [[self valueForKey:@"tasks"] count] < 1 ) {
+		int i;
+		for ( i = 0 ; i < taskCount ; i++ ) {
+			GEZTask *newTask = [NSEntityDescription insertNewObjectForEntityForName:GEZTaskEntityName inManagedObjectContext:[self managedObjectContext]];
+			[newTask setValue:[NSString stringWithFormat:@"%d",i] forKey:@"name"];
+			[newTask setValue:self forKey:@"job"];
+			//Make sure the insertion is registered by observers
+			[[self managedObjectContext] processPendingChanges];
+		}
+	}
+	
+	//notifies self of state and completedTaskCount changes to keep things in sync
+	[self xgridResourceCompletedTaskCountDidChange:xgridJob];
+	[self xgridResourceStateDidChange:xgridJob];
+	
 	//now is time to delete if marked for deletion
 	if ( [self shouldDelete] ) {
 		[self deleteSoon];
 		return;
 	}
-	
 }
 
-- (void)gridDidUpdate:(NSNotification *)notification
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[self hookSoon];
-}
 
 //update the state of GEZJob to be in sync with XGJob as much as possible
-- (void)stateDidChange
+- (void)xgridResourceStateDidChange:(XGResource *)resource
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
+	
 	//maybe time to delete
 	if ( [self shouldDelete] ) {
 		[self deleteSoon];
@@ -648,10 +658,10 @@ NSString *GEZJobResultsStandardErrorKey;
 }
 
 // keep completedTaskCount in sync
-- (void)completedTaskCountDidChange
+- (void)xgridResourceCompletedTaskCountDidChange:(XGResource *)resource
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
+	
 	if ( xgridJob != nil ) {
 		int newCount = [xgridJob completedTaskCount];
 		[self setValue:[NSNumber numberWithInt:newCount] forKey:@"completedTaskCount"];
@@ -660,40 +670,11 @@ NSString *GEZJobResultsStandardErrorKey;
 	}
 }
 
-// keep taskCount in sync
-- (void)taskCountDidChange
+
+- (void)gridDidUpdate:(NSNotification *)notification
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	
-	if ( xgridJob == nil ) 
-		return;
-
-	//make sure the number really changed
-	int oldCount = [self taskCount];
-	int newCount = [xgridJob taskCount];
-	if ( oldCount == newCount )
-		return;
-	[self setValue:[NSNumber numberWithInt:newCount] forKey:@"taskCount"];
-	
-	//create GEZTask for the job
-	int i;
-	for ( i = 0 ; i < newCount ; i++ ) {
-		GEZTask *newTask = [NSEntityDescription insertNewObjectForEntityForName:GEZTaskEntityName inManagedObjectContext:[self managedObjectContext]];
-		[newTask setValue:[NSString stringWithFormat:@"%d",i] forKey:@"name"];
-		[newTask setValue:self forKey:@"job"];
-		//Make sure the insertion is registered by observers
-		[[self managedObjectContext] processPendingChanges];
-
-	}
-}
-
-//keep name in sync
-//the name saved in GEZJob will really change only if the job is loaded from an already existing XGJob on the grid
-- (void)nameDidChange
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	if ( [[xgridJob name] length] > 0 )
-		[self setValue:[xgridJob name] forKey:@"name"];
+	[self hookSoon];
 }
 
 
@@ -703,23 +684,7 @@ NSString *GEZJobResultsStandardErrorKey;
 {	
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@\nObject = <%@:%p>\nKey Path = %@\nChange = %@",[self class],self,_cmd, [self shortDescription], [object class], object, keyPath, [change description]);
 	
-	if ( object == xgridJob ) {
-		DLog(NSStringFromClass([self class]),10,@"Object = XGJob");
-		if ( [keyPath isEqualToString:@"name"] ) {
-			//we only observe the name to know when XGJob is loaded
-			// at the next iteration of the run loop, all XGJob ivars will be set and XGJob will then be "loaded"
-			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(xgridJobDidLoad:) userInfo:nil repeats:NO];
-			[self nameDidChange];
-		}
-		else if ( [keyPath isEqualToString:@"state"] )
-			[self stateDidChange];
-		else if ( [keyPath isEqualToString:@"completedTaskCount"] )
-			[self completedTaskCountDidChange];
-		else if ( [keyPath isEqualToString:@"taskCount"] )
-			[self taskCountDidChange];
-	}
-	
-	else if ( object == submissionAction ) {
+	if ( object == submissionAction ) {
 		DLog(NSStringFromClass([self class]),10,@"Object = Submission Monitor");
 		XGActionMonitorOutcome outcome = [submissionAction outcome];
 		if ( outcome == XGActionMonitorOutcomeSuccess) {
@@ -965,19 +930,18 @@ NSString *GEZJobResultsStandardErrorKey;
 	if ( newJob != xgridJob ) {
 
 		//get rid of the old guy
-		[xgridJob removeObserver:self forKeyPath:@"name"];
-		[xgridJob removeObserver:self forKeyPath:@"state"];
-		[xgridJob removeObserver:self forKeyPath:@"taskCount"];
-		[xgridJob removeObserver:self forKeyPath:@"completedTaskCount"];
+		[xgridJobObserver setDelegate:nil];
+		[xgridJobObserver release];
 		[xgridJob release];
 		
 		//get the new guy ready
 		xgridJob = [newJob retain];
-		[xgridJob addObserver:self forKeyPath:@"name" options:0 context:NULL];
-		[xgridJob addObserver:self forKeyPath:@"state" options:0 context:NULL];
-		[xgridJob addObserver:self forKeyPath:@"taskCount" options:0 context:NULL];
-		[xgridJob addObserver:self forKeyPath:@"completedTaskCount" options:0 context:NULL];
-		
+		if ( xgridJob != nil ) {
+			xgridJobObserver = [[GEZResourceObserver alloc] initWithResource:xgridJob observedKeys:[NSSet setWithObjects:@"completedTaskCount",@"state"]];
+			[xgridJobObserver setDelegate:self];
+		} else
+			xgridJobObserver = nil;
+				
 		DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] (job '%@') : created XGJob %@ ",[self class],self,_cmd,[self name],xgridJob);
 		
 	}
