@@ -79,6 +79,7 @@
 		56BFC4B3095FB4CB00463A1F /* GridEZ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BFC4B2095FB4CB00463A1F /* GridEZ.framework */; };
 		56BFC4C3095FB57100463A1F /* GridEZ.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC4C2095FB57100463A1F /* GridEZ.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56BFC50D095FBD3300463A1F /* GEZGridHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BFC50B095FBD3300463A1F /* GEZGridHook.m */; };
+		56C34B920ACDD22E005891F1 /* GEZProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */; };
 		56CD11130964AE8900DA6C36 /* GridEZ.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* GridEZ.framework */; };
 		56EDCF7A09E39AB500293DB1 /* Retrieved.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EDCF7809E39AB500293DB1 /* Retrieved.tiff */; };
 		56EDCF7B09E39AB500293DB1 /* Retrieving.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EDCF7909E39AB500293DB1 /* Retrieving.tiff */; };
@@ -251,6 +252,8 @@
 		56BFC4C2095FB57100463A1F /* GridEZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridEZ.h; path = "Framework files/GridEZ.h"; sourceTree = "<group>"; };
 		56BFC50A095FBD3300463A1F /* GEZGridHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZGridHook.h; path = "Framework files/GEZGridHook.h"; sourceTree = "<group>"; };
 		56BFC50B095FBD3300463A1F /* GEZGridHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZGridHook.m; path = "Framework files/GEZGridHook.m"; sourceTree = "<group>"; };
+		56C34B8F0ACDD22E005891F1 /* GEZProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZProxy.h; path = "Framework files/GEZProxy.h"; sourceTree = "<group>"; };
+		56C34B900ACDD22E005891F1 /* GEZProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZProxy.m; path = "Framework files/GEZProxy.m"; sourceTree = "<group>"; };
 		56CD111C096500D300DA6C36 /* Making-GridEZ-embeddable.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Making-GridEZ-embeddable.markdown"; path = "Docs/Dev docs/Making-GridEZ-embeddable.markdown"; sourceTree = "<group>"; };
 		56CD11CE096A420000DA6C36 /* Dev-Notes.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Dev-Notes.markdown"; path = "Docs/Dev docs/Dev-Notes.markdown"; sourceTree = "<group>"; };
 		56EDCF7809E39AB500293DB1 /* Retrieved.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Retrieved.tiff; sourceTree = "<group>"; };
@@ -546,6 +549,8 @@
 				56720AB40AAF89B400066417 /* GEZMetaTask.m */,
 				56720B350AAFEE1C00066417 /* GEZIntegerArray.h */,
 				56720B360AAFEE1C00066417 /* GEZIntegerArray.m */,
+				56C34B8F0ACDD22E005891F1 /* GEZProxy.h */,
+				56C34B900ACDD22E005891F1 /* GEZProxy.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -903,6 +908,7 @@
 				56720B380AAFEE1C00066417 /* GEZIntegerArray.m in Sources */,
 				56720BAC0AB0D94900066417 /* GEZManager.m in Sources */,
 				5606BEFB0AB8C0F100CA3CAE /* GEZResourceObserver.m in Sources */,
+				56C34B920ACDD22E005891F1 /* GEZProxy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

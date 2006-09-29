@@ -11,24 +11,19 @@ This file is part of "GridEZ.framework". "GridEZ.framework" is free software; yo
 __END_LICENSE__ */
 
 #import "GEZMetaJob.h"
-//#import "GEZMetaJobPrivateAccessors.h"
 #import "GEZServer.h"
 #import "GEZJob.h"
 #import "GEZIntegerArray.h";
-//#import "GEZOutputInterface.h"
+#import "GEZProxy.h";
 
 @class GEZTaskSource;
 @class GEZOutputInterface;
 
 
 @interface GEZMetaJob (GEZMetaJobPrivateAccessors)
-
-- (GEZOutputInterface *)outputInterface;
-
 - (GEZIntegerArray *)failureCounts;
 - (GEZIntegerArray *)submissionCounts;
 - (GEZIntegerArray *)successCounts;
-
 - (void)setFailureCounts:(GEZIntegerArray *)failureCountsNew;
 - (void)setSubmissionCounts:(GEZIntegerArray *)submissionCountsNew;
 - (void)setSuccessCounts:(GEZIntegerArray *)successCountsNew;
@@ -82,7 +77,6 @@ __END_LICENSE__ */
 {
 	[submissionTimer invalidate];
 	submissionTimer = nil;
-	delegate = nil;
 	[availableTasks release];
 	[super dealloc];
 }
@@ -94,7 +88,7 @@ __END_LICENSE__ */
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
     [self willAccessValueForKey:@"dataSource"];
-    id dataSource = [self primitiveValueForKey:@"dataSource"];
+    id dataSource = [[self primitiveValueForKey:@"dataSource"] referencedObject];
     [self didAccessValueForKey:@"dataSource"];
     return dataSource;
 }
@@ -103,6 +97,9 @@ __END_LICENSE__ */
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
+	/* TODO */
+
+	/*
 	//is the data source even responding to the appropriate messages?
 	if ( newDataSource!=nil ) {
 		if ( ![newDataSource respondsToSelector:@selector(numberOfTasksForMetaJob:)] )
@@ -110,28 +107,34 @@ __END_LICENSE__ */
 		if ( ![newDataSource respondsToSelector:@selector(metaJob:taskAtIndex:)] )
 			[NSException raise:@"GEZMetaJobError" format:@"Data Source of GEZMetaJob must responds to selector metaJob:taskAtIndex:"];
 	}
+	 */
 	
 	//OK, we can use that object
 	[self willChangeValueForKey:@"dataSource"];
-	[self setPrimitiveValue:newDataSource forKey:@"dataSource"];
+	[self setPrimitiveValue:[GEZProxy proxyWithReferencedObject:newDataSource] forKey:@"dataSource"];
 	[self didChangeValueForKey:@"dataSource"];
 	
 	//the value of countTotalTasks is potentially changed too
-	unsigned int n=[[self dataSource] numberOfTasksForMetaJob:self];
+	unsigned int n=[newDataSource numberOfTasksForMetaJob:self];
 	[self setValue:[NSNumber numberWithInt:n] forKey:@"countTotalTasks"];
 }
 
 - (id)delegate
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	return delegate;
+    [self willAccessValueForKey:@"delegate"];
+    id delegate = [[self primitiveValueForKey:@"delegate"] referencedObject];
+    [self didAccessValueForKey:@"delegate"];
+    return delegate;
 }
 
 //do not retain to avoid retain cycles
 - (void)setDelegate:(id)newDelegate
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	delegate = newDelegate;
+	[self willChangeValueForKey:@"delegate"];
+	[self setPrimitiveValue:[GEZProxy proxyWithReferencedObject:newDelegate] forKey:@"delegate"];
+	[self didChangeValueForKey:@"delegate"];
 }
 
 - (NSString *)name
@@ -388,8 +391,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 			[self setValue:[NSNumber numberWithInt:old-1] forKey:@"countSubmittedTasks"];
 		}
 		//the delegate might want to know the task was processed
-		if ( [delegate respondsToSelector:@selector(metaJob:didProcessTaskAtIndex:)] )
-			[delegate metaJob:self didProcessTaskAtIndex:[metaTaskIndex intValue]];
+		if ( [[self delegate] respondsToSelector:@selector(metaJob:didProcessTaskAtIndex:)] )
+			[[self delegate] metaJob:self didProcessTaskAtIndex:[metaTaskIndex intValue]];
 		
 	}
 	[aJob setDelegate:nil];
@@ -498,6 +501,9 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 
 #pragma mark *** submitting jobs ***
+
+
+/* TODO */
 
 //this method is called by submitNextJobs (see below)
 /*
@@ -719,7 +725,7 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	//submit!!
 	DLog(NSStringFromClass([self class]),12,@"\njobSpecification:\n%@",[jobSpecification description]);
 	[newJob submitWithJobSpecification:jobSpecification];
-	[newJob loadResultsWhenFinished];
+	[newJob setShouldRetrieveResultsAutomatically:YES];
 }
 
 //this method decides how many tasks and jobs to create based on the MetaJob settings
@@ -778,8 +784,8 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 			int old = [[self valueForKey:@"countSubmittedTasks"] intValue];
 			[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countSubmittedTasks"];
 		}
-		if ( [delegate respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] )
-			[delegate metaJob:self didSubmitTaskAtIndex:taskIndex];
+		if ( [[self delegate] respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] )
+			[[self delegate] metaJob:self didSubmitTaskAtIndex:taskIndex];
 		taskCount ++;
 		
 		//to be in the same jobs, tasks need to have the same uploaded paths
@@ -860,15 +866,15 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		return;
 	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isRunning"];
 	[self setValue:@"Running" forKey:@"statusString"];
-	if ([delegate respondsToSelector:@selector(metaJobDidStart:)])
-		[delegate metaJobDidStart:self];
+	if ([[self delegate] respondsToSelector:@selector(metaJobDidStart:)])
+		[[self delegate] metaJobDidStart:self];
 
 	//clean-up and reset current pending jobs
 	currentJobs = [self mutableSetValueForKey:@"jobs"];
 	e = [currentJobs objectEnumerator];
 	while ( oneJob = [e nextObject] ) {
 		[oneJob setDelegate:self];
-		[oneJob loadResultsWhenFinished];
+		[oneJob setShouldRetrieveResultsAutomatically:YES];
 	}
 	
 	//prepare for task submissions
@@ -886,8 +892,8 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	[self setValue:@"Suspended" forKey:@"statusString"];
 	[submissionTimer invalidate];
 	submissionTimer = nil;
-	if ([delegate respondsToSelector:@selector(metaJobDidSuspend:)])
-		[delegate metaJobDidSuspend:self];
+	if ([[self delegate] respondsToSelector:@selector(metaJobDidSuspend:)])
+		[[self delegate] metaJobDidSuspend:self];
 }
 
 - (void)deleteFromStore
@@ -981,6 +987,7 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
 }
 
+/* TODO */
 - (void)job:(GEZJob *)aJob didLoadResults:(NSDictionary *)results
 {
 	NSEnumerator *e;
@@ -1106,10 +1113,11 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		}
 		resultSubPath = [resultSubPath stringByAppendingPathComponent:[metaTaskIndex stringValue]];
 		
+		/*
 		//create a folder only if one of the 'shouldSave' flag is YES (this prevents the creation of an empty folder when it does not make sense)
 		if ( shouldSaveStdout || shouldSaveStderr || shouldSaveFiles )
 			[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath duplicatesInSubfolder:@"results"];
-		
+		*/
 	}
 	
 	//we are done with the job - delete it...
@@ -1120,19 +1128,6 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 
 
 @implementation GEZMetaJob (GEZMetaJobPrivateAccessors)
-
-/**
-- (GEZOutputInterface *)outputInterface
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	
-	GEZOutputInterface *result;
-	[self willAccessValueForKey:@"outputInterface"];
-	result = [self primitiveValueForKey:@"outputInterface"];
-	[self didAccessValueForKey:@"outputInterface"];
-	return result;
-}
-*/
 
 - (GEZIntegerArray *)failureCounts
 {

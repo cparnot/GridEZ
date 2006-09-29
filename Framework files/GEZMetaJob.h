@@ -12,16 +12,14 @@ __END_LICENSE__ */
 
 /**
 
-An GEZMetaJob object encapsulates an array of tasks that need to be completed.
-The MetaJob object takes care of the scheduling and submission of XGJob.
-There can be several XGJob for one MetaJob, e.g. when failures occur or
-when there are too many tasks.
+An GEZMetaJob object encapsulates an array of tasks that need to be completed. The MetaJob object takes care of the scheduling and submission of jobs (GEZJob instances). There can be several jobs for one MetaJob. In fact, this is the whole point of a MetaJob: automatically manage a bunch of jobs to get a list of tasks done. This may involve several submissions of the same task, handling failures,...
 
-A MetaJob works hand-in-hand with its data source, that will provide the
-description of the tasks, and will take care of saving the results, as they come
-back. A MetaJob can also have a delegate.
+A MetaJob works hand-in-hand with its data source, that will provide the description of the tasks, and will take care of validating and saving the results, as they comeback.
 
-In GridStuffer, the data source is an instance of GEZTaskSource.
+A MetaJob can also have a delegate.
+
+If the data source (or the delegate) is a NSManagedObject living in the same context, it will be remembered between restarts (assuming there is also a persistent store saved on disk).
+
 */
 
 
@@ -31,7 +29,6 @@ In GridStuffer, the data source is an instance of GEZTaskSource.
 
 @interface GEZMetaJob : NSManagedObject
 {
-	id delegate;
 	NSMutableIndexSet *availableTasks; //keep track of the indexes of the available commands = not running, not done
 	NSTimer *submissionTimer;
 }
