@@ -20,14 +20,14 @@ __END_LICENSE__ */
 @class GEZOutputInterface;
 
 
-@interface GEZMetaJob (GEZMetaJobPrivateAccessors)
+@interface GEZMetaJob (GEZMetaJobPrivate)
 - (GEZIntegerArray *)failureCounts;
 - (GEZIntegerArray *)submissionCounts;
 - (GEZIntegerArray *)successCounts;
 - (void)setFailureCounts:(GEZIntegerArray *)failureCountsNew;
 - (void)setSubmissionCounts:(GEZIntegerArray *)submissionCountsNew;
 - (void)setSuccessCounts:(GEZIntegerArray *)successCountsNew;
-
+- (NSString *)shortDescription;
 @end
 
 
@@ -35,12 +35,6 @@ __END_LICENSE__ */
 @implementation GEZMetaJob
 
 #pragma mark *** Initializations ***
-
-- (NSString *)shortDescription
-{
-	return [NSString stringWithFormat:@"MetaJob '%@'",[self primitiveValueForKey:@"name"]];
-	//return [NSString stringWithFormat:@"MetaJob '%@' (%d MetaTasks)",[self name],[self countTotalTasks]];
-}
 
 //we need to register to keep track of percentDone etc... in jobs
 + (void)initialize
@@ -155,6 +149,82 @@ __END_LICENSE__ */
 	[self didChangeValueForKey:@"name"];
 }
 
+- (int)minSuccessesPerTask
+{
+	[self willAccessValueForKey:@"minSuccessesPerTask"];
+	int value = [[self primitiveValueForKey:@"minSuccessesPerTask"] intValue];
+	[self didAccessValueForKey:@"minSuccessesPerTask"];
+	return value;
+}
+
+- (void)setMinSuccessesPerTask:(int)aValue
+{
+	[self willChangeValueForKey:@"minSuccessesPerTask"];
+	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"minSuccessesPerTask"];
+	[self didChangeValueForKey:@"minSuccessesPerTask"];
+}
+
+- (int)maxFailuresPerTask
+{
+	[self willAccessValueForKey:@"maxFailuresPerTask"];
+	int value = [[self primitiveValueForKey:@"maxFailuresPerTask"] intValue];
+	[self didAccessValueForKey:@"maxFailuresPerTask"];
+	return value;
+}
+
+- (void)setMaxFailuresPerTask:(int)aValue
+{
+	[self willChangeValueForKey:@"maxFailuresPerTask"];
+	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"maxFailuresPerTask"];
+	[self didChangeValueForKey:@"maxFailuresPerTask"];
+}
+
+- (int)maxSubmissionsPerTask
+{
+	[self willAccessValueForKey:@"maxSubmissionsPerTask"];
+	int value = [[self primitiveValueForKey:@"maxSubmissionsPerTask"] intValue];
+	[self didAccessValueForKey:@"maxSubmissionsPerTask"];
+	return value;
+}
+
+- (void)setMaxSubmissionsPerTask:(int)aValue
+{
+	[self willChangeValueForKey:@"maxSubmissionsPerTask"];
+	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"maxSubmissionsPerTask"];
+	[self didChangeValueForKey:@"maxSubmissionsPerTask"];
+}
+
+- (int)maxTasksPerJob
+{
+	[self willAccessValueForKey:@"maxTasksPerJob"];
+	int value = [[self primitiveValueForKey:@"maxTasksPerJob"] intValue];
+	[self didAccessValueForKey:@"maxTasksPerJob"];
+	return value;
+}
+
+- (void)setMaxTasksPerJob:(int)aValue
+{
+	[self willChangeValueForKey:@"maxTasksPerJob"];
+	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"maxTasksPerJob"];
+	[self didChangeValueForKey:@"maxTasksPerJob"];
+}
+
+- (int)maxSubmittedTasks
+{
+	[self willAccessValueForKey:@"maxSubmittedTasks"];
+	int value = [[self primitiveValueForKey:@"maxSubmittedTasks"] intValue];
+	[self didAccessValueForKey:@"maxSubmittedTasks"];
+	return value;
+}
+
+- (void)setMaxSubmittedTasks:(int)aValue
+{
+	[self willChangeValueForKey:@"maxSubmittedTasks"];
+	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"maxSubmittedTasks"];
+	[self didChangeValueForKey:@"maxSubmittedTasks"];
+}
+
+
 NSNumber *IntNumberWithAdditionOfIntNumbers(NSNumber *number1,NSNumber *number2)
 {
 	int a1=[number1 intValue];
@@ -239,8 +309,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 //when reset, the available commands contains indexes that follow these rules
 //	* index < [dataSource numberOfTasks]
-//	* number of successes < successCountsThreshold
-//	* number of failures < failureCountsThreshold (if failureCountsThreshold>0)
+//	* number of successes < minSuccessesPerTask
+//	* number of failures < maxFailuresPerTask (if maxFailuresPerTask>0)
 //	* number of submissions < maxSubmissionsPerTask
 //Then, we get the following values for each of the commands left:
 //	* number of successes
@@ -274,8 +344,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	DLog(NSStringFromClass([self class]),10,@"successes: %@\nfailures: %@\nsubmissions: %@\n",[suc stringRepresentation],[fai stringRepresentation], [sub stringRepresentation]);
 	
 	//set up a first version of availableTasks
-	//	* number of successes < successCountsThreshold
-	//	* number of failures < failureCountsThreshold (if failureCountsThreshold>0)
+	//	* number of successes < minSuccessesPerTask
+	//	* number of failures < maxFailuresPerTask (if maxFailuresPerTask>0)
 	//	* number of submissions < maxSubmissionsPerTask
 	//At the same time, count completed tasks and dismissed tasks
 	countCompletedTasks = 0;
@@ -284,8 +354,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	if ( availableTasks == nil )
 		availableTasks = [[NSMutableIndexSet alloc] init];
 	[availableTasks removeAllIndexes];
-	threshold1 = [self successCountsThreshold];
-	threshold2 = [self failureCountsThreshold];
+	threshold1 = [self minSuccessesPerTask];
+	threshold2 = [self maxFailuresPerTask];
 	for (i=0;i<n;i++) {
 		if ( [suc intValueAtIndex:i] < threshold1 ) {
 			if ( ( threshold2 > 0 ) && ( [fai intValueAtIndex:i] >= threshold2 ) )
@@ -296,17 +366,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 		else
 			countCompletedTasks++;
 	}
-	/*
-	threshold = [self failureCountsThreshold];
-	if ( threshold > 0 ) {
-		for (i=0;i<n;i++) {
-			if ( [fai intValueAtIndex:i] >= threshold ) {
-				[availableTasks removeIndex:i];
-				countDismissedTasks++:
-			}
-		}
-	}
-	 */
+
+	//adjust this by also taking into account maxSubmissionsPerTask
 	int threshold = [self maxSubmissionsPerTask];
 	for (i=0;i<n;i++) {
 		if ( [sub intValueAtIndex:i] >= threshold )
@@ -346,32 +407,6 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	}
 }
 
-/*
-//calculate the total number of tasks submitted so far for this metaJob
-//by looking at the tasks of running and pending jobs
-- (unsigned int)countSubmittedTasks
-{
-	NSSet *jobs;
-	int total;
-	GEZJob *aJob;
-	XGJob *xgridJob;
-	NSEnumerator *e;
-	XGResourceState state;
-	
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-
-	total = 0;
-	jobs = [self valueForKey:@"jobs"];
-	e = [jobs objectEnumerator];
-	while ( aJob = [e nextObject] ) {
-		xgridJob = [aJob xgridJob];
-		state = [xgridJob state];
-		if ( state == XGResourceStateRunning || state == XGResourceStatePending )
-			total += [xgridJob taskCount];
-	}
-	return total;
-}
-*/
 
 //convenience method called by several other methods to decrement the submission counts for the tasks of a finished job
 - (void)removeJob:(GEZJob *)aJob
@@ -441,12 +476,12 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 - (NSString *)statusStringForTaskAtIndex:(int)index
 {
-	if ( [self countSuccessesForTaskAtIndex:index] >= [self successCountsThreshold] )
+	if ( [self countSuccessesForTaskAtIndex:index] >= [self minSuccessesPerTask] )
 		return @"Completed";
 	if ( [self countSubmissionsForTaskAtIndex:index] > 0 )
 		return @"Submitted";
 	
-	int threshold = [self failureCountsThreshold];
+	int threshold = [self maxFailuresPerTask];
 	if ( threshold > 0 &&  [self countFailuresForTaskAtIndex:index] >= threshold)
 		return @"Dismissed";
 	
@@ -969,11 +1004,11 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:index];
 		
 		//do we need to update the count of dismissed metaTasks?
-		int failureCountsThreshold = [self failureCountsThreshold];
-		if ( failureCountsThreshold > 0 && numberOfFailures == failureCountsThreshold ) {
+		int maxFailuresPerTask = [self maxFailuresPerTask];
+		if ( maxFailuresPerTask > 0 && numberOfFailures == maxFailuresPerTask ) {
 			int numberOfSuccesses = [[self successCounts] intValueAtIndex:index];
-			int successCountsThreshold = [self successCountsThreshold];
-			if ( numberOfSuccesses < successCountsThreshold )
+			int minSuccessesPerTask = [self minSuccessesPerTask];
+			if ( numberOfSuccesses < minSuccessesPerTask )
 				[self incrementCountDismissedTasks];
 		}
 	}		
@@ -1042,20 +1077,20 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		//based on the validation result, the task was either a success or a failure
 		//then, depending on how many successes and failures, the task could be considered completed or be dismissed
 		int numberOfSuccesses,numberOfFailures;
-		int successCountsThreshold = [self successCountsThreshold];
-		int failureCountsThreshold = [self failureCountsThreshold];
+		int minSuccessesPerTask = [self minSuccessesPerTask];
+		int maxFailuresPerTask = [self maxFailuresPerTask];
 		if ( resultsAreValid ) {
 			numberOfSuccesses = [successCounts incrementIntValueAtIndex:index];
 			numberOfFailures = [successCounts intValueAtIndex:index];
-			if ( numberOfSuccesses == successCountsThreshold ) {
+			if ( numberOfSuccesses == minSuccessesPerTask ) {
 				[self incrementCountCompletedTasks];
-				if ( failureCountsThreshold > 0 && numberOfFailures >= failureCountsThreshold )
+				if ( maxFailuresPerTask > 0 && numberOfFailures >= maxFailuresPerTask )
 					[self decrementCountDismissedTasks];
 			}
 		} else {
 			numberOfSuccesses = [successCounts intValueAtIndex:index];
 			numberOfFailures = [failureCounts incrementIntValueAtIndex:index];
-			if ( ( failureCountsThreshold > 0 ) && ( numberOfFailures == failureCountsThreshold ) && ( numberOfSuccesses < successCountsThreshold ) )
+			if ( ( maxFailuresPerTask > 0 ) && ( numberOfFailures == maxFailuresPerTask ) && ( numberOfSuccesses < minSuccessesPerTask ) )
 				[self incrementCountDismissedTasks];
 		}
 			
@@ -1127,7 +1162,14 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 @end
 
 
-@implementation GEZMetaJob (GEZMetaJobPrivateAccessors)
+@implementation GEZMetaJob (GEZMetaJobPrivate)
+
+- (NSString *)shortDescription
+{
+	return [NSString stringWithFormat:@"MetaJob '%@'",[self primitiveValueForKey:@"name"]];
+	//return [NSString stringWithFormat:@"MetaJob '%@' (%d MetaTasks)",[self name],[self countTotalTasks]];
+}
+
 
 - (GEZIntegerArray *)failureCounts
 {

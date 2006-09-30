@@ -33,27 +33,31 @@ If the data source (or the delegate) is a NSManagedObject living in the same con
 	NSTimer *submissionTimer;
 }
 
-- (id)dataSource;
-- (void)setDataSource:(id)newDataSource;
-- (id)delegate;
-- (void)setDelegate:(id)newDelegate;
-- (NSString *)name;
-- (void)setName:(NSString *)name;
-
+//controlling GEZMetaJob
 - (void)start;
 - (BOOL)isRunning;
 - (void)suspend; //stop submitting more jobs
 - (void)deleteFromStore;
 
-//info about the MetaJob
-- (NSNumber *)countTotalTasks;
-- (NSNumber *)countDoneTasks;
-- (NSNumber *)countPendingTasks;
-- (NSNumber *)percentDone;
-- (NSNumber *)percentPending;
-- (NSNumber *)percentCompleted;
-- (NSNumber *)percentDismissed;
-- (NSNumber *)percentSubmitted;
+//GEZMetaJob general settings
+- (NSString *)name;
+- (void)setName:(NSString *)name;
+- (id)dataSource;
+- (void)setDataSource:(id)newDataSource;
+- (id)delegate;
+- (void)setDelegate:(id)newDelegate;
+
+//GEZMetaJob submission settings
+- (int)minSuccessesPerTask;
+- (int)maxFailuresPerTask;
+- (int)maxSubmissionsPerTask;
+- (int)maxTasksPerJob;
+- (int)maxSubmittedTasks;
+- (void)setMinSuccessesPerTask:(int)newMinSuccessesPerTask;
+- (void)setMaxFailuresPerTask:(int)newMaxFailuresPerTask;
+- (void)setMaxSubmissionsPerTask:(int)newMaxSubmissionsPerTask;
+- (void)setMaxTasksPerJob:(int)newMaxTasksPerJob;
+- (void)setMaxSubmittedTasks:(int)newMaxSubmittedTasks;
 
 //info about the individual tasks
 - (int)countFailuresForTaskAtIndex:(int)index;
@@ -61,29 +65,19 @@ If the data source (or the delegate) is a NSManagedObject living in the same con
 - (int)countSubmissionsForTaskAtIndex:(int)index;
 - (NSString *)statusStringForTaskAtIndex:(int)index;
 
-//short description, handy for debugging
-- (NSString *)shortDescription;
 
-//MetaJob is a delegate of multiple GEZJob
-//these are GEZJob delegate methods
-- (void)jobDidNotStart:(GEZJob *)aJob;
-- (void)jobDidFinish:(GEZJob *)aJob;
-- (void)jobDidFail:(GEZJob *)aJob;
-- (void)job:(GEZJob *)aJob didLoadResults:(NSDictionary *)results;
-
-@end
-
-
-/* the methods declared here provide public typed accessors for CoreData properties of GEZMetaJob */
-@interface GEZMetaJob (GEZMetaJobAccessors)
-- (int)successCountsThreshold;
-- (int)failureCountsThreshold;
-- (int)maxSubmissionsPerTask;
-- (void)setFailureCountsThreshold:(int)failureCountsThresholdNew;
-- (void)setMaxSubmissionsPerTask:(int)maxSubmissionsPerTaskNew;
-- (void)setSuccessCountsThreshold:(int)successCountsThresholdNew;
+//info about the MetaJob, useful for GUI bindings too
+- (NSNumber *)countTotalTasks;
+- (NSNumber *)countDoneTasks; //Completed+Dismissed
+- (NSNumber *)countPendingTasks;//not done
+- (NSNumber *)percentDone;
+- (NSNumber *)percentPending;
+- (NSNumber *)percentCompleted; //successfully completed at least minSuccessesPerTask times
+- (NSNumber *)percentDismissed; //failed at least maxFailuresPerTask times
+- (NSNumber *)percentSubmitted;
 
 @end
+
 
 
 // GEZMetaJob data source methods
