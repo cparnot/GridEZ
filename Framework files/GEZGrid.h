@@ -47,6 +47,9 @@ APPKIT_EXTERN NSString *GEZGridDidLoadNotification;
 - (NSString *)identifier;
 - (NSSet *)jobs; //GEZJob objects, not XGJob objects
 
+//this is really just a guess based on the number of running and pending jobs observed in the past; the returned value is actually the sum of available and working agents (non-offline non-unavailable); usually, the number guessed will be lower than the actual number of available agents; the returned value will be lower than 0 when no guess could be made
+- (int)availableAgentsGuess;
+
 //these are NOT (yet) compliant with KVO/KVC
 - (BOOL)isAvailable;
 - (BOOL)isConnecting;

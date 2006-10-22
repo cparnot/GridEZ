@@ -185,16 +185,21 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 		[self didChangeValueForKey:@"shouldObserveAllJobs"];
 		if ( new == YES ) {
 			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOW OBSERVING ALL JOBS",[self class],self,_cmd);
-			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:gridHook];
 			[self loadAllJobs];
 		}
 		else {
 			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOT OBSERVING ALL JOBS ANYMORE",[self class],self,_cmd);
-			[[NSNotificationCenter defaultCenter] removeObserver:self name:GEZGridHookDidChangeJobsNotification object:gridHook];
 			[[self server] setShouldObserveAllJobs:NO];
 		}
-
 	}
+}
+
+- (int)availableAgentsGuess
+{
+	[self willAccessValueForKey:@"availableAgentsGuess"];
+	int availableAgentsGuess = [[self primitiveValueForKey:@"availableAgentsGuess"] intValue];
+	[self didAccessValueForKey:@"availableAgentsGuess"];
+	return availableAgentsGuess;	
 }
 
 
@@ -291,6 +296,7 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidUpdate:) name:GEZGridHookDidUpdateNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidLoad:) name:GEZGridHookDidLoadNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeName:) name:GEZGridHookDidChangeNameNotification object:gridHook];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:gridHook];
 	if ( [gridHook isUpdated] && [self shouldObserveAllJobs] )
 		[self loadAllJobs];
 }
@@ -324,7 +330,23 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 - (void)gridHookDidChangeJobs:(NSNotification *)notification
 {
-	[self loadAllJobs];
+	if ( [gridHook isUpdated] && [self shouldObserveAllJobs] )
+		[self loadAllJobs];
+	//maybe we can update the value for availableAgentsGuess
+	if ( [gridHook isLoaded] ) {
+		NSEnumerator *e = [[[self xgridGrid] jobs] objectEnumerator];
+		XGJob *aJob;
+		int countPending = 0;
+		int countRunning = 0;
+		while ( aJob = [e nextObject] ) {
+			if ( [aJob state] == XGResourceStatePending )
+				countPending ++;
+			else if ( [aJob state] == XGResourceStateRunning )
+				countRunning ++;
+		}
+		if ( countPending != 0 )
+			[self setValue:[NSNumber numberWithInt:countRunning] forKey:@"availableAgentsGuess"];
+	}
 }
 
 @end
