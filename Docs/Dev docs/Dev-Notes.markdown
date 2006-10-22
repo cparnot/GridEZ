@@ -31,3 +31,30 @@ the implementation makes sure that only one instance per server or per grid is c
 It is simply a NSLog wrapper that adds 2 parameters: an identifier string and a verbose level. The verbose threshold can be set globally using the "DebugLogVerboseLevel" key in the user defaults, and a list of keywords triggering the logging can be set globally in an NSArray defined by the "DebugIdentifiers" key in the user defaults. If not set by NSUserDefaults, these settings are ignored and the message is always printed. In most of the code, I use [self class] as the identifier. This allows to only print messages for selected classes.
 
 * Another item dependent on the DEBUG flag is the name of the persistent store. A suffix "_DEBUG" is added to the name, to avoid messing up with any legitimate store setup using a 'Release' version of the program.
+
+
+# Notes on Xgrid behavior regarding inputFiles
+
+* Bug with 10.4.1 and earlier:
+	* you cannot have different sets of paths for different tasks, because the key XGJobSpecificationInputFileMapKey does not behave as expected; using this key in the task specifications cancel all uploads otherwise defined by the XGJobSpecificationInputFilesKey;
+	* bug submitted by Charles Parnot
+	* bug fixed in 10.4.2 (yeah!!) and tested again, it works as expected with the following behavior explained below...
+
+* About the executables dir and the command:
+	* When inputFiles = one executable, and no inputFileMap in the task description, the file is named according to inputFile, and is both in ../executables and in ../working
+	* Same result when inputFileMap is used and the final name in inputFileMap is the same as the name in inputFile
+	* Same result when inputFileMap is used and the final name in inputFileMap is different from the name in inputFile
+	* Same situation as above with 2 files in inputFileMap, including the executable: only the name used as the executable in the command string is used
+	* If an executable is listed in inputFiles and in inputFileMap, but not used as the command, it is not put in the 'executables' directory but is still in the working directory ––> the workaround is to use as a command string "../working/executable"
+	* If an executable is put in a directory in inputFileMap (or in inputFIles when no inputFileMap is provided), same result too
+	* Conclusions:
+		* the path to the executables dir is appended if the command string is a relative path
+		* only one file can be added to the executables dir, and will be added if listed in inputFiles or inputFileMap, is not specified as being inside a directory, and it is the name used in the command string
+		
+* About the stdin and inputFiles and inputFileMap:
+	* If inputStream is specified in the task, as defined in inputFiles, and no inputFileMap is used in the task, the file corresponding to the inputStream will be uploaded to the working directory; the inputStream will also be correctly piped to the executable
+	* If inputStream is specified in the task, as defined in inputFiles, and an inputFileMap is used in the task, the file corresponding to the inputStream has to be explicitely included in the inputFileMap using the same path as defined in inputFiles; the name can be modified by inputFileMap, but then this same name has to be used as the name in inputStream; this redefined name can include directories
+	* Conclusions:
+		* the name for inputStream must match the name in inputFiles if no inputFileMap is defined (and can be in a directory)
+		* the name for inputStream has to be explicitely added in the inputFileMap is one is defined
+		* the name used for inputStream has to match the name defined by inputFileMap (which can be different from inputFiles and can be in a directory)

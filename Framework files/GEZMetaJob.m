@@ -11,13 +11,23 @@ This file is part of "GridEZ.framework". "GridEZ.framework" is free software; yo
 __END_LICENSE__ */
 
 #import "GEZMetaJob.h"
+#import "GEZGrid.h"
 #import "GEZServer.h"
 #import "GEZJob.h"
 #import "GEZIntegerArray.h";
 #import "GEZProxy.h";
 
+//default values based on personal experience of what the optimal values could be in many situations (see submitNextJob)
+#define DEFAULT_TASKS_PER_JOB_VALUE 10
+#define DEFAULT_JOBS_PER_GRID_VALUE 10
+
 @class GEZTaskSource;
 @class GEZOutputInterface;
+
+NSString *GEZTaskSubmissionCommandKey = @"GEZTaskSubmissionCommandKey";
+NSString *GEZTaskSubmissionArgumentsKey = @"GEZTaskSubmissionArgumentsKey";
+NSString *GEZTaskSubmissionStandardInputKey = @"GEZTaskSubmissionStandardInputKey";
+NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKey";
 
 
 @interface GEZMetaJob (GEZMetaJobPrivate)
@@ -73,6 +83,100 @@ __END_LICENSE__ */
 	submissionTimer = nil;
 	[availableTasks release];
 	[super dealloc];
+}
+
+#pragma mark *** accessors for grids/servers ***
+
+- (NSSet *)grids
+{
+	[self willAccessValueForKey:@"grids"];
+	NSSet *value = [self primitiveValueForKey:@"grids"];
+	[self didAccessValueForKey:@"grids"];
+	return value;
+}
+
+- (void)setGrids:(NSSet *)aValue
+{
+	[self willChangeValueForKey:@"grids"];
+	[self setPrimitiveValue:aValue forKey:@"grids"];
+	[self didChangeValueForKey:@"grids"];
+}
+
+- (NSSet *)servers
+{
+	[self willAccessValueForKey:@"servers"];
+	NSSet *value = [self primitiveValueForKey:@"servers"];
+	[self didAccessValueForKey:@"servers"];
+	return value;
+}
+
+- (void)setServers:(NSSet *)aValue
+{
+	[self willChangeValueForKey:@"servers"];
+	[self setPrimitiveValue:aValue forKey:@"servers"];
+	[self didChangeValueForKey:@"servers"];
+}
+
+
+- (void)addGridsObject:(GEZGrid *)value 
+{    
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    
+    [self willChangeValueForKey:@"grids" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    
+    [[self primitiveValueForKey: @"grids"] addObject: value];
+    
+    [self didChangeValueForKey:@"grids" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    
+    [changedObjects release];
+}
+
+- (void)removeGridsObject:(GEZGrid *)value 
+{
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    
+    [self willChangeValueForKey:@"grids" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    
+    [[self primitiveValueForKey: @"grids"] removeObject: value];
+    
+    [self didChangeValueForKey:@"grids" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    
+    [changedObjects release];
+}
+
+
+- (void)addServersObject:(GEZServer *)value 
+{    
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    
+    [self willChangeValueForKey:@"servers" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    
+    [[self primitiveValueForKey: @"servers"] addObject: value];
+    
+    [self didChangeValueForKey:@"servers" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    
+    [changedObjects release];
+}
+
+- (void)removeServersObject:(GEZServer *)value 
+{
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    
+    [self willChangeValueForKey:@"servers" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    
+    [[self primitiveValueForKey: @"servers"] removeObject: value];
+    
+    [self didChangeValueForKey:@"servers" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    
+    [changedObjects release];
+}
+
+//convenience private (make it public?) method to retrieve all grids from grids and servers lists
+- (NSSet *)allGrids
+{
+	NSMutableSet *allGrids = [NSMutableSet setWithSet:[self grids]];
+	[allGrids unionSet:[self valueForKeyPath:@"servers.grids"]];
+	return [NSSet setWithSet:allGrids];
 }
 
 
@@ -194,19 +298,34 @@ __END_LICENSE__ */
 	[self didChangeValueForKey:@"maxSubmissionsPerTask"];
 }
 
-- (int)maxTasksPerJob
+- (int)tasksPerJob
 {
-	[self willAccessValueForKey:@"maxTasksPerJob"];
-	int value = [[self primitiveValueForKey:@"maxTasksPerJob"] intValue];
-	[self didAccessValueForKey:@"maxTasksPerJob"];
+	[self willAccessValueForKey:@"tasksPerJob"];
+	int value = [[self primitiveValueForKey:@"tasksPerJob"] intValue];
+	[self didAccessValueForKey:@"tasksPerJob"];
 	return value;
 }
 
-- (void)setMaxTasksPerJob:(int)aValue
+- (void)setTasksPerJob:(int)aValue
 {
-	[self willChangeValueForKey:@"maxTasksPerJob"];
-	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"maxTasksPerJob"];
-	[self didChangeValueForKey:@"maxTasksPerJob"];
+	[self willChangeValueForKey:@"tasksPerJob"];
+	[self setPrimitiveValue:[NSNumber numberWithInt:aValue] forKey:@"tasksPerJob"];
+	[self didChangeValueForKey:@"tasksPerJob"];
+}
+
+- (long)maxBytesPerJob
+{
+	[self willAccessValueForKey:@"maxBytesPerJob"];
+	int value = [[self primitiveValueForKey:@"maxBytesPerJob"] longValue];
+	[self didAccessValueForKey:@"maxBytesPerJob"];
+	return value;
+}
+
+- (void)setMaxBytesPerJob:(long)aValue
+{
+	[self willChangeValueForKey:@"maxBytesPerJob"];
+	[self setPrimitiveValue:[NSNumber numberWithLong:aValue] forKey:@"maxBytesPerJob"];
+	[self didChangeValueForKey:@"maxBytesPerJob"];
 }
 
 - (int)maxSubmittedTasks
@@ -378,13 +497,12 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	[self setValue:[NSNumber numberWithInt:countCompletedTasks] forKey:@"countCompletedTasks"];
 	[self setValue:[NSNumber numberWithInt:countDismissedTasks] forKey:@"countDismissedTasks"];
 	
-	//get the first index
+	//get the first index, and if no task left, this is it
 	i=[availableTasks firstIndex];
 	if (i==NSNotFound)
 		return;
 	
-	//get the max of number of successes + number of submissions
-	//note that i = first available command
+	//get the max of ( number of successes + number of submissions ) values
 	max = [suc intValueAtIndex:i] + [sub intValueAtIndex:i];
 	allTheSame=YES;
 	for (i++;i<n;i++) {
@@ -396,15 +514,18 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 			}
 		}
 	}
+	
+	//this is the special case where all the values are the same, and we don't want to remove them all in the next step!
 	if (allTheSame)
 		return;
 	
-	//now remove availableTasks for which totalSub>=max
+	//now remove availableTasks for which totalSub=max
 	for (i=0;i<n;i++) {
 		totalSub = [suc intValueAtIndex:i] + [sub intValueAtIndex:i];
-		if (totalSub>=max)
+		if (totalSub>=max) //using '>=' instead of '==' does not hurt
 			[availableTasks removeIndex:i];
 	}
+	
 }
 
 
@@ -490,246 +611,354 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 #pragma mark *** task specifications ***
 
-// All these methods may later be updated to check that the data source implements the different selectors
+//these methods simply use the keys that the taskObject might respond to to define the task; these methods were initially more complex, and were kept separate for simplicity; maybe I could add more checking in  the future
 
-
-- (NSString *)commandStringForTask:(id)taskItem
+- (NSString *)commandStringForTask:(id)taskObject
 {
-	id dataSource = [self dataSource];
-	if ( [dataSource respondsToSelector:@selector(metaJob:commandStringForTask:)] )
-		return [dataSource metaJob:self commandStringForTask:taskItem];
-	else
-		return nil;
+	return [taskObject valueForKey:GEZTaskSubmissionCommandKey];
 }
 
-- (NSArray *)argumentStringsForTask:(id)taskItem
+- (NSArray *)argumentStringsForTask:(id)taskObject
 {
-	id dataSource = [self dataSource];
-	if ( [dataSource respondsToSelector:@selector(metaJob:argumentStringsForTask:)] )
-		return [dataSource metaJob:self argumentStringsForTask:taskItem];
-	else
-		return nil;
+	return [taskObject valueForKey:GEZTaskSubmissionArgumentsKey];
 }
 
-- (NSString *)stdinPathForTask:(id)taskItem
+- (NSData *)stdinDataForTask:(id)taskObject
 {
-	id dataSource = [self dataSource];
-	if ( [dataSource respondsToSelector:@selector(metaJob:stdinPathForTask:)] )
-		return [dataSource metaJob:self stdinPathForTask:taskItem];
-	else
-		return nil;
+	NSData *result = nil;
+	id standardInput = [taskObject valueForKey:GEZTaskSubmissionStandardInputKey];
+	if ( [standardInput isKindOfClass:[NSData class]] )
+		result = [[standardInput copy] autorelease];
+	else if ( [standardInput isKindOfClass:[NSString class]] ) {
+		BOOL isDir;
+		if ( [[NSFileManager defaultManager] fileExistsAtPath:standardInput isDirectory:&isDir] && (!isDir) )
+			result = [NSData dataWithContentsOfFile:standardInput];
+		else
+			result = [standardInput dataUsingEncoding:NSUTF8StringEncoding];
+	}
+	return result;
 }
 
-- (NSArray *)pathsToUploadForTask:(id)taskItem
+- (NSArray *)uploadedPathsForTask:(id)taskObject
 {
-	NSMutableArray *pathsToUpload = [NSMutableArray array];
+	NSArray *uploadedPaths = [taskObject valueForKey:GEZTaskSubmissionUploadedPathsKey];
+	if ( uploadedPaths == nil )
+		return [NSArray array];
+	return uploadedPaths;
+}
+
+
+
+#pragma mark *** utilities for submitting jobs ***
+
+
+//convenience functions used to decide on the bestGridForSubmission (see below)
+//pending jobs mean they are acknoledged by the Xgrid controller, but are in the pipeline, waiting for an agent to run them
+int pendingJobCountForGrid(GEZGrid *aGrid)
+{
+	//we loop on the XGGrid, not the GEZGrid, as the GEZGrid does not necessarily keep track of all the jobs
+	NSEnumerator *e = [[[aGrid xgridGrid] jobs] objectEnumerator];
+	XGJob *aJob;
+	int jobCount = 0;
+	while ( aJob = [e nextObject] ) {
+		if ( [aJob state] == XGResourceStatePending )
+			jobCount ++;
+	}
+	return jobCount;
+}
+//submitting jobs were submitted by the program, but are not yet acknoledged by the Xgrid controller (and we have no identifier yet); if too many accumulate, it is probably because the controller is unresponsive and we should stop harassing it until it is OK
+int submittingJobCountForGrid(GEZGrid *aGrid)
+{
+	NSEnumerator *e = [[aGrid jobs] objectEnumerator];
+	GEZJob *aJob;
+	int jobCount = 0;
+	while ( aJob = [e nextObject] ) {
+		if ( [aJob isSubmitting] )
+			jobCount ++;
+	}
+	return jobCount;
 	
-	NSString *stdinPath = [self stdinPathForTask:taskItem];
-	if ( stdinPath != nil )
-		[pathsToUpload addObject:stdinPath];		
+}
 
-	id dataSource = [self dataSource];
-	if ( [dataSource respondsToSelector:@selector(metaJob:pathsToUploadForTask:)] )
-		[pathsToUpload addObjectsFromArray:[dataSource metaJob:self pathsToUploadForTask:taskItem]];
-	return pathsToUpload;
+//decides on the optimal grid to use given the settings of the meta job, returning nil if no grid fits the requirements
+//this decision depends on the number of "Pending" jobs (the presence of pending jobs means the grid is full) and of "Submitting" jobs (jobs in the pipeline not yet acknowledged by XgridFoundation, we have to wait for these to be acknowledged)
+- (GEZGrid *)bestGridForSubmission
+{
+	GEZGrid *bestGrid = nil;
+	int bestPendingJobCount = -1;
+	int bestAvailableAgentCount = 0;
+	NSEnumerator *e = [[self allGrids] objectEnumerator];
+	GEZGrid *aGrid;
+	while ( aGrid = [e nextObject] ) {
+		int pendingJobCount = pendingJobCountForGrid(aGrid);
+		int availableAgentsGuess = [aGrid availableAgentsGuess];
+		if ( ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount ) &&  availableAgentsGuess > bestAvailableAgentCount ) {
+			bestGrid = aGrid;
+			bestPendingJobCount = pendingJobCount;
+			bestAvailableAgentCount = availableAgentsGuess;
+		}
+	}
+	if ( aGrid == nil )
+		return nil;
+	if ( bestPendingJobCount >= [[self valueForKey:@"maxPendingJobs"] intValue] || submittingJobCountForGrid(aGrid) >= [[self valueForKey:@"maxSubmittingJobs"] intValue] )
+		return nil;
+	return  aGrid;	
+}
+
+/* TODO */
+//when sent to the agents, the full paths on the client filesystem will become relative paths, relative to the working directory on the agent; in the process, the file tree will be made as flat as possible to avoid sending too much information to the agent; this function takes care of "flattening" (symplifying) the file tree, for instance:
+//
+//		Paths on the client							Files on the agent
+//	    -------------------							------------------
+//		/Users/username/Documents/dir1				dir1
+//		/Users/username/Documents/dir1/file1		dir1/file1
+//		/Users/username/Documents/dir1/file2		dir1/file2
+//		/etc/myfiles/param1							param1
+//		/etc/mydir									mydir
+//		/etc/mydir/settings1.txt					mydir/settings1.txt
+//		/etc/mydir/settings2.txt					mydir/settings2.txt
+
+NSDictionary *relativePaths(NSArray *fullPaths)
+{
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSEnumerator *e = [fullPaths objectEnumerator];
+	NSString *currentPath;
+	NSString *currentDir = @"";
+	NSMutableDictionary *relativePaths = [NSMutableDictionary dictionaryWithCapacity:[fullPaths count]];
+	while ( currentPath = [e nextObject] ) {
+		BOOL isDir,isSubPath;
+		if ( [fileManager fileExistsAtPath:currentPath isDirectory:&isDir] ) {
+			
+			//isSubPath = is the currentPath a subpath of the currentDir?
+			if ( [currentDir length] > [currentPath length]-1 )
+				isSubPath = NO;
+			else
+				isSubPath = [currentDir isEqualToString:[currentPath substringWithRange:NSMakeRange(0,[currentDir length])]];
+			
+			//the subPath string is the relative path on the agent
+			NSString *subPath;
+			if ( isSubPath )
+				subPath = [[currentDir lastPathComponent] stringByAppendingPathComponent:[currentPath substringFromIndex:[currentDir length]+1]];
+			else {
+				subPath = [currentPath lastPathComponent];
+				//if it is not a subpath of the currentDir, we need to redefine the currentDir
+				currentDir = (isDir?currentPath:@"");
+			}
+			
+			//OK, we have more more entry!
+			[relativePaths setObject:subPath forKey:currentPath];
+		}
+	}
+
+	//for optimization, I won't make a non-mutable copy, hoping the rest of my code will only use this object once and will not do silly things
+	return relativePaths;
 }
 
 
 #pragma mark *** submitting jobs ***
 
 
-/* TODO */
-
-//this method is called by submitNextJobs (see below)
-/*
-taskList dictionary:
-		key   = global task index
-		value = taskItem (as returned by dataSource)
-pathsToUpload have been already defined in the method 'submitNextJobs' :
-	- they are all the same for the tasks (or some tasks may have no paths to upload)
-	- they are alphabetically ordered
-NOTE: I cannot have different sets of paths for different tasks, because the key XGJobSpecificationInputFileMapKey does not behave as expected; using this key in the task specifications cancel all uploads otherwise defined by the XGJobSpecificationInputFilesKey; this could be a bug in Xgrid or me not understanding the syntax ('man xgrid' for an example of batch format job submission, which apparently follows the same syntax as the dictionary used by the Cocoa APIs)
- */
-- (void)submitJobWithTaskList:(NSDictionary *)taskList paths:(NSArray *)pathsToUpload
+//this method decides how many tasks and jobs to create based on the MetaJob settings
+//it create TaskLists to send to the above method 'submitJobWithTaskList:paths:'
+- (BOOL)submitNextJob
 {
-	NSEnumerator *e;
-	NSNumber *metaTaskIndex;
-	id taskItem;
-	NSArray *paths;
-	NSDictionary *fileDictionary,*jobSpecification;
-	NSMutableDictionary *taskSpecifications, *oneTaskDictionary, *inputFiles, *fileMap;
-	NSString *currentPath,*currentDir, *subPath, *commandString, *temp1, *temp2, *stdinPath;
-	NSMutableString *jobName;
-	NSArray *argumentStrings;
-	NSMutableArray *args;
-	NSFileManager *fileManager;
-	BOOL exists,isDir,isSubPath;
-	NSRange pathRange;
-	GEZJob *newJob;
-	int taskID;
-	NSMutableDictionary *taskMap;
-	
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	DLog(NSStringFromClass([self class]),12,@"\ntaskList:\n%@\npathsToUpload:\n%@",[taskList description],[pathsToUpload description]);
 
-	//create the GEZJob object used to wrap the XGJob
-	newJob = [NSEntityDescription insertNewObjectForEntityForName:@"Job" inManagedObjectContext:[self managedObjectContext]];
-	[[self mutableSetValueForKey:@"jobs"] addObject:newJob];
-	[newJob setDelegate:self];
+	//decide on the best grid to use for submission
+	GEZGrid *bestGrid = [self bestGridForSubmission];
+	if ( bestGrid == nil )
+		return NO;
 	
-	//create the taskMap = simple correspondance between taskID (index in the Job) and metaTaskIndex (index in the MetaJob) --> used in the jobInfo entry of the GEZJob
-	taskMap = [NSMutableDictionary dictionaryWithCapacity:[taskList count]];
-	taskID = 0;
-	e = [taskList keyEnumerator];
-	while ( metaTaskIndex = [e nextObject] ) {
-		[taskMap setObject:metaTaskIndex forKey:[NSString stringWithFormat:@"%d",taskID]];
-		taskID++;
+	//submit a job only if at least tasksPerJob can be submitted, which is not always possible:
+	//	* when there are not enough tasks left (maxAvailableTasks), just submit anyway
+	//	* when other constraints are reached (e.g. maxBytesPerJob, see next steps later in the method)
+	//	* when tasksPerJob == 0, smart submission (see later too)
+	int tasksPerJob = [self tasksPerJob];
+	int maxSubmittedTasks = [self maxSubmittedTasks];
+	int maxAvailableTasks = [availableTasks count];
+	int countSubmittedTasks = [[self valueForKey:@"countSubmittedTasks"] intValue];
+	if ( tasksPerJob > 0 && maxAvailableTasks >= tasksPerJob && countSubmittedTasks > maxSubmittedTasks - tasksPerJob )
+			return NO;
+
+	//if tasksPerJob == 0, supersmart calculation on the number of tasks per job, based on the guessed number of agents
+	if ( tasksPerJob < 1 ) {
+		int availableAgentsGuess = [bestGrid availableAgentsGuess];
+		if ( availableAgentsGuess > 0 )
+			//wild (supersmart) guess
+			tasksPerJob = 1 + availableAgentsGuess / (int)DEFAULT_JOBS_PER_GRID_VALUE;
+		else
+			//even wilder guess
+			tasksPerJob = DEFAULT_TASKS_PER_JOB_VALUE;
 	}
-	[newJob setJobInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-		[[self objectID] URIRepresentation], @"MetaJobID",
-		taskMap, @"TaskMap",
-		nil] ];
 	
-	//fileMap dictionary will keep track of the correspondance between paths on the client and paths on the agent
-	//	key   = path on the client (a full path)
-	//	value = path on the agent  (a relative path in the working directory)
-	fileMap = [NSMutableDictionary dictionaryWithCapacity:[pathsToUpload count]];
-	
-	/* definition of the inputFiles */
-	/*	- a dir on the client ==> any subpath is also a subpath on the agent
-		- a group of subpaths of a dir on the client ==> all uploaded inside one directory in the working directory of the agent
-	As a result, the file tree is more 'flat' on the agent; for instance:
-		Paths on the client							Files on the agent
-		-------------------							------------------
-		/Users/username/Documents/dir1				dir1
-		/Users/username/Documents/dir1/file1		dir1/file1
-		/Users/username/Documents/dir1/file2		dir1/file2
-		/etc/myfiles/param1							param1
-		/etc/mydir									mydir
-		/etc/mydir/settings1.txt					mydir/settings1.txt
-		/etc/mydir/settings2.txt					mydir/settings2.txt
-	*/
-	inputFiles = [NSMutableDictionary dictionaryWithCapacity:[pathsToUpload count]];
-	fileManager = [NSFileManager defaultManager];
-	currentDir = @"."; //that can't be the first character in a path!
-	e = [pathsToUpload objectEnumerator];
-	while ( currentPath = [e nextObject] ) {
-		exists = [fileManager fileExistsAtPath:currentPath isDirectory:&isDir];
-		if ( exists ) {
-			
-			//is the currentPath a subpath of the currentDir?
-			if ( [currentDir length] > [currentPath length]-1 )
-				isSubPath = NO;
-			else {
-				pathRange = NSMakeRange(0,[currentDir length]);
-				subPath = [currentPath substringWithRange:pathRange];
-				isSubPath = [subPath isEqualToString:currentDir];
-			}
+	//taskMap dictionary will be built as the tasks are added to the list = simple correspondance between taskID (index in the XGJob) and metaTaskIndex (index in the MetaJob) --> used in the jobInfo entry of the GEZJob
+	NSMutableDictionary *taskMap = [NSMutableDictionary dictionaryWithCapacity:tasksPerJob];
 
-			//the subPath string is the relative path on the agent
-			if ( isSubPath )
-				subPath = [[currentDir lastPathComponent] stringByAppendingPathComponent:[currentPath substringFromIndex:[currentDir length]+1]];
-			else
-				subPath = [currentPath lastPathComponent];
-			[fileMap setObject:subPath forKey:currentPath];
-			
-			//if it is a dir, we may need to redefine the currentDir
-			//and we need to create a dummy file to make sure the dir is created
-			if ( isDir ) {
-				if ( isSubPath ==NO )
-					currentDir = currentPath;
-				subPath = [subPath stringByAppendingPathComponent:@".GridStuffer_dummy_file_to_force_dir_creation"];
-				fileDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-					[NSData dataWithBytes:"hi" length:2], XGJobSpecificationFileDataKey,
-					@"NO", XGJobSpecificationIsExecutableKey,
-					nil];
+	//the taskSpecifications is part of the final job specification (see man xgrid)
+	NSMutableDictionary *taskSpecifications = [NSMutableDictionary dictionaryWithCapacity:tasksPerJob];
+	
+	//the inputFiles is also part of the final job specification, and will be built in parallel with the task specifications; for this dictionary, I decided to name the keys "filexxx" where x is an int; the values are the NSData object to be uploaded to the agent; the final path on the agent will be decided by the inputFileMap set for each task specification (see xgrid man page and the GridEZ developer docs, and see below how task specification are built)
+	NSMutableDictionary *inputFiles = [NSMutableDictionary dictionary];
+	int inputFilesCurrentIndex = 0;
+
+	//this dictionary will keep track of the paths already listed in 'inputFiles' and the key used to store them, so we can easily retrieve the key of an inputFile entry to be used in the inputFileMap in a task specification; in inputFileFullPaths, the paths are the keys and the inputFile keys are the values; we could have simply used the full path as the keys in the inputFiles dictionary and get away with just one dictionary (inputFiles), but we will not do because of security concerns: including full paths in the specifications sent to the agents is revealing too much about the client filesystem
+	NSMutableDictionary *inputFileFullPaths = [NSMutableDictionary dictionary];
+
+	//stdin entries can be paths, but also NSString or NSData, and they thus have to be treated differently in the latter 2 cases to avoid duplicate entries in inputFiles; when stdin is not given as a path, we keep track of the NSString or NSData objects by storing them in the stdinObjects dictionary; the NSString or NSData are the keys, and the inputFile keys are the values
+	NSMutableDictionary *stdinObjects = [NSMutableDictionary dictionary];
+
+	//loop over tasks to construct the taskSpecifications and the inputFiles entries	
+	int taskCount = 0;
+	long byteCount = 0;
+	long maxBytes = [self maxBytesPerJob];
+	unsigned int metaTaskIndex = [availableTasks firstIndex] - 1;
+	while ( taskCount < tasksPerJob && byteCount < maxBytes && metaTaskIndex != NSNotFound ) {
+
+		//get the next taskDescription from the data source
+		id taskDescription = [[self dataSource] metaJob:self taskAtIndex:metaTaskIndex];
+		if ( taskDescription == nil )
+			break;
+		
+		//standard input ÐÐ> the data will be stored in inputFiles; it might already be there from other tasks, and we need to check that; to keep track of the data already stored, we use the dictionaries stdinObjects (if stdin is provided as NSData or NSString) and inputFileFullPaths (if stdin is provided as a file path; this dictionary is also used for the uploaded paths, see next step)
+		NSString *stdinInputFileKey = nil;
+		NSData *stdinData = nil;
+		id standardInput = [taskDescription valueForKey:GEZTaskSubmissionStandardInputKey];
+		if ( [standardInput isKindOfClass:[NSData class]] ) {
+			stdinInputFileKey = [stdinObjects objectForKey:standardInput];
+			if ( stdinInputFileKey == nil ) {
+				stdinData = standardInput;
+				stdinInputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+				inputFilesCurrentIndex ++;
+				[inputFiles setObject:stdinData forKey:stdinInputFileKey];
+				[stdinObjects setObject:stdinInputFileKey forKey:standardInput];
 			}
-				
-			//if it is a file, we add it to the inputFile, and we may need to reset the currentDir
-			else {
-				if ( isSubPath==NO )
-					currentDir = @"//";
-				fileDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-					[NSData dataWithContentsOfFile:currentPath], XGJobSpecificationFileDataKey,
-					[fileManager isExecutableFileAtPath:currentPath]?@"YES":@"NO", XGJobSpecificationIsExecutableKey,
-					nil];
-			}
-			
-			//now add the file to the input files
-			[inputFiles setObject:fileDictionary forKey:subPath];
 		}
-	}
-
-	
-	//define the task specifications by calling the appropriate methods on the dataSource
-	taskID = 0;
-	taskSpecifications = [NSMutableDictionary dictionaryWithCapacity:[taskList count]];
-	e = [taskList keyEnumerator];
-	while ( metaTaskIndex = [e nextObject] ) {
-		
-		//this is the task item, as it was returned by the datasource
-		taskItem = [taskList objectForKey:metaTaskIndex];
-		commandString = [self commandStringForTask:taskItem];
-		argumentStrings = [self argumentStringsForTask:taskItem];
-		stdinPath = [self stdinPathForTask:taskItem];
-
-		//the dictionary for one task has at most 4 entries
-		oneTaskDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
-		
-		
-		//if the task has no paths, we need to add an inputFileMap to prevent inputFiles addition to that task
-		paths = [self pathsToUploadForTask:taskItem];
-		if ( [paths count] == 0 )
-			[oneTaskDictionary setObject:[NSDictionary dictionary] forKey:XGJobSpecificationInputFileMapKey];
-		
-		//otherwise the stdin, the command and argument strings might need to be changed if corresponding to one of the uploaded paths
-		else if ( [inputFiles count]>0 ) {
-
-			//the standard-in value should be the path on the agent, and has to be one of the file in the fileMap
-			if ( ( stdinPath != nil ) && ( temp1 = [fileMap objectForKey:stdinPath] ) )
-				stdinPath = temp1;
-			else
-				stdinPath = nil;
-			
-			//the command string might need to be changed
-			//use the 'working' directory instead of the 'executable' directory because the executable might not be in 'executable'
-			//it seems to be a bug of xgrid: a path with several components will not be properly uploaded to the 'executable', only the 'working' directory
-			if ( (commandString!=nil) && (temp1=[fileMap objectForKey:commandString]) )
-				commandString = [@"../working" stringByAppendingPathComponent:temp1];
-			
-			//the argument sstrings may need to be changed
-			args = [NSMutableArray arrayWithCapacity:[argumentStrings count]];
-			NSEnumerator *e2 = [argumentStrings objectEnumerator];
-			while ( temp2 = [e2 nextObject] ){
-				temp1 = [fileMap objectForKey:temp2];
-				[args addObject:temp1?temp1:temp2];
+		else if ( [standardInput isKindOfClass:[NSString class]] ) {
+			BOOL isDir;
+			if ( [[NSFileManager defaultManager] fileExistsAtPath:standardInput isDirectory:&isDir] && (!isDir) ) {
+				stdinInputFileKey = [inputFileFullPaths objectForKey:standardInput];
+				if ( stdinInputFileKey == nil ) {
+					stdinData = [NSData dataWithContentsOfFile:standardInput];
+					stdinInputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+					inputFilesCurrentIndex ++;
+					[inputFiles setObject:stdinData forKey:stdinInputFileKey];
+					[inputFileFullPaths setObject:stdinInputFileKey forKey:standardInput];
+				}
 			}
-			argumentStrings = [NSArray arrayWithArray:args];
+			else {
+				stdinInputFileKey = [stdinObjects objectForKey:standardInput];
+				if ( stdinInputFileKey == nil ) {
+					stdinData = [standardInput dataUsingEncoding:NSUTF8StringEncoding];
+					stdinInputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+					inputFilesCurrentIndex ++;
+					[inputFiles setObject:stdinData forKey:stdinInputFileKey];
+					[stdinObjects setObject:stdinInputFileKey forKey:standardInput];
+				}
+			}
+		}
+		byteCount += [stdinData length];
+		
+		//now, we can start building the task specification, starting with the stdin and inputFileMap
+		NSMutableDictionary *taskSpecification = [NSMutableDictionary dictionaryWithCapacity:4];
+		NSArray *uploadedPaths = [taskDescription valueForKey:GEZTaskSubmissionUploadedPathsKey];
+		NSMutableDictionary *inputFileMap = [NSMutableDictionary dictionaryWithCapacity:[uploadedPaths count]+(stdinInputFileKey!=nil)];
+		[taskSpecification setObject:inputFileMap forKey:XGJobSpecificationInputFileMapKey];
+		if ( stdinInputFileKey != nil ) {
+			[inputFileMap setObject:stdinInputFileKey forKey:stdinInputFileKey];
+			[taskSpecification setObject:stdinInputFileKey forKey:XGJobSpecificationInputStreamKey];
+		}
+
+		//adding the uploaded paths to inputFileMap, after changing the file tree; the full paths (client filesystem) will become relative paths, relative to the working directory on the agent; in the process, the file tree will be made as flat as possible (see 'flatPaths' implementation)
+		NSDictionary *agentPaths = relativePaths(uploadedPaths);
+		NSEnumerator *e = [uploadedPaths objectEnumerator];
+		NSString *fullPath;
+		while ( fullPath = [e nextObject] ) {
+			//maybe the file is already in the inputFiles, which would mean it would also be listed in inputFilesFullPaths
+			NSString *inputFileKey = [inputFileFullPaths objectForKey:fullPath];
+			BOOL isDir = NO;
+			if ( inputFileKey == nil ) {
+				if ( [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir] ) {
+					if ( isDir == NO ) {
+						NSData *fileData = [NSData dataWithContentsOfFile:fullPath];
+						inputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+						inputFilesCurrentIndex ++;
+						[inputFiles setObject:fileData forKey:inputFileKey];
+						[inputFileFullPaths setObject:inputFileKey forKey:fullPath];
+						byteCount += [fileData length];
+					} else {
+						//dicrectories are a special case: we use a dummy file to force the creation of the directory on the agent working dir; only files can be added to inputFiles, not dirs, so we have to use this trick
+						inputFileKey = @".GridEZ_dummy_file_to_force_dir_creation";
+						if ( [inputFiles objectForKey:inputFileKey] == nil )
+							[inputFiles setObject:[NSData data] forKey:inputFileKey];
+					}
+				}
+			}
+			//in the inputFileMap, we decide on the final path on the agent, and the data is refered to the inputFiles entry (at the job level); for directories, we need to create a dummy file
+			NSString *agentPath = [agentPaths objectForKey:fullPath];
+			if ( isDir )
+				agentPath = [agentPath stringByAppendingPathComponent:@".GridEZ_dummy_file_to_force_dir_creation"];
+			if ( inputFileKey != nil )
+				[inputFileMap setObject:agentPath forKey:inputFileKey];
 		}
 		
-		//add final dictionary to tasksSpecification dictionary
-		if ( stdinPath != nil )
-			[oneTaskDictionary setObject:stdinPath forKey:XGJobSpecificationInputStreamKey];
-		if ( commandString!=nil)
-			[oneTaskDictionary setObject:commandString forKey:XGJobSpecificationCommandKey];
-		if ( [argumentStrings count]>0 )
-			[oneTaskDictionary setObject:argumentStrings forKey:XGJobSpecificationArgumentsKey];
-		[taskSpecifications setObject:[NSDictionary dictionaryWithDictionary:oneTaskDictionary] forKey:[NSString stringWithFormat:@"%d",taskID]];
-		taskID++;
+		//command string might need to be changed from an absolute path (from the client filesystem) to a relative path (on the working dir on the agent); in addition, we need to use the 'working' directory instead of the 'executable' directory because the executable might not be in 'executable' (it is a "bug" in xgrid: even if files are set to be executable in the inputFiles, only one file will be uploaded and it cannot be inside a directory; but what saves us is that anyway all the files will also be in the 'working' directory)
+		NSString *commandString = [taskDescription valueForKey:@"GEZTaskSubmissionCommandKey"];
+		NSString *relativePath = nil;
+		if ( ( commandString != nil )  && ( relativePath = [agentPaths objectForKey:commandString] ) )
+			commandString = [@"../working" stringByAppendingPathComponent:relativePath];
+		if ( commandString == nil )
+			commandString = @"/bin/echo";
+		[taskSpecification setObject:commandString forKey:XGJobSpecificationCommandKey];
+		
+		//arguments strings may also need to be changed from an absolute path (from the client filesystem) to a relative path (on the working dir on the agent)
+		NSArray *argumentStrings = [taskDescription valueForKey:@"GEZTaskSubmissionArgumentsKey"];
+		if ( argumentStrings != nil ) {
+			NSMutableArray *arguments = [NSMutableArray arrayWithCapacity:[argumentStrings count]];
+			e = [argumentStrings objectEnumerator];
+			NSString *arg;
+			while ( arg = [e nextObject] ){
+				relativePath = [agentPaths objectForKey:arg];
+				[arguments addObject:(relativePath?relativePath:arg)];
+			}
+			argumentStrings = [NSArray arrayWithArray:arguments];
+			[taskSpecification setObject:argumentStrings forKey:XGJobSpecificationArgumentsKey];
+		}
+		
+		//this task specification is ready to be added  to the task list
+		NSString *taskIndexString = [NSString stringWithFormat:@"%d",taskCount];
+		NSString *metaTaskIndexString = [NSString stringWithFormat:@"%d",metaTaskIndex];
+		[taskSpecifications setObject:taskSpecification forKey:taskIndexString];
+		[taskMap setObject:metaTaskIndexString forKey:taskIndexString];
+		
+		//keep track of submissions
+		[availableTasks removeIndex:metaTaskIndex];
+		int newSubmissionCounts = [[self submissionCounts] incrementIntValueAtIndex:metaTaskIndex];
+		if ( newSubmissionCounts == 1 ) {
+			int old = [[self valueForKey:@"countSubmittedTasks"] intValue];
+			[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countSubmittedTasks"];
+		}
+		
+		//get ready for the next task
+		taskCount ++;
+		metaTaskIndex = [availableTasks indexGreaterThanIndex:metaTaskIndex];
 	}
-
-	//create a name for the job
-	NSArray *indexes = [[taskList allKeys] sortedArrayUsingSelector:@selector(compare:)];
-	jobName = [NSMutableString stringWithFormat:@"%@ [", [self valueForKey:@"name"]];
+	
+	if ( taskCount < 1 )
+		return NO;
+	
+	//create a human-readable name for the job with the metatask indexes
+	NSArray *indexes = [[taskMap allValues] sortedArrayUsingSelector:@selector(compare:)];
+	NSMutableString *jobName = [NSMutableString stringWithFormat:@"%@ [", [self valueForKey:@"name"]];
 	int i,ii,j,n;
 	if ( [indexes count]>0 ) {
 		j = 0; //number of ranges already added
-		e = [indexes objectEnumerator];
+		NSEnumerator *e = [indexes objectEnumerator];
+		NSNumber *metaIndex;
 		i = [[e nextObject] intValue]; //current index
 		n = i; //current start of range
 		[jobName appendFormat:@" %d",n];
-		while ( metaTaskIndex = [e nextObject] ) {
-			ii = [metaTaskIndex intValue];
+		while ( metaIndex = [e nextObject] ) {
+			ii = [metaIndex intValue];
 			if ( ii==i+1 )
 				i = ii;
 			else {
@@ -749,131 +978,68 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	}
 	[jobName appendString:@" ]"];	
 	
+	
 	//the final job specifications dictionary, ready to submit
-	jobSpecification = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *jobSpecification = [NSDictionary dictionaryWithObjectsAndKeys:
 		[NSString stringWithString:jobName], XGJobSpecificationNameKey,
-		@"gridstuffer", XGJobSpecificationApplicationIdentifierKey,
+		[[NSBundle mainBundle] bundleIdentifier], XGJobSpecificationApplicationIdentifierKey,
 		inputFiles, XGJobSpecificationInputFilesKey,
 		taskSpecifications, XGJobSpecificationTaskSpecificationsKey,
 		nil];
 	
-	//submit!!
+	//the taskMap is stored in the jobInfo of the GEZJob object (one entry dictionary, to which we could later add more stuff)
+	GEZJob *newJob = [GEZJob jobWithGrid:bestGrid];
+	[newJob setJobInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+		taskMap, @"TaskMap",
+		nil] ];
+
+	//submit the job!!
 	DLog(NSStringFromClass([self class]),12,@"\njobSpecification:\n%@",[jobSpecification description]);
-	[newJob submitWithJobSpecification:jobSpecification];
+	[newJob setValue:self forKey:@"metaJob"];
+	[newJob setDelegate:self];
 	[newJob setShouldRetrieveResultsAutomatically:YES];
-}
+	[newJob submitWithJobSpecification:jobSpecification];
 
-//this method decides how many tasks and jobs to create based on the MetaJob settings
-//it create TaskLists to send to the above method 'submitJobWithTaskList:paths:'
-- (void)submitNextJobs
-{
-	int a,b,minTasks,maxTasks,maxBytes;
-	int byteCount,taskCount;
-	int taskIndex;
-	id taskItem;
-	NSMutableDictionary *taskList;
-	NSArray *paths,*newPaths;
-	
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	//when we have gone through all the currently queued tasks, we need to build a new queue
+	if ( [availableTasks count] < 1 )
+		[self resetAvailableTasks];
 
-	//have we already reached the maxSubmittedTasks?
-	if ( [[self valueForKey:@"countSubmittedTasks"] intValue] >= [[self valueForKey:@"maxSubmittedTasks"] intValue] )
-		return;
+	return YES;
 	
-	//initializations
-	byteCount = taskCount = 0;
-	a        = [[self valueForKey:@"availableAgentsMultiplication"] intValue];
-	b        = [[self valueForKey:@"availableAgentsAddition"] intValue];
-	minTasks = [[self valueForKey:@"minTasksPerSubmission"] intValue];
-	maxTasks = [[self valueForKey:@"maxTasksPerSubmission"] intValue];
-	maxBytes = [[self valueForKey:@"maxBytesPerSubmission"] intValue];
-	taskList  = [NSMutableDictionary dictionaryWithCapacity:maxTasks];
-	paths = [NSArray array];
-	
-	//the real value of maxTasks = the number we really want to submit 
-	/* TO DO : count available agents + etc... */
-	if ( b < maxTasks )
-		maxTasks = b;
-	if ( maxTasks < minTasks )
-		maxTasks = minTasks;
-	
-	
-	//retrieve tasks items from the data source until:
-	//		- countTasks = maxTasks
-	//  OR	- countBytes = maxBytes
-	/*** TO DO : add code to REALLY take into account maxBytes !!! ***/
-	while ( taskCount < maxTasks && byteCount < maxBytes ) {
-		
-		//get the next taskItem from the data source, if any
-		taskIndex = [availableTasks firstIndex];
-		if ( taskIndex == NSNotFound )
-			break;
-		taskItem = [[self dataSource] metaJob:self taskAtIndex:taskIndex];
-		if ( taskItem == nil )
-			break;
-		
-		//keep track of submissions
-		[availableTasks removeIndex:taskIndex];
-		int newSubmissionCounts = [[self submissionCounts] incrementIntValueAtIndex:taskIndex];
-		if ( newSubmissionCounts == 1 ) {
-			int old = [[self valueForKey:@"countSubmittedTasks"] intValue];
-			[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countSubmittedTasks"];
-		}
+	/*TODO
 		if ( [[self delegate] respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] )
-			[[self delegate] metaJob:self didSubmitTaskAtIndex:taskIndex];
-		taskCount ++;
-		
-		//to be in the same jobs, tasks need to have the same uploaded paths
-		//so I use that criteria to group tasks in jobs (sorting paths allows to direwctly compare arrays and is needed in the next steps anyway)
-		/* TO DO : have a 'NSArray *StandardizedPaths (NSArray *paths)' function to make sure we get standardized paths */
-		newPaths = [self pathsToUploadForTask:taskItem];
-		newPaths = [newPaths sortedArrayUsingSelector:@selector(compare:)];
-		if (	[paths count]    == 0				//paths not yet defined
-			 || [newPaths count] == 0				//no paths on this task
-			 || [newPaths isEqualToArray:paths]	)	//paths are exactly the same as previous tasks
-		{
-			//then we can simply add that task to the current job and maybe define paths
-			[taskList setObject:taskItem forKey:[NSNumber numberWithInt:taskIndex]];
-			if ( [paths count]==0 )
-				paths = newPaths;
-		} else {
-			//otherwise, we are done with the current job and we can start a new taskList
-			[self submitJobWithTaskList:taskList paths:paths];
-			[taskList removeAllObjects];
-			[taskList setObject:taskItem forKey:[NSNumber numberWithInt:taskIndex]];
-			paths = newPaths;
-		}
-	}
-	
-	//now start the last taskList if not empty
-	if ( [taskList count]>0 )
-		[self submitJobWithTaskList:taskList paths:paths];
+		[[self delegate] metaJob:self didSubmitTaskAtIndex:taskIndex];
+	*/
 	
 }
 
-//called every 'submissionInterval' seconds to submit more jobs
-- (void)submitNextJobsWithTimer:(NSTimer *)timer
+//make sure only one timer is used
+- (void)submitNextJobSoon
 {
-	NSTimeInterval interval;
-	
+	if ( submissionTimer != nil )
+		return;
+	submissionTimer = [[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(submitNextJobWithTimer:) userInfo:nil repeats:NO] retain];
+}
+
+//only to be called by submitNextJobSoon
+- (void)submitNextJobWithTimer:(NSTimer *)timer
+{
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
 	//check consistency
-	if (submissionTimer!=timer)
-		[NSException raise:@"GEZMetaJobInconsistency"
-					format:@"The ivar submissionTimer should be equal to the timer passed as argument to 'submitNextJobsWithTimer:'"];
-	submissionTimer=nil;
+	if ( submissionTimer != timer )
+		[NSException raise:@"GEZMetaJobInconsistency" format:@"The ivar submissionTimer should be equal to the timer passed as argument to 'submitNextJobWithTimer:'"];
+	[submissionTimer release];
+	submissionTimer = nil;
 	
 	//Only submit more jobs if isRunning
 	if ( [self isRunning]==NO )
 		return;
-	[self submitNextJobs];
-	if ( [availableTasks count] < 1 )
-		[self resetAvailableTasks];
 	
-	//fire a new timer
-	interval = [[self valueForKey:@"submissionInterval"] intValue];
-	submissionTimer=[NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(submitNextJobsWithTimer:) userInfo:nil repeats:NO];
+	//submit only one job per iteration of the run loop
+	if ( [self submitNextJob] )
+		[self submitNextJobSoon];
+
 }
 
 - (BOOL)isRunning
@@ -916,7 +1082,7 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	[self resetAvailableTasks];
 	
 	//start the "run loop"
-	[self submitNextJobsWithTimer:nil];
+	[self submitNextJobSoon];
 }
 
 - (void)suspend
@@ -973,11 +1139,19 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
  - (void)job:(GEZJob *) didReceiveResults:(NSDictionary *)results task:(GEZTask *)task;
 */ 
 
+//it might be possible to submit more jobs as less "submitted" jobs will be present
+- (void)jobDidSubmit:(GEZJob *)aJob
+{
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+	[self submitNextJobSoon];
+}
 
+/*
 - (void)jobDidStart:(GEZJob *)aJob
 {
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
 }
+*/
 
 - (void)jobDidNotStart:(GEZJob *)aJob
 {
@@ -1013,8 +1187,9 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		}
 	}		
 	
-	//we can now dump the job
+	//we can now dump the job and might be ready for more!
 	[self removeJob:aJob];
+	[self submitNextJobSoon];
 }
 
 - (void)jobDidFinish:(GEZJob *)aJob
@@ -1022,143 +1197,47 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
 }
 
-/* TODO */
 - (void)job:(GEZJob *)aJob didLoadResults:(NSDictionary *)results
-{
-	NSEnumerator *e;
-	NSString *taskIdentifier;
-	NSNumber *metaTaskIndex;
-	NSDictionary *taskMap,*resultDictionary,*taskItem;
-	GEZIntegerArray *successCounts, *failureCounts, *submissionCounts;
-	int index;
-	id dataSource;
-
+{	
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
 	DLog(NSStringFromClass([self class]),10,@"\nResults:\n%@",[results description]);
 
 	//the taskMap allows to convert taskID in metaTaskIndex
-	taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
+	NSDictionary *taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
 	if ( taskMap == nil )
-		[NSException raise:@"GEZMetaJobError" format:@"No task map stored in the job"];
+		[NSException raise:@"GEZMetaJobError" format:@"No task map stored in job %@", [aJob name]];
 
-	
-	//get the integer arrays used to keep track of submissions and successes
-	successCounts = [self successCounts];
-	failureCounts = [self failureCounts];
-	submissionCounts = [self submissionCounts];
-	
 	//loop over the dictionary keys to return individual task results
-	dataSource = [self dataSource];
-	e = [results keyEnumerator];
+	id dataSource = [self dataSource];
+	NSEnumerator *e = [results keyEnumerator];
+	NSString *taskIdentifier;
 	while ( taskIdentifier = [e nextObject] ) {
 		
-		//each task has: an index, a taskItem and a resultDictionary
-		metaTaskIndex = [taskMap objectForKey:taskIdentifier];
-		index = [metaTaskIndex intValue];
-		taskItem = [dataSource metaJob:self taskAtIndex:index];
-		resultDictionary = [results objectForKey:taskIdentifier];
-		
-		//the result dictionary can be divided in 3 pieces: the files, the sdout and the stderr
-		NSMutableDictionary *resultFiles;
-		resultFiles = [NSMutableDictionary dictionaryWithDictionary:resultDictionary];
-		[resultFiles removeObjectForKey:GEZJobResultsStandardOutputKey];
-		[resultFiles removeObjectForKey:GEZJobResultsStandardErrorKey];
-		NSData *stdoutData, *stderrData;
-		stdoutData = [resultDictionary objectForKey:GEZJobResultsStandardOutputKey];
-		stderrData = [resultDictionary objectForKey:GEZJobResultsStandardErrorKey];
-
-		//the data source may want to validate the results and decide if they are good or not
-		BOOL resultsAreValid;
-		if ( [dataSource respondsToSelector:@selector(metaJob:validateResultsWithFiles:standardOutput:standardError:forTask:)] )
-			resultsAreValid = [dataSource metaJob:self validateResultsWithFiles:resultFiles standardOutput:stdoutData standardError:stderrData forTask:taskItem];
-		else
-			resultsAreValid = YES;
-
-		//based on the validation result, the task was either a success or a failure
-		//then, depending on how many successes and failures, the task could be considered completed or be dismissed
-		int numberOfSuccesses,numberOfFailures;
+		//based on the validation result, the task was either a success or a failure; then, depending on how many successes and failures, the metatask could be considered completed or be dismissed
+		unsigned int metaTaskIndex = [[taskMap objectForKey:taskIdentifier] intValue];
 		int minSuccessesPerTask = [self minSuccessesPerTask];
 		int maxFailuresPerTask = [self maxFailuresPerTask];
-		if ( resultsAreValid ) {
-			numberOfSuccesses = [successCounts incrementIntValueAtIndex:index];
-			numberOfFailures = [successCounts intValueAtIndex:index];
+		if ( [dataSource metaJob:self validateTaskAtIndex:metaTaskIndex results:[results objectForKey:taskIdentifier]] ) {
+			int numberOfSuccesses = [[self successCounts] incrementIntValueAtIndex:metaTaskIndex];
+			int numberOfFailures = [[self failureCounts] intValueAtIndex:metaTaskIndex];
 			if ( numberOfSuccesses == minSuccessesPerTask ) {
 				[self incrementCountCompletedTasks];
 				if ( maxFailuresPerTask > 0 && numberOfFailures >= maxFailuresPerTask )
 					[self decrementCountDismissedTasks];
 			}
 		} else {
-			numberOfSuccesses = [successCounts intValueAtIndex:index];
-			numberOfFailures = [failureCounts incrementIntValueAtIndex:index];
+			int numberOfSuccesses = [[self successCounts] intValueAtIndex:metaTaskIndex];
+			int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:metaTaskIndex];
 			if ( ( maxFailuresPerTask > 0 ) && ( numberOfFailures == maxFailuresPerTask ) && ( numberOfSuccesses < minSuccessesPerTask ) )
 				[self incrementCountDismissedTasks];
 		}
-			
-		//some of the results may be handled by the data source, and if not they will be handled by the output interface
-		BOOL shouldSaveStdout = YES;
-		BOOL shouldSaveStderr = YES;
-		BOOL shouldSaveFiles  = YES;
-		NSMutableDictionary *resultsHandledByOutputInterface;
-		resultsHandledByOutputInterface = [NSMutableDictionary dictionary];
-		
-		//if the results are valid, the data source is given a chance to save the results
-		if ( resultsAreValid ) {
-			if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardOutput:forTask:)] 
-				 && [dataSource metaJob:self saveStandardOutput:stdoutData forTask:taskItem] )
-				shouldSaveStdout = NO;
-			if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardError:forTask:)]
-				 && [dataSource metaJob:self saveStandardError:stderrData forTask:taskItem] )
-				shouldSaveStderr = NO;
-			if ( [dataSource respondsToSelector:@selector(metaJob:saveOutputFiles:forTask:)] 
-				 && [dataSource metaJob:self saveOutputFiles:resultFiles forTask:taskItem] )
-				shouldSaveFiles  = NO;
-		}
-		
-		//if the results are not valid, they might still be handled by the output interface
-		else if ( [[self valueForKey:@"shouldSaveFailedTasks"] boolValue] == NO ) {
-			shouldSaveStdout = NO;
-			shouldSaveStderr = NO;
-			shouldSaveFiles  = NO;
-		}
-		
-		//whatever is left to be saved will be handled by the output interface
-		if ( ( shouldSaveStdout )  && ( stdoutData !=nil ) )
-			[resultsHandledByOutputInterface setObject:stdoutData forKey:GEZJobResultsStandardOutputKey];
-		if ( ( shouldSaveStderr ) && ( stderrData !=nil ) )
-			[resultsHandledByOutputInterface setObject:stderrData forKey:GEZJobResultsStandardErrorKey];
-		if ( shouldSaveFiles )
-			[resultsHandledByOutputInterface addEntriesFromDictionary:resultFiles];
-		
-		//the path to use for the output interface is different for valid and invalid results
-		//also, results are grouped in subfolders if more than the max allowed
-		NSString *resultSubPath;
-		if ( resultsAreValid )
-			resultSubPath = @"";
-		else
-			resultSubPath = @"failures";
-		int total = [[self countTotalTasks] intValue];
-		int max = [[self valueForKey:@"maxTasksPerFolder"] intValue];
-		if ( total > max ) {
-			int start, end;
-			start = index / max;
-			start *= max;
-			end = start + max - 1;
-			NSString *rangeSubPath = [NSString stringWithFormat:@"%d-%d/",start,end];
-			resultSubPath = [resultSubPath stringByAppendingPathComponent:rangeSubPath];
-		}
-		resultSubPath = [resultSubPath stringByAppendingPathComponent:[metaTaskIndex stringValue]];
-		
-		/*
-		//create a folder only if one of the 'shouldSave' flag is YES (this prevents the creation of an empty folder when it does not make sense)
-		if ( shouldSaveStdout || shouldSaveStderr || shouldSaveFiles )
-			[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath duplicatesInSubfolder:@"results"];
-		*/
 	}
 	
 	//we are done with the job - delete it...
 	[self removeJob:aJob];
+	[self submitNextJobSoon];
 }
-
+	
 @end
 
 
