@@ -89,10 +89,11 @@ typedef enum {
 static NSString *StatusStrings[20];
 
 
-//public global
-//keys used in the results dictionary = same as the 'symbolic file path' used by XGFile
-NSString *GEZJobResultsStandardOutputKey;
-NSString *GEZJobResultsStandardErrorKey;
+//keys used in the results dictionary = same as the 'symbolic file path' used by XGFile (see XGFileStandardOutputPath and XGFileStandardErrorPath)
+//these values will be defined again in the 'initialize' class method (see below), just in case, and can't be defined here with the XgridFoundation values because they are also 'extern'
+NSString *GEZJobResultsStandardOutputKey = @"stdout";
+NSString *GEZJobResultsStandardErrorKey = @"stderr";
+
 
 @interface GEZJob (GEZJobPrivate)
 
