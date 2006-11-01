@@ -687,12 +687,25 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 	GEZGrid *bestGrid = nil;
 	int bestPendingJobCount = -1;
 	int bestAvailableAgentCount = 0;
+	
+	//if no prefered grids, just use the best one available
+	NSSet *allGrids = [self allGrids];
+	if ( [allGrids count] == 0 ) {
+		NSEnumerator *allServers = [[GEZServer allServers] objectEnumerator];
+		NSMutableSet *gridSet = [NSMutableSet set];
+		GEZServer *aServer;
+		while ( aServer = [allServers nextObject] )
+			[gridSet unionSet:[aServer grids]];
+		allGrids = [NSSet setWithSet:gridSet];
+	}
+	
+	//looping through all the grids to find the best one = connected, less pending jobs, more available agents
 	NSEnumerator *e = [[self allGrids] objectEnumerator];
 	GEZGrid *aGrid;
 	while ( aGrid = [e nextObject] ) {
 		int pendingJobCount = pendingJobCountForGrid(aGrid);
 		int availableAgentsGuess = [aGrid availableAgentsGuess];
-		if ( ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount ) &&  availableAgentsGuess > bestAvailableAgentCount ) {
+		if ( [aGrid isConnected] && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount ) &&  availableAgentsGuess > bestAvailableAgentCount ) {
 			bestGrid = aGrid;
 			bestPendingJobCount = pendingJobCount;
 			bestAvailableAgentCount = availableAgentsGuess;
@@ -705,7 +718,6 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 	return  aGrid;	
 }
 
-/* TODO */
 //when sent to the agents, the full paths on the client filesystem will become relative paths, relative to the working directory on the agent; in the process, the file tree will be made as flat as possible to avoid sending too much information to the agent; this function takes care of "flattening" (symplifying) the file tree, for instance:
 //
 //		Paths on the client							Files on the agent
