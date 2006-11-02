@@ -14,13 +14,13 @@ __END_LICENSE__ */
 
 #import "GEZDefines.h"
 
-NSString *GEZServerEntityName = @"GridEZ_Server";
-NSString *GEZGridEntityName = @"GridEZ_Grid";
-NSString *GEZJobEntityName = @"GridEZ_Job";
-NSString *GEZTaskEntityName = @"GridEZ_Task";
-NSString *GEZFileEntityName = @"GridEZ_File";
-NSString *GEZMetaJobEntityName = @"GridEZ_MetaJob";
-NSString *GEZProxyEntityName = @"GridEZ_Proxy";
+NSString *GEZServerEntityName = @"GEZServer";
+NSString *GEZGridEntityName = @"GEZGrid";
+NSString *GEZJobEntityName = @"GEZJob";
+NSString *GEZTaskEntityName = @"GEZTask";
+NSString *GEZFileEntityName = @"GEZFile";
+NSString *GEZMetaJobEntityName = @"GEZMetaJob";
+NSString *GEZProxyEntityName = @"GEZProxy";
 
 
 NSString *GEZShouldUseUndoManager = @"GEZShouldUseUndoManager";
