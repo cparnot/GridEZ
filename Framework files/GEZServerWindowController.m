@@ -79,11 +79,11 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	//keep the servers sorted by name
 	[gridsController setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(compareNumerically:)] autorelease]]];
 	
-	//adding the toolbar
+	//adding the toolbar and setting the defaults
 	NSToolbar *toolbar = [[[NSToolbar alloc] initWithIdentifier:@"ServerWindowToolbar"] autorelease];
 	[toolbar setDelegate:self];
 	[toolbar setAllowsUserCustomization:YES];
-	[toolbar setSizeMode:NSToolbarSizeModeRegular];
+	[toolbar setSizeMode:NSToolbarSizeModeSmall];
 	[toolbar setDisplayMode:NSToolbarDisplayModeIconOnly];
     [toolbar setAutosavesConfiguration:YES];
 	[[self window] setToolbar:toolbar];
@@ -248,14 +248,14 @@ static GEZServerWindowController *sharedServerWindowController = nil;
         [item setImage:[NSImage imageNamed:@"ConnectServerToolbarIcon"]];
         [item setTarget:self];
         [item setAction:@selector(connect:)];
-		[item setToolTip:@"Connect to the selected controllers"];
+		[item setToolTip:@"Connect to the selected controller(s)"];
     } else if ( [itemIdentifier isEqualToString:@"DisconnectServer"] ) {
         [item setLabel:@"Disconnect"];
         [item setPaletteLabel:[item label]];
         [item setImage:[NSImage imageNamed:@"DisconnectServerToolbarIcon"]];
         [item setTarget:self];
         [item setAction:@selector(disconnect:)];
-		[item setToolTip:@"Disconnect the selected controllers"];
+		[item setToolTip:@"Disconnect the selected controller(s)"];
     } else if ( [itemIdentifier isEqualToString:@"AddServer"] ) {
         [item setLabel:@"Add"];
         [item setPaletteLabel:[item label]];
@@ -269,7 +269,7 @@ static GEZServerWindowController *sharedServerWindowController = nil;
         [item setImage:[NSImage imageNamed:@"RemoveServerToolbarIcon"]];
         [item setTarget:self];
         [item setAction:@selector(removeItem:)];
-		[item setToolTip:@"Remove the selected controllers"];
+		[item setToolTip:@"Remove the selected controller(s)"];
     }
     
     return item;
