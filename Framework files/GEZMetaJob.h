@@ -41,6 +41,10 @@ extern NSString *GEZTaskSubmissionUploadedPathsKey;
 	NSTimer *submissionTimer;
 }
 
+//this is the recommanded way to create a metaJob, no -init, no -insertNewObjectForEntityForName...
++ (GEZMetaJob *)metaJobWithName:(NSString *)name;
++ (GEZMetaJob *)metaJobWithManagedObjectContext:(NSManagedObjectContext *)context;
+
 //controlling GEZMetaJob
 - (void)start;
 - (BOOL)isRunning;
@@ -90,6 +94,7 @@ extern NSString *GEZTaskSubmissionUploadedPathsKey;
 
 
 //info about the MetaJob, useful for GUI bindings too
+- (NSString *)status;
 - (NSNumber *)countTotalTasks;
 - (NSNumber *)countDoneTasks; //Completed+Dismissed
 - (NSNumber *)countPendingTasks;//not done
