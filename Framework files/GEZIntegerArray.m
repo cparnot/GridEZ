@@ -34,7 +34,7 @@ __END_LICENSE__ */
 - (void)awakeFromFetch
 {
 	[super awakeFromFetch];
-	NSLog (@"IntegerArray:\n%@",[self stringRepresentation]);
+	//NSLog (@"IntegerArray:\n%@",[self stringRepresentation]);
 }
 
 
@@ -42,7 +42,7 @@ __END_LICENSE__ */
 {
 	if (integerArrayMutableData != nil)
 		[self setPrimitiveValue:[NSData dataWithData:integerArrayMutableData] forKey:@"data"];
-	NSLog (@"IntegerArray:\n%@",[self stringRepresentation]);
+	//NSLog (@"IntegerArray:\n%@",[self stringRepresentation]);
     [super willSave];
 } 
 
