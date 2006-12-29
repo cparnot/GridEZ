@@ -58,6 +58,7 @@ __END_LICENSE__ */
 
 #import "GEZJob.h"
 #import "GEZGrid.h"
+#import "GEZGridHook.h"
 #import "GEZServer.h"
 #import "GEZServerHook.h"
 #import "GEZTask.h"
@@ -292,15 +293,12 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 //jobInfo is a transient ivar, saved as jobInfoData in the Core Data layer
 - (id)jobInfo
 {
-	NSData *jobInfoData;
-	NSValueTransformer *transformer;
 	[self willAccessValueForKey:@"jobInfo"];
 	if ( jobInfo == nil) {
-		jobInfoData = [self valueForKey:@"jobInfoData"];
-		transformer = [NSValueTransformer valueTransformerForName:NSUnarchiveFromDataTransformerName];
-		jobInfo = [transformer transformedValue:jobInfoData];
+		jobInfo = [[NSValueTransformer valueTransformerForName:NSUnarchiveFromDataTransformerName] transformedValue:[self valueForKey:@"jobInfoData"]];
 		if ( jobInfo == nil )
 			jobInfo = [NSData data];
+		[jobInfo retain];
 	}
 	[self didAccessValueForKey:@"jobInfo"];
 	return jobInfo;
@@ -568,10 +566,14 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 
 	// Hook GEZJob to its XGJob
 	// When the XGGrid is "updated", it has all the jobs in an array, but only their identifier is set, which means -jobWithIdentifier will work if the identifier is valid, but will return a job that is not yet "updated", with all other ivars set to 0 or nil (except the state = 4 = Available ?!?)
+	//sometimes, the XGJob is not available from the XGGrid, and we have to wait until it is available there; when we did the submission in this session, didSubmitRecently == YES; in this case, we give Xgrid more chance to get the XGJob using a callback provided by GEZGridHook
 	[self setXgridJob:[[grid xgridGrid] jobForIdentifier:identifier]];
 	if ( xgridJob == nil ) {
-		//no job with the identifier
-		[self deleteFromStoreSoon];
+		if ( didSubmitRecently == NO ) {
+			DLog(NSStringFromClass([self class]),10,@"Deleting <%@:%p> because no XGJob with job identifier = %@", [self class], self, identifier);
+			[self deleteFromStoreSoon];
+		} else
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:[GEZGridHook gridHookWithIdentifier:[grid identifier] serverHook:[GEZServerHook serverHookWithAddress:[[grid server] address]]]];
 		return;
 	}
 	
@@ -586,6 +588,12 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(hook:) userInfo:nil repeats:NO];
 }
 
+
+- (void)gridHookDidChangeJobs:(NSNotification *)aNotification
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self hookSoon];
+}
 
 #pragma mark *** Observing XGJob - delegate methods of GEZResourceObserver ***
 
@@ -690,7 +698,9 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		XGActionMonitorOutcome outcome = [submissionAction outcome];
 		if ( outcome == XGActionMonitorOutcomeSuccess) {
 			NSString *identifier = [[submissionAction results] objectForKey:@"jobIdentifier"];
+			DLog(NSStringFromClass([self class]),10,@"Job identifier = %@", identifier);
 			[self setValue:identifier forKey:@"identifier"];
+			didSubmitRecently = YES;
 			[self setState:GEZJobStatePending];
 			if ( [delegate respondsToSelector:@selector(jobDidSubmit:)] )
 				[delegate jobDidSubmit:self];

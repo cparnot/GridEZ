@@ -33,6 +33,7 @@ extern NSString *GEZJobResultsStandardErrorKey;
 	id jobInfo;
 	GEZResults *results;
 	GEZResourceObserver *xgridJobObserver;
+	BOOL didSubmitRecently;
 }
 
 //Creating GEZJob objects
