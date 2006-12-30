@@ -69,8 +69,16 @@ GEZManager *sharedManager = nil;
 - (NSManagedObjectModel *)managedObjectModel
 {
 	//lazy instantiation
-    if ( managedObjectModel== nil )
-		managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:[NSArray arrayWithObject:[self gridezFramework]]] retain];
+	if ( managedObjectModel != nil )
+		return managedObjectModel;
+	
+	NSMutableSet *allBundles = [NSMutableSet set];
+	[allBundles addObject: [NSBundle mainBundle]];
+	[allBundles addObjectsFromArray: [NSBundle allFrameworks]];
+	managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles: [allBundles allObjects]] retain];
+
+	//DLog(NSStringFromClass([self class]),5,@"<%@:%p> %s - Model =\n%@",[self class],self,_cmd,[managedObjectModel entitiesByName]);
+
     return managedObjectModel;
 }
 
@@ -144,21 +152,32 @@ BOOL CreateFolder (NSString *path)
 		return nil;
 	}
 
+	//by default, the default managed object context created by the framework will create a store of type SQLLite; this setting can be changed by the developer by using the Info.plist of the application (see user docs)
+	NSString *storeType = [[[NSBundle mainBundle] infoDictionary] objectForKey:GEZStoreType];
+	NSString *storeExtension;
+	DLog(NSStringFromClass([self class]),10,@"Store type from info.plist with key %@ is %@", GEZStoreType, storeType);
+	if ( [storeType isEqualToString:@"XML"] ) {
+		storeType = NSXMLStoreType;
+		storeExtension = @"xml";
+	}
+	else if ( [storeType isEqualToString:@"Binary"] ) {
+		storeType = NSBinaryStoreType;
+		storeExtension = @"bin";
+	}
+	else if ( [storeType isEqualToString:@"InMemory"] ) {
+		storeType = NSInMemoryStoreType;
+		storeExtension = @"nonapplicable";
+	}
+	else {
+		storeType = NSSQLiteStoreType;
+		storeExtension = @"db";
+	}
+	
 	//create the stack for the managed object context
-    NSURL *url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"GridStuffer.db"]];
+    NSURL *url = [NSURL fileURLWithPath: [[applicationSupportFolder stringByAppendingPathComponent: @"GridStuffer"] stringByAppendingPathExtension:storeExtension]];
 	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     NSError *error;
 	
-	//by default, the default managed object context created by the framework will create a store of type SQLLite; this setting can be changed by the developer by using the Info.plist of the application (see user docs)
-	NSString *storeType = [[[NSBundle mainBundle] infoDictionary] objectForKey:GEZStoreType];
-	if ( [storeType isEqualToString:@"XML"] )
-		storeType = NSXMLStoreType;
-	else if ( [storeType isEqualToString:@"Binary"] )
-		storeType = NSBinaryStoreType;
-	else if ( [storeType isEqualToString:@"InMemory"] )
-		storeType = NSInMemoryStoreType;
-	else
-		storeType = NSSQLiteStoreType;
 	
     if ([coordinator addPersistentStoreWithType:storeType configuration:nil URL:url options:nil error:&error]){
         managedObjectContext = [[NSManagedObjectContext alloc] init];
