@@ -33,12 +33,20 @@ It is simply a NSLog wrapper that adds 2 parameters: an identifier string and a 
 * Another item dependent on the DEBUG flag is the name of the persistent store. A suffix "_DEBUG" is added to the name, to avoid messing up with any legitimate store setup using a 'Release' version of the program.
 
 
-# Notes on Xgrid behavior regarding inputFiles
+# Notes on Xgrid behavior regarding inputFiles and inputFileMap
 
 * Bug with 10.4.1 and earlier:
 	* you cannot have different sets of paths for different tasks, because the key XGJobSpecificationInputFileMapKey does not behave as expected; using this key in the task specifications cancel all uploads otherwise defined by the XGJobSpecificationInputFilesKey;
 	* bug submitted by Charles Parnot
 	* bug fixed in 10.4.2 (yeah!!) and tested again, it works as expected with the following behavior explained below...
+
+* How inputFiles and inputFileMap work:
+	* inputFiles is defined at the job level, and lists files as a Dictionary:
+		* the key = a symbolic name (the same file can be reused for different tasks and given a different path for each task)
+		* the value = a dictionary with 2 entries, fileData and isExecutable
+	* inputFileMap is optionally defined at the task level and lists files to upload as a dictionary:
+		* the key = the final path on the working directory of the agent
+		* the value = the symbolic name used in the inputFiles
 
 * About the executables dir and the command:
 	* When inputFiles = one executable, and no inputFileMap in the task description, the file is named according to inputFile, and is both in ../executables and in ../working
@@ -50,6 +58,7 @@ It is simply a NSLog wrapper that adds 2 parameters: an identifier string and a 
 	* Conclusions:
 		* the path to the executables dir is appended if the command string is a relative path
 		* only one file can be added to the executables dir, and will be added if listed in inputFiles or inputFileMap, is not specified as being inside a directory, and it is the name used in the command string
+		* in general, it is thus safer to prepend the command with "../working" if it is uploaded to the agent, in case the executable is not added to the "executables" dir on the agent
 		
 * About the stdin and inputFiles and inputFileMap:
 	* If inputStream is specified in the task, as defined in inputFiles, and no inputFileMap is used in the task, the file corresponding to the inputStream will be uploaded to the working directory; the inputStream will also be correctly piped to the executable

@@ -330,8 +330,12 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 - (void)gridHookDidChangeJobs:(NSNotification *)notification
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s = %d jobs",[self class],self,_cmd,[[[self xgridGrid] jobs] count]);
+	
+	//create GEZJobs if necessary
 	if ( [gridHook isUpdated] && [self shouldObserveAllJobs] )
 		[self loadAllJobs];
+	
 	//maybe we can update the value for availableAgentsGuess
 	if ( [gridHook isLoaded] ) {
 		NSEnumerator *e = [[[self xgridGrid] jobs] objectEnumerator];

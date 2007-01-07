@@ -3,11 +3,18 @@ Roadmap
 Todo for v0.4 release:
 * bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
   ÐÐ> I should use a separate object for each KVO instance to make it more like NSNotification system
-* Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * User-level store, to remember servers used by different apps (do not store jobs)
 * do not allow connection to empty string
+* bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
+* make the little colored dots for status more consistent in size (maybe different shapes?)
+* when job removed by other process, should get notified and act accordingly
+* delete key should work in Controllers window and Xgrid panel
+* In the Xgrid panel, add job ids and keep jobs ordered by ID by default
+
 
 done:
+* change the icons for the Controller window
+* Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
 * Format of the store: make it an option to be set in the info.plist of the app bundle
 * Add Keychain support
@@ -22,7 +29,9 @@ done:
 ---------------
 Other things todo (some maybe):
 
-* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet)
+* add tests by using the examples that were developed for GridStuffer: the examples could be described by a plist, as they are now, but adding the expected results for the specifications
+
+* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet) ÐÐ> maybe use Xgrid Lite code, but GPL (Ed?)
 
 * Have a system-wide database of servers, shared by all applications run by the user
 
@@ -52,7 +61,7 @@ Other things todo (some maybe):
 	* still need to add code for GEZServer when grids added + support for observeAllJobs
 
 * GEZJOb
-	* when setServer is used, should defer the decision on the grid to the submission time, in case a default grid is changed by then
+	* when setServer is used, should defer the decision on the grid to the submission time, in case the default grid is changed by then
 	
 
 

@@ -51,6 +51,8 @@
 		561C53B70A70B04600212BEC /* ConnectServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B40A70B04600212BEC /* ConnectServerToolbarIcon.png */; };
 		561C53B80A70B04600212BEC /* DisconnectServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53B50A70B04600212BEC /* DisconnectServerToolbarIcon.png */; };
 		561C53FC0A71A60700212BEC /* RemoveServerToolbarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 561C53FB0A71A60700212BEC /* RemoveServerToolbarIcon.png */; };
+		562A95740B46499B00653B20 /* compile_info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 562A95730B46499B00653B20 /* compile_info.txt */; };
+		562A95B90B464C5600653B20 /* compile_info.txt in Headers */ = {isa = PBXBuildFile; fileRef = 562A95730B46499B00653B20 /* compile_info.txt */; settings = {ATTRIBUTES = (Public, ); }; };
 		562D37390AC0977D00B4A99D /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56720AB60AAF89B400066417 /* GEZMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720AB40AAF89B400066417 /* GEZMetaTask.m */; };
 		56720B380AAFEE1C00066417 /* GEZIntegerArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720B360AAFEE1C00066417 /* GEZIntegerArray.m */; };
@@ -207,6 +209,7 @@
 		561C53B40A70B04600212BEC /* ConnectServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ConnectServerToolbarIcon.png; sourceTree = "<group>"; };
 		561C53B50A70B04600212BEC /* DisconnectServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DisconnectServerToolbarIcon.png; sourceTree = "<group>"; };
 		561C53FB0A71A60700212BEC /* RemoveServerToolbarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RemoveServerToolbarIcon.png; sourceTree = "<group>"; };
+		562A95730B46499B00653B20 /* compile_info.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = compile_info.txt; sourceTree = "<group>"; };
 		56720AB30AAF89B400066417 /* GEZMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZMetaTask.h; path = "Framework files/GEZMetaTask.h"; sourceTree = "<group>"; };
 		56720AB40AAF89B400066417 /* GEZMetaTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZMetaTask.m; path = "Framework files/GEZMetaTask.m"; sourceTree = "<group>"; };
 		56720B350AAFEE1C00066417 /* GEZIntegerArray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZIntegerArray.h; path = "Framework files/GEZIntegerArray.h"; sourceTree = "<group>"; };
@@ -435,6 +438,7 @@
 		5617D3ED0963A6E600505CDC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				562A95730B46499B00653B20 /* compile_info.txt */,
 				56F0A89109AEE7F1004FB9E1 /* Images */,
 				5617D4300963ABB000505CDC /* Dots */,
 				5617D3EE0963A70900505CDC /* ServerWindow.nib */,
@@ -681,6 +685,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562A95B90B464C5600653B20 /* compile_info.txt in Headers */,
 				562D37390AC0977D00B4A99D /* GEZManager.h in Headers */,
 				56BFC4C3095FB57100463A1F /* GridEZ.h in Headers */,
 				5617D14F0962222A00505CDC /* GEZServer.h in Headers */,
@@ -753,6 +758,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56FA39EB095FADF0004AB027 /* Build configuration list for PBXNativeTarget "GridEZ" */;
 			buildPhases = (
+				562A95630B4647B300653B20 /* ShellScript */,
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
@@ -848,10 +854,27 @@
 				561C53B70A70B04600212BEC /* ConnectServerToolbarIcon.png in Resources */,
 				561C53B80A70B04600212BEC /* DisconnectServerToolbarIcon.png in Resources */,
 				561C53FC0A71A60700212BEC /* RemoveServerToolbarIcon.png in Resources */,
+				562A95740B46499B00653B20 /* compile_info.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		562A95630B4647B300653B20 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/perl;
+			shellScript = "open INFO, \">compile_info.txt\";\nprint INFO `/bin/date`;\nprint INFO \"GCC_PREPROCESSOR_DEFINITIONS = \".$ENV{'GCC_PREPROCESSOR_DEFINITIONS'};\n\nclose INFO";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5617D30F0963565A00505CDC /* Sources */ = {

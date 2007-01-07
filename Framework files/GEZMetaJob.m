@@ -625,7 +625,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 	//no more notifications
 	[self setDelegate:nil];
-	[self suspend];
+	if ( [self isRunning] )
+		[self suspend];
 	
 	//delete all the jobs
 	jobs = [self valueForKey:@"jobs"];
@@ -637,6 +638,7 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	
 	//now remove from the managed context
 	[[self managedObjectContext] deleteObject:self];
+	[[self managedObjectContext] processPendingChanges];
 }
 
 
@@ -661,6 +663,16 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 - (void)jobDidSubmit:(GEZJob *)aJob
 {
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+
+	//the delegate might want to know the tasks were submitted
+	if ( [[self delegate] respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] ) {
+		NSEnumerator *e = [[[aJob jobInfo] objectForKey:@"TaskMap"] objectEnumerator];
+		NSString *metaTaskIndex;
+		while ( metaTaskIndex = [e nextObject] )
+			[[self delegate] metaJob:self didSubmitTaskAtIndex:[metaTaskIndex intValue]];
+	}
+	
+	//ready to submit more	
 	[self submitNextJobSoon];
 }
 
@@ -700,8 +712,9 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 		if ( maxFailuresPerTask > 0 && numberOfFailures == maxFailuresPerTask ) {
 			int numberOfSuccesses = [[self successCounts] intValueAtIndex:index];
 			int minSuccessesPerTask = [self minSuccessesPerTask];
-			if ( numberOfSuccesses < minSuccessesPerTask )
+			if ( numberOfSuccesses < minSuccessesPerTask ) {
 				[self incrementCountDismissedTasks];
+			}
 		}
 	}		
 	
@@ -862,11 +875,11 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 NSDictionary *relativePaths(NSArray *fullPaths)
 {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSEnumerator *e = [fullPaths objectEnumerator];
+	NSEnumerator *fullPathsEnumerator = [fullPaths objectEnumerator];
 	NSString *currentPath;
-	NSString *currentDir = @"";
+	NSString *currentDir = nil;
 	NSMutableDictionary *relativePaths = [NSMutableDictionary dictionaryWithCapacity:[fullPaths count]];
-	while ( currentPath = [e nextObject] ) {
+	while ( currentPath = [fullPathsEnumerator nextObject] ) {
 		BOOL isDir,isSubPath;
 		if ( [fileManager fileExistsAtPath:currentPath isDirectory:&isDir] ) {
 			
@@ -1005,7 +1018,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	NSEnumerator *e;
 	NSNumber *metaTaskIndex;
 	
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
 	taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
 	e = [taskMap objectEnumerator];
@@ -1036,6 +1049,10 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
+	//if we have gone through all the currently queued tasks, we need to build a new queue first
+	if ( [availableTasks count] < 1 )
+		[self resetAvailableTasks];
+		
 	//decide on the best grid to use for submission
 	GEZGrid *bestGrid = [self bestGridForSubmission];
 	if ( bestGrid == nil ) {
@@ -1077,10 +1094,10 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	NSMutableDictionary *inputFiles = [NSMutableDictionary dictionary];
 	int inputFilesCurrentIndex = 0;
 	
-	//this dictionary will keep track of the paths already listed in 'inputFiles' and the key used to store them, so we can easily retrieve the key of an inputFile entry to be used in the inputFileMap in a task specification; in inputFileFullPaths, the paths are the keys and the inputFile keys are the values; we could have simply used the full path as the keys in the inputFiles dictionary and get away with just one dictionary (inputFiles), but we will not do because of security concerns: including full paths in the specifications sent to the agents is revealing too much about the client filesystem
+	//this dictionary will keep track of the paths already listed in 'inputFiles' and the key used to store them, so we can easily retrieve the key of an inputFile entry to be used in the inputFileMap in a task specification; in inputFileFullPaths, the paths are the keys and the inputFile keys are the values; I could have simply used the full path as the keys in the inputFiles dictionary and get away with just one dictionary (inputFiles), but I decided not do because of security concerns: including full paths in the specifications sent to the agents is revealing too much about the client filesystem
 	NSMutableDictionary *inputFileFullPaths = [NSMutableDictionary dictionary];
 	
-	//stdin entries can be paths, but also NSString or NSData, and they thus have to be treated differently in the latter 2 cases to avoid duplicate entries in inputFiles; when stdin is not given as a path, we keep track of the NSString or NSData objects by storing them in the stdinObjects dictionary; the NSString or NSData are the keys, and the inputFile keys are the values
+	//stdin entries can be paths, but also NSString or NSData, and they thus have to be treated differently in the latter 2 cases to avoid duplicate entries in inputFiles; when stdin is not given as a path, we keep track of the NSString or NSData objects by storing them in the stdinObjects dictionary; the NSString or NSData are the keys (keys are copied but this is OK because NSString and NSData are immutable, so not physically copied), and the inputFile keys are the values
 	NSMutableDictionary *stdinObjects = [NSMutableDictionary dictionary];
 	
 	//loop over tasks to construct the taskSpecifications and the inputFiles entries	
@@ -1097,15 +1114,15 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 		
 		//standard input ÐÐ> the data will be stored in inputFiles; it might already be there from other tasks, and we need to check that; to keep track of the data already stored, we use the dictionaries stdinObjects (if stdin is provided as NSData or NSString) and inputFileFullPaths (if stdin is provided as a file path; this dictionary is also used for the uploaded paths, see next step)
 		NSString *stdinInputFileKey = nil;
-		NSData *stdinData = nil;
+		NSData *stdinData = [NSData data];
 		id standardInput = [taskDescription valueForKey:GEZTaskSubmissionStandardInputKey];
 		if ( [standardInput isKindOfClass:[NSData class]] ) {
 			stdinInputFileKey = [stdinObjects objectForKey:standardInput];
 			if ( stdinInputFileKey == nil ) {
 				stdinData = standardInput;
-				stdinInputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+				stdinInputFileKey = [NSString stringWithFormat:@"file%d-stdin",inputFilesCurrentIndex];
 				inputFilesCurrentIndex ++;
-				[inputFiles setObject:stdinData forKey:stdinInputFileKey];
+				[inputFiles setObject:[NSDictionary dictionaryWithObjectsAndKeys:stdinData, XGJobSpecificationFileDataKey, @"NO", XGJobSpecificationIsExecutableKey, nil] forKey:stdinInputFileKey];
 				[stdinObjects setObject:stdinInputFileKey forKey:standardInput];
 			}
 		}
@@ -1115,9 +1132,9 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 				stdinInputFileKey = [inputFileFullPaths objectForKey:standardInput];
 				if ( stdinInputFileKey == nil ) {
 					stdinData = [NSData dataWithContentsOfFile:standardInput];
-					stdinInputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+					stdinInputFileKey = [NSString stringWithFormat:@"file%d-stdin",inputFilesCurrentIndex];
 					inputFilesCurrentIndex ++;
-					[inputFiles setObject:stdinData forKey:stdinInputFileKey];
+					[inputFiles setObject:[NSDictionary dictionaryWithObjectsAndKeys:stdinData, XGJobSpecificationFileDataKey, @"NO", XGJobSpecificationIsExecutableKey, nil] forKey:stdinInputFileKey];
 					[inputFileFullPaths setObject:stdinInputFileKey forKey:standardInput];
 				}
 			}
@@ -1125,9 +1142,9 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 				stdinInputFileKey = [stdinObjects objectForKey:standardInput];
 				if ( stdinInputFileKey == nil ) {
 					stdinData = [standardInput dataUsingEncoding:NSUTF8StringEncoding];
-					stdinInputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
+					stdinInputFileKey = [NSString stringWithFormat:@"file%d-stdin",inputFilesCurrentIndex];
 					inputFilesCurrentIndex ++;
-					[inputFiles setObject:stdinData forKey:stdinInputFileKey];
+					[inputFiles setObject:[NSDictionary dictionaryWithObjectsAndKeys:stdinData, XGJobSpecificationFileDataKey, @"NO", XGJobSpecificationIsExecutableKey, nil] forKey:stdinInputFileKey];
 					[stdinObjects setObject:stdinInputFileKey forKey:standardInput];
 				}
 			}
@@ -1144,7 +1161,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 			[taskSpecification setObject:stdinInputFileKey forKey:XGJobSpecificationInputStreamKey];
 		}
 		
-		//adding the uploaded paths to inputFileMap, after changing the file tree; the full paths (client filesystem) will become relative paths, relative to the working directory on the agent; in the process, the file tree will be made as flat as possible (see 'flatPaths' implementation)
+		//adding the uploaded paths to inputFileMap, after changing the file tree; the full paths (client filesystem) will become relative paths, relative to the working directory on the agent; in the process, the file tree will be made as flat as possible (see 'relativePaths' implementation)
 		NSDictionary *agentPaths = relativePaths(uploadedPaths);
 		NSEnumerator *e = [uploadedPaths objectEnumerator];
 		NSString *fullPath;
@@ -1155,17 +1172,20 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 			if ( inputFileKey == nil ) {
 				if ( [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir] ) {
 					if ( isDir == NO ) {
+						//case where we actually add a file to inputFiles
 						NSData *fileData = [NSData dataWithContentsOfFile:fullPath];
+						NSString *fileIsExecutable = [[NSFileManager defaultManager] isExecutableFileAtPath:fullPath]?@"YES":@"NO";
+						NSDictionary *fileDictionary = [NSDictionary dictionaryWithObjectsAndKeys: fileData, XGJobSpecificationFileDataKey, fileIsExecutable, XGJobSpecificationIsExecutableKey, nil];
 						inputFileKey = [NSString stringWithFormat:@"file%d",inputFilesCurrentIndex];
 						inputFilesCurrentIndex ++;
-						[inputFiles setObject:fileData forKey:inputFileKey];
+						[inputFiles setObject:fileDictionary forKey:inputFileKey];
 						[inputFileFullPaths setObject:inputFileKey forKey:fullPath];
 						byteCount += [fileData length];
 					} else {
-						//dicrectories are a special case: we use a dummy file to force the creation of the directory on the agent working dir; only files can be added to inputFiles, not dirs, so we have to use this trick
+						//directories are a special case: we use a dummy file to force the creation of the directory on the agent working dir; only files can be added to inputFiles, not dirs, so we have to use this trick
 						inputFileKey = @".GridEZ_dummy_file_to_force_dir_creation";
 						if ( [inputFiles objectForKey:inputFileKey] == nil )
-							[inputFiles setObject:[NSData data] forKey:inputFileKey];
+							[inputFiles setObject:[NSDictionary dictionaryWithObjectsAndKeys: [NSData data], XGJobSpecificationFileDataKey, @"NO", XGJobSpecificationIsExecutableKey, nil] forKey:inputFileKey];
 					}
 				}
 			}
@@ -1174,7 +1194,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 			if ( isDir )
 				agentPath = [agentPath stringByAppendingPathComponent:@".GridEZ_dummy_file_to_force_dir_creation"];
 			if ( inputFileKey != nil )
-				[inputFileMap setObject:agentPath forKey:inputFileKey];
+				[inputFileMap setObject:inputFileKey forKey:agentPath];
 		}
 		
 		//command string might need to be changed from an absolute path (from the client filesystem) to a relative path (on the working dir on the agent); in addition, we need to use the 'working' directory instead of the 'executable' directory because the executable might not be in 'executable' (it is a "bug" in xgrid: even if files are set to be executable in the inputFiles, only one file will be uploaded and it cannot be inside a directory; but what saves us is that anyway all the files will also be in the 'working' directory)
@@ -1219,6 +1239,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 		metaTaskIndex = [availableTasks indexGreaterThanIndex:metaTaskIndex];
 	}
 	
+	//we have note submitted anything??
 	if ( taskCount < 1 ) {
 		DLog(NSStringFromClass([self class]),10,@"No job submission: no available task to submit");
 		return NO;
@@ -1278,16 +1299,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	[newJob setShouldRetrieveResultsAutomatically:YES];
 	[newJob submitWithJobSpecification:jobSpecification];
 	
-	//when we have gone through all the currently queued tasks, we need to build a new queue
-	if ( [availableTasks count] < 1 )
-		[self resetAvailableTasks];
-	
 	return YES;
-	
-	/*TODO
-		if ( [[self delegate] respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] )
-		[[self delegate] metaJob:self didSubmitTaskAtIndex:taskIndex];
-	*/
 	
 }
 

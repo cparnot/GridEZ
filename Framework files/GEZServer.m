@@ -51,6 +51,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 		//TODO
 		keys=[NSArray arrayWithObjects:@"isAvailable", @"isConnecting", @"isConnected", @"isLoaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil];
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"status"];
+		[self setKeys:[NSArray arrayWithObject:@"name"] triggerChangeNotificationsForDependentKey:@"address"];
 	}
 }
 
