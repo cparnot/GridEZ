@@ -24,6 +24,7 @@ __END_LICENSE__ */
 @end
 
 //useful to sort arrays numerically in the GUI
+#define compareNumerically compareNumericallyGridEZFramework
 @interface NSString (NSStringGridEZCompareString)
 - (NSComparisonResult)compareNumerically:(NSString *)aString;
 @end

@@ -18,6 +18,7 @@ __END_LICENSE__ */
 #import "GEZProxy.h";
 #import "GEZDefines.h"
 #import "GEZManager.h"
+#import "GEZCategories.h"
 
 //default values based on personal experience of what the optimal values could be in many situations (see submitNextJob)
 #define DEFAULT_TASKS_PER_JOB_VALUE 10
@@ -74,17 +75,27 @@ NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKe
 - (void)awakeFromFetch
 {
 	[super awakeFromFetch];
+
+	//temporary fix: delegate of GEZJob is not poersistent and has to be reestablished when fetchingf
+	NSEnumerator *e = [[self valueForKey:@"jobs"] objectEnumerator];
+	GEZJob *oneJob;
+	while ( oneJob = [e nextObject] )
+		[oneJob setDelegate:self];
 	
 	availableTasks = [[NSMutableIndexSet alloc] init];
 	if ( [self isRunning] ) {
 		[self suspend];
 		[self start];
 	}
-	//[self resetavailableTasks];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidLoadNotification:) name:GEZGridDidLoadNotification object:nil];
+	
+	
+	
 }
 
 - (void)dealloc
 {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[submissionTimer invalidate];
 	submissionTimer = nil;
 	[availableTasks release];
@@ -555,38 +566,33 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 - (void)start
 {
-	NSMutableSet *currentJobs;
-	NSEnumerator *e;
-	GEZJob *oneJob;
-	
 	DLog(NSStringFromClass([self class]),5,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
-	//if already running, we will still restart the metajob, which can be useful at least for debugging purpose, and which won't hurt in any case
-	if ( [self isRunning] ) {
-		if ( [availableTasks count] < 1 )
-			[self resetAvailableTasks];
-		[self submitNextJobSoon];
-		return;
+	//update state
+	//if already running, we will still restart the metajob, which can be useful at least for debugging purpose, and which won't hurt in any case, but we don't have to notify the delegate again or KVC observers
+	if ( ![self isRunning] ) {
+		if ( [[self delegate] respondsToSelector:@selector(metaJobDidStart:)])
+			[[self delegate] metaJobDidStart:self];
+		[self setValue:[NSNumber numberWithBool:YES] forKey:@"isRunning"];
+		[self setStatus:@"Running"];
 	}
 
-	//update state
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isRunning"];
-	[self setStatus:@"Running"];
-	if ([[self delegate] respondsToSelector:@selector(metaJobDidStart:)])
-		[[self delegate] metaJobDidStart:self];
-
+	/*
 	//clean-up and reset current pending jobs
-	currentJobs = [self mutableSetValueForKey:@"jobs"];
-	e = [currentJobs objectEnumerator];
+	NSSet *currentJobs = [self valueForKey:@"jobs"];
+	NSEnumerator *e = [currentJobs objectEnumerator];
+	GEZJob *oneJob;
 	while ( oneJob = [e nextObject] ) {
 		[oneJob setDelegate:self];
 		[oneJob setShouldRetrieveResultsAutomatically:YES];
 	}
+	 */
 	
 	//prepare for task submissions
-	[self resetAvailableTasks];
+	if ( [availableTasks count] < 1 )
+		[self resetAvailableTasks];
 	
-	//start the "run loop"
+	//start the "run loop" of submissions
 	[self submitNextJobSoon];
 }
 
@@ -642,140 +648,6 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 }
 
 
-#pragma mark *** GEZJob delegate methods ***
-
-//MetaJob is a delegate of multiple GEZJob
-//these are the GEZJob delegate methods
-
-/*
- - (void)jobDidSubmit:(GEZJob *)aJob;
- - (void)jobDidNotSubmit:(GEZJob *)aJob;
- - (void)jobDidStart:(GEZJob *)aJob;
- - (void)jobDidFinish:(GEZJob *)aJob;
- - (void)jobDidFail:(GEZJob *)aJob;
- - (void)jobWasDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid;
- - (void)jobWasNotDeleted:(GEZJob *)aJob;
- - (void)jobDidProgress:(GEZJob *)aJob completedTaskCount:(unsigned int)count;
- - (void)jobDidRetrieveResults:(GEZJob *)aJob;
- */ 
-
-//it might be possible to submit more jobs as less "submitted" jobs will be present
-- (void)jobDidSubmit:(GEZJob *)aJob
-{
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
-
-	//the delegate might want to know the tasks were submitted
-	if ( [[self delegate] respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] ) {
-		NSEnumerator *e = [[[aJob jobInfo] objectForKey:@"TaskMap"] objectEnumerator];
-		NSString *metaTaskIndex;
-		while ( metaTaskIndex = [e nextObject] )
-			[[self delegate] metaJob:self didSubmitTaskAtIndex:[metaTaskIndex intValue]];
-	}
-	
-	//ready to submit more	
-	[self submitNextJobSoon];
-}
-
-/*
-- (void)jobDidStart:(GEZJob *)aJob
-{
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
-}
-*/
-
-- (void)jobDidNotStart:(GEZJob *)aJob
-{
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
-	[self removeJob:aJob];
-}
-
-- (void)jobDidFail:(GEZJob *)aJob
-{
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
-
-	//the taskMap allows to convert taskID into metaTaskIndex
-	NSDictionary *taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
-	if ( taskMap == nil )
-		[NSException raise:@"GEZMetaJobError" format:@"No task map stored in the job"];
-		
-	//loop over the dictionary values to get all the metaTask indices
-	NSEnumerator *e = [taskMap objectEnumerator];
-	NSString *metaTaskIndex;
-	while ( metaTaskIndex = [e nextObject] ) {
-		
-		//update the count of failures for the metaTask
-		int index = [metaTaskIndex intValue];
-		int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:index];
-		
-		//do we need to update the count of dismissed metaTasks?
-		int maxFailuresPerTask = [self maxFailuresPerTask];
-		if ( maxFailuresPerTask > 0 && numberOfFailures == maxFailuresPerTask ) {
-			int numberOfSuccesses = [[self successCounts] intValueAtIndex:index];
-			int minSuccessesPerTask = [self minSuccessesPerTask];
-			if ( numberOfSuccesses < minSuccessesPerTask ) {
-				[self incrementCountDismissedTasks];
-			}
-		}
-	}		
-	
-	//we can now dump the job and might be ready for more!
-	[self removeJob:aJob];
-	[self submitNextJobSoon];
-}
-
-- (void)jobDidFinish:(GEZJob *)aJob
-{
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
-}
-
-- (void)jobDidRetrieveResults:(GEZJob *)aJob;
-{	
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
-	DLog(NSStringFromClass([self class]),10,@"\nResults:\n%@",[[aJob allFiles] description]);
-
-	//the taskMap allows to convert taskID in metaTaskIndex
-	NSDictionary *taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
-	if ( taskMap == nil )
-		[NSException raise:@"GEZMetaJobError" format:@"No task map stored in job %@", [aJob name]];
-
-	//loop over the dictionary keys to return individual task results
-	NSDictionary *results = [aJob allFiles];
-	id dataSource = [self dataSource];
-	NSEnumerator *e = [results keyEnumerator];
-	NSString *taskIdentifier;
-	while ( taskIdentifier = [e nextObject] ) {
-		
-		//based on the validation result, the task was either a success or a failure; then, depending on how many successes and failures, the metatask could be considered completed or be dismissed
-		unsigned int metaTaskIndex = [[taskMap objectForKey:taskIdentifier] intValue];
-		int minSuccessesPerTask = [self minSuccessesPerTask];
-		int maxFailuresPerTask = [self maxFailuresPerTask];
-		if ( [dataSource metaJob:self validateTaskAtIndex:metaTaskIndex results:[results objectForKey:taskIdentifier]] ) {
-			int numberOfSuccesses = [[self successCounts] incrementIntValueAtIndex:metaTaskIndex];
-			int numberOfFailures = [[self failureCounts] intValueAtIndex:metaTaskIndex];
-			if ( numberOfSuccesses == minSuccessesPerTask ) {
-				[self incrementCountCompletedTasks];
-				if ( maxFailuresPerTask > 0 && numberOfFailures >= maxFailuresPerTask )
-					[self decrementCountDismissedTasks];
-			}
-		} else {
-			int numberOfSuccesses = [[self successCounts] intValueAtIndex:metaTaskIndex];
-			int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:metaTaskIndex];
-			if ( ( maxFailuresPerTask > 0 ) && ( numberOfFailures == maxFailuresPerTask ) && ( numberOfSuccesses < minSuccessesPerTask ) )
-				[self incrementCountDismissedTasks];
-		}
-	}
-	
-	//we are done with the job - delete it...
-	[self removeJob:aJob];
-}
-
-//if job was deleted by somebody outside of GEZMetaJob, we need to clean up
-- (void)jobWasDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid
-{
-	if ( [[self valueForKey:@"jobs"] member:aJob] )
-		[self removeJob:aJob];
-}
-
 
 @end
 
@@ -822,11 +694,7 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 //this decision depends on the number of "Pending" jobs (the presence of pending jobs means the grid is full) and of "Submitting" jobs (jobs in the pipeline not yet acknowledged by XgridFoundation, we have to wait for these to be acknowledged)
 - (GEZGrid *)bestGridForSubmission
 {
-	GEZGrid *bestGrid = nil;
-	int bestPendingJobCount = -1;
-	int bestAvailableAgentCount = -1;
-	
-	//if no prefered grids, just use the best one available
+	//if no prefered grids, start with all of them
 	NSSet *allGrids = [self allGrids];
 	if ( [allGrids count] == 0 ) {
 		NSEnumerator *allServers = [[GEZServer allServers] objectEnumerator];
@@ -838,22 +706,25 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 	}
 	
 	//looping through all the grids to find the best one = connected, less pending jobs, more available agents
+	GEZGrid *bestGrid = nil;
+	int bestPendingJobCount = -1;
+	int bestAvailableAgentsGuess = -1;
 	NSEnumerator *e = [allGrids objectEnumerator];
 	GEZGrid *aGrid;
 	while ( aGrid = [e nextObject] ) {
 		int pendingJobCount = pendingJobCountForGrid(aGrid);
 		int availableAgentsGuess = [aGrid availableAgentsGuess];
-		if ( [aGrid isConnected] && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount ) &&  availableAgentsGuess > bestAvailableAgentCount ) {
+		if ( [aGrid isConnected] && ( submittingJobCountForGrid(aGrid) < [[self valueForKey:@"maxSubmittingJobs"] intValue] ) && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount || ( pendingJobCount == bestPendingJobCount &&  availableAgentsGuess > bestAvailableAgentsGuess ) ) ) {
 			bestGrid = aGrid;
 			bestPendingJobCount = pendingJobCount;
-			bestAvailableAgentCount = availableAgentsGuess;
+			bestAvailableAgentsGuess = availableAgentsGuess;
 		}
 	}
 	if ( bestGrid == nil )
 		return nil;
 	
 	//maxPendingJobs = jobs already in the queue in the grid = when all the agents are busy working and jobs pile up
-	//maxSubmittingJobs = job still not acknoledged by Xgrid as being submitted = no identifer yet, ActionMonitor still pending (see GEZJob too)
+	//maxSubmittingJobs = job still not acknowledged by Xgrid as being submitted = no identifer yet, ActionMonitor still pending (see GEZJob too)
 	if ( ( bestPendingJobCount >= [[self valueForKey:@"maxPendingJobs"] intValue] ) || ( submittingJobCountForGrid(bestGrid) >= [[self valueForKey:@"maxSubmittingJobs"] intValue] ) )
 		return nil;
 	
@@ -1246,7 +1117,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	}
 	
 	//create a human-readable name for the job with the metatask indexes
-	NSArray *indexes = [[taskMap allValues] sortedArrayUsingSelector:@selector(compare:)];
+	NSArray *indexes = [[taskMap allValues] sortedArrayUsingSelector:@selector(compareNumerically:)];
 	NSMutableString *jobName = [NSMutableString stringWithFormat:@"%@ [", [self valueForKey:@"name"]];
 	int i,ii,j,n;
 	if ( [indexes count]>0 ) {
@@ -1409,6 +1280,150 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	[self willChangeValueForKey:@"successCounts"];
 	[self setPrimitiveValue:successCountsNew forKey:@"successCounts"];
 	[self didChangeValueForKey:@"successCounts"];
+}
+
+
+#pragma mark *** GEZGrid notifications ***
+
+- (void)gridDidLoadNotification:(NSNotification *)aNotification
+{
+	[self submitNextJobSoonIfRunning];
+}
+
+
+#pragma mark *** GEZJob delegate methods ***
+
+//MetaJob is a delegate of multiple GEZJob
+//these are the GEZJob delegate methods
+
+/*
+ - (void)jobDidSubmit:(GEZJob *)aJob;
+ - (void)jobDidNotSubmit:(GEZJob *)aJob;
+ - (void)jobDidStart:(GEZJob *)aJob;
+ - (void)jobDidFinish:(GEZJob *)aJob;
+ - (void)jobDidFail:(GEZJob *)aJob;
+ - (void)jobWasDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid;
+ - (void)jobWasNotDeleted:(GEZJob *)aJob;
+ - (void)jobDidProgress:(GEZJob *)aJob completedTaskCount:(unsigned int)count;
+ - (void)jobDidRetrieveResults:(GEZJob *)aJob;
+ */ 
+
+//it might be possible to submit more jobs as less "submitted" jobs will be present
+- (void)jobDidSubmit:(GEZJob *)aJob
+{
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+	
+	//the delegate might want to know the tasks were submitted
+	if ( [[self delegate] respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] ) {
+		NSEnumerator *e = [[[aJob jobInfo] objectForKey:@"TaskMap"] objectEnumerator];
+		NSString *metaTaskIndex;
+		while ( metaTaskIndex = [e nextObject] )
+			[[self delegate] metaJob:self didSubmitTaskAtIndex:[metaTaskIndex intValue]];
+	}
+	
+	//ready to submit more	
+	[self submitNextJobSoon];
+}
+
+/*
+ - (void)jobDidStart:(GEZJob *)aJob
+ {
+	 DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+ }
+ */
+
+- (void)jobDidNotStart:(GEZJob *)aJob
+{
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+	[self removeJob:aJob];
+}
+
+- (void)jobDidFail:(GEZJob *)aJob
+{
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+	
+	//the taskMap allows to convert taskID into metaTaskIndex
+	NSDictionary *taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
+	if ( taskMap == nil )
+		[NSException raise:@"GEZMetaJobError" format:@"No task map stored in the job"];
+	
+	//loop over the dictionary values to get all the metaTask indices
+	NSEnumerator *e = [taskMap objectEnumerator];
+	NSString *metaTaskIndex;
+	while ( metaTaskIndex = [e nextObject] ) {
+		
+		//update the count of failures for the metaTask
+		int index = [metaTaskIndex intValue];
+		int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:index];
+		
+		//do we need to update the count of dismissed metaTasks?
+		int maxFailuresPerTask = [self maxFailuresPerTask];
+		if ( maxFailuresPerTask > 0 && numberOfFailures == maxFailuresPerTask ) {
+			int numberOfSuccesses = [[self successCounts] intValueAtIndex:index];
+			int minSuccessesPerTask = [self minSuccessesPerTask];
+			if ( numberOfSuccesses < minSuccessesPerTask ) {
+				[self incrementCountDismissedTasks];
+			}
+		}
+	}		
+	
+	//we can now dump the job and might be ready for more!
+	[self removeJob:aJob];
+	[self submitNextJobSoon];
+}
+
+- (void)jobDidFinish:(GEZJob *)aJob
+{
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+}
+
+- (void)jobDidRetrieveResults:(GEZJob *)aJob;
+{	
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+	DLog(NSStringFromClass([self class]),10,@"\nResults:\n%@",[[aJob allFiles] description]);
+	
+	//the taskMap allows to convert taskID in metaTaskIndex
+	NSDictionary *taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
+	if ( taskMap == nil )
+		[NSException raise:@"GEZMetaJobError" format:@"No task map stored in job %@", [aJob name]];
+	
+	//loop over the dictionary keys to return individual task results
+	NSDictionary *results = [aJob allFiles];
+	id dataSource = [self dataSource];
+	NSEnumerator *e = [results keyEnumerator];
+	NSString *taskIdentifier;
+	while ( taskIdentifier = [e nextObject] ) {
+		
+		//based on the validation result, the task was either a success or a failure; then, depending on how many successes and failures, the metatask could be considered completed or be dismissed
+		unsigned int metaTaskIndex = [[taskMap objectForKey:taskIdentifier] intValue];
+		int minSuccessesPerTask = [self minSuccessesPerTask];
+		int maxFailuresPerTask = [self maxFailuresPerTask];
+		if ( [dataSource metaJob:self validateTaskAtIndex:metaTaskIndex results:[results objectForKey:taskIdentifier]] ) {
+			int numberOfSuccesses = [[self successCounts] incrementIntValueAtIndex:metaTaskIndex];
+			int numberOfFailures = [[self failureCounts] intValueAtIndex:metaTaskIndex];
+			if ( numberOfSuccesses == minSuccessesPerTask ) {
+				[self incrementCountCompletedTasks];
+				if ( maxFailuresPerTask > 0 && numberOfFailures >= maxFailuresPerTask )
+					[self decrementCountDismissedTasks];
+			}
+		} else {
+			int numberOfSuccesses = [[self successCounts] intValueAtIndex:metaTaskIndex];
+			int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:metaTaskIndex];
+			if ( ( maxFailuresPerTask > 0 ) && ( numberOfFailures == maxFailuresPerTask ) && ( numberOfSuccesses < minSuccessesPerTask ) )
+				[self incrementCountDismissedTasks];
+		}
+	}
+	
+	//we are done with the job - delete it...
+	[self removeJob:aJob];
+}
+
+//if job was deleted by somebody outside of GEZMetaJob, we need to clean up
+- (void)jobWillBeDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid
+{
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+	if ( [[self valueForKey:@"jobs"] member:aJob] )
+		[self removeJob:aJob];
 }
 
 
