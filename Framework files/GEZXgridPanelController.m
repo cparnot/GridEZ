@@ -339,6 +339,9 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 
+	if ( [[addControllerAddressField stringValue] isEqualToString:@""] )
+		return;
+	
 	//add the server
 	[GEZServer serverWithAddress:[addControllerAddressField stringValue]];
 	
@@ -350,7 +353,10 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 - (IBAction)addAndConnectController:(id)sender
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
-	
+
+	if ( [[addControllerAddressField stringValue] isEqualToString:@""] )
+		return;
+
 	//add the server and start connection
 	GEZServer *newServer = [GEZServer serverWithAddress:[addControllerAddressField stringValue]];
 	[GEZConnectionPanelController runConnectionPanelWithServer:newServer];

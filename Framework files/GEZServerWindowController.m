@@ -211,23 +211,30 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 - (IBAction)addServer:(id)sender
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
-	
+
+	NSString *address = [addServerAddressField stringValue];
+	if ( [address isEqualToString:@""] )
+		return;
+
 	//close the sheet
 	[NSApp endSheet:addServerSheet];
 	[addServerSheet orderOut:self];
 
-	//add the server (apparently needs to be called twice so the NSTreeController reacts...
-	GEZServer *newServer = [GEZServer serverWithAddress:[addServerAddressField stringValue]];
-	newServer = [GEZServer serverWithAddress:[newServer address]];
+	//add the server
+	[GEZServer serverWithAddress:address];
 	
 }
 
 - (IBAction)addAndConnectServer:(id)sender
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+
+	NSString *address = [addServerAddressField stringValue];
+	if ( [address isEqualToString:@""] )
+		return;
 	
 	//retrieve the server and start connection
-	GEZServer *newServer = [GEZServer serverWithAddress:[addServerAddressField stringValue]];
+	GEZServer *newServer = [GEZServer serverWithAddress:address];
 	[GEZConnectionPanelController runConnectionPanelWithServer:newServer];
 	
 	//close the sheet
