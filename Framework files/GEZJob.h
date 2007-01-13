@@ -116,7 +116,7 @@ extern NSString *GEZJobResultsStandardErrorKey;
 - (void)jobDidStart:(GEZJob *)aJob;
 - (void)jobDidFinish:(GEZJob *)aJob;
 - (void)jobDidFail:(GEZJob *)aJob;
-- (void)jobWasDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid;
+- (void)jobWillBeDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid;
 - (void)jobWasNotDeleted:(GEZJob *)aJob;
 - (void)jobDidProgress:(GEZJob *)aJob completedTaskCount:(unsigned int)count;
 - (void)jobDidRetrieveResults:(GEZJob *)aJob;

@@ -465,13 +465,13 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		return;
 	[self setValue:[NSNumber numberWithBool:YES] forKey:@"shouldDelete"];
 	
-	//not ready for deletion?
+	//not ready for deletion if currently submitted
 	GEZJobState state = [self state];
 	if ( state == GEZJobStateSubmitted )
 		return;
 	
 	//no need to delete from the grid?
-	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateInvalid || [self grid] == nil || [[self identifier] intValue] < 1 ) {
+	if ( state == GEZJobStateUninitialized || state == GEZJobStateSubmitting || state == GEZJobStateInvalid || [self grid] == nil || [[self identifier] intValue] < 1 || ( xgridJob != nil && [xgridJob state] == XGResourceStateCanceled ) ) {
 		[self deleteFromStoreSoon];
 		return;
 	}
@@ -480,9 +480,11 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	if ( [[self grid] isLoaded] == NO )
 		return;	
 
-	//is the XGJob even defined or existing on the grid?
+	//if still hooking, xgridJob could still be nil and we need to finish hooking so we can really delete it from the controller
 	if ( xgridJob == nil )
 		return;
+
+	//is the XGJob even defined or existing on the grid?
 	if ( [[[self grid] xgridGrid] jobForIdentifier:[self identifier]] == nil ) {
 		[self deleteFromStoreSoon];
 		return;
@@ -495,6 +497,13 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 - (void)deleteFromStore
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
+	//no need to put more nails on the coffin
+	if ( [self state] == GEZJobStateDeleted )
+		return;
+	
+	if ( [delegate respondsToSelector:@selector(jobWillBeDeleted:fromGrid:)] )
+		[delegate jobWillBeDeleted:self fromGrid:[self grid]];
 
 	//clean state
 	[self setState:GEZJobStateDeleted];
@@ -576,6 +585,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:[GEZGridHook gridHookWithIdentifier:[grid identifier] serverHook:[GEZServerHook serverHookWithAddress:[[grid server] address]]]];
 		return;
 	}
+	didSubmitRecently = NO;
 	
 	//maybe the XGJob is already updated, which would be true if its name is not nil
 	//then we have to do whatever is needed once loaded (but it is best to wait for the next iteration of the run loop)
@@ -635,7 +645,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 //update the state of GEZJob to be in sync with XGJob as much as possible
 - (void)xgridResourceStateDidChange:(XGResource *)resource
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s %d (%@)",[self class],self,_cmd,[resource state], StatusStrings[[resource state]]);
 	
 	//maybe time to delete
 	if ( [self shouldDelete] ) {
@@ -663,6 +673,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		[self didFinish];
 	else if ( currentXgridState == XGResourceStateFailed )
 		[self didFail];
+	else if ( currentXgridState == XGResourceStateCanceled )
+		[self deleteSoon];
 	
 }
 
@@ -717,8 +729,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		XGActionMonitorOutcome outcome = [deletionAction outcome];
 		[self setDeletionAction:nil];
 		if ( outcome == XGActionMonitorOutcomeSuccess) {
-			if ( [delegate respondsToSelector:@selector(jobWasDeleted:fromGrid:)] )
-				[delegate jobWasDeleted:self fromGrid:[self grid]];
+			if ( [delegate respondsToSelector:@selector(jobWillBeDeleted:fromGrid:)] )
+				[delegate jobWillBeDeleted:self fromGrid:[self grid]];
 			[self deleteFromStoreSoon];
 		} else {
 			countDeletionAttempts ++;
