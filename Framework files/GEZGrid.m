@@ -203,7 +203,23 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 }
 
 
+
 //these are NOT complicant with KVO/KVC
+
+- (BOOL)autoconnect
+{
+	return [[self server] autoconnect];
+}
+
+- (void)setAutoconnect:(BOOL)newautoconnect
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self willChangeValueForKey:@"autoconnect"];
+	[[self server] setAutoconnect:newautoconnect];
+	[self didChangeValueForKey:@"autoconnect"];
+}
+
+
 - (BOOL)isAvailable
 {
 	return [[self server] isAvailable];

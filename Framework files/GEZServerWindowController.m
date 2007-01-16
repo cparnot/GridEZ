@@ -104,22 +104,29 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	else {
 		//validation depends on how many items are already connected, disconnected, or available
 		NSArray *selection = [gridsController valueForKeyPath:@"selectedObjects.server"];
-		NSEnumerator *e = [selection objectEnumerator];
-		GEZServer *aServer;
-		int countBusy = 0;
-		int countAvailable = 0;
-		while ( aServer = [e nextObject] ) {
-			if ( [aServer isBusy] )
-				countBusy++;
-			if ( [aServer isAvailable] )
-				countAvailable++;
+		int countTotal = [selection count];
+		if ( countTotal < 1 )
+			validate = NO;
+		else if ( action == @selector(autoconnect:) )
+			validate = YES;
+		else {
+			int countBusy = 0;
+			int countAvailable = 0;
+			NSEnumerator *e = [selection objectEnumerator];
+			GEZServer *aServer;
+			while ( aServer = [e nextObject] ) {
+				if ( [aServer isBusy] )
+					countBusy++;
+				if ( [aServer isAvailable] )
+					countAvailable++;
+			}
+			if ( ( countAvailable != countTotal ) && ( action == @selector(removeItem:) ) )
+				validate = YES;
+			if ( ( action == @selector(disconnect:) ) )
+				validate = YES;
+			if ( ( countBusy != countTotal ) && ( action == @selector(connect:) ) )
+				validate = YES;
 		}
-		if ( ( countAvailable != [selection count] ) && ( action == @selector(removeItem:) ) )
-			 validate = YES;
-		if ( ( countBusy > 0 ) && ( action == @selector(disconnect:) ) )
-			validate = YES;
-		if ( ( countBusy != [selection count] ) && ( action == @selector(connect:) ) )
-			validate = YES;
 	}
 	
 	return validate;
@@ -241,6 +248,22 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	[NSApp endSheet:addServerSheet];
 	[addServerSheet orderOut:self];
 }
+
+
+#pragma mark *** NSOutlineView delegate ***
+
+/*
+//update the state of the menu item "Autoconnect" in the outline view contextual menu
+- (void)outlineViewSelectionDidChange:(NSNotification *)aNotification
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	NSArray *selection = [gridsController valueForKeyPath:@"selectedObjects.server"];
+	NSCellStateValue menuState = NSMixedState;
+	if ( [selection count] == 1 )
+		menuState = [[selection objectAtIndex:0] autoconnect];
+	[[[[aNotification object] menu] itemWithTitle:@"Autoconnect"] setState:menuState];
+}
+*/
 
 #pragma mark *** Toolbar setup ***
 

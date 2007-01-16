@@ -68,9 +68,16 @@ NSString *GEZServerHookDidUpdateNotification = @"GEZServerHookDidUpdateNotificat
 NSString *GEZServerHookDidNotConnectNotification = @"GEZServerHookDidNotConnectNotification";
 NSString *GEZServerHookDidDisconnectNotification = @"GEZServerHookDidDisconnectNotification";
 
+//intervals to be used for autoconnect feature
+#define AUTOCONNECT_INTERVAL_UNDEFINED 0
+#define AUTOCONNECT_INTERVAL_MINIMUM 10
+#define AUTOCONNECT_INTERVAL_STEP 2
+#define AUTOCONNECT_INTERVAL_MAXIMUM 600
+
 
 @interface GEZServerHook (GEZServerHookPrivate)
 - (void)xgridResourceDidUpdate:(XGResource *)resource;
+- (void)connectionProblem:(XGConnection *)connection withError:(NSError *)error;
 @end
 
 
@@ -131,6 +138,8 @@ NSMutableDictionary *serverHookInstances=nil;
 			serverPassword = [password copy];
 			xgridController = nil;
 			xgridConnection = nil;
+			autoconnect = NO;
+			autoconnectInterval = AUTOCONNECT_INTERVAL_UNDEFINED;
 			serverHookState = GEZServerHookStateUninitialized;
 			connectionSelectors = nil;
 			selectorEnumerator = nil;
@@ -201,12 +210,12 @@ NSMutableDictionary *serverHookInstances=nil;
 
 - (BOOL)isConnecting
 {
-	return serverHookState == GEZServerHookStateConnecting;
+	return ( serverHookState == GEZServerHookStateConnecting );
 }
 
 - (BOOL)isConnected
 {
-	return serverHookState == GEZServerHookStateConnected || serverHookState == GEZServerHookStateUpdated || serverHookState == GEZServerHookStateLoaded;
+	return ( serverHookState == GEZServerHookStateConnected || serverHookState == GEZServerHookStateUpdated || serverHookState == GEZServerHookStateLoaded );
 }
 
 - (BOOL)isUpdated
@@ -381,6 +390,16 @@ NSMutableDictionary *serverHookInstances=nil;
 		selectorEnumerator = nil;
 	else
 		selectorEnumerator = [[connectionSelectors objectEnumerator] retain];
+}
+
+- (BOOL)autoconnect
+{
+	return autoconnect;
+}
+
+- (void)setAutoconnect:(BOOL)newautoconnect
+{
+	autoconnect = newautoconnect;
 }
 
 
@@ -617,11 +636,20 @@ NSMutableDictionary *serverHookInstances=nil;
 	
 	//otherwise, the connection failed
 	else {
-		[self setXgridConnection:nil];
-		[self setConnectionSelectors:nil];
+		serverHookState = GEZServerHookStateFailed;
+		[self connectionProblem:nil withError:nil];
 		serverHookState = GEZServerHookStateFailed;
 		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidNotConnectNotification object:self];
 	}
+}
+
+- (void)autoconnectWithTimer:(NSTimer *)aTimer
+{
+	if ( autoconnectInterval == AUTOCONNECT_INTERVAL_UNDEFINED || autoconnect == NO || [self isConnecting] == YES || [self isConnected] == YES ) {
+		autoconnectInterval = AUTOCONNECT_INTERVAL_UNDEFINED;
+		return;
+	}
+	[self connect];
 }
 
 #pragma mark *** XGConnection delegate methods, going from "Connecting" to "Connected" ***
@@ -640,6 +668,7 @@ NSMutableDictionary *serverHookInstances=nil;
 	//change the current state
 	serverHookState= GEZServerHookStateConnected;
 	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidConnectNotification object:self];
+	autoconnectInterval = AUTOCONNECT_INTERVAL_UNDEFINED;
 	
 	//next step is to get the controller 'updated' = all instance variables updated
 	if ( [xgridController isUpdated] )
@@ -649,29 +678,17 @@ NSMutableDictionary *serverHookInstances=nil;
 		xgridControllerObserver = [[GEZResourceObserver alloc] initWithResource:xgridController];
 		[xgridControllerObserver setDelegate:self];
 	}
-	//[xgridController addObserver:self forKeyPath:@"state" options:0 context:NULL];
 }
 
-- (void)connectionDidNotOpen:(XGConnection *)connection withError:(NSError *)error
-{
+//this method is the code common to both connectionDidNotOpen: and connectionDidClose: XGConnection delegate callbacks
+- (void)connectionProblem:(XGConnection *)connection withError:(NSError *)error
+{	
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	
-	if ( serverHookState == GEZServerHookStateConnecting )
-		[self startNextConnectionAttempt];
-	else {
-		serverHookState = GEZServerHookStateDisconnected;
-		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidDisconnectNotification object:self];
-	}
-}
 
-- (void)connectionDidClose:(XGConnection *)connection;
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	
 	//connection failed?
 	if ( serverHookState == GEZServerHookStateConnecting )
 		[self startNextConnectionAttempt];
-	
+
 	//connection dropped?
 	else {
 		serverHookState = GEZServerHookStateDisconnected;
@@ -681,7 +698,29 @@ NSMutableDictionary *serverHookInstances=nil;
 		[grids release];
 		grids = nil;
 		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidDisconnectNotification object:self];
+		if ( [self autoconnect] ) {
+			if ( autoconnectInterval == AUTOCONNECT_INTERVAL_UNDEFINED )
+				autoconnectInterval = AUTOCONNECT_INTERVAL_MINIMUM;
+			else {
+				autoconnectInterval *= AUTOCONNECT_INTERVAL_STEP;
+				if ( autoconnectInterval > AUTOCONNECT_INTERVAL_MAXIMUM )
+					autoconnectInterval = AUTOCONNECT_INTERVAL_MAXIMUM;
+			}
+			[NSTimer scheduledTimerWithTimeInterval:autoconnectInterval target:self selector:@selector(autoconnectWithTimer:) userInfo:nil repeats:NO];
+		}
 	}
+}
+
+- (void)connectionDidNotOpen:(XGConnection *)connection withError:(NSError *)error
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self connectionProblem:connection withError:error];
+}
+
+- (void)connectionDidClose:(XGConnection *)connection;
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self connectionProblem:connection withError:nil];
 }
 
 
@@ -749,57 +788,6 @@ NSMutableDictionary *serverHookInstances=nil;
 	
 }
 
-/*
-//when the state of the XGController is modified by the XgridFoundation framework, we know all its instance variables will be set by the end of this run loop
-//so we call a timer with interval 0 to be back when all the instance variables are set (e.g. grids,...)
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@\nObject = <%@:%p>\nKey Path = %@\nChange = %@",[self class],self,_cmd, [self shortDescription], [object class], object, keyPath, [change description]);
-
-	if ( serverHookState == GEZServerHookStateConnected ) {
-		if ( [xgridController state] == XGResourceStateAvailable ) {
-			[xgridController removeObserver:self forKeyPath:@"state"];
-			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(controllerDidUpdateInstanceVariables:) userInfo:nil repeats:NO];
-		}
-	} else {
-		[xgridController removeObserver:self forKeyPath:@"state"];
-	}
-}
-
-//callback on the iteration of the run loop following the change in the state of the XGController
-- (void)controllerDidUpdateInstanceVariables:(NSTimer *)aTimer
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
-	//early exit?
-	if ( serverHookState != GEZServerHookStateConnected || [xgridController state] != XGResourceStateAvailable )
-		return;
-
-	//prepare the 'grids' array
-	XGGrid *aGrid;
-	NSEnumerator *e = [[xgridController grids] objectEnumerator];
-	NSMutableArray *tempGrids = [NSMutableArray arrayWithCapacity:[[xgridController grids] count]];
-	while ( aGrid = [e nextObject] ) {
-		GEZGridHook *gridHook = [GEZGridHook gridHookWithXgridGrid:aGrid serverHook:self];
-		NSAssert(gridHook!=nil,@"[GEZGridHook gridHookWithXgridGrid:aGrid serverHook:self] returning nil");
-		[tempGrids addObject:gridHook];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidUpdate:) name:GEZGridHookDidUpdateNotification object:gridHook];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidLoad:) name:GEZGridHookDidLoadNotification object:gridHook];
-	}
-	[grids release];
-	grids = [[NSArray alloc] initWithArray:tempGrids];
-	
-	//now, the server is updated!
-	serverHookState = GEZServerHookStateUpdated;
-	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidUpdateNotification object:self];
-	
-	//next is to wait for the grids to be updated... except if they already are
-	if ( [self allGridsUpdated] ) {
-		serverHookState = GEZServerHookStateLoaded;
-		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidLoadNotification object:self];		
-	}
-}
-*/
 
 
 #pragma mark *** GEZGridHook callbacks, going from "Updated" to "Loaded" ***

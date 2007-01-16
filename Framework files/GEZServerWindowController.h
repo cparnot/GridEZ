@@ -37,7 +37,7 @@ __END_LICENSE__ */
 //used by the nib to get the managed object context
 - (NSManagedObjectContext *)managedObjectContext;
 
-//Actions in the main window
+//Actions in the main window and contextual menu
 - (IBAction)connect:(id)sender;
 - (IBAction)disconnect:(id)sender;
 - (IBAction)addItem:(id)sender;

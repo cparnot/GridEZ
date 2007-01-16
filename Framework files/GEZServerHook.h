@@ -46,8 +46,14 @@ typedef enum {
 	int serverHookState; //private enum
 	GEZServerHookType serverType;
 	
-	NSArray *grids; //array of GEZGridHook
+	//auto-reconnect when connection is lost, but not when created
+	BOOL autoconnect;
+	NSTimeInterval autoconnectInterval;
 	
+	//array of GEZGridHook
+	NSArray *grids;
+	
+	//used to get callbacks on XGController KVC observing
 	GEZResourceObserver *xgridControllerObserver;
 	
 	//keeping track of connection attempts
@@ -74,6 +80,8 @@ typedef enum {
 - (BOOL)isConnected;
 - (BOOL)isUpdated;
 - (BOOL)isLoaded;
+- (BOOL)autoconnect;
+- (void)setAutoconnect:(BOOL)newValue;
 
 //the password will only be stored until the connection is successfull or failed
 - (void)setPassword:(NSString *)newPassword;

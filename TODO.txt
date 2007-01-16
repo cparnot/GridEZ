@@ -1,18 +1,22 @@
 Roadmap
 
 Todo for v0.4 release:
-* bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
-  ÐÐ> I should use a separate object for each KVO instance to make it more like NSNotification system
-* User-level store, to remember servers used by different apps (do not store jobs)
-* do not allow connection to empty string
 * bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
-* make the little colored dots for status more consistent in size (maybe different shapes?)
-* when job removed by other process, should get notified and act accordingly
-* delete key should work in Controllers window and Xgrid panel
-* In the Xgrid panel, add job ids and keep jobs ordered by ID by default
+* GEZJob delegate: make it a coredata relationship, just like the delegate of GEZMetaJob; do that at the end, because the database format will become incompatible
+* all the keys "isAvailable", "isConnected",... should be replaced with "available", "connected",... to be KVC-compliant!!
+* Make "autoconnect" a coredata property of GEZServer
 
 
 done:
+* Add "Autoconnect" to Server and Grid: first make it an ivar on GEZServerHook (and of GEZServer for testing and still be able to use  database compatible with previous version) then a coredata property of GEZServer
+* In the Xgrid panel, add job ids and keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting
+* delete key should work in Controllers window and Xgrid panel
+* do not allow connection to empty string
+* when job removed by other process, should get notified and act accordingly to remove job info from MetaJob
+* GEZMetaJob bug: when grid becomes connected no new job submission even though they are expected
+* change name of option "Observe all jobs" to "Only observe jobs submitted by application
+* bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
+  ÐÐ> I should use a separate object for each KVO instance to make it more like NSNotification system
 * change the icons for the Controller window
 * Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
 * Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
@@ -28,6 +32,18 @@ done:
 
 ---------------
 Other things todo (some maybe):
+
+* Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
+
+* GEZProxy bug: not properly saved the first time because of temporary ID issues
+	* implement its own 'save' method in GEZManager that makes sure it saves again ih "hasChanges" = true
+	* force-save when creating a GEZProxy
+	* let the developer take care of it ÐÐ> right now this is what is done (see also GridStuffer)
+
+* detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
+* In the Xgrid panel, keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting, which means we may need NSNotification from GEZJob
+* User-level store, to remember servers used by different apps (do not store jobs)
+* make the little colored dots for status more consistent in size (maybe different shapes?)
 
 * add tests by using the examples that were developed for GridStuffer: the examples could be described by a plist, as they are now, but adding the expected results for the specifications
 

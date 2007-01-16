@@ -142,12 +142,32 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	return nil;
 }
 
-
 - (GEZServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context
 {
 	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	NSString *address = [self valueForKey:@"name"];
 	return [[self class] serverWithAddress:address inManagedObjectContext:context];
+}
+
+- (void)awakeFromFetch
+{
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
+	[super awakeFromFetch];
+	
+	//TEMPORARY: SET TO YES BY DEFAULT AT EACH RUN
+	[self setAutoconnect:YES];
+	
+	if ( [self autoconnect] == YES && [[self valueForKey:@"wasConnectedInPreviousSession"] boolValue] == YES && [self serverType] == GEZServerTypeRemote )
+		[self connect];
+}
+
+- (void)awakeFromInsert
+{
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
+	[super awakeFromInsert];
+	
+	//TEMPORARY: SET TO YES BY DEFAULT AT EACH RUN
+	[self setAutoconnect:YES];
 }
 
 - (void)deleteFromStore
@@ -172,8 +192,6 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	serverHook = nil;
 	return YES;
 }
-
-//used by the method 'deleteFromStore' to delay the deletion of the 
 
 
 - (void)dealloc
@@ -355,6 +373,22 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
     return serverType;
 }
 
+//temporarily an ivar, will be made a coredata property
+//auto-reconnect when connection is lost, or as soon as available if wasConnectedInPreviousSession == YES, or immediately if remote connection and wasConnectedInPreviousSession == YES; in the latter 2 cases, also set the serverHook to autoconnect
+- (BOOL)autoconnect
+{
+	return autoconnect;
+}
+
+- (void)setAutoconnect:(BOOL)newautoconnect
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self willChangeValueForKey:@"autoconnect"];
+	autoconnect = newautoconnect;
+	[self didChangeValueForKey:@"autoconnect"];
+}
+
+
 
 #pragma mark *** Connection public methods ***
 
@@ -444,6 +478,24 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 		[self setValue:[NSNumber numberWithBool:lsc] forKey:@"isAvailable"];
 }
 
+- (BOOL)isAvailable
+{
+	[self willAccessValueForKey:@"isAvailable"];
+	BOOL value = [[self primitiveValueForKey:@"isAvailable"] boolValue];
+	[self didAccessValueForKey:@"isAvailable"];
+	return value;
+}
+
+- (void)setIsAvailable:(BOOL)aValue
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[self willChangeValueForKey:@"isAvailable"];
+	[self setPrimitiveValue:[NSNumber numberWithBool:aValue] forKey:@"isAvailable"];
+	[self didChangeValueForKey:@"isAvailable"];
+	if ( aValue == YES && [self autoconnect] == YES && [[self primitiveValueForKey:@"wasConnectedInPreviousSession"] boolValue] == YES )
+		[self connect];
+}
+
 //creates the hook with a GEZServerHook that will allow for the real stuff to happen
 - (void)hook
 {
@@ -454,6 +506,10 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	serverHook = [[GEZServerHook alloc] initWithAddress:[self valueForKey:@"name"]];
 	if ( serverHook == nil )
 		return;
+	
+	//setuup autoconnect
+	if ( [self autoconnect] ==YES )
+		[serverHook setAutoconnect:YES];
 	
 	//We need to be notified of all the activity of the GEZServerHook object
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverHookDidConnect:) name:GEZServerHookDidConnectNotification object:serverHook];
