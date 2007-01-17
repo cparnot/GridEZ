@@ -3,14 +3,14 @@
 	0867D690FE84028FC02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Release;
 		activeExecutable = 5617D3130963565B00505CDC /* Xgrid Controllers */;
-		activeTarget = 8DC2EF4F0486A6940098B216 /* GridEZ */;
+		activeTarget = 5617D3110963565A00505CDC /* Xgrid Controllers */;
 		addToTargets = (
 			8DC2EF4F0486A6940098B216 /* GridEZ */,
 		);
 		breakpoints = (
 			567824D909A3067A00D78584 /* GEZManager.m:187 */,
 			567827E509A9A6C300D78584 /* GEZBindingsCategories.m:71 */,
-			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:176 */,
+			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:165 */,
 			5695A94A09C8F28C00C92AF7 /* GEZXgridPanelController.m:298 */,
 			567826C109A6F2E400D78584 /* GEZManager.m:267 */,
 			56A003FF0A5F839800D5DA44 /* GEZServerHook.m:321 */,
@@ -20,12 +20,12 @@
 			56CD11D5096A456A00DA6C36 /* GEZGrid.h:41 */,
 			569FA1DC096DF34D00973D77 /* GEZGrid.h:52 */,
 			563401720AF9528200096189 /* -[invokeWithTarget:] */,
-			5623AE300AFBFE30009DACD6 /* GEZMetaJob.m:510 */,
-			5623AF100AFC694D009DACD6 /* GEZMetaJob.m:510 */,
-			56E27E230B4F2A090020F1C4 /* GEZMetaJob.m:895 */,
-			56E27E2A0B4F876F0020F1C4 /* GEZMetaJob.m:651 */,
+			5623AE300AFBFE30009DACD6 /* GEZMetaJob.m:509 */,
+			5623AF100AFC694D009DACD6 /* GEZMetaJob.m:509 */,
+			56E27E230B4F2A090020F1C4 /* GEZMetaJob.m:894 */,
+			56E27E2A0B4F876F0020F1C4 /* GEZMetaJob.m:650 */,
 			56E282550B5C53620020F1C4 /* GEZServerWindowController.m:251 */,
-			56E282990B5CB16B0020F1C4 /* GEZServer.m:386 */,
+			56E282990B5CB16B0020F1C4 /* GEZServer.m:376 */,
 		);
 		breakpointsGroup = 5617D09A09610D9500505CDC /* XCBreakpointsBucket */;
 		codeSenseManager = 56FA39F4095FADF0004AB027 /* Code sense */;
@@ -894,6 +894,92 @@
 			56E282FF0B5CBAE90020F1C4 /* PBXTextBookmark */ = 56E282FF0B5CBAE90020F1C4 /* PBXTextBookmark */;
 			56E283000B5CBAE90020F1C4 /* PBXTextBookmark */ = 56E283000B5CBAE90020F1C4 /* PBXTextBookmark */;
 			56E283030B5CBAFD0020F1C4 /* PBXTextBookmark */ = 56E283030B5CBAFD0020F1C4 /* PBXTextBookmark */;
+			56E283050B5CBBD60020F1C4 /* PBXTextBookmark */ = 56E283050B5CBBD60020F1C4 /* PBXTextBookmark */;
+			56E283060B5CBBD60020F1C4 /* PBXTextBookmark */ = 56E283060B5CBBD60020F1C4 /* PBXTextBookmark */;
+			56E283070B5CBBD70020F1C4 /* PBXTextBookmark */ = 56E283070B5CBBD70020F1C4 /* PBXTextBookmark */;
+			56E283080B5CBBD70020F1C4 /* PBXTextBookmark */ = 56E283080B5CBBD70020F1C4 /* PBXTextBookmark */;
+			56E283150B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283150B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283160B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283160B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283170B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283170B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283180B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283180B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283190B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283190B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E2831A0B5D662A0020F1C4 /* PBXTextBookmark */ = 56E2831A0B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E2831B0B5D662A0020F1C4 /* PBXTextBookmark */ = 56E2831B0B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E2831C0B5D662A0020F1C4 /* PBXTextBookmark */ = 56E2831C0B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E2831D0B5D662A0020F1C4 /* PBXTextBookmark */ = 56E2831D0B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E2831E0B5D662A0020F1C4 /* PBXTextBookmark */ = 56E2831E0B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E2831F0B5D662A0020F1C4 /* PBXTextBookmark */ = 56E2831F0B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283200B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283200B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283210B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283210B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283220B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283220B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283230B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283230B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283240B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283240B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283250B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283250B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283260B5D662A0020F1C4 /* PBXTextBookmark */ = 56E283260B5D662A0020F1C4 /* PBXTextBookmark */;
+			56E283270B5D66330020F1C4 /* PBXTextBookmark */ = 56E283270B5D66330020F1C4 /* PBXTextBookmark */;
+			56E283280B5D66330020F1C4 /* PBXTextBookmark */ = 56E283280B5D66330020F1C4 /* PBXTextBookmark */;
+			56E283290B5D66330020F1C4 /* PBXTextBookmark */ = 56E283290B5D66330020F1C4 /* PBXTextBookmark */;
+			56E2832A0B5D66330020F1C4 /* PBXTextBookmark */ = 56E2832A0B5D66330020F1C4 /* PBXTextBookmark */;
+			56E2832B0B5D66330020F1C4 /* XDModelBookmark */ = 56E2832B0B5D66330020F1C4 /* XDModelBookmark */;
+			56E2832C0B5D66330020F1C4 /* PBXTextBookmark */ = 56E2832C0B5D66330020F1C4 /* PBXTextBookmark */;
+			56E2832D0B5D66330020F1C4 /* PBXBookmark */ = 56E2832D0B5D66330020F1C4 /* PBXBookmark */;
+			56E2832E0B5D66330020F1C4 /* PBXTextBookmark */ = 56E2832E0B5D66330020F1C4 /* PBXTextBookmark */;
+			56E2832F0B5D66330020F1C4 /* PBXTextBookmark */ = 56E2832F0B5D66330020F1C4 /* PBXTextBookmark */;
+			56E283300B5D66330020F1C4 /* PBXTextBookmark */ = 56E283300B5D66330020F1C4 /* PBXTextBookmark */;
+			56E283310B5D66330020F1C4 /* PBXTextBookmark */ = 56E283310B5D66330020F1C4 /* PBXTextBookmark */;
+			56E283320B5D66330020F1C4 /* XDModelBookmark */ = 56E283320B5D66330020F1C4 /* XDModelBookmark */;
+			56E283330B5D66330020F1C4 /* PBXTextBookmark */ = 56E283330B5D66330020F1C4 /* PBXTextBookmark */;
+			56E283340B5D66330020F1C4 /* PBXTextBookmark */ = 56E283340B5D66330020F1C4 /* PBXTextBookmark */;
+			56E2833A0B5D669D0020F1C4 /* PBXTextBookmark */ = 56E2833A0B5D669D0020F1C4 /* PBXTextBookmark */;
+			56E2834B0B5D67440020F1C4 /* PBXTextBookmark */ = 56E2834B0B5D67440020F1C4 /* PBXTextBookmark */;
+			56E2834C0B5D67440020F1C4 /* PBXTextBookmark */ = 56E2834C0B5D67440020F1C4 /* PBXTextBookmark */;
+			56E2834F0B5D676D0020F1C4 /* PBXTextBookmark */ = 56E2834F0B5D676D0020F1C4 /* PBXTextBookmark */;
+			56E283500B5D676D0020F1C4 /* PBXTextBookmark */ = 56E283500B5D676D0020F1C4 /* PBXTextBookmark */;
+			56E283510B5D67720020F1C4 /* PBXTextBookmark */ = 56E283510B5D67720020F1C4 /* PBXTextBookmark */;
+			56E283520B5D67720020F1C4 /* PBXTextBookmark */ = 56E283520B5D67720020F1C4 /* PBXTextBookmark */;
+			56E283540B5D677C0020F1C4 /* PBXTextBookmark */ = 56E283540B5D677C0020F1C4 /* PBXTextBookmark */;
+			56E283550B5D677C0020F1C4 /* PBXTextBookmark */ = 56E283550B5D677C0020F1C4 /* PBXTextBookmark */;
+			56E283560B5D677C0020F1C4 /* PBXTextBookmark */ = 56E283560B5D677C0020F1C4 /* PBXTextBookmark */;
+			56E283570B5D677C0020F1C4 /* XDModelBookmark */ = 56E283570B5D677C0020F1C4 /* XDModelBookmark */;
+			56E283580B5D678C0020F1C4 /* PBXTextBookmark */ = 56E283580B5D678C0020F1C4 /* PBXTextBookmark */;
+			56E283590B5D678C0020F1C4 /* PBXTextBookmark */ = 56E283590B5D678C0020F1C4 /* PBXTextBookmark */;
+			56E2835B0B5D678D0020F1C4 /* XDModelBookmark */ = 56E2835B0B5D678D0020F1C4 /* XDModelBookmark */;
+			56E283620B5D68610020F1C4 /* PBXTextBookmark */ = 56E283620B5D68610020F1C4 /* PBXTextBookmark */;
+			56E283630B5D68610020F1C4 /* PBXTextBookmark */ = 56E283630B5D68610020F1C4 /* PBXTextBookmark */;
+			56E283660B5D69100020F1C4 /* PBXTextBookmark */ = 56E283660B5D69100020F1C4 /* PBXTextBookmark */;
+			56E283670B5D69100020F1C4 /* PBXTextBookmark */ = 56E283670B5D69100020F1C4 /* PBXTextBookmark */;
+			56E2836B0B5D692D0020F1C4 /* PBXTextBookmark */ = 56E2836B0B5D692D0020F1C4 /* PBXTextBookmark */;
+			56E2836C0B5D692D0020F1C4 /* PBXTextBookmark */ = 56E2836C0B5D692D0020F1C4 /* PBXTextBookmark */;
+			56E2836D0B5D69410020F1C4 /* XDModelBookmark */ = 56E2836D0B5D69410020F1C4 /* XDModelBookmark */;
+			56E2836E0B5D69420020F1C4 /* PBXTextBookmark */ = 56E2836E0B5D69420020F1C4 /* PBXTextBookmark */;
+			56E2836F0B5D69420020F1C4 /* PBXTextBookmark */ = 56E2836F0B5D69420020F1C4 /* PBXTextBookmark */;
+			56E283700B5D69420020F1C4 /* XDModelBookmark */ = 56E283700B5D69420020F1C4 /* XDModelBookmark */;
+			56E283710B5D69420020F1C4 /* PBXTextBookmark */ = 56E283710B5D69420020F1C4 /* PBXTextBookmark */;
+			56E283720B5D69420020F1C4 /* PBXTextBookmark */ = 56E283720B5D69420020F1C4 /* PBXTextBookmark */;
+			56E283730B5D69420020F1C4 /* PBXTextBookmark */ = 56E283730B5D69420020F1C4 /* PBXTextBookmark */;
+			56E283740B5D698E0020F1C4 /* PBXTextBookmark */ = 56E283740B5D698E0020F1C4 /* PBXTextBookmark */;
+			56E283750B5D698E0020F1C4 /* PBXTextBookmark */ = 56E283750B5D698E0020F1C4 /* PBXTextBookmark */;
+			56E283770B5D69B30020F1C4 /* PBXTextBookmark */ = 56E283770B5D69B30020F1C4 /* PBXTextBookmark */;
+			56E283780B5D69ED0020F1C4 /* PBXTextBookmark */ = 56E283780B5D69ED0020F1C4 /* PBXTextBookmark */;
+			56E283790B5D69ED0020F1C4 /* PBXTextBookmark */ = 56E283790B5D69ED0020F1C4 /* PBXTextBookmark */;
+			56E2837C0B5D69EF0020F1C4 /* PBXTextBookmark */ = 56E2837C0B5D69EF0020F1C4 /* PBXTextBookmark */;
+			56E2837D0B5D69EF0020F1C4 /* PBXTextBookmark */ = 56E2837D0B5D69EF0020F1C4 /* PBXTextBookmark */;
+			56E283860B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E283860B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E283870B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E283870B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E283880B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E283880B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E283890B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E283890B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E2838A0B5D9DA50020F1C4 /* XDModelBookmark */ = 56E2838A0B5D9DA50020F1C4 /* XDModelBookmark */;
+			56E2838B0B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E2838B0B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E2838C0B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E2838C0B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E2838D0B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E2838D0B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E2838E0B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E2838E0B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E2838F0B5D9DA50020F1C4 /* XDModelBookmark */ = 56E2838F0B5D9DA50020F1C4 /* XDModelBookmark */;
+			56E283900B5D9DA50020F1C4 /* PBXTextBookmark */ = 56E283900B5D9DA50020F1C4 /* PBXTextBookmark */;
+			56E283950B5D9E400020F1C4 /* PBXTextBookmark */ = 56E283950B5D9E400020F1C4 /* PBXTextBookmark */;
+			56E283960B5D9E400020F1C4 /* PBXTextBookmark */ = 56E283960B5D9E400020F1C4 /* PBXTextBookmark */;
+			56E283970B5D9E400020F1C4 /* PBXTextBookmark */ = 56E283970B5D9E400020F1C4 /* PBXTextBookmark */;
+			56E283980B5D9E400020F1C4 /* PBXTextBookmark */ = 56E283980B5D9E400020F1C4 /* PBXTextBookmark */;
+			56E283990B5D9E400020F1C4 /* PBXTextBookmark */ = 56E283990B5D9E400020F1C4 /* PBXTextBookmark */;
 			56F0A63509AC4C35004FB9E1 = 56F0A63509AC4C35004FB9E1 /* PBXTextBookmark */;
 			56F0A8BE09B2DAE7004FB9E1 = 56F0A8BE09B2DAE7004FB9E1 /* PBXBookmark */;
 			56F0A8BF09B2DAE7004FB9E1 = 56F0A8BF09B2DAE7004FB9E1 /* PBXBookmark */;
@@ -1007,9 +1093,9 @@
 	};
 	560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {780, 21014}}";
-			sepNavSelRange = "{35916, 0}";
-			sepNavVisRect = "{{0, 15498}, {780, 298}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 21224}}";
+			sepNavSelRange = "{10800, 0}";
+			sepNavVisRect = "{{0, 3923}, {728, 680}}";
 			sepNavWindowFrame = "{{15, 18}, {1016, 809}}";
 		};
 	};
@@ -1032,7 +1118,7 @@
 			567826C109A6F2E400D78584 /* GEZManager.m:267 */,
 			567827E509A9A6C300D78584 /* GEZBindingsCategories.m:71 */,
 			56F0A6D309AD3537004FB9E1 /* GEZTask.m:54 */,
-			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:176 */,
+			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:165 */,
 			5695A94A09C8F28C00C92AF7 /* GEZXgridPanelController.m:298 */,
 			561A07B409FD9CB700BFC1B3 /* GEZGrid.m:344 */,
 			563B95AC0A01F117004EA694 /* GEZJob.m:891 */,
@@ -1040,9 +1126,9 @@
 			560F88A60A9D2BF700D97702 /* -[NSToolbar _userRemoveItemAtIndex:] */,
 			562D3A2A0AC50B2800B4A99D /* _NSKVODeallocateLog */,
 			563401720AF9528200096189 /* -[invokeWithTarget:] */,
-			5623AE300AFBFE30009DACD6 /* GEZMetaJob.m:510 */,
-			5623AEEC0AFC6868009DACD6 /* GEZMetaJob.m:563 */,
-			5623AF100AFC694D009DACD6 /* GEZMetaJob.m:510 */,
+			5623AE300AFBFE30009DACD6 /* GEZMetaJob.m:509 */,
+			5623AEEC0AFC6868009DACD6 /* GEZMetaJob.m:562 */,
+			5623AF100AFC694D009DACD6 /* GEZMetaJob.m:509 */,
 		);
 	};
 	5617D0C30961113900505CDC /* PBXTextBookmark */ = {
@@ -1074,7 +1160,7 @@
 			"Xdesign Model Editor Bookmark Key" = {
 				UIContextForDetailArea = {
 					_indexOfSelectedPane = 0;
-					_indexOfSelectedView = 1;
+					_indexOfSelectedView = 0;
 				};
 				UIContextForEntityArea = {
 					_indexOfSelectedView = 0;
@@ -1105,8 +1191,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {486, 417}}",
-							"{{491, 0}, {282, 417}}",
+							"{{0, 0}, {483, 347}}",
+							"{{488, 0}, {285, 347}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -1115,8 +1201,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {773, 417}}",
-							"{{0, 422}, {773, 49}}",
+							"{{0, 0}, {773, 347}}",
+							"{{0, 352}, {773, 328}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -1125,8 +1211,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {172, 417}}",
-							"{{177, 0}, {308, 417}}",
+							"{{0, 0}, {167, 347}}",
+							"{{172, 0}, {311, 347}}",
 						);
 					};
 				};
@@ -1223,23 +1309,23 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-55, 16}, {758, 34}}";
+				"xdesign model diagram view visible rect key" = "{{-55, 16}, {758, 313}}";
 			};
-			sepNavWindowFrame = "{{328, 124}, {729, 594}}";
+			sepNavWindowFrame = "{{15, 105}, {1016, 722}}";
 		};
 	};
 	5617D14D0962222A00505CDC /* GEZServer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 2268}}";
-			sepNavSelRange = "{3499, 0}";
-			sepNavVisRect = "{{0, 714}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 2184}}";
+			sepNavSelRange = "{4351, 0}";
+			sepNavVisRect = "{{0, 956}, {728, 680}}";
 		};
 	};
 	5617D14E0962222A00505CDC /* GEZServer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 8428}}";
-			sepNavSelRange = "{16523, 0}";
-			sepNavVisRect = "{{0, 7046}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 8288}}";
+			sepNavSelRange = "{7024, 0}";
+			sepNavVisRect = "{{0, 2164}, {728, 680}}";
 		};
 	};
 	5617D1530962223B00505CDC /* GEZGrid.h */ = {
@@ -1261,7 +1347,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {728, 2058}}";
 			sepNavSelRange = "{895, 0}";
-			sepNavVisRect = "{{0, 1378}, {728, 680}}";
+			sepNavVisRect = "{{0, 1312}, {728, 680}}";
 		};
 	};
 	5617D15A0962224C00505CDC /* GEZJob.m */ = {
@@ -1423,9 +1509,9 @@
 	};
 	5617D3F40963A7B000505CDC /* GEZServerWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 4802}}";
-			sepNavSelRange = "{5316, 0}";
-			sepNavVisRect = "{{0, 1465}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 4704}}";
+			sepNavSelRange = "{2964, 0}";
+			sepNavVisRect = "{{0, 599}, {902, 357}}";
 			sepNavWindowFrame = "{{15, 18}, {1016, 809}}";
 		};
 	};
@@ -1483,9 +1569,9 @@
 	};
 	561A069009F9A32200BFC1B3 /* README.txt */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 471}}";
 			sepNavSelRange = "{583, 0}";
-			sepNavVisRect = "{{0, 0}, {728, 680}}";
+			sepNavVisRect = "{{0, 0}, {728, 471}}";
 		};
 	};
 	561A06A009F9A34000BFC1B3 /* PBXTextBookmark */ = {
@@ -1766,7 +1852,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 265";
 		rLen = 0;
-		rLoc = 10085;
+		rLoc = 10071;
 		rType = 0;
 		vrLen = 1793;
 		vrLoc = 8388;
@@ -1937,7 +2023,7 @@
 		vrLen = 1291;
 		vrLoc = 0;
 	};
-	5623AE300AFBFE30009DACD6 /* GEZMetaJob.m:510 */ = {
+	5623AE300AFBFE30009DACD6 /* GEZMetaJob.m:509 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1947,7 +2033,7 @@
 		fileReference = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		functionName = "-resetAvailableTasks";
 		hitCount = 1;
-		lineNumber = 510;
+		lineNumber = 509;
 		location = GridEZ;
 		modificationTime = 190624180.777686;
 		state = 1;
@@ -1979,7 +2065,7 @@
 		vrLen = 1439;
 		vrLoc = 2033;
 	};
-	5623AEEC0AFC6868009DACD6 /* GEZMetaJob.m:563 */ = {
+	5623AEEC0AFC6868009DACD6 /* GEZMetaJob.m:562 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1989,12 +2075,12 @@
 		fileReference = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		functionName = "";
 		hitCount = 1;
-		lineNumber = 563;
+		lineNumber = 562;
 		location = GridEZ;
 		modificationTime = 189587668.051269;
 		state = 1;
 	};
-	5623AF100AFC694D009DACD6 /* GEZMetaJob.m:510 */ = {
+	5623AF100AFC694D009DACD6 /* GEZMetaJob.m:509 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -2004,7 +2090,7 @@
 		fileReference = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		functionName = "-resetAvailableTasks";
 		hitCount = 1;
-		lineNumber = 510;
+		lineNumber = 509;
 		location = GridEZ;
 		modificationTime = 190624180.777937;
 		state = 1;
@@ -2104,7 +2190,7 @@
 		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
 		name = address;
 		rLen = 7;
-		rLoc = 6509;
+		rLoc = 6184;
 		rType = 0;
 		vrLen = 1503;
 		vrLoc = 5328;
@@ -2114,7 +2200,7 @@
 		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
 		name = "GEZServer.h: isLoaded";
 		rLen = 0;
-		rLoc = 6675;
+		rLoc = 6350;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 5339;
@@ -2332,7 +2418,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 640";
 		rLen = 0;
-		rLoc = 21970;
+		rLoc = 21931;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 20818;
@@ -2352,7 +2438,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 640";
 		rLen = 0;
-		rLoc = 21970;
+		rLoc = 21931;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 20818;
@@ -2607,7 +2693,7 @@
 		vrLen = 2118;
 		vrLoc = 2487;
 	};
-	562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:176 */ = {
+	562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:165 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -2617,7 +2703,7 @@
 		fileReference = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		functionName = "-deleteFromStore";
 		hitCount = 1;
-		lineNumber = 176;
+		lineNumber = 165;
 		location = GridEZ;
 		modificationTime = 190624180.776918;
 		state = 1;
@@ -2850,7 +2936,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 123";
 		rLen = 0;
-		rLoc = 6054;
+		rLoc = 6046;
 		rType = 0;
 		vrLen = 1741;
 		vrLoc = 4844;
@@ -2896,9 +2982,9 @@
 	};
 	56720B350AAFEE1C00066417 /* GEZIntegerArray.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {669, 672}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 471}}";
 			sepNavSelRange = "{25, 878}";
-			sepNavVisRect = "{{0, 0}, {669, 672}}";
+			sepNavVisRect = "{{0, 0}, {728, 471}}";
 		};
 	};
 	56720B360AAFEE1C00066417 /* GEZIntegerArray.m */ = {
@@ -3091,9 +3177,9 @@
 	};
 	5678267109A6EF5100D78584 /* GEZXgridPanelController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 5544}}";
-			sepNavSelRange = "{1487, 0}";
-			sepNavVisRect = "{{0, 158}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 5362}}";
+			sepNavSelRange = "{2575, 0}";
+			sepNavVisRect = "{{0, 606}, {902, 357}}";
 		};
 	};
 	567826C109A6F2E400D78584 /* GEZManager.m:267 */ = {
@@ -3123,16 +3209,16 @@
 	};
 	567826FA09A6F57800D78584 /* GEZBindingsCategories.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 574}}";
-			sepNavSelRange = "{1220, 5}";
-			sepNavVisRect = "{{0, 103}, {728, 471}}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 560}}";
+			sepNavSelRange = "{1125, 4}";
+			sepNavVisRect = "{{0, 203}, {902, 357}}";
 		};
 	};
 	567826FB09A6F57800D78584 /* GEZBindingsCategories.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 1442}}";
-			sepNavSelRange = "{2938, 0}";
-			sepNavVisRect = "{{0, 971}, {728, 471}}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 1414}}";
+			sepNavSelRange = "{1564, 4}";
+			sepNavVisRect = "{{0, 445}, {902, 357}}";
 		};
 	};
 	5678271109A6F72400D78584 /* PBXTextBookmark */ = {
@@ -3222,7 +3308,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 348";
 		rLen = 0;
-		rLoc = 12577;
+		rLoc = 12531;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 11194;
@@ -3674,9 +3760,9 @@
 	};
 	56BFC496095FB37400463A1F /* GEZServerBrowser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 1988}}";
-			sepNavSelRange = "{3837, 8}";
-			sepNavVisRect = "{{0, 1294}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {902, 1946}}";
+			sepNavSelRange = "{4634, 0}";
+			sepNavVisRect = "{{0, 1589}, {902, 357}}";
 			sepNavWindowFrame = "{{38, 43}, {999, 763}}";
 		};
 	};
@@ -3692,6 +3778,7 @@
 			sepNavIntBoundsRect = "{{0, 0}, {728, 14308}}";
 			sepNavSelRange = "{7492, 0}";
 			sepNavVisRect = "{{0, 1964}, {728, 680}}";
+			sepNavWindowFrame = "{{38, 63}, {947, 743}}";
 		};
 	};
 	56BFC4C2095FB57100463A1F /* GridEZ.h */ = {
@@ -3794,7 +3881,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 264";
 		rLen = 0;
-		rLoc = 10838;
+		rLoc = 10800;
 		rType = 0;
 		vrLen = 1864;
 		vrLoc = 7783;
@@ -3834,7 +3921,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (BOOL)isConnected";
 		rLen = 20;
-		rLoc = 9369;
+		rLoc = 9144;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 8187;
@@ -3926,7 +4013,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 356";
 		rLen = 0;
-		rLoc = 13140;
+		rLoc = 13126;
 		rType = 0;
 		vrLen = 1367;
 		vrLoc = 11737;
@@ -3936,7 +4023,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 82";
 		rLen = 0;
-		rLoc = 3969;
+		rLoc = 3955;
 		rType = 0;
 		vrLen = 1220;
 		vrLoc = 3387;
@@ -3946,7 +4033,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 272";
 		rLen = 0;
-		rLoc = 11428;
+		rLoc = 11414;
 		rType = 0;
 		vrLen = 1900;
 		vrLoc = 8810;
@@ -4016,7 +4103,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 640";
 		rLen = 0;
-		rLoc = 21970;
+		rLoc = 21931;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 20818;
@@ -4036,7 +4123,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 861";
 		rLen = 0;
-		rLoc = 26273;
+		rLoc = 26234;
 		rType = 0;
 		vrLen = 1940;
 		vrLoc = 30231;
@@ -4046,7 +4133,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1164";
 		rLen = 0;
-		rLoc = 42046;
+		rLoc = 42007;
 		rType = 0;
 		vrLen = 2434;
 		vrLoc = 44513;
@@ -4056,7 +4143,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1166";
 		rLen = 0;
-		rLoc = 42269;
+		rLoc = 42230;
 		rType = 0;
 		vrLen = 2841;
 		vrLoc = 44513;
@@ -4066,7 +4153,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1166";
 		rLen = 0;
-		rLoc = 42269;
+		rLoc = 42230;
 		rType = 0;
 		vrLen = 2841;
 		vrLoc = 44513;
@@ -4086,7 +4173,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1166";
 		rLen = 0;
-		rLoc = 42269;
+		rLoc = 42230;
 		rType = 0;
 		vrLen = 2841;
 		vrLoc = 44513;
@@ -4126,7 +4213,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1166";
 		rLen = 0;
-		rLoc = 42269;
+		rLoc = 42230;
 		rType = 0;
 		vrLen = 2841;
 		vrLoc = 44513;
@@ -4156,7 +4243,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1182";
 		rLen = 0;
-		rLoc = 43376;
+		rLoc = 43337;
 		rType = 0;
 		vrLen = 2843;
 		vrLoc = 44734;
@@ -4176,7 +4263,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1182";
 		rLen = 0;
-		rLoc = 43376;
+		rLoc = 43337;
 		rType = 0;
 		vrLen = 2843;
 		vrLoc = 44734;
@@ -4186,7 +4273,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1182";
 		rLen = 0;
-		rLoc = 43376;
+		rLoc = 43337;
 		rType = 0;
 		vrLen = 2843;
 		vrLoc = 44734;
@@ -4206,7 +4293,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1173";
 		rLen = 0;
-		rLoc = 42904;
+		rLoc = 42865;
 		rType = 0;
 		vrLen = 2934;
 		vrLoc = 44734;
@@ -4216,7 +4303,7 @@
 		comments = "Compiling /Users/charles/Docs/Development/cocoa_dev/GridEZ/Framework files/GEZMetaJob.m";
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		rLen = 0;
-		rLoc = 967;
+		rLoc = 966;
 		rType = 1;
 	};
 	56E27D100B4C93910020F1C4 /* PBXTextBookmark */ = {
@@ -4224,7 +4311,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1082";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1898;
 		vrLoc = 39226;
@@ -4234,7 +4321,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1173";
 		rLen = 0;
-		rLoc = 42904;
+		rLoc = 42865;
 		rType = 0;
 		vrLen = 2121;
 		vrLoc = 45457;
@@ -4244,7 +4331,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1082";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1898;
 		vrLoc = 39226;
@@ -4254,7 +4341,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1173";
 		rLen = 0;
-		rLoc = 42904;
+		rLoc = 42865;
 		rType = 0;
 		vrLen = 2121;
 		vrLoc = 45457;
@@ -4274,7 +4361,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1173";
 		rLen = 0;
-		rLoc = 42904;
+		rLoc = 42865;
 		rType = 0;
 		vrLen = 2121;
 		vrLoc = 45457;
@@ -4334,7 +4421,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1102";
 		rLen = 0;
-		rLoc = 38105;
+		rLoc = 38066;
 		rType = 0;
 		vrLen = 2701;
 		vrLoc = 42409;
@@ -4344,7 +4431,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1082";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1898;
 		vrLoc = 39226;
@@ -4354,7 +4441,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1130";
 		rLen = 0;
-		rLoc = 39781;
+		rLoc = 39742;
 		rType = 0;
 		vrLen = 2733;
 		vrLoc = 42826;
@@ -4374,7 +4461,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1130";
 		rLen = 0;
-		rLoc = 39781;
+		rLoc = 39742;
 		rType = 0;
 		vrLen = 2733;
 		vrLoc = 42826;
@@ -4394,7 +4481,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1082";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1898;
 		vrLoc = 39226;
@@ -4983,7 +5070,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1083";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1874;
 		vrLoc = 39143;
@@ -4992,7 +5079,7 @@
 		isa = PBXTextBookmark;
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		rLen = 14;
-		rLoc = 32656;
+		rLoc = 32617;
 		rType = 0;
 	};
 	56E27DE00B4F25B00020F1C4 /* PBXTextBookmark */ = {
@@ -5000,7 +5087,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = didProcessTask;
 		rLen = 14;
-		rLoc = 32656;
+		rLoc = 32617;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 36002;
@@ -5030,7 +5117,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = didProcessTaskAtIndex;
 		rLen = 21;
-		rLoc = 32656;
+		rLoc = 32617;
 		rType = 0;
 		vrLen = 1710;
 		vrLoc = 35994;
@@ -5050,7 +5137,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1027";
 		rLen = 0;
-		rLoc = 32854;
+		rLoc = 32815;
 		rType = 0;
 		vrLen = 1707;
 		vrLoc = 35994;
@@ -5070,7 +5157,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = didProcessTaskAtIndex;
 		rLen = 21;
-		rLoc = 32656;
+		rLoc = 32617;
 		rType = 0;
 		vrLen = 1710;
 		vrLoc = 35994;
@@ -5090,7 +5177,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)jobDidFail:(GEZJob *)aJob";
 		rLen = 0;
-		rLoc = 22029;
+		rLoc = 21990;
 		rType = 0;
 		vrLen = 1610;
 		vrLoc = 22396;
@@ -5100,12 +5187,12 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)jobDidFail:(GEZJob *)aJob";
 		rLen = 0;
-		rLoc = 22029;
+		rLoc = 21990;
 		rType = 0;
 		vrLen = 1610;
 		vrLoc = 22396;
 	};
-	56E27E230B4F2A090020F1C4 /* GEZMetaJob.m:895 */ = {
+	56E27E230B4F2A090020F1C4 /* GEZMetaJob.m:894 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5115,7 +5202,7 @@
 		fileReference = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		functionName = "-removeJob:";
 		hitCount = 1;
-		lineNumber = 895;
+		lineNumber = 894;
 		location = GridEZ;
 		modificationTime = 190624180.778177;
 		state = 1;
@@ -5125,7 +5212,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)jobDidFail:(GEZJob *)aJob";
 		rLen = 0;
-		rLoc = 22029;
+		rLoc = 21990;
 		rType = 0;
 		vrLen = 1610;
 		vrLoc = 22396;
@@ -5135,12 +5222,12 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)jobDidFail:(GEZJob *)aJob";
 		rLen = 0;
-		rLoc = 22029;
+		rLoc = 21990;
 		rType = 0;
 		vrLen = 1610;
 		vrLoc = 22396;
 	};
-	56E27E2A0B4F876F0020F1C4 /* GEZMetaJob.m:651 */ = {
+	56E27E2A0B4F876F0020F1C4 /* GEZMetaJob.m:650 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5150,7 +5237,7 @@
 		fileReference = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		functionName = "-jobDidFail:";
 		hitCount = 1;
-		lineNumber = 651;
+		lineNumber = 650;
 		location = GridEZ;
 		modificationTime = 190624180.778612;
 		state = 1;
@@ -5170,7 +5257,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)resetAvailableTasks";
 		rLen = 28;
-		rLoc = 28794;
+		rLoc = 28755;
 		rType = 0;
 		vrLen = 2256;
 		vrLoc = 32010;
@@ -5180,7 +5267,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)resetAvailableTasks";
 		rLen = 28;
-		rLoc = 28794;
+		rLoc = 28755;
 		rType = 0;
 		vrLen = 2292;
 		vrLoc = 32010;
@@ -5200,7 +5287,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1042";
 		rLen = 0;
-		rLoc = 33346;
+		rLoc = 33307;
 		rType = 0;
 		vrLen = 2232;
 		vrLoc = 36425;
@@ -5210,7 +5297,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1042";
 		rLen = 0;
-		rLoc = 33346;
+		rLoc = 33307;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 35999;
@@ -5220,7 +5307,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1042";
 		rLen = 0;
-		rLoc = 33346;
+		rLoc = 33307;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 35999;
@@ -5230,7 +5317,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1042";
 		rLen = 0;
-		rLoc = 33346;
+		rLoc = 33307;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 35999;
@@ -5240,7 +5327,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)resetAvailableTasks";
 		rLen = 28;
-		rLoc = 28794;
+		rLoc = 28755;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 34713;
@@ -5260,7 +5347,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)resetAvailableTasks";
 		rLen = 28;
-		rLoc = 28794;
+		rLoc = 28755;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 34713;
@@ -5280,7 +5367,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1097";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 39071;
@@ -5299,7 +5386,7 @@
 		isa = PBXTextBookmark;
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 	};
 	56E27E670B50C8AA0020F1C4 /* PBXTextBookmark */ = {
@@ -5307,7 +5394,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = didSubmitTask;
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 51951;
@@ -5327,7 +5414,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1304";
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 51773;
@@ -5337,7 +5424,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1097";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 39071;
@@ -5347,7 +5434,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1304";
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 51773;
@@ -5447,7 +5534,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1097";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1378;
 		vrLoc = 39071;
@@ -5457,7 +5544,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1304";
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 51773;
@@ -5567,7 +5654,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 16";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2691;
 		vrLoc = 0;
@@ -5577,7 +5664,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1097";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1279;
 		vrLoc = 39071;
@@ -5587,7 +5674,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1304";
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 		vrLen = 824;
 		vrLoc = 52298;
@@ -5597,7 +5684,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1098";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 39094;
@@ -5607,7 +5694,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = compare;
 		rLen = 7;
-		rLoc = 46271;
+		rLoc = 46232;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 50487;
@@ -5637,7 +5724,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1304";
 		rLen = 0;
-		rLoc = 48088;
+		rLoc = 48049;
 		rType = 0;
 		vrLen = 824;
 		vrLoc = 52298;
@@ -5667,7 +5754,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = compare;
 		rLen = 7;
-		rLoc = 46271;
+		rLoc = 46232;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 50487;
@@ -5697,7 +5784,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1098";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 39094;
@@ -5717,7 +5804,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1098";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 39094;
@@ -5767,7 +5854,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 832";
 		rLen = 0;
-		rLoc = 23944;
+		rLoc = 23905;
 		rType = 0;
 		vrLen = 1999;
 		vrLoc = 28220;
@@ -5781,7 +5868,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 16";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2691;
 		vrLoc = 0;
@@ -5791,7 +5878,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 16";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2691;
 		vrLoc = 0;
@@ -5841,7 +5928,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 832";
 		rLen = 0;
-		rLoc = 23944;
+		rLoc = 23905;
 		rType = 0;
 		vrLen = 1999;
 		vrLoc = 28220;
@@ -5865,7 +5952,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 16";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2864;
 		vrLoc = 0;
@@ -5987,7 +6074,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 1098";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 39085;
@@ -6047,7 +6134,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 960";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 42323;
@@ -6086,7 +6173,7 @@
 		isa = PBXTextBookmark;
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		rLen = 15;
-		rLoc = 20087;
+		rLoc = 20048;
 		rType = 0;
 	};
 	56E27F5B0B5758370020F1C4 /* PBXTextBookmark */ = {
@@ -6124,7 +6211,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 570";
 		rLen = 0;
-		rLoc = 20253;
+		rLoc = 20214;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 19334;
@@ -6134,7 +6221,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 960";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 42323;
@@ -6144,7 +6231,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 570";
 		rLen = 0;
-		rLoc = 20253;
+		rLoc = 20214;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 19334;
@@ -6154,7 +6241,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 960";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 42323;
@@ -6164,7 +6251,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = removeJob;
 		rLen = 9;
-		rLoc = 57143;
+		rLoc = 57104;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 55897;
@@ -6181,7 +6268,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = removeJob;
 		rLen = 9;
-		rLoc = 57143;
+		rLoc = 57104;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 55897;
@@ -6231,7 +6318,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = removeJob;
 		rLen = 9;
-		rLoc = 53358;
+		rLoc = 53319;
 		rType = 0;
 		vrLen = 1841;
 		vrLoc = 52133;
@@ -6261,7 +6348,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 622";
 		rLen = 0;
-		rLoc = 21614;
+		rLoc = 21575;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 21159;
@@ -6291,7 +6378,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "- (void)jobWillBeDeleted:(GEZJob *)aJob fromGrid:(GEZGrid *)aGrid";
 		rLen = 66;
-		rLoc = 56921;
+		rLoc = 56882;
 		rType = 0;
 		vrLen = 2091;
 		vrLoc = 54684;
@@ -6331,7 +6418,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = removeJob;
 		rLen = 9;
-		rLoc = 53358;
+		rLoc = 53319;
 		rType = 0;
 		vrLen = 1841;
 		vrLoc = 52133;
@@ -6371,7 +6458,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 338";
 		rLen = 0;
-		rLoc = 12063;
+		rLoc = 12017;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 10832;
@@ -6418,7 +6505,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 338";
 		rLen = 0;
-		rLoc = 12063;
+		rLoc = 12017;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 10832;
@@ -6488,7 +6575,7 @@
 		fRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */;
 		name = "GEZServerBrowser.m: 117";
 		rLen = 0;
-		rLoc = 4361;
+		rLoc = 4359;
 		rType = 0;
 		vrLen = 1214;
 		vrLoc = 1439;
@@ -6508,7 +6595,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 356";
 		rLen = 0;
-		rLoc = 13140;
+		rLoc = 13126;
 		rType = 0;
 		vrLen = 2197;
 		vrLoc = 109;
@@ -6753,7 +6840,7 @@
 		fRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */;
 		name = "GEZServerBrowser.m: 117";
 		rLen = 0;
-		rLoc = 4361;
+		rLoc = 4359;
 		rType = 0;
 		vrLen = 1214;
 		vrLoc = 1439;
@@ -6773,7 +6860,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 356";
 		rLen = 0;
-		rLoc = 13140;
+		rLoc = 13126;
 		rType = 0;
 		vrLen = 2197;
 		vrLoc = 109;
@@ -7004,7 +7091,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 969";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42031;
@@ -7044,7 +7131,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 94";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4549;
 		rType = 0;
 		vrLen = 2305;
 		vrLoc = 4002;
@@ -7081,7 +7168,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 94";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4549;
 		rType = 0;
 		vrLen = 2305;
 		vrLoc = 4002;
@@ -7091,7 +7178,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServer *newServer = [GEZServer serverWithAddress:address];";
 		rLen = 40;
-		rLoc = 8586;
+		rLoc = 8572;
 		rType = 0;
 		vrLen = 1017;
 		vrLoc = 8048;
@@ -7101,7 +7188,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 239";
 		rLen = 0;
-		rLoc = 8969;
+		rLoc = 8955;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 8360;
@@ -7111,7 +7198,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 234";
 		rLen = 106;
-		rLoc = 8757;
+		rLoc = 8743;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 8360;
@@ -7131,7 +7218,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 345";
 		rLen = 0;
-		rLoc = 12554;
+		rLoc = 12540;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 12005;
@@ -7141,7 +7228,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 234";
 		rLen = 106;
-		rLoc = 8757;
+		rLoc = 8743;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 8360;
@@ -7151,7 +7238,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 345";
 		rLen = 0;
-		rLoc = 12554;
+		rLoc = 12540;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 12005;
@@ -7171,7 +7258,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 359";
 		rLen = 0;
-		rLoc = 12955;
+		rLoc = 12941;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 12175;
@@ -7181,7 +7268,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 359";
 		rLen = 0;
-		rLoc = 12955;
+		rLoc = 12941;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 12175;
@@ -7191,7 +7278,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 969";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42031;
@@ -7211,7 +7298,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 969";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42031;
@@ -7231,7 +7318,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 359";
 		rLen = 0;
-		rLoc = 12955;
+		rLoc = 12941;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 12175;
@@ -7241,7 +7328,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 225";
 		rLen = 0;
-		rLoc = 8626;
+		rLoc = 8612;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 8118;
@@ -7261,7 +7348,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = "GEZXgridPanelController.m: 359";
 		rLen = 0;
-		rLoc = 12955;
+		rLoc = 12941;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 12175;
@@ -7271,7 +7358,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 225";
 		rLen = 0;
-		rLoc = 8626;
+		rLoc = 8612;
 		rType = 0;
 		vrLen = 877;
 		vrLoc = 8118;
@@ -7301,7 +7388,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 969";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42031;
@@ -7331,7 +7418,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 11";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2221;
 		vrLoc = 0;
@@ -7341,7 +7428,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 11";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2221;
 		vrLoc = 0;
@@ -7516,7 +7603,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "- (int)availableAgentsGuess";
 		rLen = 28;
-		rLoc = 7072;
+		rLoc = 7034;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 6235;
@@ -7526,7 +7613,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = availableAgentsGuess;
 		rLen = 20;
-		rLoc = 24609;
+		rLoc = 24570;
 		rType = 0;
 		vrLen = 2233;
 		vrLoc = 23535;
@@ -7536,7 +7623,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 11";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2221;
 		vrLoc = 0;
@@ -7711,7 +7798,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "- (int)availableAgentsGuess";
 		rLen = 28;
-		rLoc = 7072;
+		rLoc = 7034;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 6235;
@@ -7721,7 +7808,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 718";
 		rLen = 0;
-		rLoc = 24948;
+		rLoc = 24909;
 		rType = 0;
 		vrLen = 2263;
 		vrLoc = 23792;
@@ -7731,7 +7818,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42173;
@@ -7751,7 +7838,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 727";
 		rLen = 0;
-		rLoc = 25247;
+		rLoc = 25208;
 		rType = 0;
 		vrLen = 2264;
 		vrLoc = 23792;
@@ -7761,7 +7848,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 717";
 		rLen = 0;
-		rLoc = 24698;
+		rLoc = 24659;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 23829;
@@ -7771,7 +7858,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 717";
 		rLen = 0;
-		rLoc = 24698;
+		rLoc = 24659;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 23829;
@@ -7956,7 +8043,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = identifier;
 		rLen = 10;
-		rLoc = 3958;
+		rLoc = 3944;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 3012;
@@ -7966,7 +8053,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 717";
 		rLen = 0;
-		rLoc = 24698;
+		rLoc = 24659;
 		rType = 0;
 		vrLen = 2279;
 		vrLoc = 23829;
@@ -8151,7 +8238,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = YES;
 		rLen = 3;
-		rLoc = 3980;
+		rLoc = 3966;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 3012;
@@ -8161,7 +8248,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -8181,7 +8268,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = YES;
 		rLen = 3;
-		rLoc = 3980;
+		rLoc = 3966;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 3012;
@@ -8191,7 +8278,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -8257,7 +8344,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "- (int)availableAgentsGuess";
 		rLen = 28;
-		rLoc = 7072;
+		rLoc = 7034;
 		rType = 0;
 		vrLen = 1746;
 		vrLoc = 1495;
@@ -8297,7 +8384,7 @@
 		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
 		name = setSortDescriptors;
 		rLen = 18;
-		rLoc = 4128;
+		rLoc = 4114;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 3012;
@@ -8363,7 +8450,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "- (int)availableAgentsGuess";
 		rLen = 28;
-		rLoc = 7072;
+		rLoc = 7034;
 		rType = 0;
 		vrLen = 1746;
 		vrLoc = 1495;
@@ -8423,7 +8510,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -8563,7 +8650,7 @@
 		fRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */;
 		name = "GEZServerBrowser.m: 117";
 		rLen = 0;
-		rLoc = 4361;
+		rLoc = 4359;
 		rType = 0;
 		vrLen = 1884;
 		vrLoc = 2927;
@@ -8643,7 +8730,7 @@
 		fRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */;
 		name = "GEZServerBrowser.m: 117";
 		rLen = 0;
-		rLoc = 4361;
+		rLoc = 4359;
 		rType = 0;
 		vrLen = 1884;
 		vrLoc = 2927;
@@ -8733,7 +8820,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -8823,7 +8910,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -8843,7 +8930,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -9087,7 +9174,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		rLen = 1;
-		rLoc = 499;
+		rLoc = 489;
 		rType = 1;
 	};
 	56E2816C0B5B12330020F1C4 /* PBXTextBookmark */ = {
@@ -9134,8 +9221,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
 		name = "GEZServer.h: 56";
-		rLen = 324;
-		rLoc = 3980;
+		rLen = 0;
+		rLoc = 3979;
 		rType = 0;
 		vrLen = 1689;
 		vrLoc = 3273;
@@ -9155,7 +9242,7 @@
 		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
 		name = "GEZServer.h: setAutoconnect:";
 		rLen = 0;
-		rLoc = 6894;
+		rLoc = 6569;
 		rType = 0;
 		vrLen = 1854;
 		vrLoc = 5357;
@@ -9185,7 +9272,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 158";
 		rLen = 0;
-		rLoc = 7203;
+		rLoc = 7196;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 6281;
@@ -9254,8 +9341,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: serverType";
-		rLen = 296;
-		rLoc = 13343;
+		rLen = 450;
+		rLoc = 13006;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 11977;
@@ -9265,7 +9352,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "";
 		rLen = 1;
-		rLoc = 6153;
+		rLoc = 6147;
 		rType = 0;
 		vrLen = 1554;
 		vrLoc = 5695;
@@ -9275,7 +9362,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 158";
 		rLen = 0;
-		rLoc = 7203;
+		rLoc = 7196;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 6281;
@@ -9355,7 +9442,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "";
 		rLen = 1;
-		rLoc = 6153;
+		rLoc = 6147;
 		rType = 0;
 		vrLen = 1554;
 		vrLoc = 5695;
@@ -9374,8 +9461,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (BOOL)shouldObserveAllJobs;";
-		rLen = 30;
-		rLoc = 10654;
+		rLen = 28;
+		rLoc = 10411;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 9067;
@@ -9394,8 +9481,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: serverType";
-		rLen = 296;
-		rLoc = 13343;
+		rLen = 450;
+		rLoc = 13006;
 		rType = 0;
 		vrLen = 1341;
 		vrLoc = 11977;
@@ -9405,7 +9492,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 218";
 		rLen = 0;
-		rLoc = 7672;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 6864;
@@ -9415,7 +9502,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 218";
 		rLen = 0;
-		rLoc = 7672;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 571;
 		vrLoc = 7249;
@@ -9611,7 +9698,7 @@
 				"<XDPMEntity: 0x12f0730>{name=GEZServer, package=}",
 			);
 			"xdesign model selected properties key" = (
-				"<XDPMAttribute: 0xab8b8d0>{name=isAvailable, type=(null)}",
+				"<XDPMAttribute: 0xab8b8d0>{name=available, type=(null)}",
 			);
 		};
 	};
@@ -9636,7 +9723,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = NSOn;
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6520;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 6344;
@@ -9646,7 +9733,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 218";
 		rLen = 0;
-		rLoc = 7672;
+		rLoc = 7634;
 		rType = 0;
 		vrLen = 571;
 		vrLoc = 7249;
@@ -9722,7 +9809,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 144";
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6520;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 6344;
@@ -9732,7 +9819,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -9752,7 +9839,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -9772,7 +9859,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 144";
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6520;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 6344;
@@ -9782,7 +9869,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 225";
 		rLen = 0;
-		rLoc = 8626;
+		rLoc = 8612;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 7903;
@@ -9792,7 +9879,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 144";
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6520;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 6344;
@@ -9802,7 +9889,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 212";
 		rLen = 0;
-		rLoc = 8292;
+		rLoc = 8278;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 9276;
@@ -9812,7 +9899,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -9832,7 +9919,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 270";
 		rLen = 0;
-		rLoc = 10984;
+		rLoc = 10970;
 		rType = 0;
 		vrLen = 2007;
 		vrLoc = 8723;
@@ -9842,7 +9929,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 247";
 		rLen = 0;
-		rLoc = 9763;
+		rLoc = 9749;
 		rType = 0;
 		vrLen = 2007;
 		vrLoc = 8723;
@@ -9852,7 +9939,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 217";
 		rLen = 0;
-		rLoc = 7568;
+		rLoc = 7530;
 		rType = 0;
 		vrLen = 763;
 		vrLoc = 7303;
@@ -9862,7 +9949,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 144";
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6520;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 6342;
@@ -9872,7 +9959,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 247";
 		rLen = 0;
-		rLoc = 9763;
+		rLoc = 9749;
 		rType = 0;
 		vrLen = 2007;
 		vrLoc = 8723;
@@ -9882,7 +9969,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 217";
 		rLen = 0;
-		rLoc = 7568;
+		rLoc = 7530;
 		rType = 0;
 		vrLen = 763;
 		vrLoc = 7303;
@@ -9892,7 +9979,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 372";
 		rLen = 0;
-		rLoc = 13434;
+		rLoc = 13272;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 12121;
@@ -9902,7 +9989,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -9922,7 +10009,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 372";
 		rLen = 0;
-		rLoc = 13434;
+		rLoc = 13272;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 12121;
@@ -9932,7 +10019,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 217";
 		rLen = 0;
-		rLoc = 7568;
+		rLoc = 7530;
 		rType = 0;
 		vrLen = 763;
 		vrLoc = 7303;
@@ -9942,7 +10029,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 372";
 		rLen = 0;
-		rLoc = 13434;
+		rLoc = 13272;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 12121;
@@ -9952,7 +10039,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 219";
 		rLen = 0;
-		rLoc = 7678;
+		rLoc = 7640;
 		rType = 0;
 		vrLen = 763;
 		vrLoc = 7303;
@@ -9962,7 +10049,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 220";
 		rLen = 0;
-		rLoc = 7708;
+		rLoc = 7670;
 		rType = 0;
 		vrLen = 763;
 		vrLoc = 7303;
@@ -9972,7 +10059,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 247";
 		rLen = 0;
-		rLoc = 9763;
+		rLoc = 9749;
 		rType = 0;
 		vrLen = 2005;
 		vrLoc = 8723;
@@ -9982,7 +10069,7 @@
 		fRef = 5617D1540962223B00505CDC /* GEZGrid.m */;
 		name = "GEZGrid.m: 220";
 		rLen = 0;
-		rLoc = 7708;
+		rLoc = 7670;
 		rType = 0;
 		vrLen = 763;
 		vrLoc = 7303;
@@ -9992,7 +10079,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 253";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1538;
 		vrLoc = 8153;
@@ -10002,7 +10089,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 261";
 		rLen = 0;
-		rLoc = 9720;
+		rLoc = 9706;
 		rType = 0;
 		vrLen = 1725;
 		vrLoc = 8832;
@@ -10018,7 +10105,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10045,7 +10132,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 263";
 		rLen = 0;
-		rLoc = 9522;
+		rLoc = 9508;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 8959;
@@ -10065,7 +10152,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 375";
 		rLen = 0;
-		rLoc = 13591;
+		rLoc = 13408;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 12378;
@@ -10075,7 +10162,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = setAutoconnect;
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1893;
 		vrLoc = 8906;
@@ -10095,7 +10182,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 375";
 		rLen = 0;
-		rLoc = 13591;
+		rLoc = 13408;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 12378;
@@ -10105,7 +10192,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 252";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1895;
 		vrLoc = 8906;
@@ -10115,7 +10202,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 264";
 		rLen = 0;
-		rLoc = 9422;
+		rLoc = 9408;
 		rType = 0;
 		vrLen = 1936;
 		vrLoc = 8906;
@@ -10125,7 +10212,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 254";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 8428;
@@ -10135,7 +10222,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10155,7 +10242,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = autoconnect;
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 8428;
@@ -10175,7 +10262,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 375";
 		rLen = 0;
-		rLoc = 13591;
+		rLoc = 13408;
 		rType = 0;
 		vrLen = 1374;
 		vrLoc = 12414;
@@ -10185,7 +10272,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = autoconnect;
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 8428;
@@ -10195,7 +10282,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 375";
 		rLen = 0;
-		rLoc = 13591;
+		rLoc = 13408;
 		rType = 0;
 		vrLen = 1374;
 		vrLoc = 12414;
@@ -10215,7 +10302,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)hook";
 		rLen = 13;
-		rLoc = 17041;
+		rLoc = 16836;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 16176;
@@ -10225,7 +10312,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10245,7 +10332,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)hook";
 		rLen = 13;
-		rLoc = 17041;
+		rLoc = 16836;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 16176;
@@ -10270,7 +10357,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10290,7 +10377,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10310,7 +10397,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)hook";
 		rLen = 13;
-		rLoc = 17041;
+		rLoc = 16836;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 16176;
@@ -10320,7 +10407,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)hook";
 		rLen = 13;
-		rLoc = 17041;
+		rLoc = 16836;
 		rType = 0;
 		vrLen = 2141;
 		vrLoc = 16176;
@@ -10330,7 +10417,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 226";
 		rLen = 0;
-		rLoc = 8629;
+		rLoc = 8615;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 8428;
@@ -10340,7 +10427,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10360,7 +10447,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 237";
 		rLen = 0;
-		rLoc = 8927;
+		rLoc = 8913;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 8428;
@@ -10380,7 +10467,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 237";
 		rLen = 0;
-		rLoc = 8927;
+		rLoc = 8913;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 8428;
@@ -10410,7 +10497,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10430,7 +10517,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 3048;
 		vrLoc = 0;
@@ -10440,7 +10527,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 3048;
 		vrLoc = 0;
@@ -10450,7 +10537,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: serverInManagedObjectContext:";
 		rLen = 0;
-		rLoc = 6822;
+		rLoc = 6814;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 6278;
@@ -10460,7 +10547,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 171";
 		rLen = 0;
-		rLoc = 7415;
+		rLoc = 7197;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 6526;
@@ -10470,7 +10557,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 171";
 		rLen = 0;
-		rLoc = 7415;
+		rLoc = 7197;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 6526;
@@ -10480,7 +10567,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 237";
 		rLen = 0;
-		rLoc = 8927;
+		rLoc = 8913;
 		rType = 0;
 		vrLen = 1705;
 		vrLoc = 8427;
@@ -10490,7 +10577,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 171";
 		rLen = 0;
-		rLoc = 7415;
+		rLoc = 7197;
 		rType = 0;
 		vrLen = 1508;
 		vrLoc = 6526;
@@ -10500,7 +10587,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 248";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1653;
 		vrLoc = 8534;
@@ -10520,7 +10607,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)setAutoconnect:(BOOL)newautoconnect";
 		rLen = 44;
-		rLoc = 13389;
+		rLoc = 13227;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 12658;
@@ -10530,7 +10617,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = setAutoconnect;
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10550,7 +10637,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)setAutoconnect:(BOOL)newautoconnect";
 		rLen = 44;
-		rLoc = 13389;
+		rLoc = 13227;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 12658;
@@ -10560,7 +10647,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 255";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10570,12 +10657,12 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 255";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
 	};
-	56E282990B5CB16B0020F1C4 /* GEZServer.m:386 */ = {
+	56E282990B5CB16B0020F1C4 /* GEZServer.m:376 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10585,7 +10672,7 @@
 		fileReference = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		functionName = "-setAutoconnect:";
 		hitCount = 3;
-		lineNumber = 386;
+		lineNumber = 376;
 		location = GridEZ;
 		modificationTime = 190624276.624487;
 		state = 1;
@@ -10595,7 +10682,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = setAutoconnect;
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10604,7 +10691,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		rLen = 1;
-		rLoc = 382;
+		rLoc = 373;
 		rType = 1;
 	};
 	56E2829D0B5CB1760020F1C4 /* PBXTextBookmark */ = {
@@ -10612,7 +10699,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = setAutoconnect;
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10622,7 +10709,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)setAutoconnect:(BOOL)newautoconnect";
 		rLen = 44;
-		rLoc = 13389;
+		rLoc = 13227;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 12658;
@@ -10632,7 +10719,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10652,7 +10739,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)setAutoconnect:(BOOL)newautoconnect";
 		rLen = 44;
-		rLoc = 13389;
+		rLoc = 13227;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 12658;
@@ -10662,7 +10749,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10682,7 +10769,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 377";
 		rLen = 0;
-		rLoc = 13185;
+		rLoc = 12848;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 12658;
@@ -10692,7 +10779,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 377";
 		rLen = 0;
-		rLoc = 13185;
+		rLoc = 12848;
 		rType = 0;
 		vrLen = 1410;
 		vrLoc = 12658;
@@ -10702,7 +10789,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 251";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10712,7 +10799,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10732,7 +10819,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10752,7 +10839,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10772,7 +10859,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 246";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10792,7 +10879,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 3059;
 		vrLoc = 0;
@@ -10812,7 +10899,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: isAvailable";
 		rLen = 0;
-		rLoc = 16523;
+		rLoc = 16324;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 15468;
@@ -10822,7 +10909,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 246";
 		rLen = 0;
-		rLoc = 9134;
+		rLoc = 9120;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 8485;
@@ -10832,7 +10919,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 487";
 		rLen = 0;
-		rLoc = 16508;
+		rLoc = 16311;
 		rType = 0;
 		vrLen = 1802;
 		vrLoc = 15468;
@@ -10852,7 +10939,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: isAvailable";
 		rLen = 0;
-		rLoc = 16523;
+		rLoc = 16324;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 15468;
@@ -10862,7 +10949,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 3059;
 		vrLoc = 0;
@@ -10882,7 +10969,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 488";
 		rLen = 0;
-		rLoc = 16509;
+		rLoc = 16312;
 		rType = 0;
 		vrLen = 2010;
 		vrLoc = 16308;
@@ -10892,7 +10979,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: isAvailable";
 		rLen = 0;
-		rLoc = 16523;
+		rLoc = 16324;
 		rType = 0;
 		vrLen = 2008;
 		vrLoc = 16308;
@@ -10902,7 +10989,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: isAvailable";
 		rLen = 0;
-		rLoc = 16523;
+		rLoc = 16324;
 		rType = 0;
 		vrLen = 2010;
 		vrLoc = 16308;
@@ -10912,7 +10999,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -10932,7 +11019,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: isAvailable";
 		rLen = 0;
-		rLoc = 16523;
+		rLoc = 16324;
 		rType = 0;
 		vrLen = 2010;
 		vrLoc = 16308;
@@ -10942,7 +11029,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 3059;
 		vrLoc = 0;
@@ -10952,7 +11039,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: isAvailable";
 		rLen = 0;
-		rLoc = 16523;
+		rLoc = 16324;
 		rType = 0;
 		vrLen = 2010;
 		vrLoc = 16308;
@@ -10962,7 +11049,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2992;
 		vrLoc = 0;
@@ -10972,7 +11059,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2992;
 		vrLoc = 0;
@@ -10982,7 +11069,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: addAndConnectServer:";
 		rLen = 0;
-		rLoc = 9135;
+		rLoc = 9121;
 		rType = 0;
 		vrLen = 1537;
 		vrLoc = 8485;
@@ -11002,7 +11089,7 @@
 		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 405;
+		rLoc = 283;
 		rType = 0;
 		vrLen = 2992;
 		vrLoc = 0;
@@ -11012,7 +11099,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: addAndConnectServer:";
 		rLen = 0;
-		rLoc = 9135;
+		rLoc = 9121;
 		rType = 0;
 		vrLen = 1537;
 		vrLoc = 8485;
@@ -11052,7 +11139,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 125";
 		rLen = 0;
-		rLoc = 5614;
+		rLoc = 5600;
 		rType = 0;
 		vrLen = 1627;
 		vrLoc = 4069;
@@ -11062,7 +11149,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 127";
 		rLen = 0;
-		rLoc = 5610;
+		rLoc = 5596;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 4289;
@@ -11072,7 +11159,7 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 100";
 		rLen = 0;
-		rLoc = 4585;
+		rLoc = 4571;
 		rType = 0;
 		vrLen = 1475;
 		vrLoc = 4289;
@@ -11082,7 +11169,7 @@
 		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
 		name = "GEZMetaJob.m: 968";
 		rLen = 0;
-		rLoc = 35916;
+		rLoc = 35877;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 42172;
@@ -11102,10 +11189,2092 @@
 		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
 		name = "GEZServerWindowController.m: 120";
 		rLen = 0;
-		rLoc = 5316;
+		rLoc = 5302;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 4289;
+	};
+	56E283050B5CBBD60020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 120";
+		rLen = 0;
+		rLoc = 5302;
+		rType = 0;
+		vrLen = 1420;
+		vrLoc = 4289;
+	};
+	56E283060B5CBBD60020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8DC2EF5A0486A6940098B216 /* Info.plist */;
+		name = "Info.plist: 21";
+		rLen = 0;
+		rLoc = 653;
+		rType = 0;
+		vrLen = 712;
+		vrLoc = 0;
+	};
+	56E283070B5CBBD70020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 120";
+		rLen = 0;
+		rLoc = 5302;
+		rType = 0;
+		vrLen = 1420;
+		vrLoc = 4289;
+	};
+	56E283080B5CBBD70020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8DC2EF5A0486A6940098B216 /* Info.plist */;
+		name = "Info.plist: 21";
+		rLen = 0;
+		rLoc = 653;
+		rType = 0;
+		vrLen = 712;
+		vrLoc = 0;
+	};
+	56E283150B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 968";
+		rLen = 0;
+		rLoc = 35877;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283160B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
+		name = GEZJobStateDeleted;
+		rLen = 18;
+		rLoc = 17911;
+		rType = 0;
+		vrLen = 824;
+		vrLoc = 17307;
+	};
+	56E283170B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 567826FA09A6F57800D78584 /* GEZBindingsCategories.h */;
+		name = Busy;
+		rLen = 4;
+		rLoc = 1125;
+		rType = 0;
+		vrLen = 442;
+		vrLoc = 849;
+	};
+	56E283180B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 567826FB09A6F57800D78584 /* GEZBindingsCategories.m */;
+		name = Busy;
+		rLen = 4;
+		rLoc = 1564;
+		rType = 0;
+		vrLen = 594;
+		vrLoc = 1230;
+	};
+	56E283190B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 49";
+		rLen = 0;
+		rLoc = 2964;
+		rType = 0;
+		vrLen = 1523;
+		vrLoc = 1677;
+	};
+	56E2831A0B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
+		name = "GEZXgridPanelController.m: 47";
+		rLen = 0;
+		rLoc = 2575;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 1589;
+	};
+	56E2831B0B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */;
+		name = "GEZServerBrowser.m: 125";
+		rLen = 0;
+		rLoc = 4634;
+		rType = 0;
+		vrLen = 1071;
+		vrLoc = 3741;
+	};
+	56E2831C0B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = isAvailable;
+		rLen = 11;
+		rLoc = 6294;
+		rType = 0;
+		vrLen = 896;
+		vrLoc = 6064;
+	};
+	56E2831D0B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		rLen = 9;
+		rLoc = 15844;
+		rType = 0;
+	};
+	56E2831E0B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
+		name = GEZJobStateDeleted;
+		rLen = 18;
+		rLoc = 17911;
+		rType = 0;
+		vrLen = 824;
+		vrLoc = 17307;
+	};
+	56E2831F0B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 47";
+		rLen = 0;
+		rLoc = 2519;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 1354;
+	};
+	56E283200B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 567826FA09A6F57800D78584 /* GEZBindingsCategories.h */;
+		name = Busy;
+		rLen = 4;
+		rLoc = 1125;
+		rType = 0;
+		vrLen = 442;
+		vrLoc = 849;
+	};
+	56E283210B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 567826FB09A6F57800D78584 /* GEZBindingsCategories.m */;
+		name = Busy;
+		rLen = 4;
+		rLoc = 1564;
+		rType = 0;
+		vrLen = 594;
+		vrLoc = 1230;
+	};
+	56E283220B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 49";
+		rLen = 0;
+		rLoc = 2964;
+		rType = 0;
+		vrLen = 1523;
+		vrLoc = 1677;
+	};
+	56E283230B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5678267109A6EF5100D78584 /* GEZXgridPanelController.m */;
+		name = "GEZXgridPanelController.m: 47";
+		rLen = 0;
+		rLoc = 2575;
+		rType = 0;
+		vrLen = 1407;
+		vrLoc = 1589;
+	};
+	56E283240B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56BFC496095FB37400463A1F /* GEZServerBrowser.m */;
+		name = "GEZServerBrowser.m: 125";
+		rLen = 0;
+		rLoc = 4634;
+		rType = 0;
+		vrLen = 1071;
+		vrLoc = 3741;
+	};
+	56E283250B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = isAvailable;
+		rLen = 11;
+		rLoc = 6294;
+		rType = 0;
+		vrLen = 896;
+		vrLoc = 6064;
+	};
+	56E283260B5D662A0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 558";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 15233;
+	};
+	56E283270B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8DC2EF5A0486A6940098B216 /* Info.plist */;
+		name = "Info.plist: 21";
+		rLen = 0;
+		rLoc = 653;
+		rType = 0;
+		vrLen = 712;
+		vrLoc = 0;
+	};
+	56E283280B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
+		name = "GEZServerHook.m: 141";
+		rLen = 0;
+		rLoc = 7492;
+		rType = 0;
+		vrLen = 1366;
+		vrLoc = 6357;
+	};
+	56E283290B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 561A069009F9A32200BFC1B3 /* README.txt */;
+		name = "README.txt: 17";
+		rLen = 0;
+		rLoc = 583;
+		rType = 0;
+		vrLen = 652;
+		vrLoc = 0;
+	};
+	56E2832A0B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 8";
+		rLen = 0;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 2323;
+		vrLoc = 0;
+	};
+	56E2832B0B5D66330020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 1;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {486, 417}}",
+						"{{491, 0}, {282, 417}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 417}}",
+						"{{0, 422}, {773, 49}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {172, 417}}",
+						"{{177, 0}, {309, 417}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 16}, {758, 34}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x12f0730>{name=GEZServer, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMAttribute: 0xab8b8d0>{name=available, type=(null)}",
+			);
+		};
+	};
+	56E2832C0B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 47";
+		rLen = 0;
+		rLoc = 2503;
+		rType = 0;
+		vrLen = 1755;
+		vrLoc = 1564;
+	};
+	56E2832D0B5D66330020F1C4 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 56720B350AAFEE1C00066417 /* GEZIntegerArray.h */;
+	};
+	56E2832E0B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8DC2EF5A0486A6940098B216 /* Info.plist */;
+		name = "Info.plist: 21";
+		rLen = 0;
+		rLoc = 653;
+		rType = 0;
+		vrLen = 712;
+		vrLoc = 0;
+	};
+	56E2832F0B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56BFC498095FB37400463A1F /* GEZServerHook.m */;
+		name = "GEZServerHook.m: 141";
+		rLen = 0;
+		rLoc = 7492;
+		rType = 0;
+		vrLen = 1366;
+		vrLoc = 6357;
+	};
+	56E283300B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 561A069009F9A32200BFC1B3 /* README.txt */;
+		name = "README.txt: 17";
+		rLen = 0;
+		rLoc = 583;
+		rType = 0;
+		vrLen = 652;
+		vrLoc = 0;
+	};
+	56E283310B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 8";
+		rLen = 0;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 2323;
+		vrLoc = 0;
+	};
+	56E283320B5D66330020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 1;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {486, 417}}",
+						"{{491, 0}, {282, 417}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 417}}",
+						"{{0, 422}, {773, 49}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {172, 417}}",
+						"{{177, 0}, {309, 417}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 16}, {758, 34}}";
+			"xdesign model selected entities key" = (
+				"<XDPMEntity: 0x12f0730>{name=GEZServer, package=}",
+			);
+			"xdesign model selected properties key" = (
+				"<XDPMAttribute: 0xab8b8d0>{name=available, type=(null)}",
+			);
+		};
+	};
+	56E283330B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "GEZServerWindowController.m: 47";
+		rLen = 0;
+		rLoc = 2503;
+		rType = 0;
+		vrLen = 1755;
+		vrLoc = 1564;
+	};
+	56E283340B5D66330020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56720B350AAFEE1C00066417 /* GEZIntegerArray.h */;
+		name = "GEZIntegerArray.h: 3";
+		rLen = 878;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 1249;
+		vrLoc = 0;
+	};
+	56E2833A0B5D669D0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56720B350AAFEE1C00066417 /* GEZIntegerArray.h */;
+		name = "GEZIntegerArray.h: 3";
+		rLen = 878;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 1249;
+		vrLoc = 0;
+	};
+	56E283450B5D67370020F1C4 /* GridEZ_DataModel.xcdatamodel */ = {
+		isa = PBXFileReference;
+		name = GridEZ_DataModel.xcdatamodel;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridEZ/GridEZ_DataModel.xcdatamodel;
+		sourceTree = "<absolute>";
+	};
+	56E2834B0B5D67440020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 968";
+		rLen = 0;
+		rLoc = 35877;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E2834C0B5D67440020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 558";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 15233;
+	};
+	56E2834F0B5D676D0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 968";
+		rLen = 0;
+		rLoc = 35877;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283500B5D676D0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 558";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 15233;
+	};
+	56E283510B5D67720020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 968";
+		rLen = 0;
+		rLoc = 35877;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283520B5D67720020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 558";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 15233;
+	};
+	56E283540B5D677C0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56720B350AAFEE1C00066417 /* GEZIntegerArray.h */;
+		name = "GEZIntegerArray.h: 3";
+		rLen = 878;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 1249;
+		vrLoc = 0;
+	};
+	56E283550B5D677C0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56E283450B5D67370020F1C4 /* GridEZ_DataModel.xcdatamodel */;
+		rLen = 1;
+		rLoc = 0;
+		rType = 1;
+	};
+	56E283560B5D677C0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56720B350AAFEE1C00066417 /* GEZIntegerArray.h */;
+		name = "GEZIntegerArray.h: 3";
+		rLen = 878;
+		rLoc = 25;
+		rType = 0;
+		vrLen = 1249;
+		vrLoc = 0;
+	};
+	56E283570B5D677C0020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {483, 347}}",
+						"{{488, 0}, {285, 347}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 347}}",
+						"{{0, 352}, {773, 119}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {167, 347}}",
+						"{{172, 0}, {311, 347}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 45}, {758, 104}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	56E283580B5D678C0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 968";
+		rLen = 0;
+		rLoc = 35877;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283590B5D678C0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 558";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1192;
+		vrLoc = 15233;
+	};
+	56E2835B0B5D678D0020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {483, 347}}",
+						"{{488, 0}, {285, 347}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 347}}",
+						"{{0, 352}, {773, 119}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {167, 347}}",
+						"{{172, 0}, {311, 347}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 45}, {758, 104}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	56E283620B5D68610020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 968";
+		rLen = 0;
+		rLoc = 35877;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283630B5D68610020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 562";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 15298;
+	};
+	56E283660B5D69100020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1060";
+		rLen = 0;
+		rLoc = 42872;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283670B5D69100020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 562";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 15298;
+	};
+	56E2836B0B5D692D0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1060";
+		rLen = 0;
+		rLoc = 42872;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E2836C0B5D692D0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 562";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 15298;
+	};
+	56E2836D0B5D69410020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {483, 347}}",
+						"{{488, 0}, {285, 347}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 347}}",
+						"{{0, 352}, {773, 119}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {167, 347}}",
+						"{{172, 0}, {311, 347}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 45}, {758, 104}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	56E2836E0B5D69420020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "GEZServer.h: 58";
+		rLen = 0;
+		rLoc = 3979;
+		rType = 0;
+		vrLen = 1031;
+		vrLoc = 3677;
+	};
+	56E2836F0B5D69420020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: isAvailable";
+		rLen = 0;
+		rLoc = 16324;
+		rType = 0;
+		vrLen = 2039;
+		vrLoc = 16951;
+	};
+	56E283700B5D69420020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {483, 347}}",
+						"{{488, 0}, {285, 347}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 347}}",
+						"{{0, 352}, {773, 119}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {167, 347}}",
+						"{{172, 0}, {311, 347}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 45}, {758, 104}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	56E283710B5D69420020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: isAvailable";
+		rLen = 0;
+		rLoc = 16324;
+		rType = 0;
+		vrLen = 1394;
+		vrLoc = 16951;
+	};
+	56E283720B5D69420020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "GEZServer.h: 58";
+		rLen = 0;
+		rLoc = 3979;
+		rType = 0;
+		vrLen = 1031;
+		vrLoc = 3677;
+	};
+	56E283730B5D69420020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 494";
+		rLen = 0;
+		rLoc = 16348;
+		rType = 0;
+		vrLen = 1860;
+		vrLoc = 15560;
+	};
+	56E283740B5D698E0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1060";
+		rLen = 0;
+		rLoc = 42872;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283750B5D698E0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 562";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 15298;
+	};
+	56E283770B5D69B30020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 494";
+		rLen = 0;
+		rLoc = 16348;
+		rType = 0;
+		vrLen = 1860;
+		vrLoc = 15560;
+	};
+	56E283780B5D69ED0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1060";
+		rLen = 0;
+		rLoc = 42872;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 42172;
+	};
+	56E283790B5D69ED0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 562";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 15298;
+	};
+	56E2837C0B5D69EF0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1060";
+		rLen = 0;
+		rLoc = 42872;
+		rType = 0;
+		vrLen = 1180;
+		vrLoc = 42205;
+	};
+	56E2837D0B5D69EF0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 562";
+		rLen = 0;
+		rLoc = 19520;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 15298;
+	};
+	56E283860B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: updateStatus";
+		rLen = 0;
+		rLoc = 16137;
+		rType = 0;
+		vrLen = 1860;
+		vrLoc = 15560;
+	};
+	56E283870B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
+		name = "GEZJob.h: 13";
+		rLen = 0;
+		rLoc = 895;
+		rType = 0;
+		vrLen = 1738;
+		vrLoc = 4656;
+	};
+	56E283880B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
+		name = "GEZJob.m: 159";
+		rLen = 0;
+		rLoc = 8098;
+		rType = 0;
+		vrLen = 1979;
+		vrLoc = 6989;
+	};
+	56E283890B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 5";
+		rLen = 0;
+		rLoc = 120;
+		rType = 0;
+		vrLen = 2992;
+		vrLoc = 0;
+	};
+	56E2838A0B5D9DA50020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {483, 347}}",
+						"{{488, 0}, {285, 347}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 347}}",
+						"{{0, 352}, {773, 328}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {167, 347}}",
+						"{{172, 0}, {311, 347}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 16}, {758, 313}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	56E2838B0B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: updateStatus";
+		rLen = 0;
+		rLoc = 16137;
+		rType = 0;
+		vrLen = 1860;
+		vrLoc = 15560;
+	};
+	56E2838C0B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D1590962224C00505CDC /* GEZJob.h */;
+		name = "GEZJob.h: 13";
+		rLen = 0;
+		rLoc = 895;
+		rType = 0;
+		vrLen = 1738;
+		vrLoc = 4656;
+	};
+	56E2838D0B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D15A0962224C00505CDC /* GEZJob.m */;
+		name = "GEZJob.m: 159";
+		rLen = 0;
+		rLoc = 8098;
+		rType = 0;
+		vrLen = 1979;
+		vrLoc = 6989;
+	};
+	56E2838E0B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 5";
+		rLen = 0;
+		rLoc = 120;
+		rType = 0;
+		vrLen = 2992;
+		vrLoc = 0;
+	};
+	56E2838F0B5D9DA50020F1C4 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					32.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {483, 347}}",
+						"{{488, 0}, {285, 347}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {773, 347}}",
+						"{{0, 352}, {773, 328}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {167, 347}}",
+						"{{172, 0}, {311, 347}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+					name,
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsAT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsRT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+					"_xdcaseInsensitiveNumericCompare:",
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					138.000000,
+					108.110840,
+					96.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-55, 16}, {758, 313}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	56E283900B5D9DA50020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: delegate";
+		rLen = 0;
+		rLoc = 10800;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 10022;
+	};
+	56E283950B5D9E400020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: delegate";
+		rLen = 0;
+		rLoc = 10800;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 10022;
+	};
+	56E283960B5D9E400020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "GEZServer.h: 65";
+		rLen = 0;
+		rLoc = 4351;
+		rType = 0;
+		vrLen = 1970;
+		vrLoc = 3856;
+	};
+	56E283970B5D9E400020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: delegate";
+		rLen = 0;
+		rLoc = 10800;
+		rType = 0;
+		vrLen = 1691;
+		vrLoc = 10022;
+	};
+	56E283980B5D9E400020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "GEZServer.h: 65";
+		rLen = 0;
+		rLoc = 4351;
+		rType = 0;
+		vrLen = 1970;
+		vrLoc = 3856;
+	};
+	56E283990B5D9E400020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 156";
+		rLen = 0;
+		rLoc = 7024;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 6336;
 	};
 	56F0A59F09ABEDD0004FB9E1 /* GEZTask.h */ = {
 		uiCtxt = {
@@ -11324,9 +13493,9 @@
 	};
 	8DC2EF5A0486A6940098B216 /* Info.plist */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 472}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 471}}";
 			sepNavSelRange = "{653, 0}";
-			sepNavVisRect = "{{0, 0}, {728, 472}}";
+			sepNavVisRect = "{{0, 0}, {728, 471}}";
 		};
 	};
 }

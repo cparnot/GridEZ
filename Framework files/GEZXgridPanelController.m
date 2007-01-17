@@ -43,8 +43,8 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 	[self setKeys:[NSArray arrayWithObject:@"focusedTableView"] triggerChangeNotificationsForDependentKey:@"fileFocus"];
 
 	//these keys are only used for bindings, so we only activate them here; the getter for these keys are defined in GEZBindingCategories
-	[GEZServer setKeys:[NSArray arrayWithObjects:@"isAvailable", @"isConnecting", @"isConnected", @"isLoaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil] triggerChangeNotificationsForDependentKey:@"serverStatus"];
-	[GEZServer setKeys:[NSArray arrayWithObjects:@"isConnecting", @"isConnected", @"isLoaded", nil] triggerChangeNotificationsForDependentKey:@"isBusy"];
+	[GEZServer setKeys:[NSArray arrayWithObjects:@"available", @"connecting", @"connected", @"loaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil] triggerChangeNotificationsForDependentKey:@"serverStatus"];
+	[GEZServer setKeys:[NSArray arrayWithObjects:@"connecting", @"connected", @"loaded", nil] triggerChangeNotificationsForDependentKey:@"isBusy"];
 }
 
 - (id)init

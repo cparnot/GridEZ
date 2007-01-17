@@ -49,7 +49,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	NSArray *keys;
 	if ( self == [GEZServer class] ) {
 		//TODO
-		keys=[NSArray arrayWithObjects:@"isAvailable", @"isConnecting", @"isConnected", @"isLoaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil];
+		keys=[NSArray arrayWithObjects:@"available", @"connecting", @"connected", @"loaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil];
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"status"];
 		[self setKeys:[NSArray arrayWithObject:@"name"] triggerChangeNotificationsForDependentKey:@"address"];
 	}
@@ -153,22 +153,11 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 {
 	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	[super awakeFromFetch];
-	
-	//TEMPORARY: SET TO YES BY DEFAULT AT EACH RUN
-	[self setAutoconnect:YES];
-	
+	//autoconnect if appropriate (see setAvailable for the case GEZServerTypeLocal)
 	if ( [self autoconnect] == YES && [[self valueForKey:@"wasConnectedInPreviousSession"] boolValue] == YES && [self serverType] == GEZServerTypeRemote )
 		[self connect];
 }
 
-- (void)awakeFromInsert
-{
-	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
-	[super awakeFromInsert];
-	
-	//TEMPORARY: SET TO YES BY DEFAULT AT EACH RUN
-	[self setAutoconnect:YES];
-}
 
 - (void)deleteFromStore
 {
@@ -237,32 +226,32 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 
 - (BOOL)isAvailable
 {
-    [self willAccessValueForKey:@"isAvailable"];
-    BOOL flag = [[self primitiveValueForKey:@"isAvailable"] boolValue];
-    [self didAccessValueForKey:@"isAvailable"];
+    [self willAccessValueForKey:@"available"];
+    BOOL flag = [[self primitiveValueForKey:@"available"] boolValue];
+    [self didAccessValueForKey:@"available"];
     return flag;
 }
 - (BOOL)isConnected
 {
-    [self willAccessValueForKey:@"isConnected"];
-    BOOL flag = [[self primitiveValueForKey:@"isConnected"] boolValue];
-    [self didAccessValueForKey:@"isConnected"];
+    [self willAccessValueForKey:@"connected"];
+    BOOL flag = [[self primitiveValueForKey:@"connected"] boolValue];
+    [self didAccessValueForKey:@"connected"];
     return flag;
 }
 
 - (BOOL)isConnecting
 {
-    [self willAccessValueForKey:@"isConnecting"];
-    BOOL flag = [[self primitiveValueForKey:@"isConnecting"] boolValue];
-    [self didAccessValueForKey:@"isConnecting"];
+    [self willAccessValueForKey:@"connecting"];
+    BOOL flag = [[self primitiveValueForKey:@"connecting"] boolValue];
+    [self didAccessValueForKey:@"connecting"];
     return flag;
 }
 
 - (BOOL)isLoaded
 {
-    [self willAccessValueForKey:@"isLoaded"];
-    BOOL flag = [[self primitiveValueForKey:@"isLoaded"] boolValue];
-    [self didAccessValueForKey:@"isLoaded"];
+    [self willAccessValueForKey:@"loaded"];
+    BOOL flag = [[self primitiveValueForKey:@"loaded"] boolValue];
+    [self didAccessValueForKey:@"loaded"];
     return flag;
 }
 
@@ -288,25 +277,25 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 }
 
 
-- (BOOL)shouldObserveAllJobs;
+- (BOOL)isObservingAllJobs;
 {
-    [self willAccessValueForKey:@"shouldObserveAllJobs"];
-    BOOL flag = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
-    [self didAccessValueForKey:@"shouldObserveAllJobs"];
+    [self willAccessValueForKey:@"observingAllJobs"];
+    BOOL flag = [[self primitiveValueForKey:@"observingAllJobs"] boolValue];
+    [self didAccessValueForKey:@"observingAllJobs"];
     return flag;
 }
 
-- (void)setShouldObserveAllJobs:(BOOL)new
+- (void)setObservingAllJobs:(BOOL)new
 {
-	BOOL old = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
+	BOOL old = [[self primitiveValueForKey:@"observingAllJobs"] boolValue];
 	if ( new != old ) {
-		[self willChangeValueForKey:@"shouldObserveAllJobs"];
-		[self setPrimitiveValue:[NSNumber numberWithBool:new] forKey:@"shouldObserveAllJobs"];
-		[self didChangeValueForKey:@"shouldObserveAllJobs"];
+		[self willChangeValueForKey:@"observingAllJobs"];
+		[self setPrimitiveValue:[NSNumber numberWithBool:new] forKey:@"observingAllJobs"];
+		[self didChangeValueForKey:@"observingAllJobs"];
 		NSEnumerator *e = [[self grids] objectEnumerator];
 		GEZGrid *oneGrid;
 		while ( oneGrid = [e nextObject] )
-			[oneGrid setShouldObserveAllJobs:new];
+			[oneGrid setObservingAllJobs:new];
 	}
 	/*TODO: ideally, this setting should also apply to future grids potentially added*/
 }
@@ -373,18 +362,19 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
     return serverType;
 }
 
-//temporarily an ivar, will be made a coredata property
 //auto-reconnect when connection is lost, or as soon as available if wasConnectedInPreviousSession == YES, or immediately if remote connection and wasConnectedInPreviousSession == YES; in the latter 2 cases, also set the serverHook to autoconnect
 - (BOOL)autoconnect
 {
-	return autoconnect;
+	[self willAccessValueForKey:@"autoconnect"];
+	BOOL autoconnectBool = [[self primitiveValueForKey:@"autoconnect"] boolValue];
+	[self didAccessValueForKey:@"autoconnect"];
+	return autoconnectBool;
 }
 
 - (void)setAutoconnect:(BOOL)newautoconnect
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self willChangeValueForKey:@"autoconnect"];
-	autoconnect = newautoconnect;
+	[self setPrimitiveValue:[NSNumber numberWithBool:newautoconnect] forKey:@"autoconnect"];
 	[self didChangeValueForKey:@"autoconnect"];
 }
 
@@ -467,31 +457,31 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 		[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasConnectedInPreviousSession"];
 		[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasAvailableInPreviousSession"];
 	}
-	[self setValue:[NSNumber numberWithBool:lsc] forKey:@"isConnected"];
+	[self setValue:[NSNumber numberWithBool:lsc] forKey:@"connected"];
 	[self setValue:[NSNumber numberWithBool:lsc] forKey:@"wasConnectedInCurrentSession"];
 	[self setValue:[NSNumber numberWithBool:lsc] forKey:@"wasAvailableInCurrentSession"];
-	[self setValue:[NSNumber numberWithBool:n]   forKey:@"isConnecting"];
-	[self setValue:[NSNumber numberWithBool:l]   forKey:@"isLoaded"];
+	[self setValue:[NSNumber numberWithBool:n]   forKey:@"connecting"];
+	[self setValue:[NSNumber numberWithBool:l]   forKey:@"loaded"];
 
 	//if Bonjour, the GEZServer browser should take care of that. For remote server, available should be on/off at the same time as connection
 	if ( [self serverType] == GEZServerTypeRemote )
-		[self setValue:[NSNumber numberWithBool:lsc] forKey:@"isAvailable"];
+		[self setValue:[NSNumber numberWithBool:lsc] forKey:@"available"];
 }
 
 - (BOOL)isAvailable
 {
-	[self willAccessValueForKey:@"isAvailable"];
-	BOOL value = [[self primitiveValueForKey:@"isAvailable"] boolValue];
-	[self didAccessValueForKey:@"isAvailable"];
+	[self willAccessValueForKey:@"available"];
+	BOOL value = [[self primitiveValueForKey:@"available"] boolValue];
+	[self didAccessValueForKey:@"available"];
 	return value;
 }
 
-- (void)setIsAvailable:(BOOL)aValue
+- (void)setAvailable:(BOOL)aValue
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[self willChangeValueForKey:@"isAvailable"];
-	[self setPrimitiveValue:[NSNumber numberWithBool:aValue] forKey:@"isAvailable"];
-	[self didChangeValueForKey:@"isAvailable"];
+	[self willChangeValueForKey:@"available"];
+	[self setPrimitiveValue:[NSNumber numberWithBool:aValue] forKey:@"available"];
+	[self didChangeValueForKey:@"available"];
 	if ( aValue == YES && [self autoconnect] == YES && [[self primitiveValueForKey:@"wasConnectedInPreviousSession"] boolValue] == YES )
 		[self connect];
 }
@@ -555,7 +545,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	XGGrid *aGrid;
 	while ( aGrid = [e nextObject] ) {
 		GEZGrid *newGrid = [GEZGrid gridWithIdentifier:[aGrid identifier] server:self];
-		[newGrid setShouldObserveAllJobs:[self shouldObserveAllJobs]];
+		[newGrid setObservingAllJobs:[self isObservingAllJobs]];
 	}
 }
 

@@ -272,18 +272,19 @@
 								<string>1C37FBAC04509CD000000102</string>
 								<string>56E27C180B4B6EF60020F1C4</string>
 								<string>1C37FAAC04509CD000000102</string>
+								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>39</integer>
-									<integer>38</integer>
+									<integer>75</integer>
+									<integer>72</integer>
 									<integer>20</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 616}, {294, 684}}</string>
+							<string>{{0, 882}, {294, 684}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -320,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GEZServerWindowController.m</string>
+								<string>GEZServer.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GEZServerWindowController.m</string>
+										<string>GEZServer.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>56E283030B5CBAFD0020F1C4</string>
+										<string>56E283990B5D9E400020F1C4</string>
 										<key>history</key>
 										<array>
 											<string>5650F8670960A36E001A3F09</string>
@@ -404,7 +405,6 @@
 											<string>56CF04820B07109600CF9AE0</string>
 											<string>56CF04B70B093C4800CF9AE0</string>
 											<string>56CF04B80B093C4800CF9AE0</string>
-											<string>562A955B0B45E7D500653B20</string>
 											<string>562A95EE0B464D7E00653B20</string>
 											<string>56E27CE00B4BA2D80020F1C4</string>
 											<string>56E27D790B4CE58A0020F1C4</string>
@@ -419,31 +419,33 @@
 											<string>56E2800C0B5767D20020F1C4</string>
 											<string>56E2801B0B576A220020F1C4</string>
 											<string>56E2801D0B576A220020F1C4</string>
-											<string>56E280BB0B5877550020F1C4</string>
 											<string>56E280DB0B587BA20020F1C4</string>
 											<string>56E280DD0B587BA20020F1C4</string>
 											<string>56E280DE0B587BA20020F1C4</string>
-											<string>56E280DF0B587BA20020F1C4</string>
-											<string>56E280E30B587BA20020F1C4</string>
 											<string>56E281000B58A51E0020F1C4</string>
 											<string>56E281140B58AB7A0020F1C4</string>
 											<string>56E281660B5B12330020F1C4</string>
-											<string>56E281680B5B12330020F1C4</string>
 											<string>56E2817B0B5C49BE0020F1C4</string>
 											<string>56E2817E0B5C49BE0020F1C4</string>
 											<string>56E2817F0B5C49BE0020F1C4</string>
 											<string>56E281E30B5C4C540020F1C4</string>
 											<string>56E281E40B5C4C540020F1C4</string>
-											<string>56E281E60B5C4C540020F1C4</string>
 											<string>56E281E70B5C4C540020F1C4</string>
 											<string>56E282150B5C4F000020F1C4</string>
-											<string>56E2826F0B5C560E0020F1C4</string>
 											<string>56E282C10B5CB4060020F1C4</string>
-											<string>56E282C30B5CB4060020F1C4</string>
-											<string>56E282DA0B5CB58A0020F1C4</string>
-											<string>56E282E20B5CB6400020F1C4</string>
 											<string>56E282F00B5CB8230020F1C4</string>
-											<string>56E282E30B5CB6400020F1C4</string>
+											<string>56E283270B5D66330020F1C4</string>
+											<string>56E283280B5D66330020F1C4</string>
+											<string>56E283290B5D66330020F1C4</string>
+											<string>56E2832C0B5D66330020F1C4</string>
+											<string>56E283540B5D677C0020F1C4</string>
+											<string>56E283870B5D9DA50020F1C4</string>
+											<string>56E283880B5D9DA50020F1C4</string>
+											<string>56E283890B5D9DA50020F1C4</string>
+											<string>56E2838A0B5D9DA50020F1C4</string>
+											<string>56E283950B5D9E400020F1C4</string>
+											<string>56E283960B5D9E400020F1C4</string>
+											<string>56E283860B5D9DA50020F1C4</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -647,6 +649,24 @@
 											<string>56E282E50B5CB6400020F1C4</string>
 											<string>56E282E60B5CB6400020F1C4</string>
 											<string>56E282F10B5CB8230020F1C4</string>
+											<string>56E283070B5CBBD70020F1C4</string>
+											<string>56E2832E0B5D66330020F1C4</string>
+											<string>56E2832F0B5D66330020F1C4</string>
+											<string>56E283300B5D66330020F1C4</string>
+											<string>56E283310B5D66330020F1C4</string>
+											<string>56E283320B5D66330020F1C4</string>
+											<string>56E283330B5D66330020F1C4</string>
+											<string>56E283560B5D677C0020F1C4</string>
+											<string>56E283700B5D69420020F1C4</string>
+											<string>56E283710B5D69420020F1C4</string>
+											<string>56E283720B5D69420020F1C4</string>
+											<string>56E2838B0B5D9DA50020F1C4</string>
+											<string>56E2838C0B5D9DA50020F1C4</string>
+											<string>56E2838D0B5D9DA50020F1C4</string>
+											<string>56E2838E0B5D9DA50020F1C4</string>
+											<string>56E2838F0B5D9DA50020F1C4</string>
+											<string>56E283970B5D9E400020F1C4</string>
+											<string>56E283980B5D9E400020F1C4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -845,9 +865,9 @@
 		<string>5617D0A409610DE600505CDC</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>56E2825E0B5C55490020F1C4</string>
+		<string>5650F83F0960985A001A3F09</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>5650F83F0960985A001A3F09</string>
 		<string>/Users/charles/Docs/Development/cocoa_dev/GridEZ/GridEZ.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -943,7 +963,7 @@
 			<key>WindowToolGUID</key>
 			<string>5650F83F0960985A001A3F09</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1077,7 +1097,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GEZJob.m</string>
+										<string>GEZServer.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>

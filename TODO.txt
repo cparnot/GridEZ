@@ -3,11 +3,11 @@ Roadmap
 Todo for v0.4 release:
 * bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
 * GEZJob delegate: make it a coredata relationship, just like the delegate of GEZMetaJob; do that at the end, because the database format will become incompatible
-* all the keys "isAvailable", "isConnected",... should be replaced with "available", "connected",... to be KVC-compliant!!
-* Make "autoconnect" a coredata property of GEZServer
 
 
 done:
+* all the keys "isAvailable", "isConnected",... should be replaced with "available", "connected",... to be KVC-compliant!!
+* Make "autoconnect" a coredata property of GEZServer
 * Add "Autoconnect" to Server and Grid: first make it an ivar on GEZServerHook (and of GEZServer for testing and still be able to use  database compatible with previous version) then a coredata property of GEZServer
 * In the Xgrid panel, add job ids and keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting
 * delete key should work in Controllers window and Xgrid panel

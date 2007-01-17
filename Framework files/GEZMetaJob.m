@@ -281,7 +281,6 @@ NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKe
     return delegate;
 }
 
-//do not retain to avoid retain cycles
 - (void)setDelegate:(id)newDelegate
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);

@@ -166,30 +166,30 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 }
 
 
-- (BOOL)shouldObserveAllJobs;
+- (BOOL)isObservingAllJobs;
 {
-    [self willAccessValueForKey:@"shouldObserveAllJobs"];
-    BOOL flag = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
-    [self didAccessValueForKey:@"shouldObserveAllJobs"];
+    [self willAccessValueForKey:@"observingAllJobs"];
+    BOOL flag = [[self primitiveValueForKey:@"observingAllJobs"] boolValue];
+    [self didAccessValueForKey:@"observingAllJobs"];
     return flag;
 }
 
-- (void)setShouldObserveAllJobs:(BOOL)new
+- (void)setObservingAllJobs:(BOOL)new
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
-	BOOL old = [[self primitiveValueForKey:@"shouldObserveAllJobs"] boolValue];
+	BOOL old = [[self primitiveValueForKey:@"observingAllJobs"] boolValue];
 	if ( new != old ) {
-		[self willChangeValueForKey:@"shouldObserveAllJobs"];
-		[self setPrimitiveValue:[NSNumber numberWithBool:new] forKey:@"shouldObserveAllJobs"];
-		[self didChangeValueForKey:@"shouldObserveAllJobs"];
+		[self willChangeValueForKey:@"observingAllJobs"];
+		[self setPrimitiveValue:[NSNumber numberWithBool:new] forKey:@"observingAllJobs"];
+		[self didChangeValueForKey:@"observingAllJobs"];
 		if ( new == YES ) {
 			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOW OBSERVING ALL JOBS",[self class],self,_cmd);
 			[self loadAllJobs];
 		}
 		else {
 			DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s - NOT OBSERVING ALL JOBS ANYMORE",[self class],self,_cmd);
-			[[self server] setShouldObserveAllJobs:NO];
+			[[self server] setObservingAllJobs:NO];
 		}
 	}
 }
@@ -313,7 +313,7 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidLoad:) name:GEZGridHookDidLoadNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeName:) name:GEZGridHookDidChangeNameNotification object:gridHook];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:gridHook];
-	if ( [gridHook isUpdated] && [self shouldObserveAllJobs] )
+	if ( [gridHook isUpdated] && [self isObservingAllJobs] )
 		[self loadAllJobs];
 }
 
@@ -323,7 +323,7 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 	[self setValue:[[gridHook xgridGrid] name] forKey:@"name"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridDidUpdateNotification object:self];
-	if ( [self shouldObserveAllJobs] )
+	if ( [self isObservingAllJobs] )
 		[self loadAllJobs];	
 }
 
@@ -333,7 +333,7 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 	[self setValue:[[gridHook xgridGrid] name] forKey:@"name"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridDidLoadNotification object:self];
-	if ( [self shouldObserveAllJobs] )
+	if ( [self isObservingAllJobs] )
 		[self loadAllJobs];	
 }
 
@@ -349,7 +349,7 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s = %d jobs",[self class],self,_cmd,[[[self xgridGrid] jobs] count]);
 	
 	//create GEZJobs if necessary
-	if ( [gridHook isUpdated] && [self shouldObserveAllJobs] )
+	if ( [gridHook isUpdated] && [self isObservingAllJobs] )
 		[self loadAllJobs];
 	
 	//maybe we can update the value for availableAgentsGuess

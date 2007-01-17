@@ -53,10 +53,6 @@ typedef enum {
 {
 	GEZServerHook *serverHook;
 
-	//temporarily an ivar, will be made a coredata property
-	//auto-reconnect when connection is lost, or as soon as available if wasAvailableInPreviousSession == YES, or immediately if remote connection and wasAvailableInPreviousSession == YES; in the latter 2 cases, also set the serverHook to autoconnect
-	BOOL autoconnect;
-
 }
 
 //IMPORTANT:
@@ -118,8 +114,8 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 
 
 //See GEZGrid for more on that
-- (BOOL)shouldObserveAllJobs; 
-- (void)setShouldObserveAllJobs:(BOOL)flag;
+- (BOOL)isObservingAllJobs; 
+- (void)setObservingAllJobs:(BOOL)flag;
 
 
 //non KVO/KVC-compliant accessors

@@ -106,7 +106,7 @@ GEZServerBrowser *sharedServerBrowser = nil;
 	GEZServer *aServer;	
     aServer = [GEZServer serverWithAddress:[netService name]];
 	[aServer setValue:[NSNumber numberWithInt:GEZServerTypeLocal] forKey:@"serverType"];
-	[aServer setValue:[NSNumber numberWithBool:YES] forKey:@"isAvailable"];
+	[aServer setValue:[NSNumber numberWithBool:YES] forKey:@"available"];
 	[aServer setValue:[NSNumber numberWithBool:YES] forKey:@"wasAvailableInCurrentSession"];
 	[aServer setValue:[NSNumber numberWithBool:YES] forKey:@"wasAvailableInPreviousSession"];
 
@@ -122,7 +122,7 @@ GEZServerBrowser *sharedServerBrowser = nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
     aServer = [GEZServer serverWithAddress:[netService name]];
-	[aServer setValue:[NSNumber numberWithBool:NO] forKey:@"isAvailable"];
+	[aServer setValue:[NSNumber numberWithBool:NO] forKey:@"available"];
 
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s (server = <%@:%p> = %@",[self class],self,_cmd,[aServer class],aServer,[aServer valueForKey:@"name"]);
 }

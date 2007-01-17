@@ -7,7 +7,7 @@
 	<key>IBEditorPositions</key>
 	<dict>
 		<key>382</key>
-		<string>714 391 124 87 0 0 1280 832 </string>
+		<string>714 391 111 68 0 0 1280 832 </string>
 	</dict>
 	<key>IBFramework Version</key>
 	<string>446.1</string>
@@ -17,8 +17,8 @@
 	</array>
 	<key>IBOpenObjects</key>
 	<array>
-		<integer>382</integer>
 		<integer>5</integer>
+		<integer>382</integer>
 	</array>
 	<key>IBSystem Version</key>
 	<string>8L127</string>
