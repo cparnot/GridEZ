@@ -21,6 +21,15 @@ __END_LICENSE__ */
 
 #ifdef DEBUG
 void DLog(NSString *identifier, int level, NSString *fmt,...);
+
+
 #else
-inline void DLog(NSString *identifier, int level, NSString *fmt,...);
+
+//I struggle a bit to get Dlog to be completely gone when DEBUG is not defined, this is the best I could come up with: any occurence of DLog is replaced by a ';' thanks to the #define 
+
+#define DLog(...) ;
+
+//the following is what I had hoped would work, but it turns out the arguments are still evaluated
+//inline void DLog(NSString *identifier, int level, NSString *fmt,...);
+
 #endif

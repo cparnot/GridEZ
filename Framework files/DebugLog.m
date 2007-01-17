@@ -47,6 +47,6 @@ void DLog(NSString *identifier, int level, NSString *fmt,...)
 
 #else
 
-inline void DLog(NSString *identifier, int level, NSString *fmt,...) {}
+//inline void DLog(NSString *identifier, int level, NSString *fmt,...) {}
 
 #endif
