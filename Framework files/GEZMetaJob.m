@@ -76,12 +76,6 @@ NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKe
 {
 	[super awakeFromFetch];
 
-	//temporary fix: delegate of GEZJob is not poersistent and has to be reestablished when fetchingf
-	NSEnumerator *e = [[self valueForKey:@"jobs"] objectEnumerator];
-	GEZJob *oneJob;
-	while ( oneJob = [e nextObject] )
-		[oneJob setDelegate:self];
-	
 	availableTasks = [[NSMutableIndexSet alloc] init];
 	if ( [self isRunning] ) {
 		[self suspend];
@@ -572,7 +566,7 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	if ( ![self isRunning] ) {
 		if ( [[self delegate] respondsToSelector:@selector(metaJobDidStart:)])
 			[[self delegate] metaJobDidStart:self];
-		[self setValue:[NSNumber numberWithBool:YES] forKey:@"isRunning"];
+		[self setValue:[NSNumber numberWithBool:YES] forKey:@"running"];
 		[self setStatus:@"Running"];
 	}
 
@@ -599,7 +593,7 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 {
 	DLog(NSStringFromClass([self class]),5,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 
-	[self setValue:[NSNumber numberWithBool:NO] forKey:@"isRunning"];
+	[self setValue:[NSNumber numberWithBool:NO] forKey:@"running"];
 	[self setStatus:@"Suspended"];
 	[submissionTimer invalidate];
 	submissionTimer = nil;
@@ -613,9 +607,9 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
-	[self willAccessValueForKey:@"isRunning"];
-	flag = [[self primitiveValueForKey:@"isRunning"] boolValue];
-	[self didAccessValueForKey:@"isRunning"];
+	[self willAccessValueForKey:@"running"];
+	flag = [[self primitiveValueForKey:@"running"] boolValue];
+	[self didAccessValueForKey:@"running"];
 	return flag;
 }
 

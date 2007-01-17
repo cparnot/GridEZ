@@ -25,7 +25,6 @@ extern NSString *GEZJobResultsStandardErrorKey;
 @interface GEZJob : NSManagedObject
 {
 	XGJob *xgridJob;
-	id delegate;
 	XGActionMonitor *submissionAction;
 	XGActionMonitor *deletionAction;
 	NSDictionary *jobSpecification;

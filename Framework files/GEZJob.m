@@ -66,6 +66,7 @@ __END_LICENSE__ */
 #import "GEZDefines.h"
 #import "GEZManager.h"
 #import "GEZResourceObserver.h"
+#import "GEZProxy.h"
 
 //internal state
 typedef enum {
@@ -187,7 +188,6 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	jobSpecification = nil;
 	results = nil;
 	jobInfo = nil;
-	delegate = nil;
 
 	[super dealloc];
 }
@@ -325,14 +325,22 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	[self setValue:jobInfoData forKey:@"jobInfoData"];
 }
 
+
 - (id)delegate
 {
-	return delegate;
+	//DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+    [self willAccessValueForKey:@"delegate"];
+    id delegate = [[self primitiveValueForKey:@"delegateProxy"] referencedObject];
+    [self didAccessValueForKey:@"delegate"];
+    return delegate;
 }
 
 - (void)setDelegate:(id)newDelegate
 {
-	delegate = newDelegate;
+	//DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	[self willChangeValueForKey:@"delegate"];
+	[self setPrimitiveValue:[GEZProxy proxyWithReferencedObject:newDelegate] forKey:@"delegateProxy"];
+	[self didChangeValueForKey:@"delegate"];
 }
 
 - (BOOL)shouldRetrieveResultsAutomatically
@@ -502,8 +510,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	if ( [self state] == GEZJobStateDeleted )
 		return;
 	
-	if ( [delegate respondsToSelector:@selector(jobWillBeDeleted:fromGrid:)] )
-		[delegate jobWillBeDeleted:self fromGrid:[self grid]];
+	if ( [[self delegate] respondsToSelector:@selector(jobWillBeDeleted:fromGrid:)] )
+		[[self delegate] jobWillBeDeleted:self fromGrid:[self grid]];
 
 	//clean state
 	[self setState:GEZJobStateDeleted];
@@ -663,8 +671,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		GEZJobState previousState = [self state];
 		if ( previousState != GEZJobStateRunning ) {
 			[self setState:GEZJobStateRunning];
-			if ( [delegate respondsToSelector:@selector(jobDidStart:)] )
-				[delegate jobDidStart:self];
+			if ( [[self delegate] respondsToSelector:@selector(jobDidStart:)] )
+				[[self delegate] jobDidStart:self];
 		} 
 	}
 	else if ( currentXgridState == XGResourceStateSuspended )
@@ -686,8 +694,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	if ( xgridJob != nil ) {
 		int newCount = [xgridJob completedTaskCount];
 		[self setValue:[NSNumber numberWithInt:newCount] forKey:@"completedTaskCount"];
-		if ( [delegate respondsToSelector:@selector(jobDidProgress:completedTaskCount:)] )
-			[delegate jobDidProgress:self completedTaskCount:newCount];
+		if ( [[self delegate] respondsToSelector:@selector(jobDidProgress:completedTaskCount:)] )
+			[[self delegate] jobDidProgress:self completedTaskCount:newCount];
 	}
 }
 
@@ -714,12 +722,12 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 			[self setValue:identifier forKey:@"identifier"];
 			didSubmitRecently = YES;
 			[self setState:GEZJobStatePending];
-			if ( [delegate respondsToSelector:@selector(jobDidSubmit:)] )
-				[delegate jobDidSubmit:self];
+			if ( [[self delegate] respondsToSelector:@selector(jobDidSubmit:)] )
+				[[self delegate] jobDidSubmit:self];
 			[self hookSoon];
 		} else {
-			if ( [delegate respondsToSelector:@selector(jobDidNotSubmit:)] )
-				[delegate jobDidNotSubmit:self];
+			if ( [[self delegate] respondsToSelector:@selector(jobDidNotSubmit:)] )
+				[[self delegate] jobDidNotSubmit:self];
 			[self setState:GEZJobStateInvalid];
 		}
 		[self setSubmissionAction:nil];
@@ -729,8 +737,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		XGActionMonitorOutcome outcome = [deletionAction outcome];
 		[self setDeletionAction:nil];
 		if ( outcome == XGActionMonitorOutcomeSuccess) {
-			if ( [delegate respondsToSelector:@selector(jobWillBeDeleted:fromGrid:)] )
-				[delegate jobWillBeDeleted:self fromGrid:[self grid]];
+			if ( [[self delegate] respondsToSelector:@selector(jobWillBeDeleted:fromGrid:)] )
+				[[self delegate] jobWillBeDeleted:self fromGrid:[self grid]];
 			[self deleteFromStoreSoon];
 		} else {
 			countDeletionAttempts ++;
@@ -852,8 +860,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
-	if ( [delegate respondsToSelector:@selector(jobDidFinish:)] )
-		[delegate jobDidFinish:self];
+	if ( [[self delegate] respondsToSelector:@selector(jobDidFinish:)] )
+		[[self delegate] jobDidFinish:self];
 	if ( [self shouldDelete] || ( xgridJob == nil ) )
 		return;
 	
@@ -870,8 +878,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
-	if ( [delegate respondsToSelector:@selector(jobDidFail:)] )
-		[delegate jobDidFail:self];
+	if ( [[self delegate] respondsToSelector:@selector(jobDidFail:)] )
+		[[self delegate] jobDidFail:self];
 	if ( [self shouldDelete] || ( xgridJob == nil ) )
 		return;
 	[self setState:GEZJobStateFailed];
@@ -940,8 +948,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	
 	//it is now official: the job has been retrieved
 	[self setState:GEZJobStateRetrieved];
-	if ( [delegate respondsToSelector:@selector(jobDidRetrieveResults:)] )
-		[delegate jobDidRetrieveResults:self];
+	if ( [[self delegate] respondsToSelector:@selector(jobDidRetrieveResults:)] )
+		[[self delegate] jobDidRetrieveResults:self];
 	
 }
 

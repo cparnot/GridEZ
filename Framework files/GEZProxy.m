@@ -66,12 +66,12 @@ __END_LICENSE__ */
 	else {
 		NSManagedObjectID *objectID = [referencedObject objectID];
 		if ( [objectID isTemporaryID] ) {
-			DLog(NSStringFromClass([self class]),10,@"Object ID '%@' for GEZProxy object is temporary. The following object will not be properly referenced in the saved persistent store:\n%@", [objectID URIRepresentation], referencedObject);
+			DLog(NSStringFromClass([self class]),10,@"Object ID '%@' for GEZProxy object is temporary. The following object will not be properly referenced in the saved persistent store: <%@:%p>", [objectID URIRepresentation], [referencedObject class], referencedObject);
 			[self setPrimitiveValue:nil forKey:@"objectURI"];
 			//after the context is fully saved, the referenced object should have a final ID; we should then modify that value, otherwise the context will think the GEZProxy object is fine, and will never attempt to save it again because it has not been modified, and the objectID will never stick!
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contextDidSave:) name:NSManagedObjectContextDidSaveNotification object:[self managedObjectContext]];
 		} else {
-			DLog(NSStringFromClass([self class]),10,@"Object ID '%@' for GEZProxy object is not temporary. The following object will be properly referenced in the saved persistent store:\n%@", [objectID URIRepresentation], referencedObject);
+			DLog(NSStringFromClass([self class]),10,@"Object ID '%@' for GEZProxy object is not temporary. The following object will be properly referenced in the saved persistent store: <%@:%p>", [objectID URIRepresentation], [referencedObject class], referencedObject);
 			[self setPrimitiveValue:[[objectID URIRepresentation] absoluteString] forKey:@"objectURI"];
 		}
 	}

@@ -1,11 +1,13 @@
 Roadmap
 
 Todo for v0.4 release:
+* GEZProxy: should check that referencedObject is in the same moc
 * bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
-* GEZJob delegate: make it a coredata relationship, just like the delegate of GEZMetaJob; do that at the end, because the database format will become incompatible
+* Merge revisions from branch 0.2 of GridStuffer = rev 105, 100, 99, 92, 90
 
 
 done:
+* GEZJob delegate: make it a coredata relationship, just like the delegate of GEZMetaJob; do that at the end, because the database format will become incompatible
 * all the keys "isAvailable", "isConnected",... should be replaced with "available", "connected",... to be KVC-compliant!!
 * Make "autoconnect" a coredata property of GEZServer
 * Add "Autoconnect" to Server and Grid: first make it an ivar on GEZServerHook (and of GEZServer for testing and still be able to use  database compatible with previous version) then a coredata property of GEZServer
