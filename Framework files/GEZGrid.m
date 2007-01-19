@@ -94,26 +94,41 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 
 - (NSArray *)loadAllJobs
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//these are the XGJob
 	NSArray *xgridJobs = [[self xgridGrid] jobs];
 	if ( [xgridJobs count] < 1 )
 		return [NSArray array];
 	
-	//jobs already loaded will be ignored based on the XGJob object (identifier is not necessarily ready for jobs just submitted)
-	NSSet *currentXgridJobObjects = [self valueForKeyPath:@"jobs.xgridJobs"];
+	//if some jobs are "submitting", they may not have an identifier yet set on an existing GEZJob, while an XGJob was already created; this GEZJob and the XGJob are not "hooked"; if we let GEZGrid go its way below, a GEZJob may be created in duplicate, so we exit here (GEZJob will call again 'loadAllJobs' when a submission is finally finished, see GEZJob)
+	NSSet *currentJobStates = [self valueForKeyPath:@"jobs.isSubmitting"];
+	if ( [currentJobStates member:[NSNumber numberWithInt:1]] )
+		return [NSArray array];
 	
+	//jobs already loaded will be ignored based on the XGJob identifier
+	NSSet *currentJobIdentifiers = [self valueForKeyPath:@"jobs.identifier"];
 	
 	//loop through the XGJob and add GEZJob if not existing
-	NSMutableArray *addedJobs = [NSMutableArray arrayWithCapacity:[currentXgridJobObjects count]];
+	NSMutableArray *addedJobs = [NSMutableArray arrayWithCapacity:[currentJobIdentifiers count]];
 	NSEnumerator *e = [xgridJobs objectEnumerator];
 	XGJob *oneJob;
 	while ( oneJob = [e nextObject] ) {
-		if ( [currentXgridJobObjects member:oneJob] == nil )
+		if ( [currentJobIdentifiers member:[oneJob identifier]] == nil )
 			[addedJobs addObject:[GEZJob jobWithGrid:self identifier:[oneJob identifier]]];
 	}
 	
 	return [NSArray arrayWithArray:addedJobs];
 }
+
+/*
+- (void)loadAllJobsSoon
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
+	[self callSelectorSoon:@selector(loadAllJobs)];
+}
+*/
 
 
 #pragma mark *** Job submissions ***

@@ -602,12 +602,19 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridHookDidChangeJobs:) name:GEZGridHookDidChangeJobsNotification object:[GEZGridHook gridHookWithIdentifier:[grid identifier] serverHook:[GEZServerHook serverHookWithAddress:[[grid server] address]]]];
 		return;
 	}
-	didSubmitRecently = NO;
+
+	//after submission completes, maybe GEZGrid needs update (because GEZGrid will wait until no jobs submitting to add new GEZJob to the grid; this avoids creation of duplicate GEZJob instances; see GEZGrid)
+	if ( didSubmitRecently ) {
+		if ( [[self grid] isObservingAllJobs] )
+			[[self grid] loadAllJobs];
+		didSubmitRecently = NO;
+	}
 	
 	//maybe the XGJob is already updated, which would be true if its name is not nil
 	//then we have to do whatever is needed once loaded (but it is best to wait for the next iteration of the run loop)
 	if ( [xgridJob isUpdated] == YES )
 		[self xgridResourceDidUpdate:xgridJob];
+	
 }
 
 - (void)hookSoon

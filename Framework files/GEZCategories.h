@@ -13,6 +13,11 @@ __END_LICENSE__ */
 
 #import <Cocoa/Cocoa.h>
 
+/*
+@interface NSObject (NSObjectGridEZTimers)
+- (void)callSelectorSoon:(SEL)aSelector;
+@end
+*/
 
 //categories to add the 'name' method to XGGrid and XGJob
 @interface XGGrid (XGGridGridEZ)

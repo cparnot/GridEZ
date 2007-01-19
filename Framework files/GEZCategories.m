@@ -14,6 +14,21 @@ __END_LICENSE__ */
 
 #import "GEZCategories.h"
 
+/*
+@implementation NSObject (NSObjectGridEZTimers)
+
+- (void)callSelectorSoon:(SEL)aSelector
+{
+	NSMethodSignature *signature = [self methodSignatureForSelector:aSelector];
+	NSAssert( [signature numberOfArguments] == 2, @"callSelectorSoon can only be used on methods without arguments" );
+	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+	[invocation setTarget:self];
+	[invocation setSelector:aSelector];
+	[NSTimer scheduledTimerWithTimeInterval:0 invocation:invocation repeats:NO];
+}
+
+@end
+*/
 
 //to sort using sortWithSelector
 @implementation NSString (NSStringGridEZCompareString)
