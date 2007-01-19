@@ -48,7 +48,8 @@ __END_LICENSE__ */
 
 - (void)dealloc
 {
-	[self willSave];
+	if (integerArrayMutableData != nil)
+		[self setPrimitiveValue:[NSData dataWithData:integerArrayMutableData] forKey:@"data"];
 	[integerArrayMutableData release];
 	[super dealloc];
 }

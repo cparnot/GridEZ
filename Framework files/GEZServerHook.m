@@ -154,16 +154,15 @@ NSMutableDictionary *serverHookInstances=nil;
 	return [self initWithAddress:address password:@""];
 }
 
-
 - (void)dealloc
 {
 	[xgridConnection setDelegate:nil];
-	//[xgridController removeObserver:self forKeyPath:@"grids"];
 	[xgridConnection release];
 	[xgridController release];
 	[serverName release];
 	[serverPassword release];
 	[grids release];
+	[xgridControllerObserver release];
 	[connectionSelectors release];
 	[selectorEnumerator allObjects];
 	[super dealloc];

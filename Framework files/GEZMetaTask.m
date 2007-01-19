@@ -22,7 +22,11 @@ __END_LICENSE__ */
 	specifications = [[NSDictionary alloc] init];
 }
 
-
+- (void)dealloc
+{
+	[specifications release];
+	[super dealloc];
+}
 
 - (void)willSave
 {

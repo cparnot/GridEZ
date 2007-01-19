@@ -74,7 +74,7 @@ __END_LICENSE__ */
 	[observedKeys release];
 	
 	//observe new keys
-	observedKeys = [keys retain];
+	observedKeys = [keys copy];
 	e = [observedKeys objectEnumerator];
 	while ( aKey = [e nextObject] )
 		[xgridResource addObserver:self forKeyPath:aKey options:0 context:nil];

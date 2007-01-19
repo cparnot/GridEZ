@@ -39,6 +39,7 @@ __END_LICENSE__ */
 	[filesMonitor release];
 	[downloads release];
 	[results release];
+	[xgridJob release];
 	
 	delegate = nil;
 	

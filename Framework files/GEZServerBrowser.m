@@ -60,6 +60,7 @@ GEZServerBrowser *sharedServerBrowser = nil;
 
 - (void)dealloc;
 {
+	[netServiceBrowser setDelegate:nil];
     [netServiceBrowser release];
     [super dealloc];
 }

@@ -91,6 +91,7 @@ NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKe
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[submissionTimer invalidate];
+	[submissionTimer release];
 	submissionTimer = nil;
 	[availableTasks release];
 	[super dealloc];
@@ -596,6 +597,7 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	[self setValue:[NSNumber numberWithBool:NO] forKey:@"running"];
 	[self setStatus:@"Suspended"];
 	[submissionTimer invalidate];
+	[submissionTimer release];
 	submissionTimer = nil;
 	if ([[self delegate] respondsToSelector:@selector(metaJobDidSuspend:)])
 		[[self delegate] metaJobDidSuspend:self];

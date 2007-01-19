@@ -93,8 +93,9 @@ typedef enum {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	gridHookState = GEZGridHookStateUninitialized;
-	serverHook = nil;
-	[self setXgridGrid:nil];
+	serverHook = nil; //no retain/release to avoid cycles
+	[self setXgridGrid:nil]; //this takes care of xgridGridObserver as well
+	[xgridJobObservers release];
 	[super dealloc];
 }
 
