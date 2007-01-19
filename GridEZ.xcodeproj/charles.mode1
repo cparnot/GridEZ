@@ -277,12 +277,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
+									<integer>71</integer>
+									<integer>53</integer>
+									<integer>20</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {294, 684}}</string>
+							<string>{{0, 645}, {294, 684}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -319,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TODO.txt</string>
+								<string>GEZProxy.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TODO.txt</string>
+										<string>GEZProxy.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>56E285970B5F49CA0020F1C4</string>
+										<string>56E285A30B6049FC0020F1C4</string>
 										<key>history</key>
 										<array>
 											<string>5650F8670960A36E001A3F09</string>
@@ -422,7 +424,6 @@
 											<string>56E285250B5EC84B0020F1C4</string>
 											<string>56E285260B5EC84B0020F1C4</string>
 											<string>56E2855F0B5F49120020F1C4</string>
-											<string>56E285600B5F49130020F1C4</string>
 											<string>56E285610B5F49130020F1C4</string>
 											<string>56E285620B5F49130020F1C4</string>
 											<string>56E285630B5F49130020F1C4</string>
@@ -444,7 +445,8 @@
 											<string>56E285730B5F49130020F1C4</string>
 											<string>56E285740B5F49130020F1C4</string>
 											<string>56E285940B5F49CA0020F1C4</string>
-											<string>56E285950B5F49CA0020F1C4</string>
+											<string>56E2859A0B6049A90020F1C4</string>
+											<string>56E2859B0B6049A90020F1C4</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -746,6 +748,9 @@
 											<string>56E2858E0B5F49130020F1C4</string>
 											<string>56E2858F0B5F49130020F1C4</string>
 											<string>56E285960B5F49CA0020F1C4</string>
+											<string>56E2859C0B6049A90020F1C4</string>
+											<string>56E2859D0B6049A90020F1C4</string>
+											<string>56E2859E0B6049A90020F1C4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -757,14 +762,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {775, 488}}</string>
+								<string>{{0, 0}, {775, 697}}</string>
 								<key>RubberWindowFrame</key>
 								<string>177 51 1091 743 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>488pt</string>
+							<string>697pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -777,14 +782,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 493}, {775, 209}}</string>
+								<string>{{0, 702}, {775, 0}}</string>
 								<key>RubberWindowFrame</key>
 								<string>177 51 1091 743 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>209pt</string>
+							<string>0pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -944,9 +949,9 @@
 		<string>5617D0A409610DE600505CDC</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>56E2825E0B5C55490020F1C4</string>
+		<string>5650F83F0960985A001A3F09</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>5650F83F0960985A001A3F09</string>
 		<string>/Users/charles/Docs/Development/cocoa_dev/GridEZ/GridEZ.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -1042,7 +1047,7 @@
 			<key>WindowToolGUID</key>
 			<string>5650F83F0960985A001A3F09</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

@@ -1223,6 +1223,15 @@
 			56E285950B5F49CA0020F1C4 /* PBXTextBookmark */ = 56E285950B5F49CA0020F1C4 /* PBXTextBookmark */;
 			56E285960B5F49CA0020F1C4 /* PBXTextBookmark */ = 56E285960B5F49CA0020F1C4 /* PBXTextBookmark */;
 			56E285970B5F49CA0020F1C4 /* PBXTextBookmark */ = 56E285970B5F49CA0020F1C4 /* PBXTextBookmark */;
+			56E2859A0B6049A90020F1C4 /* PBXTextBookmark */ = 56E2859A0B6049A90020F1C4 /* PBXTextBookmark */;
+			56E2859B0B6049A90020F1C4 /* PBXTextBookmark */ = 56E2859B0B6049A90020F1C4 /* PBXTextBookmark */;
+			56E2859C0B6049A90020F1C4 /* PBXTextBookmark */ = 56E2859C0B6049A90020F1C4 /* PBXTextBookmark */;
+			56E2859D0B6049A90020F1C4 /* PBXTextBookmark */ = 56E2859D0B6049A90020F1C4 /* PBXTextBookmark */;
+			56E2859E0B6049A90020F1C4 /* PBXTextBookmark */ = 56E2859E0B6049A90020F1C4 /* PBXTextBookmark */;
+			56E2859F0B6049A90020F1C4 /* PBXTextBookmark */ = 56E2859F0B6049A90020F1C4 /* PBXTextBookmark */;
+			56E285A10B6049FA0020F1C4 /* PBXTextBookmark */ = 56E285A10B6049FA0020F1C4 /* PBXTextBookmark */;
+			56E285A20B6049FA0020F1C4 /* PBXTextBookmark */ = 56E285A20B6049FA0020F1C4 /* PBXTextBookmark */;
+			56E285A30B6049FC0020F1C4 /* PBXTextBookmark */ = 56E285A30B6049FC0020F1C4 /* PBXTextBookmark */;
 			56F0A63509AC4C35004FB9E1 = 56F0A63509AC4C35004FB9E1 /* PBXTextBookmark */;
 			56F0A8BE09B2DAE7004FB9E1 = 56F0A8BE09B2DAE7004FB9E1 /* PBXBookmark */;
 			56F0A8BF09B2DAE7004FB9E1 = 56F0A8BF09B2DAE7004FB9E1 /* PBXBookmark */;
@@ -1336,9 +1345,9 @@
 	};
 	560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 21168}}";
-			sepNavSelRange = "{3529, 0}";
-			sepNavVisRect = "{{0, 942}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {780, 20944}}";
+			sepNavSelRange = "{42670, 0}";
+			sepNavVisRect = "{{0, 15426}, {780, 298}}";
 			sepNavWindowFrame = "{{15, 18}, {1016, 809}}";
 		};
 	};
@@ -4054,9 +4063,9 @@
 	};
 	56C34B900ACDD22E005891F1 /* GEZProxy.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 1946}}";
-			sepNavSelRange = "{1039, 0}";
-			sepNavVisRect = "{{0, 31}, {728, 680}}";
+			sepNavIntBoundsRect = "{{0, 0}, {728, 1960}}";
+			sepNavSelRange = "{2586, 0}";
+			sepNavVisRect = "{{0, 924}, {728, 680}}";
 		};
 	};
 	56CD111C096500D300DA6C36 /* Making-GridEZ-embeddable.markdown */ = {
@@ -4174,7 +4183,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 92";
 		rLen = 0;
-		rLoc = 4905;
+		rLoc = 4979;
 		rType = 0;
 		vrLen = 1922;
 		vrLoc = 3214;
@@ -5692,7 +5701,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 94";
 		rLen = 0;
-		rLoc = 4615;
+		rLoc = 4689;
 		rType = 0;
 		vrLen = 1557;
 		vrLoc = 3770;
@@ -5732,7 +5741,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 94";
 		rLen = 0;
-		rLoc = 4615;
+		rLoc = 4689;
 		rType = 0;
 		vrLen = 1557;
 		vrLoc = 3770;
@@ -5802,7 +5811,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 94";
 		rLen = 0;
-		rLoc = 4615;
+		rLoc = 4689;
 		rType = 0;
 		vrLen = 2172;
 		vrLoc = 3424;
@@ -5822,7 +5831,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 74";
 		rLen = 0;
-		rLoc = 3727;
+		rLoc = 3801;
 		rType = 0;
 		vrLen = 2486;
 		vrLoc = 1944;
@@ -5852,7 +5861,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 74";
 		rLen = 0;
-		rLoc = 3727;
+		rLoc = 3801;
 		rType = 0;
 		vrLen = 2486;
 		vrLoc = 1944;
@@ -8768,7 +8777,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = context;
 		rLen = 7;
-		rLoc = 3868;
+		rLoc = 3942;
 		rType = 0;
 		vrLen = 2824;
 		vrLoc = 2217;
@@ -8818,7 +8827,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = context;
 		rLen = 7;
-		rLoc = 3868;
+		rLoc = 3942;
 		rType = 0;
 		vrLen = 2824;
 		vrLoc = 2217;
@@ -14231,7 +14240,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = context;
 		rLen = 7;
-		rLoc = 3868;
+		rLoc = 3942;
 		rType = 0;
 		vrLen = 2822;
 		vrLoc = 2217;
@@ -14251,7 +14260,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 69";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2929;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 2217;
@@ -14298,7 +14307,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 69";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2929;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 2217;
@@ -14308,7 +14317,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 69";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2929;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 2217;
@@ -14328,7 +14337,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 69";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2929;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 2217;
@@ -14338,7 +14347,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 69";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2929;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 2217;
@@ -14378,7 +14387,7 @@
 		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
 		name = "GEZProxy.m: 69";
 		rLen = 0;
-		rLoc = 2855;
+		rLoc = 2929;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 2217;
@@ -16230,6 +16239,96 @@
 		rType = 0;
 		vrLen = 2353;
 		vrLoc = 0;
+	};
+	56E2859A0B6049A90020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 4";
+		rLen = 0;
+		rLoc = 97;
+		rType = 0;
+		vrLen = 3064;
+		vrLoc = 0;
+	};
+	56E2859B0B6049A90020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
+		name = "GEZProxy.m: dealloc";
+		rLen = 0;
+		rLoc = 1230;
+		rType = 0;
+		vrLen = 2822;
+		vrLoc = 2334;
+	};
+	56E2859C0B6049A90020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 4";
+		rLen = 0;
+		rLoc = 97;
+		rType = 0;
+		vrLen = 2353;
+		vrLoc = 0;
+	};
+	56E2859D0B6049A90020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
+		name = "GEZProxy.m: dealloc";
+		rLen = 0;
+		rLoc = 1230;
+		rType = 0;
+		vrLen = 2822;
+		vrLoc = 2334;
+	};
+	56E2859E0B6049A90020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 568EB6BF095FC83A0014CCE9 /* TODO.txt */;
+		name = "TODO.txt: 4";
+		rLen = 0;
+		rLoc = 97;
+		rType = 0;
+		vrLen = 3064;
+		vrLoc = 0;
+	};
+	56E2859F0B6049A90020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
+		name = "GEZProxy.m: 64";
+		rLen = 0;
+		rLoc = 2586;
+		rType = 0;
+		vrLen = 2862;
+		vrLoc = 2114;
+	};
+	56E285A10B6049FA0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1055";
+		rLen = 0;
+		rLoc = 42670;
+		rType = 0;
+		vrLen = 1289;
+		vrLoc = 41848;
+	};
+	56E285A20B6049FA0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */;
+		name = "GEZMetaJob.m: 1196";
+		rLen = 0;
+		rLoc = 48731;
+		rType = 0;
+		vrLen = 699;
+		vrLoc = 48282;
+	};
+	56E285A30B6049FC0020F1C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56C34B900ACDD22E005891F1 /* GEZProxy.m */;
+		name = "GEZProxy.m: 64";
+		rLen = 0;
+		rLoc = 2586;
+		rType = 0;
+		vrLen = 2862;
+		vrLoc = 2114;
 	};
 	56F0A59F09ABEDD0004FB9E1 /* GEZTask.h */ = {
 		uiCtxt = {

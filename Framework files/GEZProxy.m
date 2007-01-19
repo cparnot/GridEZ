@@ -61,7 +61,7 @@ __END_LICENSE__ */
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 
-	if ( referencedObject == nil || [referencedObject isKindOfClass:[NSManagedObject class]] == NO )
+	if ( referencedObject == nil || [referencedObject isKindOfClass:[NSManagedObject class]] == NO || [referencedObject managedObjectContext] != [self managedObjectContext] )
 		[self setPrimitiveValue:nil forKey:@"objectURI"];
 	else {
 		NSManagedObjectID *objectID = [referencedObject objectID];
