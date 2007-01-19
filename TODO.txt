@@ -1,11 +1,11 @@
 Roadmap
 
 Todo for v0.4 release:
-* GEZProxy: should check that referencedObject is in the same moc
-* bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
 
 
 done:
+* bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
+* GEZProxy: should check that referencedObject is in the same moc
 * Merge revisions from branch 0.2 of GridStuffer = rev 105 --> in fact already fixed but others needed to be fixed
 * Merge revisions from branch 0.2 of GridStuffer = rev 100, 99, 92 --> not necessary
 * Merge revisions from branch 0.2 of GridStuffer = rev 90

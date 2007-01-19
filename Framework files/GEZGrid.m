@@ -99,17 +99,17 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 	if ( [xgridJobs count] < 1 )
 		return [NSArray array];
 	
-	//jobs already loaded will be ignored
-	NSSet *currentJobIdentifiers = [self valueForKeyPath:@"jobs.identifier"];
+	//jobs already loaded will be ignored based on the XGJob object (identifier is not necessarily ready for jobs just submitted)
+	NSSet *currentXgridJobObjects = [self valueForKeyPath:@"jobs.xgridJobs"];
+	
 	
 	//loop through the XGJob and add GEZJob if not existing
-	NSMutableArray *addedJobs = [NSMutableArray arrayWithCapacity:[currentJobIdentifiers count]];
+	NSMutableArray *addedJobs = [NSMutableArray arrayWithCapacity:[currentXgridJobObjects count]];
 	NSEnumerator *e = [xgridJobs objectEnumerator];
 	XGJob *oneJob;
 	while ( oneJob = [e nextObject] ) {
-		NSString *identifier = [oneJob identifier];
-		if ( [currentJobIdentifiers member:identifier] == nil )
-			[addedJobs addObject:[GEZJob jobWithGrid:self identifier:identifier]];
+		if ( [currentXgridJobObjects member:oneJob] == nil )
+			[addedJobs addObject:[GEZJob jobWithGrid:self identifier:[oneJob identifier]]];
 	}
 	
 	return [NSArray arrayWithArray:addedJobs];
@@ -362,7 +362,7 @@ NSString *GEZGridDidLoadNotification = @"GEZGridDidLoadNotification";
 			if ( [aJob state] == XGResourceStatePending )
 				countPending ++;
 			else if ( [aJob state] == XGResourceStateRunning )
-				countRunning ++;
+				countRunning += [aJob taskCount] - [aJob completedTaskCount];
 		}
 		if ( countPending != 0 )
 			[self setValue:[NSNumber numberWithInt:countRunning] forKey:@"availableAgentsGuess"];

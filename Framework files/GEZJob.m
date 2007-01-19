@@ -107,6 +107,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 - (void)setJobID:(NSString *)identifierNew;
 - (BOOL)shouldDelete;
 - (BOOL)shouldRetrieveResultsAutomatically;
+- (XGJob *)xgridJob;
 - (void)setXgridJob:(XGJob *)newJob;
 - (void)setSubmissionAction:(XGActionMonitor *)newAction;
 - (void)setDeletionAction:(XGActionMonitor *)newAction;
@@ -166,10 +167,18 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	StatusStrings[GEZJobStateDeleted] = @"Deleted";
 }
 
+//used for debugging
 - (NSString *)shortDescription
 {
 	return [NSString stringWithFormat:@"Job %@ = '%@'", [self primitiveValueForKey:@"identifier"], [self primitiveValueForKey:@"name"]];
 }
+
+//used for debugging
+- (NSString *)xgridJobDescription
+{
+	return [NSString stringWithFormat:@"%p",xgridJob];
+}
+
 
 - (void)dealloc
 {
@@ -955,6 +964,11 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 
 
 #pragma mark *** Private accessors ***
+
+- (XGJob *)xgridJob
+{
+	return xgridJob;
+}
 
 - (void)setXgridJob:(XGJob *)newJob
 {
