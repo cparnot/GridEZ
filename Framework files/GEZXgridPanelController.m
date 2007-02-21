@@ -141,9 +141,8 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 
 - (void)setFocusedTableView:(int)newFocus
 {
-	if ( ( newFocus != focusedTableView ) && ( newFocus >= MIN_FOCUS ) && ( newFocus <= MAX_FOCUS ) ) {
-		if ( [[self window] makeFirstResponder:tableViews[newFocus]] )
-			focusedTableView = newFocus;
+	if ( ( newFocus != focusedTableView ) && ( newFocus >= MIN_FOCUS ) && ( newFocus <= MAX_FOCUS ) && [[self window] makeFirstResponder:tableViews[newFocus]] ) {
+		focusedTableView = newFocus;
 	}
 }
 
@@ -366,4 +365,40 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 	[addControllerSheet orderOut:self];
 }
 
+
+//load results of selected jobs
+- (IBAction)retrieveJobResults:(id)sender
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	NSArray *selection = [jobsController valueForKeyPath:@"selectedObjects"];
+	GEZJob *selectedJob;
+	NSEnumerator *e = [selection objectEnumerator];
+	while ( selectedJob = [e nextObject] )
+		[selectedJob retrieveResults];
+	
+}
+
+//load streams of selected jobs
+- (IBAction)retrieveJobStreams:(id)sender
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	NSArray *selection = [jobsController valueForKeyPath:@"selectedObjects"];
+	GEZJob *selectedJob;
+	NSEnumerator *e = [selection objectEnumerator];
+	while ( selectedJob = [e nextObject] )
+		[selectedJob retrieveStreams];
+	
+}
+
+
+- (IBAction)resetResults:(id)sender
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	NSArray *selection = [jobsController valueForKeyPath:@"selectedObjects"];
+	GEZJob *selectedJob;
+	NSEnumerator *e = [selection objectEnumerator];
+	while ( selectedJob = [e nextObject] )
+		[selectedJob resetResults];
+	
+}
 @end

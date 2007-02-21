@@ -43,6 +43,9 @@
                 disconnect = id; 
                 loadAllJobs = id; 
                 removeItem = id; 
+                resetResults = id; 
+                retrieveJobResults = id; 
+                retrieveJobStreams = id; 
             }; 
             CLASS = GEZXgridPanelController; 
             LANGUAGE = ObjC; 

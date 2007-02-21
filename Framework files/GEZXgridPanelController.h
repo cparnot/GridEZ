@@ -54,10 +54,17 @@ __END_LICENSE__ */
 - (IBAction)disconnect:(id)sender;
 - (IBAction)loadAllJobs:(id)sender;
 
+//actions for servers, grids and jobs
 - (IBAction)addItem:(id)sender;
 - (IBAction)removeItem:(id)sender;
 - (IBAction)addAndConnectController:(id)sender;
 - (IBAction)addController:(id)sender;
 - (IBAction)cancelControllerAddition:(id)sender;
+
+//actions for jobs
+//actions for servers, grids and jobs
+- (IBAction)retrieveJobResults:(id)sender;
+- (IBAction)retrieveJobStreams:(id)sender;
+- (IBAction)resetResults:(id)sender;
 
 @end

@@ -28,6 +28,7 @@ __END_LICENSE__ */
 
 - (id)initWithXgridJob:(XGJob *)job;
 - (void)retrieve;
+- (void)retrieveStreams;
 
 - (id)delegate;
 - (void)setDelegate:(id)newDelegate;

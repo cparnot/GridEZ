@@ -105,6 +105,10 @@ extern NSString *GEZJobResultsStandardErrorKey;
 - (GEZServer *)server;
 - (GEZGrid *)grid;
 
+//experimental
+- (void)retrieveStreams;
+- (void)resetResults;
+
 @end
 
 

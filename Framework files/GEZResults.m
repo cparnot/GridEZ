@@ -79,6 +79,33 @@ __END_LICENSE__ */
 	
 }
 
+//temporary version to retrieve only streams
+- (void)retrieveStreams
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	
+	if ( isRetrieving || xgridJob == nil )
+		return;
+	isRetrieving == YES;
+	
+	//prepare the result dictionary that will hold the results
+	[results release];
+	results = [[NSMutableDictionary alloc] initWithCapacity:[xgridJob taskCount]];
+	
+	//prepare the downloads mutable set that will hold the pending XGFileDownload
+	[downloads release];
+	downloads = [[NSMutableSet alloc] init];
+	
+	//start the result retrieval process
+	[streamsMonitor release];
+	[filesMonitor release];
+	streamsMonitor = [[xgridJob performGetOutputStreamsAction] retain];
+	filesMonitor   = nil;
+	[streamsMonitor addObserver:self forKeyPath:@"outcome" options:0 context:NULL];
+	
+}
+
+
 - (id)delegate
 {
 	return delegate;

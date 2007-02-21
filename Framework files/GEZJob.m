@@ -403,10 +403,9 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 - (NSDictionary *)allFiles
 {
 	[self willAccessValueForKey:@"allFiles"];
-	NSDictionary *allFilesLocal = [self primitiveValueForKey:@"allFiles"];
+	NSDictionary *allFilesLocal = [results allFiles]; //[self primitiveValueForKey:@"allFiles"];
 	[self didAccessValueForKey:@"allFiles"];
-	allFilesLocal = nil;
-	return [results allFiles];
+	return allFilesLocal;
 }
 
 
@@ -538,11 +537,42 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 
 	if ( results != nil || xgridJob == nil )
 		return;
+	if ( [xgridJob state] != XGResourceStateFinished && [xgridJob state] != XGResourceStateRunning && [xgridJob state] != XGResourceStateSuspended )
+		return;
 	
 	[self setState:GEZJobStateRetrieving];
 	results = [[GEZResults alloc] initWithXgridJob:xgridJob];
 	[results setDelegate:self];
 	[results retrieve];
+}
+
+//Problem: after retrieving streams, it is not possible to call retrieveResults, except if doing a 'resetResults'
+- (void)retrieveStreams
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	if ( results != nil || xgridJob == nil )
+		return;
+	if ( [xgridJob state] != XGResourceStateFinished && [xgridJob state] != XGResourceStateRunning && [xgridJob state] != XGResourceStateSuspended )
+		return;
+	
+	[self setState:GEZJobStateRetrieving];
+	results = [[GEZResults alloc] initWithXgridJob:xgridJob];
+	[results setDelegate:self];
+	[results retrieveStreams];
+}
+
+//
+- (void)resetResults
+{
+	if ( results != nil ) {
+		[results autorelease];
+		results = nil;
+		NSEnumerator *e = [[self valueForKey:@"tasks"] objectEnumerator];
+		GEZTask *aTask;
+		while ( aTask = [e nextObject] )
+			[aTask setValue:nil forKey:@"allFiles"];
+	}
 }
 
 @end
@@ -955,15 +985,11 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		}
 	}
 
-	/*
-	//we don't need the GEZResults object anymore
-	[results setDelegate:nil];
-	[results release];
-	results = nil;
-	*/
-	
 	//it is now official: the job has been retrieved
-	[self setState:GEZJobStateRetrieved];
+	if ( [self xgridJob] == nil || [[self xgridJob] state] == XGResourceStateFinished )
+		[self setState:GEZJobStateRetrieved];
+	else
+		[self xgridResourceStateDidChange:[self xgridJob]];
 	if ( [[self delegate] respondsToSelector:@selector(jobDidRetrieveResults:)] )
 		[[self delegate] jobDidRetrieveResults:self];
 	

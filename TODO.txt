@@ -2,40 +2,16 @@ Roadmap
 
 Todo for v0.4 release:
 
+* Max Pending Jobs: make that a setting at the metajob level; each metajob can have up to xx pending jobs on each grid; the limit should not be on the grid itself, as one metajob could take over and prevent other metajobs from submitting; the "Max Submitting Jobs" can stay the same
 
-done:
-* bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
-* GEZProxy: should check that referencedObject is in the same moc
-* Merge revisions from branch 0.2 of GridStuffer = rev 105 --> in fact already fixed but others needed to be fixed
-* Merge revisions from branch 0.2 of GridStuffer = rev 100, 99, 92 --> not necessary
-* Merge revisions from branch 0.2 of GridStuffer = rev 90
-* GEZJob delegate: make it a coredata relationship, just like the delegate of GEZMetaJob; do that at the end, because the database format will become incompatible
-* all the keys "isAvailable", "isConnected",... should be replaced with "available", "connected",... to be KVC-compliant!!
-* Make "autoconnect" a coredata property of GEZServer
-* Add "Autoconnect" to Server and Grid: first make it an ivar on GEZServerHook (and of GEZServer for testing and still be able to use  database compatible with previous version) then a coredata property of GEZServer
-* In the Xgrid panel, add job ids and keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting
-* delete key should work in Controllers window and Xgrid panel
-* do not allow connection to empty string
-* when job removed by other process, should get notified and act accordingly to remove job info from MetaJob
-* GEZMetaJob bug: when grid becomes connected no new job submission even though they are expected
-* change name of option "Observe all jobs" to "Only observe jobs submitted by application
-* bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
-  行> I should use a separate object for each KVO instance to make it more like NSNotification system
-* change the icons for the Controller window
-* Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
-* Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
-* Format of the store: make it an option to be set in the info.plist of the app bundle
-* Add Keychain support
-* bug: when server disconnected while job is submitted, should do something to kill the submission 行> check with James that the fix does the job
-* allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
-* fix code in GEZGrid, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
-* fix code in GEZServer, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
-* Fix the Server Window to allow disconnect and make it slicker
+
 
 
 
 ---------------
 Other things todo (some maybe):
+
+* Selective upload of streams, not files: make that better
 
 * Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
 
@@ -83,6 +59,41 @@ Other things todo (some maybe):
 * GEZJOb
 	* when setServer is used, should defer the decision on the grid to the submission time, in case the default grid is changed by then
 	
+
+
+Done for v0.4 release:
+
+* If job is pending/failed/..., do not allow to retrieve results
+* When retrieving results from unfinished jobs, never switch to "retrieved"
+* Selective upload of streams
+* bug when GEZGrid always observe jobs and a job is submitted: 2 instances are created!
+* GEZProxy: should check that referencedObject is in the same moc
+* Merge revisions from branch 0.2 of GridStuffer = rev 105 --> in fact already fixed but others needed to be fixed
+* Merge revisions from branch 0.2 of GridStuffer = rev 100, 99, 92 --> not necessary
+* Merge revisions from branch 0.2 of GridStuffer = rev 90
+* GEZJob delegate: make it a coredata relationship, just like the delegate of GEZMetaJob; do that at the end, because the database format will become incompatible
+* all the keys "isAvailable", "isConnected",... should be replaced with "available", "connected",... to be KVC-compliant!!
+* Make "autoconnect" a coredata property of GEZServer
+* Add "Autoconnect" to Server and Grid: first make it an ivar on GEZServerHook (and of GEZServer for testing and still be able to use  database compatible with previous version) then a coredata property of GEZServer
+* In the Xgrid panel, add job ids and keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting
+* delete key should work in Controllers window and Xgrid panel
+* do not allow connection to empty string
+* when job removed by other process, should get notified and act accordingly to remove job info from MetaJob
+* GEZMetaJob bug: when grid becomes connected no new job submission even though they are expected
+* change name of option "Observe all jobs" to "Only observe jobs submitted by application
+* bug: happens when removing jobs. An instance 0x4f33e60 of class XGJob is being deallocated while key value observers are still registered with it.  Break on _NSKVODeallocateLog to start debugging
+  行> I should use a separate object for each KVO instance to make it more like NSNotification system
+* change the icons for the Controller window
+* Add GEZMetaJob - this has to be done at the same time as GridStuffer changes
+* Remove NSUndoManager (but still leaves it as an option to be set in the info.plist of the app bundle)
+* Format of the store: make it an option to be set in the info.plist of the app bundle
+* Add Keychain support
+* bug: when server disconnected while job is submitted, should do something to kill the submission 行> check with James that the fix does the job
+* allow GEZGrid to keep track and load _all_ jobs even not submitted by the app
+* fix code in GEZGrid, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
+* fix code in GEZServer, method - (GEZJob *)submitJobWithSpecifications:(NSDictionary *)specs
+* Fix the Server Window to allow disconnect and make it slicker
+
 
 
 -------------
