@@ -122,7 +122,7 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 			}
 			if ( ( countAvailable != countTotal ) && ( action == @selector(removeItem:) ) )
 				validate = YES;
-			if ( ( action == @selector(disconnect:) ) )
+			if ( ( countBusy > 0 ) && ( action == @selector(disconnect:) ) )
 				validate = YES;
 			if ( ( countBusy != countTotal ) && ( action == @selector(connect:) ) )
 				validate = YES;
