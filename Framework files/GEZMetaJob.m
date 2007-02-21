@@ -653,8 +653,8 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 
 //convenience functions used to decide on the bestGridForSubmission (see below)
-//pending jobs mean they are acknoledged by the Xgrid controller, but are in the pipeline, waiting for an agent to run them
-int pendingJobCountForGrid(GEZGrid *aGrid)
+//pending jobs mean they are acknowledged by the Xgrid controller, but are in the pipeline, waiting for an agent to run them
+int PendingJobCountForGrid(GEZGrid *aGrid)
 {
 	//we loop on the XGGrid, not the GEZGrid, as the GEZGrid does not necessarily keep track of all the jobs
 	NSEnumerator *e = [[[aGrid xgridGrid] jobs] objectEnumerator];
@@ -669,8 +669,26 @@ int pendingJobCountForGrid(GEZGrid *aGrid)
 
 	return jobCount;
 }
+
+//this is the same as above, except it is an instance method, and counts only the jobs that are submitted by the MetaJob; it is better to use this method, so that each metajob has its own queue, and they all get a chance to compete (as opposed to using the above function PendingJobCountForGrid()).
+- (int)pendingJobCountForGrid:(GEZGrid *)aGrid
+{
+	NSSet *allJobs = [self valueForKey:@"jobs"];
+	NSEnumerator *e = [[aGrid jobs] objectEnumerator];
+	GEZJob *aJob;
+	int jobCount = 0;
+	while ( aJob = [e nextObject] ) {
+		if ( [allJobs member:aJob] && [aJob xgridJobState] == XGResourceStatePending )
+			jobCount ++;
+	}
+	
+	DLog(NSStringFromClass([self class]), 12, @"Pending jobs for Grid %@ and Metajob %@ = %d", [aGrid name], [self name], jobCount);
+	
+	return jobCount;
+}	
+
 //submitting jobs were submitted by the program, but are not yet acknowledged by the Xgrid controller (and we have no identifier yet); if too many accumulate, it is probably because the controller is unresponsive and we should stop harassing it until it is OK
-int submittingJobCountForGrid(GEZGrid *aGrid)
+int SubmittingJobCountForGrid(GEZGrid *aGrid)
 {
 	NSEnumerator *e = [[aGrid jobs] objectEnumerator];
 	GEZJob *aJob;
@@ -707,9 +725,9 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 	NSEnumerator *e = [allGrids objectEnumerator];
 	GEZGrid *aGrid;
 	while ( aGrid = [e nextObject] ) {
-		int pendingJobCount = pendingJobCountForGrid(aGrid);
+		int pendingJobCount = [self pendingJobCountForGrid:aGrid];
 		int availableAgentsGuess = [aGrid availableAgentsGuess];
-		if ( [aGrid isConnected] && ( submittingJobCountForGrid(aGrid) < [[self valueForKey:@"maxSubmittingJobs"] intValue] ) && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount || ( pendingJobCount == bestPendingJobCount &&  availableAgentsGuess > bestAvailableAgentsGuess ) ) ) {
+		if ( [aGrid isConnected] && ( SubmittingJobCountForGrid(aGrid) < [[self valueForKey:@"maxSubmittingJobs"] intValue] ) && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount || ( pendingJobCount == bestPendingJobCount &&  availableAgentsGuess > bestAvailableAgentsGuess ) ) ) {
 			bestGrid = aGrid;
 			bestPendingJobCount = pendingJobCount;
 			bestAvailableAgentsGuess = availableAgentsGuess;
@@ -720,7 +738,7 @@ int submittingJobCountForGrid(GEZGrid *aGrid)
 	
 	//maxPendingJobs = jobs already in the queue in the grid = when all the agents are busy working and jobs pile up
 	//maxSubmittingJobs = job still not acknowledged by Xgrid as being submitted = no identifer yet, ActionMonitor still pending (see GEZJob too)
-	if ( ( bestPendingJobCount >= [[self valueForKey:@"maxPendingJobs"] intValue] ) || ( submittingJobCountForGrid(bestGrid) >= [[self valueForKey:@"maxSubmittingJobs"] intValue] ) )
+	if ( ( bestPendingJobCount >= [[self valueForKey:@"maxPendingJobs"] intValue] ) || ( SubmittingJobCountForGrid(bestGrid) >= [[self valueForKey:@"maxSubmittingJobs"] intValue] ) )
 		return nil;
 	
 	return  bestGrid;	
