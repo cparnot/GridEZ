@@ -3,7 +3,7 @@
 //
 //  GridEZ
 //
-//  Copyright 2006 Charles Parnot. All rights reserved.
+//  Copyright 2006, 2007 Charles Parnot. All rights reserved.
 //
 
 /* __BEGIN_LICENSE_GRIDEZ__
@@ -85,6 +85,8 @@ extern NSString *GEZTaskSubmissionUploadedPathsKey;
 - (void)setTasksPerJob:(int)newTasksPerJob;
 - (void)setMaxBytesPerJob:(long)aValue;
 - (void)setMaxSubmittedTasks:(int)newMaxSubmittedTasks;
+- (BOOL)shouldDeleteJobsAutomatically;
+- (void)setShouldDeleteJobsAutomatically:(BOOL)aValue;
 
 //info about the individual tasks
 - (int)countFailuresForTaskAtIndex:(int)index;

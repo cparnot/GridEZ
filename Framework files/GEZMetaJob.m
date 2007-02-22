@@ -3,7 +3,7 @@
 //
 //  GridEZ
 //
-//  Copyright 2006 Charles Parnot. All rights reserved.
+//  Copyright 2006, 2007 Charles Parnot. All rights reserved.
 //
 
 /* __BEGIN_LICENSE_GRIDEZ__
@@ -499,6 +499,21 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 												[self countTotalTasks]);
 }
 
+- (BOOL)shouldDeleteJobsAutomatically
+{
+	[self willAccessValueForKey:@"shouldDeleteJobsAutomatically"];
+	BOOL value = [[self primitiveValueForKey:@"shouldDeleteJobsAutomatically"] boolValue];
+	[self didAccessValueForKey:@"shouldDeleteJobsAutomatically"];
+	return value;
+}
+
+- (void)setShouldDeleteJobsAutomatically:(BOOL)aValue
+{
+	[self willChangeValueForKey:@"shouldDeleteJobsAutomatically"];
+	[self setPrimitiveValue:[NSNumber numberWithBool:aValue] forKey:@"shouldDeleteJobsAutomatically"];
+	[self didChangeValueForKey:@"shouldDeleteJobsAutomatically"];
+}
+
 #pragma mark *** tracking tasks ***
 
 
@@ -780,7 +795,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 			else {
 				subPath = [currentPath lastPathComponent];
 				//if it is not a subpath of the currentDir, we need to redefine the currentDir
-				currentDir = (isDir?currentPath:@"");
+				currentDir = (isDir?currentPath:nil);
 			}
 			
 			//OK, we have more more entry!
@@ -919,7 +934,8 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	}
 	[aJob setDelegate:nil];
 	[[self mutableSetValueForKey:@"jobs"] removeObject:aJob];
-	[aJob delete];
+	if ( [self shouldDeleteJobsAutomatically] )
+		[aJob delete];
 	
 	[self submitNextJobSoonIfRunning];
 }
@@ -1296,6 +1312,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 }
 
 
+
 #pragma mark *** GEZGrid notifications ***
 
 - (void)gridDidLoadNotification:(NSNotification *)aNotification
@@ -1427,7 +1444,6 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 		}
 	}
 	
-	//we are done with the job - delete it...
 	[self removeJob:aJob];
 }
 
