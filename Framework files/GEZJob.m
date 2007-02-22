@@ -3,7 +3,7 @@
 //
 //  GridEZ
 //
-//  Copyright 2006 Charles Parnot. All rights reserved.
+//  Copyright 2006, 2007 Charles Parnot. All rights reserved.
 //
 
 /* __BEGIN_LICENSE_GRIDEZ__
@@ -565,14 +565,13 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 //
 - (void)resetResults
 {
-	if ( results != nil ) {
-		[results autorelease];
-		results = nil;
-		NSEnumerator *e = [[self valueForKey:@"tasks"] objectEnumerator];
-		GEZTask *aTask;
-		while ( aTask = [e nextObject] )
-			[aTask setValue:nil forKey:@"allFiles"];
-	}
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[results autorelease];
+	results = nil;
+	NSEnumerator *e = [[self valueForKey:@"tasks"] objectEnumerator];
+	GEZTask *aTask;
+	while ( aTask = [e nextObject] )
+		[aTask setValue:[NSSet set] forKey:@"allFiles"];
 }
 
 @end
