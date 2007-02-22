@@ -3,7 +3,7 @@
 //
 //  Xgrid Controllers App
 //
-//  Copyright 2006 Charles Parnot. All rights reserved.
+//  Copyright 2006, 2007 Charles Parnot. All rights reserved.
 //
 
 /* __BEGIN_LICENSE_XGRIDCONTROLLERSAPP__

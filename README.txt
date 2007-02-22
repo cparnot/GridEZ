@@ -1,8 +1,8 @@
-GridEZ.framework version 0.3.0
+GridEZ.framework version 0.4.0
 
 Created by Charles Parnot.
 
-Copyright Charles Parnot 2005, 2006. All rights reserved.
+Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
 
 
 Contact:

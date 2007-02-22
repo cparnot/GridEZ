@@ -1,9 +1,6 @@
 Roadmap
 
-Todo for v0.4 release:
-
-* Max Pending Jobs: make that a setting at the metajob level; each metajob can have up to xx pending jobs on each grid; the limit should not be on the grid itself, as one metajob could take over and prevent other metajobs from submitting; the "Max Submitting Jobs" can stay the same
-
+Todo for v0.4.1 release:
 
 
 
@@ -63,6 +60,7 @@ Other things todo (some maybe):
 
 Done for v0.4 release:
 
+* Max Pending Jobs: make that a setting at the metajob level; each metajob can have up to xx pending jobs on each grid; the limit should not be on the grid itself, as one metajob could take over and prevent other metajobs from submitting; the "Max Submitting Jobs" can stay the same
 * If job is pending/failed/..., do not allow to retrieve results
 * When retrieving results from unfinished jobs, never switch to "retrieved"
 * Selective upload of streams
