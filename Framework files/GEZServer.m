@@ -375,6 +375,7 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 {
 	[self willChangeValueForKey:@"autoconnect"];
 	[self setPrimitiveValue:[NSNumber numberWithBool:newautoconnect] forKey:@"autoconnect"];
+	[serverHook setAutoconnect:newautoconnect];
 	[self didChangeValueForKey:@"autoconnect"];
 }
 
@@ -497,8 +498,8 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	if ( serverHook == nil )
 		return;
 	
-	//setuup autoconnect
-	if ( [self autoconnect] ==YES )
+	//setup autoconnect
+	if ( [self autoconnect] == YES )
 		[serverHook setAutoconnect:YES];
 	
 	//We need to be notified of all the activity of the GEZServerHook object

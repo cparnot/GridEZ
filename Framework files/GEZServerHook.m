@@ -644,6 +644,8 @@ NSMutableDictionary *serverHookInstances=nil;
 
 - (void)autoconnectWithTimer:(NSTimer *)aTimer
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	if ( autoconnectInterval == AUTOCONNECT_INTERVAL_UNDEFINED || autoconnect == NO || [self isConnecting] == YES || [self isConnected] == YES ) {
 		autoconnectInterval = AUTOCONNECT_INTERVAL_UNDEFINED;
 		return;
