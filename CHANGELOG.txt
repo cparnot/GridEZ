@@ -1,8 +1,11 @@
 
-Version 0.4.0
--------------
+Version 0.4.1
+(February 2007)
 
-February 2007
+* Submission of several metajobs in parallel behaves much better; the limit on the number of submitting jobs per grid now applies to each metajob instead of being a global setting for the grid
+
+Version 0.4.0
+(February 2007)
 
 # GEZJob:
 * Implemented different modes for retrieving job results. One can choose to only upload the streams, instead of all the files. The results can also be reset or "cleared". This functionality has been added to the GUI of the Xgrid panel as well. The implementation is not very flexible and will need to change at some point if more options are needed.
@@ -27,7 +30,7 @@ February 2007
 * Submission to several grids at the same time; responds automatically when a grid is added; only use connected grids for submissions, and use all the connected grids when no specific grid has been set using the 'grids' relationship
 * Updated GEZMetaJob data model to have a 'tasksPerJob' attribute, instead of 'maxTasksPerJob' and 'minTasksPerJob'; the user simply decides how many tasks to put per job, when possible
 
-#GEZManager and Core Data:
+# GEZManager and Core Data:
 * Added a method to register additional managed object contexts with GEZManager, so that additional GEZServer objects are also present in the application-wide context. In theory, the user of the framework needs to register a context if she uses some GridEZ object.
 * Added options set in the application Info.plist to enable/disable the NSUndoManager of the main managed object context (by default, disabled), and to allow different formats to be used for the corresponding store.
 * GEZManager now creates a managed object context using all the managed object models available in the bundle.
@@ -61,8 +64,6 @@ February 2007
 
 
 Version 0.3.0
--------------
-
-April 2006
+(April 2006)
 
 * First public release

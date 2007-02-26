@@ -8,6 +8,8 @@ Todo for v0.4.1 release:
 ---------------
 Other things todo (some maybe):
 
+* Option to have a Xgrid menu added to the app automatically
+
 * Problem: if several GEZServer set the autoconnect value of GEZServerHook, how to get them synced??
 
 * Selective upload of streams, not files: make that better

@@ -1,4 +1,4 @@
-GridEZ.framework version 0.4.0
+GridEZ.framework version 0.4.1
 
 Created by Charles Parnot.
 

@@ -240,20 +240,22 @@ function hideElement(id)
 	</style>
 </head><body>
 	
-<h1>GridEZ.framework</h1>
+<h1 id="gridezframework">GridEZ.framework</h1>
+
+<h3 id="introduction">Introduction</h3>
 
 <p>The GridEZ framework was written to make Xgrid integration in your application very easy. The XgridFoundation API is powerful, but complicated to use. To allow the user to connect to a Controller, submit a job and get the results back, you have to write hundreds of lines of code using the XgridFoundation, and manage a complex chain of asynchronous callbacks that XgridFoundation requires you to follow. The GridEZ framework provides easy-to-use objects that hide this complexity, and yet provide most of the functionality you need. For instance, when you submit a job, the results will be automatically loaded in your application when the job finishes and all is left to you is to write the delegate method to handle it. If you have never used the XgridFoundation APIs, you might wonder what the big deal is. But if you have, you probably already realize how GridEZ might make your life much much easier...</p>
 
-<h3>Examples</h3>
+<h3 id="examples">Examples</h3>
 
 <p>To better see what you can do with GridEZ, the best place to start is in the Examples folder in the GridEZ distribution. The code used in these examples is released under the modified BSD license, so you can freely use it and modify it for your application. The PolyShell example is explained in greater detail in a <a href="GridEZ-Tutorial1.html">tutorial</a>.</p>
 
 <ul>
 <li><em>PolyShell</em>: this is a very simple example application, with just one class, 8 methods, and ~30 lines of actual code; yet, it is already quite powerful; the user can connect to an Xgrid Controller, type a list of shell commands, and have PolyShell submit them all in one job, and browse the results when they are done</li>
-<li><em>XgridCal</em>: a slightly more complex application, with 3 classes; the Scheduler class included in this project can be used in any application where you want to submit a bunch of independent tasks that can be run in any order on the grid (for instance, 3D rendering of the frames of an animation movie). Just provide a dataSource to provide the number of tasks, the task specifications and handle the results, and the Scheduler takes care of the rest. When all the tasks are done, the Scheduler delegate is notified.</li>
+<li><em>XgridCal</em>: a slightly more complex application, with 2 classes; XgridCal makes use of the GEZMetaJob class, which can be used in any application where you want to submit a bunch of independent tasks that can be run in any order on the grid (for instance, 3D rendering of the frames of an animation movie). Just provide a dataSource to provide the number of tasks, the task specifications and handle the results, and the MetaJob takes care of the rest.</li>
 </ul>
 
-<h3>Features</h3>
+<h3 id="features">Features</h3>
 
 <ul>
 <li>the XgridFoundation API is powerful, but complicated to use; the GridEZ framework provides easy-to-use objects that hide the complex chain of asynchronous callbacks that XgridFoundation requires you to follow:
@@ -267,7 +269,20 @@ function hideElement(id)
 <li>integration with CoreData; with just one call to the save method, your application will automatically save all the information about the jobs it submitted and the server it connected to in the past; for instance, the user may quit your application and come back later to retrieve all the jobs that are now finished, and you don't have to write any code to provide that functionality</li>
 </ul>
 
-<h3>Adding GridEZ.framework to your Xcode project</h3>
+<h3 id="side_effects">Side effects</h3>
+
+<p>Because some users are sensitive to that issue, it is important for you to realize that when using the GridEZ.framework, your application will now create the following folder and add some files inside this location, in the user's folder:</p>
+
+<ul>
+<li>~/Library/Application Support/<em>THE</em>NAME<em>OF</em>YOUR<em>APP</em>/GridEZ</li>
+<li>~/Library/Application Support/GridEZ</li>
+</ul>
+
+<p>This is where persistent information about the xgrid servers and jobs is stored.</p>
+
+<p>The creation of these files can be disabled using appropriate keys in the Info.plist file of your application (see below section on Advanced Options). At present, it can't be disabled for standalone non-GUI tools.</p>
+
+<h3 id="adding_gridezframework_to_your_xcode_project">Adding GridEZ.framework to your Xcode project</h3>
 
 <p>The integration of GridEZ.framework into your application is similar to the use of any other framework. The following instructions are for Xcode 2.2. For a more detailed example, read the PolyShell <a href="GridEZ-Tutorial1.html">tutorial</a>.</p>
 
@@ -302,4 +317,28 @@ function hideElement(id)
 <li><a href="http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html#//apple_ref/doc/uid/20002258-106880-BAJJBIEF">Apple documentation</a></li>
 <li><a href="http://www.cocoadevcentral.com/articles/000042.php">CocoaDevCentral tutorial</a> (somewhat outdated)</li>
 </ul>
+
+<h3 id="advanced_options">Advanced options</h3>
+
+<p>Some options can be set by editing the Info.plist file of the application that uses the GridEZ.framework. Here is a list of the supported keys:</p>
+
+<ul>
+<li>GEZShouldUseUndoManager: by default, the default managed object context created by the framework will not have an NSUndoManager attached to it; you can force the addition of one using this key</li>
+<li>GEZStoreType: by default, the default managed object context created by the framework will create a store of type SQLLite; you can change this by setting the value of this key to one of these strings:
+<ul>
+<li>SQLite</li>
+<li>XML</li>
+<li>Binary</li>
+<li>InMemory</li>
+</ul></li>
+</ul>
+
+<p>For instance, you would add the following lines in the Info.plist file to add an NSUndoManager to the application-wide managedObjectContext and to use an XML store:</p>
+
+<pre><code>&lt;key&gt;GEZShouldUseUndoManager&lt;/key&gt;
+&lt;string&gt;YES&lt;/string&gt;
+&lt;key&gt;GEZStoreType&lt;/key&gt;
+&lt;string&gt;XML&lt;/string&gt;
+</code></pre>
+
 </body></html>

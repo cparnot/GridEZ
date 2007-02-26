@@ -666,26 +666,9 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 #pragma mark *** utilities for submitting jobs ***
 
+//convenience methods used to decide on the bestGridForSubmission (see below)
 
-//convenience functions used to decide on the bestGridForSubmission (see below)
-//pending jobs mean they are acknowledged by the Xgrid controller, but are in the pipeline, waiting for an agent to run them
-int PendingJobCountForGrid(GEZGrid *aGrid)
-{
-	//we loop on the XGGrid, not the GEZGrid, as the GEZGrid does not necessarily keep track of all the jobs
-	NSEnumerator *e = [[[aGrid xgridGrid] jobs] objectEnumerator];
-	XGJob *aJob;
-	int jobCount = 0;
-	while ( aJob = [e nextObject] ) {
-		if ( [aJob state] == XGResourceStatePending )
-			jobCount ++;
-	}
-
-	DLog(NSStringFromClass([GEZMetaJob class]),12,@"Pending jobs for Grid %@ = %d",[aGrid name], jobCount);
-
-	return jobCount;
-}
-
-//this is the same as above, except it is an instance method, and counts only the jobs that are submitted by the MetaJob; it is better to use this method, so that each metajob has its own queue, and they all get a chance to compete (as opposed to using the above function PendingJobCountForGrid()).
+//pending jobs mean they are acknowledged by the Xgrid controller, but are in the pipeline, waiting for an agent to run them; the method counts only the jobs that are submitted by the MetaJob; this way, each metajob has its own queue, and they all get a chance to compete.
 - (int)pendingJobCountForGrid:(GEZGrid *)aGrid
 {
 	NSSet *allJobs = [self valueForKey:@"jobs"];
@@ -703,13 +686,14 @@ int PendingJobCountForGrid(GEZGrid *aGrid)
 }	
 
 //submitting jobs were submitted by the program, but are not yet acknowledged by the Xgrid controller (and we have no identifier yet); if too many accumulate, it is probably because the controller is unresponsive and we should stop harassing it until it is OK
-int SubmittingJobCountForGrid(GEZGrid *aGrid)
+- (int)submittingJobCountForGrid:(GEZGrid *)aGrid
 {
+	NSSet *allJobs = [self valueForKey:@"jobs"];
 	NSEnumerator *e = [[aGrid jobs] objectEnumerator];
 	GEZJob *aJob;
 	int jobCount = 0;
 	while ( aJob = [e nextObject] ) {
-		if ( [aJob isSubmitting] )
+		if ( [allJobs member:aJob] && [aJob isSubmitting] )
 			jobCount ++;
 	}
 
@@ -717,6 +701,7 @@ int SubmittingJobCountForGrid(GEZGrid *aGrid)
 
 	return jobCount;	
 }
+
 
 //decides on the optimal grid to use given the settings of the meta job, returning nil if no grid fits the requirements
 //this decision depends on the number of "Pending" jobs (the presence of pending jobs means the grid is full) and of "Submitting" jobs (jobs in the pipeline not yet acknowledged by XgridFoundation, we have to wait for these to be acknowledged)
@@ -742,7 +727,7 @@ int SubmittingJobCountForGrid(GEZGrid *aGrid)
 	while ( aGrid = [e nextObject] ) {
 		int pendingJobCount = [self pendingJobCountForGrid:aGrid];
 		int availableAgentsGuess = [aGrid availableAgentsGuess];
-		if ( [aGrid isConnected] && ( SubmittingJobCountForGrid(aGrid) < [[self valueForKey:@"maxSubmittingJobs"] intValue] ) && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount || ( pendingJobCount == bestPendingJobCount &&  availableAgentsGuess > bestAvailableAgentsGuess ) ) ) {
+		if ( [aGrid isConnected] && ( [self submittingJobCountForGrid:aGrid] < [[self valueForKey:@"maxSubmittingJobs"] intValue] ) && ( bestPendingJobCount == -1 || pendingJobCount < bestPendingJobCount || ( pendingJobCount == bestPendingJobCount &&  availableAgentsGuess > bestAvailableAgentsGuess ) ) ) {
 			bestGrid = aGrid;
 			bestPendingJobCount = pendingJobCount;
 			bestAvailableAgentsGuess = availableAgentsGuess;
@@ -753,7 +738,7 @@ int SubmittingJobCountForGrid(GEZGrid *aGrid)
 	
 	//maxPendingJobs = jobs already in the queue in the grid = when all the agents are busy working and jobs pile up
 	//maxSubmittingJobs = job still not acknowledged by Xgrid as being submitted = no identifer yet, ActionMonitor still pending (see GEZJob too)
-	if ( ( bestPendingJobCount >= [[self valueForKey:@"maxPendingJobs"] intValue] ) || ( SubmittingJobCountForGrid(bestGrid) >= [[self valueForKey:@"maxSubmittingJobs"] intValue] ) )
+	if ( ( bestPendingJobCount >= [[self valueForKey:@"maxPendingJobs"] intValue] ) || ( [self submittingJobCountForGrid:bestGrid] >= [[self valueForKey:@"maxSubmittingJobs"] intValue] ) )
 		return nil;
 	
 	return  bestGrid;	
@@ -943,8 +928,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 #pragma mark *** submitting jobs ***
 
 
-//this method decides how many tasks and jobs to create based on the MetaJob settings
-//it create TaskLists to send to the above method 'submitJobWithTaskList:paths:'
+//this method creates one job (lots of code) and submits it
 - (BOOL)submitNextJob
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);

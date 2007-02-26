@@ -9,7 +9,7 @@ The GridEZ framework was written to make Xgrid integration in your application v
 To better see what you can do with GridEZ, the best place to start is in the Examples folder in the GridEZ distribution. The code used in these examples is released under the modified BSD license, so you can freely use it and modify it for your application. The PolyShell example is explained in greater detail in a [tutorial](GridEZ-Tutorial1.html).
 
 * _PolyShell_: this is a very simple example application, with just one class, 8 methods, and ~30 lines of actual code; yet, it is already quite powerful; the user can connect to an Xgrid Controller, type a list of shell commands, and have PolyShell submit them all in one job, and browse the results when they are done
-* _XgridCal_: a slightly more complex application, with 3 classes; the Scheduler class included in this project can be used in any application where you want to submit a bunch of independent tasks that can be run in any order on the grid (for instance, 3D rendering of the frames of an animation movie). Just provide a dataSource to provide the number of tasks, the task specifications and handle the results, and the Scheduler takes care of the rest. When all the tasks are done, the Scheduler delegate is notified.
+* _XgridCal_: a slightly more complex application, with 2 classes; XgridCal makes use of the GEZMetaJob class, which can be used in any application where you want to submit a bunch of independent tasks that can be run in any order on the grid (for instance, 3D rendering of the frames of an animation movie). Just provide a dataSource to provide the number of tasks, the task specifications and handle the results, and the MetaJob takes care of the rest.
 
 
 ### Features
@@ -18,6 +18,7 @@ To better see what you can do with GridEZ, the best place to start is in the Exa
 	* GEZServer: easy-to-use wrapper for XGController/XGConnection
 	* GEZJob: wrapper for XGJob; submission and result retrieval as it should be: submit a job and get the results in a delegate method
 	* GEZGrid: for more advanced uses, you may need to occasionally specify a specific grid to submit jobs to (by default, submitting to a server will submit to the default grid)
+	* GEZMetaJob: a sophisticated scheduler that can take a list of commands (provided by your code using a "data source" design similar to NSTableView) and automatically submit and retrieve the results
 * Bonjour browser: with just one call to the startBrowsing method, you get all the local Xgrid Controllers available to the user and ready to be used by your application
 * Controller Connection Window: without writing any code, your application can let the user connect to any Xgrid Controllers she has access to using the prebuilt connection panel that handles local and remote connections, authentication,...; your application can then easily access these servers or be notified when the user connects to them
 * integration with CoreData; with just one call to the save method, your application will automatically save all the information about the jobs it submitted and the server it connected to in the past; for instance, the user may quit your application and come back later to retrieve all the jobs that are now finished, and you don't have to write any code to provide that functionality
