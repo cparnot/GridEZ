@@ -57,6 +57,7 @@
 		562B312F0B7C4C8700D79DF4 /* retrieveStreams.png in Resources */ = {isa = PBXBuildFile; fileRef = 562B312E0B7C4C8700D79DF4 /* retrieveStreams.png */; };
 		562D37390AC0977D00B4A99D /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563DC39B0B8C1B5700FD8F7D /* resetResults.png in Resources */ = {isa = PBXBuildFile; fileRef = 563DC39A0B8C1B5700FD8F7D /* resetResults.png */; };
+		564488DD0B98C1520058A309 /* GEZFileDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 564488DB0B98C1520058A309 /* GEZFileDownloadManager.m */; };
 		56720AB60AAF89B400066417 /* GEZMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720AB40AAF89B400066417 /* GEZMetaTask.m */; };
 		56720B380AAFEE1C00066417 /* GEZIntegerArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720B360AAFEE1C00066417 /* GEZIntegerArray.m */; };
 		56720BAC0AB0D94900066417 /* GEZManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D11F09621D8200505CDC /* GEZManager.m */; };
@@ -216,6 +217,8 @@
 		562B30F80B7B0F5D00D79DF4 /* retrieveAllFiles.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retrieveAllFiles.png; sourceTree = "<group>"; };
 		562B312E0B7C4C8700D79DF4 /* retrieveStreams.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retrieveStreams.png; sourceTree = "<group>"; };
 		563DC39A0B8C1B5700FD8F7D /* resetResults.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resetResults.png; sourceTree = "<group>"; };
+		564488DA0B98C1510058A309 /* GEZFileDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEZFileDownloadManager.h; sourceTree = "<group>"; };
+		564488DB0B98C1520058A309 /* GEZFileDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEZFileDownloadManager.m; sourceTree = "<group>"; };
 		56720AB30AAF89B400066417 /* GEZMetaTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZMetaTask.h; path = "Framework files/GEZMetaTask.h"; sourceTree = "<group>"; };
 		56720AB40AAF89B400066417 /* GEZMetaTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZMetaTask.m; path = "Framework files/GEZMetaTask.m"; sourceTree = "<group>"; };
 		56720B350AAFEE1C00066417 /* GEZIntegerArray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZIntegerArray.h; path = "Framework files/GEZIntegerArray.h"; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				56BFC498095FB37400463A1F /* GEZServerHook.m */,
 				56BFC50A095FBD3300463A1F /* GEZGridHook.h */,
 				56BFC50B095FBD3300463A1F /* GEZGridHook.m */,
+				564488DA0B98C1510058A309 /* GEZFileDownloadManager.h */,
+				564488DB0B98C1520058A309 /* GEZFileDownloadManager.m */,
 				5678207909907ED500D78584 /* GEZResults.h */,
 				5678207A09907ED500D78584 /* GEZResults.m */,
 				56720AB30AAF89B400066417 /* GEZMetaTask.h */,
@@ -944,6 +949,7 @@
 				56720BAC0AB0D94900066417 /* GEZManager.m in Sources */,
 				5606BEFB0AB8C0F100CA3CAE /* GEZResourceObserver.m in Sources */,
 				56C34B920ACDD22E005891F1 /* GEZProxy.m in Sources */,
+				564488DD0B98C1520058A309 /* GEZFileDownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

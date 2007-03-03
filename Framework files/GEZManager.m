@@ -19,6 +19,7 @@ __END_LICENSE__ */
 #import "GEZServerWindowController.h"
 #import "GEZXgridPanelController.h"
 #import "GEZDefines.h"
+#import "GEZFileDownloadManager.h"
 
 @implementation GEZManager
 
@@ -263,6 +264,12 @@ BOOL CreateFolder (NSString *path)
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[GEZXgridPanelController hideXgridPanel];
+}
+
+
++ (void)setMaxFileDownloads:(int)max
+{
+	[[GEZFileDownloadManager sharedFileDownloadManager] setMaxFileDownloads:max];
 }
 
 

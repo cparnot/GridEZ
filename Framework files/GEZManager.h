@@ -43,5 +43,6 @@ __END_LICENSE__ */
 + (void)hideXgridPanel;
 
 
++ (void)setMaxFileDownloads:(int)max;
 
 @end

@@ -13,7 +13,11 @@ __END_LICENSE__ */
 
 
 #import "GEZResults.h"
+#import "GEZFileDownloadManager.h"
 
+@interface GEZResults (GEZResultsPrivate)
+- (void)checkDidLoadResults;
+@end
 
 @implementation GEZResults
 
@@ -65,7 +69,7 @@ __END_LICENSE__ */
 	[results release];
 	results = [[NSMutableDictionary alloc] initWithCapacity:[xgridJob taskCount]];
 	
-	//prepare the downloads mutable set that will hold the pending XGFileDownload
+	//prepare the downloads mutable set that will hold the pending XGFile
 	[downloads release];
 	downloads = [[NSMutableSet alloc] init];
 	
@@ -92,7 +96,7 @@ __END_LICENSE__ */
 	[results release];
 	results = [[NSMutableDictionary alloc] initWithCapacity:[xgridJob taskCount]];
 	
-	//prepare the downloads mutable set that will hold the pending XGFileDownload
+	//prepare the downloads mutable set that will hold the pending XGFile
 	[downloads release];
 	downloads = [[NSMutableSet alloc] init];
 	
@@ -161,102 +165,28 @@ __END_LICENSE__ */
 }
 */
 
+@end
+
+@implementation GEZResults (GEZResultsPrivate)
+
+#pragma mark *** Getting the list of files ***
 
 //private method used to handle outcome of streamsMonitor and filesMonitor
-//results = dictionary of dictionaries, one dictionary per taskIdentifier
 - (void)downloadFiles:(NSArray *)files
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),10,@"\nFiles:\n%@", [files description]);
-	
+
+	//add the files to the download queue of GEZFileDownloadManager
 	XGFile *aFile;
 	NSEnumerator *e = [files objectEnumerator];
-	while ( aFile = [e nextObject] ) {
-		
-		//the taskIdentifier is the key to a resultDictionary
-		NSString *taskIdentifier = [aFile taskIdentifier];
-		
-		//retrieve the resultDictionary from the results dictionary, creating it if necessary
-		NSMutableDictionary *resultDictionary = [results objectForKey:taskIdentifier];
-		if ( resultDictionary == nil ) {
-			resultDictionary = [[NSMutableDictionary alloc] init];
-			[results setObject:resultDictionary forKey:taskIdentifier];
-		}
-		
-		//create the data object that will hold the data
-		NSMutableData *fileData = [NSMutableData data];
-		[resultDictionary setObject:fileData forKey:[aFile path]];
-		
-		//start the download
-		XGFileDownload *aFileDownload = [[XGFileDownload alloc] initWithFile:aFile delegate:self];
-		[downloads addObject:aFileDownload];
-		[aFileDownload release];
-		
-	}
+	while ( aFile = [e nextObject] )
+		[[GEZFileDownloadManager sharedFileDownloadManager] addFile:aFile delegate:self];
+
+	//the downloads ivar is used to keep track of which XGFile are still pending
+	[downloads addObjectsFromArray:files];
+
 }
-
-
-
-
-#pragma mark *** Handling XGFileDownload delegate methods ***
-
-- (BOOL)resultsDidLoad
-{
-	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
-	if ( results == nil )
-		return NO;
-	if ( [downloads count]==0 && streamsMonitor==nil && filesMonitor==nil )
-		return YES;
-	else
-		return NO;
-}
-
-//this methods checks if the results are all loaded and ready
-- (void)checkDidLoadResults
-{
-	if ( [delegate respondsToSelector:@selector(didRetrieveResults:)] && [self resultsDidLoad] )
-		[delegate didRetrieveResults:self];
-}
-
-/*
- - (void)fileDownloadDidBegin:(XGFileDownload *)fileDownload
- {
-	 
- }
- */
-
-//This method is called when the download has loaded data
-- (void)fileDownload:(XGFileDownload *)fileDownload didReceiveData:(NSData *)data
-{
-	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
-
-	NSString *taskIdentifier = [[fileDownload file] taskIdentifier];
-	NSDictionary *resultDictionary =  [results objectForKey:taskIdentifier];
-	NSMutableData *fileData = [resultDictionary objectForKey:[[fileDownload file] path]];
-	[fileData appendData:data];
-	
-	DLog(NSStringFromClass([self class]),15,@"File contents:\n%@",[NSString stringWithCString:[fileData bytes] length:[fileData length]]);
-}
-
-//This method is called when the download has failed
-- (void)fileDownload:(XGFileDownload *)fileDownload didFailWithError:(NSError *)error
-{
-	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
-
-	NSString *taskIdentifier = [[fileDownload file] taskIdentifier];
-	[[results objectForKey:taskIdentifier] removeObjectForKey:[[fileDownload file] path]];
-	[downloads removeObject:fileDownload];
-	[self checkDidLoadResults];
-}
-
-//This method is called when the download has finished downloading
-- (void)fileDownloadDidFinish:(XGFileDownload *)fileDownload
-{
-	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
-	[downloads removeObject:fileDownload];
-	[self checkDidLoadResults];
-}
-
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -281,6 +211,121 @@ __END_LICENSE__ */
 	}
 	
 }
+
+
+
+
+#pragma mark *** GEZFileDownloadManager delegate ***
+
+- (BOOL)resultsDidLoad
+{
+	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
+	if ( results == nil )
+		return NO;
+	if ( [downloads count]==0 && streamsMonitor==nil && filesMonitor==nil )
+		return YES;
+	else
+		return NO;
+}
+
+//this methods checks if the results are all loaded and ready
+- (void)checkDidLoadResults
+{
+	if ( [delegate respondsToSelector:@selector(didRetrieveResults:)] && [self resultsDidLoad] )
+		[delegate didRetrieveResults:self];
+}
+
+
+//the file data are stored in the 'results' ivar, which is a dictionary of dictionaries; there is one dictionary per taskIdentifier, and then the subdictionary stores the data in the value, and use the paths for the keys
+/*
+ Example dictionary
+
+results = {
+	0 = {
+			'file1.txt' = <dGhpcyBpcyBhIHRlc3Q=...>,
+			'dir1/file2.txt' = <abcdefgh1234566789...>
+	} ,
+	1 = {
+		'image.png' = <somedatatattata...>,
+		'stdout' = <morebytesbytes...>,
+		....
+	} ,
+	...
+}
+ */
+
+- (void)fileDownloadManager:(GEZFileDownloadManager *)manager didRetrieveFile:(XGFile *)xgridFile data:(NSData *)fileData
+{
+	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
+	
+	//the taskIdentifier is the key to a dictionary that will contains the files for the task
+	NSString *taskIdentifier = [xgridFile taskIdentifier];
+	
+	//retrieve the resultDictionary from the results dictionary, creating it if necessary
+	NSMutableDictionary *resultDictionary = [results objectForKey:taskIdentifier];
+	if ( resultDictionary == nil ) {
+		resultDictionary = [[NSMutableDictionary alloc] init];
+		[results setObject:resultDictionary forKey:taskIdentifier];
+	}
+	
+	//add the data object using the path as the key
+	[resultDictionary setObject:fileData forKey:[xgridFile path]];
+	
+	//remove the file from the list of downloads
+	[[xgridFile retain] autorelease];
+	[downloads removeObject:xgridFile];
+	[self checkDidLoadResults];
+	
+}
+
+//in case of error, we simply resubmit to GEZFileDownloadManager, hoping it will work better...
+- (void)fileDownloadManager:(GEZFileDownloadManager *)manager didFailToRetrieveFile:(XGFile *)xgridFile error:(NSError *)error
+{
+	DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
+	[[GEZFileDownloadManager sharedFileDownloadManager] addFile:xgridFile delegate:self];
+}
+
+
+/*
+ - (void)fileDownloadDidBegin:(XGFileDownload *)fileDownload
+ {
+	 
+ }
+ */
+
+/*
+ //This method is called when the download has loaded data
+ - (void)fileDownload:(XGFileDownload *)fileDownload didReceiveData:(NSData *)data
+ {
+	 DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
+	 
+	 NSString *taskIdentifier = [[fileDownload file] taskIdentifier];
+	 NSDictionary *resultDictionary =  [results objectForKey:taskIdentifier];
+	 NSMutableData *fileData = [resultDictionary objectForKey:[[fileDownload file] path]];
+	 [fileData appendData:data];
+	 
+	 DLog(NSStringFromClass([self class]),15,@"File contents:\n%@",[NSString stringWithCString:[fileData bytes] length:[fileData length]]);
+ }
+ 
+ //This method is called when the download has failed
+ - (void)fileDownload:(XGFileDownload *)fileDownload didFailWithError:(NSError *)error
+ {
+	 DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
+	 
+	 NSString *taskIdentifier = [[fileDownload file] taskIdentifier];
+	 [[results objectForKey:taskIdentifier] removeObjectForKey:[[fileDownload file] path]];
+	 [downloads removeObject:fileDownload];
+	 [self checkDidLoadResults];
+ }
+ 
+ //This method is called when the download has finished downloading
+ - (void)fileDownloadDidFinish:(XGFileDownload *)fileDownload
+ {
+	 DLog(NSStringFromClass([self class]),12,@"[%@:%p %s]",[self class],self,_cmd);
+	 [downloads removeObject:fileDownload];
+	 [self checkDidLoadResults];
+ }
+ */
 
 @end
 

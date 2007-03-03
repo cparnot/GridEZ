@@ -8,13 +8,14 @@ Todo for v0.4.1 release:
 ---------------
 Other things todo (some maybe):
 
+* Retrieveing jobs: limit the number of simultaneous job rerieval and file downloads; Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
+
 * Option to have a Xgrid menu added to the app automatically
 
 * Problem: if several GEZServer set the autoconnect value of GEZServerHook, how to get them synced??
 
 * Selective upload of streams, not files: make that better
 
-* Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
 
 * GEZProxy bug: not properly saved the first time because of temporary ID issues
 	* implement its own 'save' method in GEZManager that makes sure it saves again ih "hasChanges" = true
