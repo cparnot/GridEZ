@@ -692,13 +692,14 @@ NSMutableDictionary *serverHookInstances=nil;
 
 	//connection dropped?
 	else {
-		serverHookState = GEZServerHookStateDisconnected;
 		[self setConnectionSelectors:nil];
 		[self setXgridConnection:nil];
 		[self setXgridController:nil];
 		[grids release];
 		grids = nil;
-		[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidDisconnectNotification object:self];
+		if ( serverHookState != GEZServerHookStateDisconnected && serverHookState != GEZServerHookStateFailed )
+			[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidDisconnectNotification object:self];
+		serverHookState = GEZServerHookStateDisconnected;
 		if ( [self autoconnect] ) {
 			if ( autoconnectInterval == AUTOCONNECT_INTERVAL_UNDEFINED )
 				autoconnectInterval = AUTOCONNECT_INTERVAL_MINIMUM;
