@@ -1014,7 +1014,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		//get the new guy ready
 		xgridJob = [newJob retain];
 		if ( xgridJob != nil ) {
-			xgridJobObserver = [[GEZResourceObserver alloc] initWithResource:xgridJob observedKeys:[NSSet setWithObjects:@"completedTaskCount",@"state"]];
+			xgridJobObserver = [[GEZResourceObserver alloc] initWithResource:xgridJob observedKeys:[NSSet setWithObjects:@"completedTaskCount",@"state",nil]];
 			[xgridJobObserver setDelegate:self];
 		} else
 			xgridJobObserver = nil;
