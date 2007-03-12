@@ -146,6 +146,11 @@ typedef enum {
 	return gridHookState == GEZGridHookStateLoaded;
 }
 
+- (GEZServerHook *)serverHook
+{
+	return serverHook;
+}
+
 #pragma mark *** job observing ***
 
 - (BOOL)checkAllJobsUpdated

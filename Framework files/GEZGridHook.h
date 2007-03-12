@@ -40,11 +40,12 @@ APPKIT_EXTERN NSString *GEZGridHookDidChangeJobsNotification;
 + (GEZGridHook *)gridHookWithXgridGrid:(XGGrid *)aGrid serverHook:(GEZServerHook *)aServer;
 + (GEZGridHook *)gridHookWithIdentifier:(NSString *)identifier serverHook:(GEZServerHook *)aServer;
 
-	//accessors
+//accessors
 - (void)setXgridGrid:(XGGrid *)newGrid;
 - (XGGrid *)xgridGrid;
 - (BOOL)isUpdated;
 - (BOOL)isLoaded;
+- (GEZServerHook *)serverHook;
 
 @end
 
