@@ -936,7 +936,7 @@ NSDictionary *relativePaths(NSArray *fullPaths)
 	//if we have gone through all the currently queued tasks, we need to build a new queue first
 	if ( [availableTasks count] < 1 )
 		[self resetAvailableTasks];
-		
+	
 	//decide on the best grid to use for submission
 	GEZGrid *bestGrid = [self bestGridForSubmission];
 	if ( bestGrid == nil ) {
