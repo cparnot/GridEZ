@@ -1,4 +1,11 @@
 
+Version 0.4.2
+(March 2007)
+
+* Limited number of concurrent file downlads when retrieving results; by default, the limit is 10, but it can be changed by calling 'setMaxFileDownloads' on GEZManager
+* Fixed bug in GEZJob, that would cause random, relatively rare, crashes
+
+
 Version 0.4.1
 (February 2007)
 

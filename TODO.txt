@@ -1,14 +1,51 @@
 Roadmap
 
-Todo for v0.4.1 release:
+Todo for v0.4.2 release:
 
+* Retrieveing jobs: limit the number of simultaneous job rerieval and file downloads; Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
 
+* detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
+
+* GEZServer: still need to add code for GEZServer when grids added (?) + support for observeAllJobs
+
+* GEZServer: make the object smarter, so it remembers which way it connected before, e.g. not ask single sign on if already used that in the past --> how to make that work with GEZServerHook??
+
+* Task-specific environment dictionaries: instead add another entry in the task description that the dataSource should return, e.g. 'environment', which should return a dictionary of environment variables/values, just like Xgrid format
+
+* Support for NSData in uploadedPaths:  instead add another entry in the task description that the dataSource should return, e.g. 'inputFiles', with a list of "files", using the same format as Xgrid = dictionary where keys = paths, and value = dictionary with 'fileData' and 'isExecutable'
+ 
+*		Actually, I just thought of a neat way to do that:
+		* force tasks to be performed in order
+		* monitor using KVO the key 'completedTaskCount'
+		then we know exactly which tasks are completed!
+
+* Change GEZGridHook implementation to match that of xgridstatus
+
+* Bug in GEZMetaJob? Start retrieval of jobs when grid loaded (Drew's email)
+
+------------------
+
+Todo for v0.5.0 release:
+
+* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet) ÐÐ> maybe use Xgrid Lite code, but GPL (Ed?)
+
+* GEZServer:  handle deletion in a smart way --> delete all server entities across mocs? allow deletion of connected servers? disconnect first?
+
+* add tests by using the examples that were developed for GridStuffer: the examples could be described by a plist, as they are now, but adding the expected results for the specifications
+
+* make the little colored dots for status more consistent in size (maybe different shapes?)
+
+* In the Xgrid panel, keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting, which means we may need NSNotification from GEZJob
+
+* Choosing grids for submission
+
+* Have settings __per grid__ in metajob : max pending, max submitting, sizes,...
+
+* Have 'automatic' option for some of GEZMetaJob settings, such as number of tasks per job, grid choice,...
 
 
 ---------------
 Other things todo (some maybe):
-
-* Retrieveing jobs: limit the number of simultaneous job rerieval and file downloads; Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
 
 * Option to have a Xgrid menu added to the app automatically
 
@@ -16,28 +53,14 @@ Other things todo (some maybe):
 
 * Selective upload of streams, not files: make that better
 
-
 * GEZProxy bug: not properly saved the first time because of temporary ID issues
 	* implement its own 'save' method in GEZManager that makes sure it saves again ih "hasChanges" = true
 	* force-save when creating a GEZProxy
 	* let the developer take care of it ÐÐ> right now this is what is done (see also GridStuffer)
 
-* detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
-* In the Xgrid panel, keep jobs ordered by ID by default: still buggy as the jobListController would need to be notified of changes in job attributes to trigger resorting, which means we may need NSNotification from GEZJob
-* User-level store, to remember servers used by different apps (do not store jobs)
-* make the little colored dots for status more consistent in size (maybe different shapes?)
-
-* add tests by using the examples that were developed for GridStuffer: the examples could be described by a plist, as they are now, but adding the expected results for the specifications
-
-* Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet) ÐÐ> maybe use Xgrid Lite code, but GPL (Ed?)
-
-* Have a system-wide database of servers, shared by all applications run by the user
+* User-level store, to remember servers used by different apps (do not store jobs);Have a system-wide database of servers, shared by all applications run by the user
 
 * Do a better job at using CoreData callbacks for object creation, fetching, deletion,...
-
-* Try to use some of XGResource methods and ivars like "isUpdated" and "actionMonitors", that would make my code simpler
-
-* A job should be marked as deleted when deleted from the grid from outside --> need to observe its deletion in XGGrid; but maybe this is not a good idea to delete the GEZJob in fact (?)
 
 * Put GUI stuff in separate headers, AppKit categories:
 	* Controller window in GEZServer
@@ -45,23 +68,16 @@ Other things todo (some maybe):
 
 * GEZXgridPanelController could be made a subclass of GEZServerWindowController, but only do it if I make large changes, then they would share all the basic code
 
-* GEZGridHook
-	* monitor jobs to be considered 'loaded' --> right now, GEZGridHook objects NEVER GET "LOADED"
-	* monitor state in case it goes away? Probably not necessary, if the server is monitoring its 'grids'
-
 * GEZManager
 	* Give the option to change the location of the persistent store
 	* Remove the GUI stuff (see above)
 
-* GEZServer
-	* make the object smarter, so it remembers which way it connected before, e.g. not ask single sign on if already used that in the past --> how to make that work with GEZServerHook??
-	* handle deletion in a smart way --> delete all server entities across mocs? allow deletion of connected servers? disconnect first?
-	* still need to add code for GEZServer when grids added + support for observeAllJobs
-
 * GEZJOb
 	* when setServer is used, should defer the decision on the grid to the submission time, in case the default grid is changed by then
-	
 
+
+	
+***
 
 Done for v0.4 release:
 
