@@ -2,6 +2,8 @@ Roadmap
 
 Todo for v0.4.2 release:
 
+* Add public identifier and xgridJob accessor for GEZJob
+
 * Retrieveing jobs: limit the number of simultaneous job rerieval and file downloads; Add "Max Retrieving Jobs" to GEZMetaJob; do that at the end, because the database format will become incompatible
 
 * detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)

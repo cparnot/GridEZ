@@ -697,8 +697,10 @@ NSMutableDictionary *serverHookInstances=nil;
 		[self setXgridController:nil];
 		[grids release];
 		grids = nil;
-		if ( serverHookState != GEZServerHookStateDisconnected && serverHookState != GEZServerHookStateFailed )
-			[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidDisconnectNotification object:self];
+		if ( serverHookState != GEZServerHookStateDisconnected && serverHookState != GEZServerHookStateFailed ) {
+			serverHookState = GEZServerHookStateDisconnected;
+			[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerHookDidDisconnectNotification object:self];			
+		}
 		serverHookState = GEZServerHookStateDisconnected;
 		if ( [self autoconnect] ) {
 			if ( autoconnectInterval == AUTOCONNECT_INTERVAL_UNDEFINED )

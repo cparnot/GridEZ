@@ -44,7 +44,7 @@ static GEZXgridPanelController *sharedXgridPanelController = nil;
 
 	//these keys are only used for bindings, so we only activate them here; the getter for these keys are defined in GEZBindingCategories
 	[GEZServer setKeys:[NSArray arrayWithObjects:@"available", @"connecting", @"connected", @"loaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil] triggerChangeNotificationsForDependentKey:@"serverStatus"];
-	[GEZServer setKeys:[NSArray arrayWithObjects:@"connecting", @"connected", @"loaded", nil] triggerChangeNotificationsForDependentKey:@"isBusy"];
+	[GEZServer setKeys:[NSArray arrayWithObjects:@"connecting", @"connected", @"loaded", nil] triggerChangeNotificationsForDependentKey:@"busy"];
 }
 
 - (id)init

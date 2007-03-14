@@ -46,7 +46,7 @@ __END_LICENSE__ */
 	//serverStatus is used as a replacement for "status", and is designed to onlyh return a value for GEZServer, not GEZGrid, so that only GEZServer objects have a status image in the Outline view
 	[GEZServer setKeys:[NSArray arrayWithObjects:@"available", @"connecting", @"connected", @"loaded", @"wasAvailableInCurrentSession", @"wasAvailableInPreviousSession", @"wasConnectedInCurrentSession", @"wasConnectedInPreviousSession", nil] triggerChangeNotificationsForDependentKey:@"serverStatus"];
 	//this key is used to enable/disable the different icons in the toolbar
-	[GEZServer setKeys:[NSArray arrayWithObjects:@"connecting", @"connected", @"loaded", nil] triggerChangeNotificationsForDependentKey:@"isBusy"];
+	[GEZServer setKeys:[NSArray arrayWithObjects:@"connecting", @"connected", @"loaded", nil] triggerChangeNotificationsForDependentKey:@"busy"];
 }
 
 
