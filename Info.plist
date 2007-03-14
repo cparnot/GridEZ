@@ -17,8 +17,8 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.4.2</string>
+	<string>0.4.3</string>
 	<key>NSPrincipalClass</key>
-	<string></string>
+	<string>GEZManager</string>
 </dict>
 </plist>

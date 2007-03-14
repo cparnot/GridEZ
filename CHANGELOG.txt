@@ -1,3 +1,8 @@
+Version 0.4.3
+(March 2007)
+
+* Fixed bug in GEZServer that would not properly update 'status' after disconnection
+
 
 Version 0.4.2
 (March 2007)
