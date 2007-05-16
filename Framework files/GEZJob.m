@@ -698,7 +698,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 //update the state of GEZJob to be in sync with XGJob as much as possible
 - (void)xgridResourceStateDidChange:(XGResource *)resource
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s %d (%@)",[self class],self,_cmd,[resource state], StatusStrings[[resource state]]);
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s %d",[self class],self,_cmd,[resource state]);
 	
 	//maybe time to delete
 	if ( [self shouldDelete] ) {
