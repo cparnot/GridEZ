@@ -30,6 +30,7 @@ __END_LICENSE__ */
 
 //Constants to use to subscribe to notifications received in response to the connect call
 //no delegate as there is only one instance of server per address; thus, several client objects trying to be delegate could overwrite each other in unpredictable ways
+APPKIT_EXTERN NSString *GEZServerWillAttemptConnectionNotification;
 APPKIT_EXTERN NSString *GEZServerDidConnectNotification;
 APPKIT_EXTERN NSString *GEZServerDidNotConnectNotification;
 APPKIT_EXTERN NSString *GEZServerDidDisconnectNotification;
@@ -125,6 +126,21 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 
 //low-level accessors
 - (XGController *)xgridController;
+
+@end
+
+
+//methods to call only when running a GUI app
+@interface GEZServer (GEZServerUI)
+
+//these calls are exactly equivalent to the GEZManager calls - the latter may become deprecated, so these should be used instead
++ (void)showServerWindow;
++ (void)hideServerWindow;
+
+//the Xgrid panel is a somewhat experimental inspector for grids, jobs and results, that should only be displayed to advanced Xgrid users
++ (void)showXgridPanel;
++ (void)hideXgridPanel;
+
 
 @end
 

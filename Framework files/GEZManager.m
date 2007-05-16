@@ -16,8 +16,6 @@ __END_LICENSE__ */
 #import "GEZServer.h"
 #import "GEZGrid.h"
 #import "GEZTransformers.h"
-#import "GEZServerWindowController.h"
-#import "GEZXgridPanelController.h"
 #import "GEZDefines.h"
 #import "GEZFileDownloadManager.h"
 
@@ -243,27 +241,27 @@ BOOL CreateFolder (NSString *path)
 + (void)showServerWindow
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[GEZServerWindowController showServerWindow];
+	[GEZServer showServerWindow];
 }
 
 //does exactly what it says
 + (void)hideServerWindow
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[GEZServerWindowController hideServerWindow];
+	[GEZServer hideServerWindow];
 }
 
 
 + (void)showXgridPanel
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[GEZXgridPanelController showXgridPanel];
+	[GEZServer showXgridPanel];
 }
 
 + (void)hideXgridPanel
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[GEZXgridPanelController hideXgridPanel];
+	[GEZServer hideXgridPanel];
 }
 
 

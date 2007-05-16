@@ -26,8 +26,11 @@ __END_LICENSE__ */
 #import "GEZServerBrowser.h"
 #import "GEZManager.h"
 #import "GEZDefines.h"
+#import "GEZServerWindowController.h"
+#import "GEZXgridPanelController.h"
 
 //global constants used for notifications
+NSString *GEZServerWillAttemptConnectionNotification = @"GEZServerWillAttemptConnectionNotification";
 NSString *GEZServerDidConnectNotification = @"GEZServerDidConnectNotification";
 NSString *GEZServerDidNotConnectNotification = @"GEZServerDidNotConnectNotification";
 NSString *GEZServerDidDisconnectNotification = @"GEZServerDidDisconnectNotification";
@@ -388,6 +391,8 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self hook];
 	[serverHook connectWithoutAuthentication];
+	[self updateStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerWillAttemptConnectionNotification object:self];
 }
 
 - (void)connectWithKeychainPassword
@@ -396,6 +401,8 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	[self hook];
 	[serverHook setPassword:nil];
 	[serverHook connectWithPassword];
+	[self updateStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerWillAttemptConnectionNotification object:self];
 }
 
 - (void)connectWithPassword:(NSString *)password
@@ -406,6 +413,8 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 		[serverHook storePasswordInKeychain:password];
 	[serverHook setPassword:password];
 	[serverHook connectWithPassword];
+	[self updateStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerWillAttemptConnectionNotification object:self];
 }
 
 - (void)connectWithSingleSignOnCredentials;
@@ -413,12 +422,15 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self hook];
 	[serverHook connectWithSingleSignOnCredentials];
+	[self updateStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerWillAttemptConnectionNotification object:self];
 }
 
 - (void)disconnect
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[serverHook disconnect];
+	[self updateStatus];
 }
 
 - (void)connect
@@ -426,6 +438,8 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[self hook];
 	[serverHook connect];
+	[self updateStatus];
+	[[NSNotificationCenter defaultCenter] postNotificationName:GEZServerWillAttemptConnectionNotification object:self];
 }
 
 
@@ -560,3 +574,35 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 
 @end
 
+
+
+
+@implementation GEZServer (GEZServerUI)
+//brings the generic server window to the front and make it key; this window can be used by any application just like the Font panel or one of these application-level panels and windows; it is automatically connected to the managed object context that keeps track of Servers and Grids; the user can connect to different Xgrid Servers, aka Controllers, and can control everything from there
++ (void)showServerWindow
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[GEZServerWindowController showServerWindow];
+}
+
+//does exactly what it says
++ (void)hideServerWindow
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[GEZServerWindowController hideServerWindow];
+}
+
++ (void)showXgridPanel
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[GEZXgridPanelController showXgridPanel];
+}
+
++ (void)hideXgridPanel
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[GEZXgridPanelController hideXgridPanel];
+}
+
+
+@end

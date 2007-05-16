@@ -35,14 +35,13 @@ __END_LICENSE__ */
 + (void)registerManagedObjectContext:(NSManagedObjectContext *)context;
 
 
++ (void)setMaxFileDownloads:(int)max;
+
+//these calls are exactly equivalent to the GEZServer calls - these methods will probably be deprecated, so use the GEZServer methods instead
 //brings the generic server window to the front and make it key; this window can be used by any application just like the Font panel or one of these application-level panels and windows; it is automatically connected to the managed object context that keeps track of Servers and Grids; the user can connect to different Xgrid Servers, aka Controllers, and can control everything from there
 + (void)showServerWindow;
 + (void)hideServerWindow;
-
 + (void)showXgridPanel;
 + (void)hideXgridPanel;
-
-
-+ (void)setMaxFileDownloads:(int)max;
 
 @end
