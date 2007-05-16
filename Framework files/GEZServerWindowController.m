@@ -240,13 +240,14 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 	if ( [address isEqualToString:@""] )
 		return;
 	
+	//close the sheet
+	[NSApp endSheet:addServerSheet];
+	[addServerSheet orderOut:self];
+
 	//retrieve the server and start connection
 	GEZServer *newServer = [GEZServer serverWithAddress:address];
 	[GEZConnectionPanelController runConnectionPanelWithServer:newServer];
 	
-	//close the sheet
-	[NSApp endSheet:addServerSheet];
-	[addServerSheet orderOut:self];
 }
 
 
