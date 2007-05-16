@@ -137,7 +137,7 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 
 + (void)showServerWindow
 {
-	[[self sharedServerWindowController] showWindow:self];
+	[[[self sharedServerWindowController] window] makeKeyAndOrderFront:self];
 	[GEZServer startBrowsing];
 }
 
