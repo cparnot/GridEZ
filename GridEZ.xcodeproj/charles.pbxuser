@@ -9,7 +9,7 @@
 		);
 		breakpoints = (
 			567824D909A3067A00D78584 /* GEZManager.m:186 */,
-			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:171 */,
+			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:169 */,
 			5695A94A09C8F28C00C92AF7 /* GEZXgridPanelController.m:297 */,
 			567826C109A6F2E400D78584 /* GEZManager.m:272 */,
 			56A003FF0A5F839800D5DA44 /* GEZServerHook.m:320 */,
@@ -19,7 +19,7 @@
 			56CD11D5096A456A00DA6C36 /* GEZGrid.h:41 */,
 			569FA1DC096DF34D00973D77 /* GEZGrid.h:52 */,
 			563401720AF9528200096189 /* -[invokeWithTarget:] */,
-			56E282990B5CB16B0020F1C4 /* GEZServer.m:382 */,
+			56E282990B5CB16B0020F1C4 /* GEZServer.m:380 */,
 			567827E509A9A6C300D78584 /* GEZBindingsCategories.m:71 */,
 			567823C209A15D2500D78584 /* GEZResults.m:138 */,
 			563B95AC0A01F117004EA694 /* GEZJob.m:944 */,
@@ -31,7 +31,7 @@
 			569CD39A0974DDBC009E977F /* GEZGridHook.m:17 */,
 			56F0A6D309AD3537004FB9E1 /* GEZTask.m:54 */,
 			56E286730B60AFE60020F1C4 /* GEZGrid.m:105 */,
-			5619CD1A0BA7BD9400836396 /* GEZServer.m:470 */,
+			5619CD1A0BA7BD9400836396 /* GEZServer.m:468 */,
 		);
 		breakpointsGroup = 5617D09A09610D9500505CDC /* XCBreakpointsBucket */;
 		codeSenseManager = 56FA39F4095FADF0004AB027 /* Code sense */;
@@ -290,6 +290,18 @@
 			5630DA9B0BFBB884001337CB /* PBXTextBookmark */ = 5630DA9B0BFBB884001337CB /* PBXTextBookmark */;
 			5630DA9C0BFBB884001337CB /* PBXTextBookmark */ = 5630DA9C0BFBB884001337CB /* PBXTextBookmark */;
 			5630DA9D0BFBB884001337CB /* PBXTextBookmark */ = 5630DA9D0BFBB884001337CB /* PBXTextBookmark */;
+			5630DAA40BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAA40BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAA50BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAA50BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAA60BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAA60BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAA70BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAA70BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAA80BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAA80BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAA90BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAA90BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAAA0BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAAA0BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAAB0BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAAB0BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAAC0BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAAC0BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAAD0BFBB9B1001337CB /* PBXTextBookmark */ = 5630DAAD0BFBB9B1001337CB /* PBXTextBookmark */;
+			5630DAB10BFBBA0B001337CB /* PBXTextBookmark */ = 5630DAB10BFBBA0B001337CB /* PBXTextBookmark */;
+			5630DAB20BFBBA0D001337CB /* PBXTextBookmark */ = 5630DAB20BFBBA0D001337CB /* PBXTextBookmark */;
 			563401170AF8276D00096189 = 563401170AF8276D00096189 /* PBXTextBookmark */;
 			563B99A90A095156004EA694 = 563B99A90A095156004EA694 /* PBXBookmark */;
 			563B99AC0A095156004EA694 = 563B99AC0A095156004EA694 /* PBXBookmark */;
@@ -515,7 +527,7 @@
 			567826C109A6F2E400D78584 /* GEZManager.m:272 */,
 			567827E509A9A6C300D78584 /* GEZBindingsCategories.m:71 */,
 			56F0A6D309AD3537004FB9E1 /* GEZTask.m:54 */,
-			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:171 */,
+			562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:169 */,
 			5695A94A09C8F28C00C92AF7 /* GEZXgridPanelController.m:297 */,
 			561A07B409FD9CB700BFC1B3 /* GEZGrid.m:359 */,
 			563B95AC0A01F117004EA694 /* GEZJob.m:944 */,
@@ -527,9 +539,9 @@
 			5623AEEC0AFC6868009DACD6 /* GEZMetaJob.m:502 */,
 			5623AF100AFC694D009DACD6 /* GEZMetaJob.m:502 */,
 			56E27E230B4F2A090020F1C4 /* GEZMetaJob.m:502 */,
-			56E282990B5CB16B0020F1C4 /* GEZServer.m:382 */,
+			56E282990B5CB16B0020F1C4 /* GEZServer.m:380 */,
 			56E286730B60AFE60020F1C4 /* GEZGrid.m:105 */,
-			5619CD1A0BA7BD9400836396 /* GEZServer.m:470 */,
+			5619CD1A0BA7BD9400836396 /* GEZServer.m:468 */,
 			565505680BA7D00800288B0F /* GEZResults.m:62 */,
 		);
 	};
@@ -708,16 +720,16 @@
 	};
 	5617D14D0962222A00505CDC /* GEZServer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {674, 2520}}";
-			sepNavSelRange = "{7364, 48}";
-			sepNavVisRect = "{{0, 2022}, {674, 470}}";
+			sepNavIntBoundsRect = "{{0, 0}, {674, 2548}}";
+			sepNavSelRange = "{7497, 36}";
+			sepNavVisRect = "{{0, 1841}, {674, 679}}";
 		};
 	};
 	5617D14E0962222A00505CDC /* GEZServer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {674, 9170}}";
-			sepNavSelRange = "{4305, 10}";
-			sepNavVisRect = "{{0, 1166}, {674, 679}}";
+			sepNavIntBoundsRect = "{{0, 0}, {674, 9296}}";
+			sepNavSelRange = "{20773, 0}";
+			sepNavVisRect = "{{0, 8617}, {674, 679}}";
 		};
 	};
 	5617D1530962223B00505CDC /* GEZGrid.h */ = {
@@ -902,8 +914,8 @@
 	5617D3F40963A7B000505CDC /* GEZServerWindowController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {674, 4844}}";
-			sepNavSelRange = "{5828, 25}";
-			sepNavVisRect = "{{0, 1852}, {674, 678}}";
+			sepNavSelRange = "{6515, 78}";
+			sepNavVisRect = "{{0, 2417}, {674, 679}}";
 			sepNavWindowFrame = "{{15, 18}, {1016, 809}}";
 		};
 	};
@@ -941,7 +953,7 @@
 		vrLen = 226;
 		vrLoc = 0;
 	};
-	5619CD1A0BA7BD9400836396 /* GEZServer.m:470 */ = {
+	5619CD1A0BA7BD9400836396 /* GEZServer.m:468 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -951,7 +963,7 @@
 		fileReference = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		functionName = "-updateStatus";
 		hitCount = 1;
-		lineNumber = 470;
+		lineNumber = 468;
 		location = GridEZ;
 		modificationTime = 200968703.935069;
 		state = 1;
@@ -1459,7 +1471,7 @@
 		state = 1;
 		symbolName = _NSKVODeallocateLog;
 	};
-	562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:171 */ = {
+	562D8D3A09BF7EE200E4CAF4 /* GEZServer.m:169 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1469,7 +1481,7 @@
 		fileReference = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		functionName = "-deleteFromStore";
 		hitCount = 1;
-		lineNumber = 171;
+		lineNumber = 169;
 		location = GridEZ;
 		modificationTime = 200968703.902035;
 		state = 1;
@@ -1639,7 +1651,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 590";
 		rLen = 0;
-		rLoc = 21832;
+		rLoc = 22080;
 		rType = 0;
 		vrLen = 1627;
 		vrLoc = 19827;
@@ -1825,7 +1837,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = disconnect;
 		rLen = 10;
-		rLoc = 15291;
+		rLoc = 15217;
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 13982;
@@ -1865,7 +1877,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = disconnect;
 		rLen = 10;
-		rLoc = 15291;
+		rLoc = 15217;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 13980;
@@ -1885,7 +1897,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: GEZServerDidNotConnectNotification";
 		rLen = 0;
-		rLoc = 2427;
+		rLoc = 2353;
 		rType = 0;
 		vrLen = 2120;
 		vrLoc = 904;
@@ -1905,7 +1917,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: GEZServerDidNotConnectNotification";
 		rLen = 0;
-		rLoc = 2427;
+		rLoc = 2353;
 		rType = 0;
 		vrLen = 2119;
 		vrLoc = 905;
@@ -1925,7 +1937,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: GEZServerDidNotConnectNotification";
 		rLen = 0;
-		rLoc = 2427;
+		rLoc = 2353;
 		rType = 0;
 		vrLen = 2119;
 		vrLoc = 905;
@@ -1945,7 +1957,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 441";
 		rLen = 0;
-		rLoc = 15603;
+		rLoc = 15529;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 14509;
@@ -1955,7 +1967,7 @@
 		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
 		name = "GEZServer.h: 135";
 		rLen = 0;
-		rLoc = 7413;
+		rLoc = 7533;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 5769;
@@ -1965,7 +1977,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 576";
 		rLen = 0;
-		rLoc = 21832;
+		rLoc = 22080;
 		rType = 0;
 		vrLen = 1621;
 		vrLoc = 19102;
@@ -1985,7 +1997,7 @@
 		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
 		name = "GEZServer.h: 137";
 		rLen = 0;
-		rLoc = 7413;
+		rLoc = 7533;
 		rType = 0;
 		vrLen = 1332;
 		vrLoc = 5769;
@@ -2005,7 +2017,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 590";
 		rLen = 0;
-		rLoc = 21832;
+		rLoc = 22080;
 		rType = 0;
 		vrLen = 1627;
 		vrLoc = 19827;
@@ -2035,7 +2047,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: serverHookDidLoad:";
 		rLen = 0;
-		rLoc = 21832;
+		rLoc = 22080;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 18986;
@@ -2044,7 +2056,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		rLen = 10;
-		rLoc = 4881;
+		rLoc = 4807;
 		rType = 0;
 	};
 	5630DA860BFBB880001337CB /* PBXTextBookmark */ = {
@@ -2052,7 +2064,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = GEZManager;
 		rLen = 10;
-		rLoc = 4881;
+		rLoc = 4807;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 4067;
@@ -2101,7 +2113,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		rLen = 10;
-		rLoc = 4305;
+		rLoc = 4231;
 		rType = 0;
 	};
 	5630DA8E0BFBB884001337CB /* PBXTextBookmark */ = {
@@ -2109,7 +2121,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "";
 		rLen = 1;
-		rLoc = 20473;
+		rLoc = 20399;
 		rType = 0;
 		vrLen = 1687;
 		vrLoc = 18986;
@@ -2129,7 +2141,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 585";
 		rLen = 0;
-		rLoc = 21338;
+		rLoc = 21478;
 		rType = 0;
 		vrLen = 1512;
 		vrLoc = 19944;
@@ -2149,7 +2161,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 604";
 		rLen = 0;
-		rLoc = 21825;
+		rLoc = 21965;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 20394;
@@ -2199,7 +2211,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 578";
 		rLen = 0;
-		rLoc = 20757;
+		rLoc = 20897;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 20335;
@@ -2219,7 +2231,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "GEZServer.m: 31";
 		rLen = 0;
-		rLoc = 2282;
+		rLoc = 2208;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 1555;
@@ -2259,10 +2271,130 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = GEZManager;
 		rLen = 10;
-		rLoc = 4305;
+		rLoc = 4231;
 		rType = 0;
 		vrLen = 1835;
 		vrLoc = 3632;
+	};
+	5630DAA40BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "- (void)connectWithUserInteraction;";
+		rLen = 36;
+		rLoc = 7497;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 6214;
+	};
+	5630DAA50BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5678207A09907ED500D78584 /* GEZResults.m */;
+		name = "- (void)retrieve";
+		rLen = 17;
+		rLoc = 1755;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 1633;
+	};
+	5630DAA60BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "[GEZConnectionPanelController runConnectionPanelWithServer:selectedServer];";
+		rLen = 78;
+		rLoc = 6515;
+		rType = 0;
+		vrLen = 1900;
+		vrLoc = 6058;
+	};
+	5630DAA70BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 610";
+		rLen = 0;
+		rLoc = 22071;
+		rType = 0;
+		vrLen = 1342;
+		vrLoc = 20532;
+	};
+	5630DAA80BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 101";
+		rLen = 0;
+		rLoc = 4844;
+		rType = 0;
+		vrLen = 1961;
+		vrLoc = 4614;
+	};
+	5630DAA90BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14D0962222A00505CDC /* GEZServer.h */;
+		name = "- (void)connectWithUserInteraction;";
+		rLen = 36;
+		rLoc = 7497;
+		rType = 0;
+		vrLen = 1325;
+		vrLoc = 6214;
+	};
+	5630DAAA0BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 610";
+		rLen = 0;
+		rLoc = 22071;
+		rType = 0;
+		vrLen = 1340;
+		vrLoc = 20534;
+	};
+	5630DAAB0BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5678207A09907ED500D78584 /* GEZResults.m */;
+		name = "- (void)retrieve";
+		rLen = 17;
+		rLoc = 1755;
+		rType = 0;
+		vrLen = 1473;
+		vrLoc = 1633;
+	};
+	5630DAAC0BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D3F40963A7B000505CDC /* GEZServerWindowController.m */;
+		name = "[GEZConnectionPanelController runConnectionPanelWithServer:selectedServer];";
+		rLen = 78;
+		rLoc = 6515;
+		rType = 0;
+		vrLen = 1900;
+		vrLoc = 6058;
+	};
+	5630DAAD0BFBB9B1001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 577";
+		rLen = 0;
+		rLoc = 20773;
+		rType = 0;
+		vrLen = 1411;
+		vrLoc = 20669;
+	};
+	5630DAB10BFBBA0B001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = GEZManager;
+		rLen = 10;
+		rLoc = 4807;
+		rType = 0;
+		vrLen = 1031;
+		vrLoc = 4018;
+	};
+	5630DAB20BFBBA0D001337CB /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
+		name = "GEZServer.m: 577";
+		rLen = 0;
+		rLoc = 20773;
+		rType = 0;
+		vrLen = 1411;
+		vrLoc = 20669;
 	};
 	563401170AF8276D00096189 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3032,9 +3164,9 @@
 	};
 	5678207A09907ED500D78584 /* GEZResults.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 4830}}";
+			sepNavIntBoundsRect = "{{0, 0}, {674, 4886}}";
 			sepNavSelRange = "{1755, 17}";
-			sepNavVisRect = "{{0, 800}, {728, 680}}";
+			sepNavVisRect = "{{0, 812}, {674, 679}}";
 		};
 	};
 	5678213A0991DE0400D78584 /* GEZCategories.h */ = {
@@ -3905,7 +4037,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)connect";
 		rLen = 16;
-		rLoc = 15329;
+		rLoc = 15255;
 		rType = 0;
 		vrLen = 1135;
 		vrLoc = 13939;
@@ -3925,7 +4057,7 @@
 		fRef = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		name = "- (void)connect";
 		rLen = 16;
-		rLoc = 15329;
+		rLoc = 15255;
 		rType = 0;
 		vrLen = 1135;
 		vrLoc = 13939;
@@ -4078,7 +4210,7 @@
 		path = /Developer/SDKs/MacOSX10.4u.sdk/System/Library/Frameworks/AppKit.framework/Versions/C/Headers/NSCell.h;
 		sourceTree = "<absolute>";
 	};
-	56E282990B5CB16B0020F1C4 /* GEZServer.m:382 */ = {
+	56E282990B5CB16B0020F1C4 /* GEZServer.m:380 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4088,7 +4220,7 @@
 		fileReference = 5617D14E0962222A00505CDC /* GEZServer.m */;
 		functionName = "-setAutoconnect:";
 		hitCount = 1;
-		lineNumber = 382;
+		lineNumber = 380;
 		location = GridEZ;
 		modificationTime = 200968703.926752;
 		state = 1;

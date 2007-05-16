@@ -141,6 +141,8 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 + (void)showXgridPanel;
 + (void)hideXgridPanel;
 
+//an interactive connection is one that may involve the user to type a password,...
+- (void)connectWithUserInteraction;
 
 @end
 

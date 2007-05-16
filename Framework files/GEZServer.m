@@ -26,8 +26,6 @@ __END_LICENSE__ */
 #import "GEZServerBrowser.h"
 #import "GEZManager.h"
 #import "GEZDefines.h"
-#import "GEZServerWindowController.h"
-#import "GEZXgridPanelController.h"
 
 //global constants used for notifications
 NSString *GEZServerWillAttemptConnectionNotification = @"GEZServerWillAttemptConnectionNotification";
@@ -576,6 +574,12 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 
 
 
+/* This category defines GEZServer methods that are only relevant in the context of a GUI app */
+
+#import "GEZServerWindowController.h"
+#import "GEZXgridPanelController.h"
+#import "GEZConnectionPanelController.h"
+
 
 @implementation GEZServer (GEZServerUI)
 //brings the generic server window to the front and make it key; this window can be used by any application just like the Font panel or one of these application-level panels and windows; it is automatically connected to the managed object context that keeps track of Servers and Grids; the user can connect to different Xgrid Servers, aka Controllers, and can control everything from there
@@ -604,5 +608,10 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	[GEZXgridPanelController hideXgridPanel];
 }
 
+
+- (void)connectWithUserInteraction
+{
+	[GEZConnectionPanelController runConnectionPanelWithServer:self];	
+}
 
 @end
