@@ -1,6 +1,8 @@
 Roadmap
 
-Todo for v0.4.2 release:
+Todo for v0.4.x releases:
+
+* add shouldLimitPendingJobs in GEZMetaJob, so that one can keep submitting jobs until all commands are submitted, and quit the client
 
 * Add public identifier and xgridJob accessor for GEZJob
 
@@ -15,15 +17,14 @@ Todo for v0.4.2 release:
 * Task-specific environment dictionaries: instead add another entry in the task description that the dataSource should return, e.g. 'environment', which should return a dictionary of environment variables/values, just like Xgrid format
 
 * Support for NSData in uploadedPaths:  instead add another entry in the task description that the dataSource should return, e.g. 'inputFiles', with a list of "files", using the same format as Xgrid = dictionary where keys = paths, and value = dictionary with 'fileData' and 'isExecutable'
- 
-*		Actually, I just thought of a neat way to do that:
-		* force tasks to be performed in order
-		* monitor using KVO the key 'completedTaskCount'
-		then we know exactly which tasks are completed!
 
 * Change GEZGridHook implementation to match that of xgridstatus
 
 * Bug in GEZMetaJob? Start retrieval of jobs when grid loaded (Drew's email)
+
+* After calling "connect" on GEZServer, should return YES to "isConnecting"
+
+* When calling GEZServer 'localhost', should resolve that to the local Bonjour name
 
 ------------------
 
