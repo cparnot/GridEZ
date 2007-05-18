@@ -144,7 +144,8 @@ static GEZServerWindowController *sharedServerWindowController = nil;
 + (void)hideServerWindow
 {
 	[GEZServer stopBrowsing];
-	[[self sharedServerWindowController] close];
+	if ( sharedServerWindowController != nil )
+		[[self sharedServerWindowController] close];
 }
 
 #pragma mark *** Bindings ***
