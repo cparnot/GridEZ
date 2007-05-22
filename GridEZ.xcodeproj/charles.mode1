@@ -338,7 +338,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>56B1844C0BFE4B5400C99326</string>
+										<string>56B184930BFE4D9A00C99326</string>
 										<key>history</key>
 										<array>
 											<string>5650F8670960A36E001A3F09</string>
@@ -734,6 +734,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>5650F83F0960985A001A3F09</string>
 		<string>/Users/charles/Docs/Development/cocoa_dev/GridEZ/GridEZ.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -778,7 +779,7 @@
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 215}, {827, 95}}</string>
+								<string>{{0, 181}, {827, 129}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -816,7 +817,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>5650F83F0960985A001A3F09</string>
-				<string>5630DC410BFBC9EB001337CB</string>
+				<string>56B184940BFE4D9A00C99326</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

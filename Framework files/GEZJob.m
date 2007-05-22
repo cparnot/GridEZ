@@ -673,6 +673,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	if ( [self taskCount] != taskCount )
 		[self setValue:[NSNumber numberWithInt:taskCount] forKey:@"taskCount"];
 	if ( taskCount > 0 && [[self valueForKey:@"tasks"] count] < 1 ) {
+
 		int i;
 		for ( i = 0 ; i < taskCount ; i++ ) {
 			GEZTask *newTask = [NSEntityDescription insertNewObjectForEntityForName:GEZTaskEntityName inManagedObjectContext:[self managedObjectContext]];
@@ -681,6 +682,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 			//Make sure the insertion is registered by observers
 			[[self managedObjectContext] processPendingChanges];
 		}
+		
 	}
 	
 	//notifies self of state and completedTaskCount changes to keep things in sync
@@ -938,13 +940,19 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	//this is the result dictionary
 	NSDictionary *allFiles = [theResults allFiles];
 	
-	//it is time to fill the GEZTask with the results
-	NSEnumerator *e = [[self valueForKey:@"tasks"] objectEnumerator];
-	GEZTask *oneTask;
-	while ( oneTask = [e nextObject] ) {
+	//create new GEZTask objects with the results
+	[[self mutableSetValueForKey:@"tasks"] removeAllObjects];
+	
+	NSEnumerator *e = [allFiles keyEnumerator];
+	NSString *taskName;
+	while ( taskName = [e nextObject] ) {
+
+		GEZTask *oneTask = [NSEntityDescription insertNewObjectForEntityForName:GEZTaskEntityName inManagedObjectContext:[self managedObjectContext]];
+		[oneTask setValue:taskName forKey:@"name"];
+		[oneTask setValue:self forKey:@"job"];
 		
 		//to keep track of the file hierarchy, we will use a dictionary that will store one file entity per path, where path is used as a key to ensure uniqueness of each created file entity
-		NSDictionary *filePaths = [allFiles objectForKey:[oneTask name]];
+		NSDictionary *filePaths = [allFiles objectForKey:taskName];
 		NSMutableDictionary *fileEntities = [NSMutableDictionary dictionaryWithCapacity:[filePaths count]];
 		
 		//create all the file entities, adding parent directories as necessary
@@ -977,12 +985,12 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 					parentPath = [parentPath stringByDeletingLastPathComponent];
 					newFile = parentFile;
 				}
-				//Make sure the insertion is registered by observers
-				[[self managedObjectContext] processPendingChanges];
-
 			}
 		}
 	}
+
+	//Make sure the insertion is registered by observers
+	[[self managedObjectContext] processPendingChanges];
 
 	//it is now official: the job has been retrieved
 	if ( [self xgridJob] == nil || [[self xgridJob] state] == XGResourceStateFinished )
