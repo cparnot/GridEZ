@@ -33,6 +33,7 @@ __END_LICENSE__ */
 //these are the only methods that needs to be called from another class
 + (void)showServerWindow;
 + (void)hideServerWindow;
++ (GEZServerWindowController *)sharedServerWindowController;
 
 //used by the nib to get the managed object context
 - (NSManagedObjectContext *)managedObjectContext;

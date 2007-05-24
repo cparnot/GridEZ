@@ -137,6 +137,9 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 + (void)showServerWindow;
 + (void)hideServerWindow;
 
+//direct access to the "Xgrid Controllers" window - in general, you should use 'showServerWindow' and 'hideServerWindow', which will send a 'makeKeyAndOrderFront:'  or 'close:' message respectively (the latter message is only sent if the window already exists)
++ (NSWindow *)serverWindow;
+
 //the Xgrid panel is a somewhat experimental inspector for grids, jobs and results, that should only be displayed to advanced Xgrid users
 + (void)showXgridPanel;
 + (void)hideXgridPanel;

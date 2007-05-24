@@ -596,6 +596,12 @@ NSString *GEZServerDidLoadNotification = @"GEZServerDidLoadNotification";
 	[GEZServerWindowController hideServerWindow];
 }
 
++ (NSWindow *)serverWindow;
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	return [[GEZServerWindowController sharedServerWindowController] window];
+}
+
 + (void)showXgridPanel
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
