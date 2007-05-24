@@ -969,6 +969,7 @@ BOOL isRemoteHost (NSString *anAddress)
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	[xgridConnection close];
+	serverHookState = GEZServerHookStateDisconnected;
 	[self setConnectionSelectors:nil];
 }
 
