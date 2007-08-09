@@ -3,9 +3,15 @@
 //
 
 #ifdef __OBJC__
+
     #import <Cocoa/Cocoa.h>
 	#import <XgridFoundation/XgridFoundation.h>
-	#import "DebugLog.h"
 	#import "GEZCategories.h"
+
+	#import "DebugLog.h"
+	#ifdef DEBUG
+		#define NSManagedObject GRIDEZ_DEBUG_NSManagedObject
+		#import "GRIDEZ_DEBUG_NSManagedObject.h"
+	#endif
 
 #endif

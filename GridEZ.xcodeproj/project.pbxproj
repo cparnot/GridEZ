@@ -10,6 +10,7 @@
 		5606BEFB0AB8C0F100CA3CAE /* GEZResourceObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5606BEF90AB8C0F100CA3CAE /* GEZResourceObserver.m */; };
 		560F8E4B0AA6641A00D97702 /* GEZMetaJob.h in Headers */ = {isa = PBXBuildFile; fileRef = 560F8E490AA6641900D97702 /* GEZMetaJob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		560F8E4C0AA6641A00D97702 /* GEZMetaJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */; };
+		5615D6310C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5615D62F0C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.m */; };
 		5617D1450962214900505CDC /* GridEZ_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */; };
 		5617D14F0962222A00505CDC /* GEZServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D14D0962222A00505CDC /* GEZServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5617D1500962222A00505CDC /* GEZServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617D14E0962222A00505CDC /* GEZServer.m */; };
@@ -163,6 +164,8 @@
 		5606BEF90AB8C0F100CA3CAE /* GEZResourceObserver.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZResourceObserver.m; path = "Framework files/GEZResourceObserver.m"; sourceTree = "<group>"; };
 		560F8E490AA6641900D97702 /* GEZMetaJob.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZMetaJob.h; path = "Framework files/GEZMetaJob.h"; sourceTree = "<group>"; };
 		560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZMetaJob.m; path = "Framework files/GEZMetaJob.m"; sourceTree = "<group>"; };
+		5615D62E0C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRIDEZ_DEBUG_NSManagedObject.h; sourceTree = "<group>"; };
+		5615D62F0C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRIDEZ_DEBUG_NSManagedObject.m; sourceTree = "<group>"; };
 		5617D11E09621D8200505CDC /* GEZManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZManager.h; path = "Framework files/GEZManager.h"; sourceTree = "<group>"; };
 		5617D11F09621D8200505CDC /* GEZManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZManager.m; path = "Framework files/GEZManager.m"; sourceTree = "<group>"; };
 		5617D1440962214900505CDC /* GridEZ_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GridEZ_DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -597,6 +600,8 @@
 				5678213B0991DE0400D78584 /* GEZCategories.m */,
 				56BFC493095FB37400463A1F /* DebugLog.h */,
 				56BFC494095FB37400463A1F /* DebugLog.m */,
+				5615D62E0C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.h */,
+				5615D62F0C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.m */,
 				32DBCF5E0370ADEE00C91783 /* GridEZ_Prefix.pch */,
 			);
 			name = "Misc sources";
@@ -773,9 +778,9 @@
 			buildConfigurationList = 56FA39EB095FADF0004AB027 /* Build configuration list for PBXNativeTarget "GridEZ" */;
 			buildPhases = (
 				562A95630B4647B300653B20 /* ShellScript */,
+				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF520486A6940098B216 /* Resources */,
-				8DC2EF540486A6940098B216 /* Sources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 			);
 			buildRules = (
@@ -950,6 +955,7 @@
 				5606BEFB0AB8C0F100CA3CAE /* GEZResourceObserver.m in Sources */,
 				56C34B920ACDD22E005891F1 /* GEZProxy.m in Sources */,
 				564488DD0B98C1520058A309 /* GEZFileDownloadManager.m in Sources */,
+				5615D6310C6A9880008A658B /* GRIDEZ_DEBUG_NSManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1234,6 +1240,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = GridEZ_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;

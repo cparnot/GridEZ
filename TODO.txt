@@ -2,7 +2,11 @@ Roadmap
 
 Todo for v0.4.x releases:
 
+* Properly update GEZGrid objects when a grid is removed/renamed (probably in GridEZ)
+
 * add shouldLimitPendingJobs in GEZMetaJob, so that one can keep submitting jobs until all commands are submitted, and quit the client
+
+* GEZMEtaJob: add accessors for maxPendingJobs and maxSubmittingJobs
 
 * Add public identifier and xgridJob accessor for GEZJob
 

@@ -127,6 +127,7 @@ static id _sharedFileDownloadManager = nil;
 	[[fileDictionary retain] autorelease];
 	[fileQueue removeObjectIdenticalTo:fileDictionary];
 	if ( [fileQueue count] < 1 ) {
+		//NSLog(@"file queue is empty");
 		[fileQueue autorelease];
 		fileQueue = nil;
 	} else
