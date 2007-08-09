@@ -380,7 +380,7 @@ NSMutableDictionary *serverHookInstances=nil;
 	//set the connectionSelectors array
 	[anArray retain];
 	[connectionSelectors release];
-	connectionSelectors = [anArray retain];
+	connectionSelectors = anArray;
 	
 	//reset the selectorEnumerator
 	[selectorEnumerator allObjects];
