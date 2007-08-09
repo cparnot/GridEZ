@@ -11921,9 +11921,9 @@
 	};
 	8DC2EF5A0486A6940098B216 /* Info.plist */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {728, 471}}";
+			sepNavIntBoundsRect = "{{0, 0}, {674, 470}}";
 			sepNavSelRange = "{691, 0}";
-			sepNavVisRect = "{{0, 0}, {728, 471}}";
+			sepNavVisRect = "{{0, 0}, {674, 470}}";
 		};
 	};
 }
