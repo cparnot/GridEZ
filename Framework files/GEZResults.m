@@ -264,7 +264,7 @@ results = {
 	//retrieve the resultDictionary from the results dictionary, creating it if necessary
 	NSMutableDictionary *resultDictionary = [results objectForKey:taskIdentifier];
 	if ( resultDictionary == nil ) {
-		resultDictionary = [[NSMutableDictionary alloc] init];
+		resultDictionary = [NSMutableDictionary dictionary];
 		[results setObject:resultDictionary forKey:taskIdentifier];
 	}
 	
