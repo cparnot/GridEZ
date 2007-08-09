@@ -182,8 +182,6 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 
 - (void)dealloc
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	
 	[self setXgridJob:nil];
@@ -348,6 +346,9 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 {
 	//DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[self willChangeValueForKey:@"delegate"];
+	id previousProxy = [self primitiveValueForKey:@"delegateProxy"];
+	if ( previousProxy != nil )
+		[[self managedObjectContext] deleteObject:previousProxy];
 	[self setPrimitiveValue:[GEZProxy proxyWithReferencedObject:newDelegate] forKey:@"delegateProxy"];
 	[self didChangeValueForKey:@"delegate"];
 }
@@ -460,6 +461,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	if ( [self state] != GEZJobStateUninitialized )
 		return;
 	[self setState:GEZJobStateSubmitting];
+	[jobSpecification release];
 	jobSpecification = [spec retain];
 
 	//get the name of the job from the specification
@@ -522,10 +524,20 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		[[self delegate] jobWillBeDeleted:self fromGrid:[self grid]];
 
 	//clean state
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self setState:GEZJobStateDeleted];
 	[self setXgridJob:nil];
 	[self setGrid:nil];
+	[self setSubmissionAction:nil];
+	[self setDeletionAction:nil];
 	[self setValue:@"-1" forKey:@"identifier"];
+	
+	[jobSpecification release];
+	[results release];
+	[jobInfo release];
+	jobSpecification = nil;
+	results = nil;
+	jobInfo = nil;
 	
 	[[self managedObjectContext] deleteObject:self];
 	[[self managedObjectContext] processPendingChanges];
@@ -940,10 +952,13 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	//this is the result dictionary
 	NSDictionary *allFiles = [theResults allFiles];
 	
-	//create new GEZTask objects with the results
-	[[self mutableSetValueForKey:@"tasks"] removeAllObjects];
+	//remove previous GEZTask if necessary
+	NSEnumerator* e = [[self valueForKey:@"tasks"] objectEnumerator];
+	GEZTask *aTask;
+	while ( aTask = [e nextObject] )
+		[[self managedObjectContext] deleteObject:aTask];
 	
-	NSEnumerator *e = [allFiles keyEnumerator];
+	e = [allFiles keyEnumerator];
 	NSString *taskName;
 	while ( taskName = [e nextObject] ) {
 
@@ -1024,11 +1039,11 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 		if ( xgridJob != nil ) {
 			xgridJobObserver = [[GEZResourceObserver alloc] initWithResource:xgridJob observedKeys:[NSSet setWithObjects:@"completedTaskCount",@"state",nil]];
 			[xgridJobObserver setDelegate:self];
+			DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] (job '%@') : created XGJob %@ ",[self class],self,_cmd,[self name],xgridJob);
+			
 		} else
 			xgridJobObserver = nil;
 				
-		DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] (job '%@') : created XGJob %@ ",[self class],self,_cmd,[self name],xgridJob);
-		
 	}
 }
 
