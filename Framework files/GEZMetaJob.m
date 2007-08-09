@@ -259,6 +259,9 @@ NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKe
 	
 	//OK, we can use that object
 	[self willChangeValueForKey:@"dataSource"];
+	id previousProxy = [self primitiveValueForKey:@"dataSourceProxy"];
+	if ( previousProxy != nil )
+		[[self managedObjectContext] deleteObject:previousProxy];
 	[self setPrimitiveValue:[GEZProxy proxyWithReferencedObject:newDataSource] forKey:@"dataSourceProxy"];
 	[self didChangeValueForKey:@"dataSource"];
 	
@@ -280,6 +283,9 @@ NSString *GEZTaskSubmissionUploadedPathsKey = @"GEZTaskSubmissionUploadedPathsKe
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[self willChangeValueForKey:@"delegate"];
+	id previousProxy = [self primitiveValueForKey:@"delegateProxy"];
+	if ( previousProxy != nil )
+		[[self managedObjectContext] deleteObject:previousProxy];
 	[self setPrimitiveValue:[GEZProxy proxyWithReferencedObject:newDelegate] forKey:@"delegateProxy"];
 	[self didChangeValueForKey:@"delegate"];
 }
