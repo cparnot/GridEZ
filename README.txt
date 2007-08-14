@@ -21,6 +21,40 @@ The GridEZ framework is released under the terms of the GNU Lesser General Publi
 Changelog
 ---------
 
+Version 0.4.5
+(August 2007)
+
+* Changes in the APIs and behavior relevant for developers using the GridEZ framework (potential changes possible in their code):
+
+	* allows public access to the NSWindow object for the "Xgrid Controllers" window, through a method in the header of GEZServer. This was useful for the XgridFUSE program.
+	* updated GEZJob to use the actual keys for the task names, and not assume they are numbers. At job creation, the tasks are named with numbers. When results are retrieved, the tasks are named with their actual names. If a task does not yield any result, it won't even appear.
+	* when adding a remote controller using the ServerWindowController, the sheet used to type the address by the user should be dismissed before starting an interactive connection session and calling GEZConnectionPanelController. Otherwise, observers of the notification GEZServerWillAttemptConnectionNotification may not be able to terminate the application or do other UI stuff.
+	* added a GUI method to GEZServer, that allows to initiate a connection session with possible user interaction, for instance asking password,...
+	* updated GEZServer to add another notification before connection, and to include GUI-related calls in a separate category of GEZServer, instead of using GEZManager. More to come.
+
+
+* Changes in the framework performance and reliability (no need to change anything in apps using the GridEZ framework):
+
+	* fixed a bunch of memory leaks and "CoreData leaks" (see details below)
+	* change the status of GEZServerHook to 'disconnected' immediately when the disconnect is called (and not just when XGConnection fails). This way, any unwanted further attempt at connecting should be avoided. The status of GEZServer changes immediately too.
+	* the Xgrid connection panel that opens when a connection fails or a password is needed, will now be visible even when switching to another app. This behavior will avoid losing the panel, particularly when the app using it is faceless (e.g. Xgrid FUSE).
+	* in some instances, the Xgrid Controller window presented to the user to connect to controllers would not really come to the front. The behavior should be more reliable now.
+
+
+* Changes relevant for GridEZ development:
+
+	* added a debugging tool, namely an intermediate subclass for NSManagedObject that gets used by all the GridEZ subclasses of NSManagedObject, but only in Debug builds. That intermediate class, called GRIDEZ_DEBUG_NSManagedObject, can then catch messages and log stuff, etc...
+	* fixed a bunch of memory leaks and "CoreData leaks" (aka entity orphaning)
+		* fixed issues in the managed object model, where some of the delete rules for relationships were wrong, because it was set to "Nullify" instead of "Cascade". This would result in entities accumulating in the store. The model should still be compatible with older versions.
+		* fixed a memory leak in GEZServerHook, a very small one, but I feel better now.
+		* fixed a stupid memory leak in GEZResults. The consequence was that NSData object for the uploaded files would stick around, and the memory usage would go up all the time.
+		* fixed a bug in GEZMetaJob and GEZJob , to delete GEZProxy and GEZTask objects when not in use anymore.
+		*fixed a bug in GEZIntegerArray, where the dealloc method would modify one of the properties, which could trigger occasional exceptions. This was not apparent before, because the mom was not properly configured, and the object was never dealloced and deleted (see in the coming commits more about that).
+	* only call close on the controller for the Xgrid Controllers window if it has already been open, to avoid useless creation of the controller.
+	* minor bug fix in a log message, only relevant in Debug build configuration.
+
+
+
 Version 0.4.3
 (March 2007)
 

@@ -2,7 +2,9 @@ Roadmap
 
 Todo for v0.4.x releases:
 
-* Properly update GEZGrid objects when a grid is removed/renamed (probably in GridEZ)
+* Properly update GEZGrid objects when a grid is removed/renamed
+
+* Poll on a regular basis to check GEZJob in a GEZMetaJob, in  the rare cases where we don't get notified of Finished/Invalid jobs
 
 * add shouldLimitPendingJobs in GEZMetaJob, so that one can keep submitting jobs until all commands are submitted, and quit the client
 
@@ -18,9 +20,9 @@ Todo for v0.4.x releases:
 
 * GEZServer: make the object smarter, so it remembers which way it connected before, e.g. not ask single sign on if already used that in the past --> how to make that work with GEZServerHook??
 
-* Task-specific environment dictionaries: instead add another entry in the task description that the dataSource should return, e.g. 'environment', which should return a dictionary of environment variables/values, just like Xgrid format
+* Task-specific environment dictionaries: add another entry in the task description that the dataSource should return, e.g. 'environment', which should return a dictionary of environment variables/values, just like Xgrid format
 
-* Support for NSData in uploadedPaths:  instead add another entry in the task description that the dataSource should return, e.g. 'inputFiles', with a list of "files", using the same format as Xgrid = dictionary where keys = paths, and value = dictionary with 'fileData' and 'isExecutable'
+* Support for NSData in uploadedPaths:  add another entry in the task description that the dataSource should return, e.g. 'inputFiles', with a list of "files", using the same format as Xgrid = dictionary where keys = paths, and value = dictionary with 'fileData' and 'isExecutable'
 
 * Change GEZGridHook implementation to match that of xgridstatus
 
@@ -28,11 +30,11 @@ Todo for v0.4.x releases:
 
 * After calling "connect" on GEZServer, should return YES to "isConnecting"
 
-* When calling GEZServer 'localhost', should resolve that to the local Bonjour name
-
 ------------------
 
 Todo for v0.5.0 release:
+
+* When calling GEZServer 'localhost', should resolve that to the local Bonjour name
 
 * Add the possibility to start a local Xgrid Controller (and have a dialog sheet come up if no server is detected around and no server in the database yet) ÐÐ> maybe use Xgrid Lite code, but GPL (Ed?)
 
@@ -66,8 +68,6 @@ Other things todo (some maybe):
 	* let the developer take care of it ÐÐ> right now this is what is done (see also GridStuffer)
 
 * User-level store, to remember servers used by different apps (do not store jobs);Have a system-wide database of servers, shared by all applications run by the user
-
-* Do a better job at using CoreData callbacks for object creation, fetching, deletion,...
 
 * Put GUI stuff in separate headers, AppKit categories:
 	* Controller window in GEZServer
