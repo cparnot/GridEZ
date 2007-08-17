@@ -224,8 +224,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -267,16 +265,14 @@
 								<string>56BFC446095FB08400463A1F</string>
 								<string>034768DFFF38A50411DB9C8B</string>
 								<string>8DC2EF5B0486A6940098B216</string>
-								<string>5615D9640C7222ED008A658B</string>
 								<string>1C37FBAC04509CD000000102</string>
-								<string>5615D96E0C722399008A658B</string>
-								<string>5615D96F0C722399008A658B</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -316,7 +312,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>compile_info.txt</string>
+								<string>README.txt</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,11 +320,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>compile_info.txt</string>
+										<string>README.txt</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5615D9A00C722547008A658B</string>
+										<string>561A63C80C73AB1500443633</string>
 										<key>history</key>
 										<array>
 											<string>5650F8670960A36E001A3F09</string>
@@ -444,13 +440,13 @@
 											<string>5615D7B50C6B7BE4008A658B</string>
 											<string>5615D7B70C6B7BE4008A658B</string>
 											<string>5615D7B80C6B7BE4008A658B</string>
-											<string>5615D90E0C722140008A658B</string>
-											<string>5615D90F0C722140008A658B</string>
-											<string>5615D9700C722399008A658B</string>
 											<string>5615D9710C722399008A658B</string>
 											<string>5615D9910C722519008A658B</string>
 											<string>5615D9920C722519008A658B</string>
-											<string>5615D9940C722519008A658B</string>
+											<string>5615D9A30C72268F008A658B</string>
+											<string>561A63BD0C73AAFA00443633</string>
+											<string>561A63BE0C73AAFA00443633</string>
+											<string>561A63BF0C73AAFA00443633</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -561,23 +557,11 @@
 											<string>5615D6750C6A9D80008A658B</string>
 											<string>5615D6770C6A9D80008A658B</string>
 											<string>5615D6810C6A9D80008A658B</string>
-											<string>5615D7DA0C6B8A25008A658B</string>
-											<string>5615D7DB0C6B8A25008A658B</string>
-											<string>5615D7DC0C6B8A25008A658B</string>
-											<string>5615D9110C722140008A658B</string>
-											<string>5615D9120C722140008A658B</string>
-											<string>5615D9130C722140008A658B</string>
-											<string>5615D9140C722140008A658B</string>
-											<string>5615D9150C722140008A658B</string>
-											<string>5615D9730C722399008A658B</string>
-											<string>5615D9740C722399008A658B</string>
-											<string>5615D9750C722399008A658B</string>
-											<string>5615D9760C722399008A658B</string>
-											<string>5615D9950C722519008A658B</string>
-											<string>5615D9960C722519008A658B</string>
 											<string>5615D9970C722519008A658B</string>
-											<string>5615D9990C722519008A658B</string>
-											<string>5615D99A0C722519008A658B</string>
+											<string>561A63C00C73AAFA00443633</string>
+											<string>561A63C10C73AAFA00443633</string>
+											<string>561A63C20C73AAFA00443633</string>
+											<string>561A63C30C73AAFA00443633</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -599,6 +583,8 @@
 							<string>487pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -635,9 +621,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5615D7DE0C6B8A25008A658B</string>
+				<string>561A63C50C73AAFA00443633</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5615D7DF0C6B8A25008A658B</string>
+				<string>561A63C60C73AAFA00443633</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -771,7 +757,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>5650F83F0960985A001A3F09</string>
 		<string>/Users/charles/Docs/Development/cocoa_dev/GridEZ/GridEZ.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
