@@ -14,7 +14,7 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridEZ.html
 
 
-The GridEZ framework is released under the terms of the GNU Lesser General Public License (a.k.a. LGPL). The examples and tests programs distributed with GridEZ are released under the modified BSD License. Please read the text of the licenses included with the project for more details.
+The GridEZ framework is released under the terms of the GNU Lesser General Public License (a.k.a. LGPL). The examples and tests programs distributed with GridEZ are released under the modified BSD License. The GridEZ framework uses the MethodSwizzle code from Tildesoft for debugging. Please read the text of the licenses included with the project for more details.
 
 
 ---------

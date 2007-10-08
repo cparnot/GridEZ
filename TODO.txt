@@ -2,6 +2,12 @@ Roadmap
 
 Todo for v0.4.x releases:
 
+* A false notification can potentially be sent when a grid is disconnected, this code should have an if first
+
+		//notify of the change of state
+		[[NSNotificationCenter defaultCenter] postNotificationName:GEZGridHookDidUpdateNotification object:self];
+
+
 * Properly update GEZGrid objects when a grid is removed/renamed
 
 * Poll on a regular basis to check GEZJob in a GEZMetaJob, in  the rare cases where we don't get notified of Finished/Invalid jobs
