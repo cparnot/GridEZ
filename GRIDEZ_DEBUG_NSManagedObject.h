@@ -6,22 +6,18 @@
 //  Copyright 2007 __MyCompanyName__. All rights reserved.
 //
 
-/* When using the "Debug" build configuration, NSManagedObject is replaced with GRIDEZ_DEBUG_NSManagedObject by the precompiler  using the following build setting:
+/* The subclass GRIDEZ_DEBUG_NSManagedObject is only defined when using the "Debug", using the following build setting:
 	
-	GCC_PREPROCESSOR_DEFINITIONS:  DEBUG NSManagedObject=GRIDEZ_DEBUG_NSManagedObject
+	GCC_PREPROCESSOR_DEFINITIONS:  DEBUG
 
-This will cause GRIDEZ_DEBUG_NSManagedObject to be used instead of NSManagedObject for all the project classes that are subclasses of NSManagedObject
+This will cause some of NSManagedObject to be swizzled with GRIDEZ_DEBUG_NSManagedObject methods, allowing logging of NSManagedObject internals and debugging
 */
-	
+
 #ifdef DEBUG
-#undef NSManagedObject
 
-@interface GRIDEZ_DEBUG_NSManagedObject : NSManagedObject {
-
-}
+@interface NSManagedObject (GRIDEZ_DEBUG_NSManagedObject)
 @end
 
-#define NSManagedObject GRIDEZ_DEBUG_NSManagedObject
 #endif
 
 
