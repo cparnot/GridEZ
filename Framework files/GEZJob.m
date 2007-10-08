@@ -263,7 +263,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 
 	//do not change the grid if already submitted
 	GEZJobState state = [self state];
-	if ( state != GEZJobStateUninitialized && state != GEZJobStateSubmitting )
+	if ( state != GEZJobStateUninitialized && state != GEZJobStateSubmitting && state != GEZJobStateDeleted )
 		return;
 
 	//make sure the newGrid is in the right managedObjectContext
@@ -540,7 +540,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	jobInfo = nil;
 	
 	[[self managedObjectContext] deleteObject:self];
-	[[self managedObjectContext] processPendingChanges];
+	//[[self managedObjectContext] processPendingChanges];
 }
 
 - (void)retrieveResults
@@ -952,7 +952,8 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	//this is the result dictionary
 	NSDictionary *allFiles = [theResults allFiles];
 	
-	//remove previous GEZTask if necessary
+	//remove previous GEZTask from the context
+	//we cannot simply remove them from the list of tasks, since that would only remove the relationship, and the GEZTask would still stick around
 	NSEnumerator* e = [[self valueForKey:@"tasks"] objectEnumerator];
 	GEZTask *aTask;
 	while ( aTask = [e nextObject] )

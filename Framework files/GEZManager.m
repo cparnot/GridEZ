@@ -34,6 +34,17 @@ __END_LICENSE__ */
 	//register the data to string transformer
 	GEZDataToStringTransformer *transformer2 = [[[GEZDataToStringTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer2 forName:@"GEZDataToStringTransformer"];
+	
+#ifdef DEBUG
+	//wake up the debugging gods
+	NSLog(@"Using GRIDEZ_DEBUG_NSManagedObject");
+	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(awakeFromInsert),@selector(GRIDEZ_DEBUG_awakeFromInsert));
+	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(awakeFromFetch),@selector(GRIDEZ_DEBUG_awakeFromFetch));
+	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(validateForDelete:),@selector(GRIDEZ_DEBUG_validateForDelete:));
+	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(validateValue:forKey:error:),@selector(GRIDEZ_DEBUG_validateValue:forKey:error:));
+	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(dealloc),@selector(GRIDEZ_DEBUG_dealloc));
+#endif
+	
 }
 
 #pragma mark *** creating and retrieving the singleton instance ***
