@@ -10,7 +10,6 @@
 
 	#import "DebugLog.h"
 	#ifdef DEBUG
-		#define NSManagedObject GRIDEZ_DEBUG_NSManagedObject
 		#import "GRIDEZ_DEBUG_NSManagedObject.h"
 	#endif
 
