@@ -66,7 +66,7 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 */
 
 //Creating server instances
-//Server instances are added to the default persistent store (see GEZFrameworkSettings), that can be used with bindings to display an automatically updated list of all the servers in the GUI
+//Server instances are added to the default persistent store (see GEZManager), that can be used with bindings to display an automatically updated list of all the servers in the GUI
 + (void)startBrowsing;
 + (void)stopBrowsing;
 + (BOOL)isBrowsing;
@@ -76,7 +76,7 @@ You should only retrieve GEZServer instances using one of these methods (**NEVER
 //returns a connected GEZServer if there is one, otherwise return nil
 + (GEZServer *)connectedServer;
 
-//New instances are always added to the default persistent store (see GEZFrameworkSettings), but using one of these methods, a server can in addition be attached to a custom context (e.g. for document-based app)
+//New instances are always added to the default persistent store (see GEZManager), but using one of these methods, a server can in addition be attached to a custom context (e.g. for document-based app)
 //Instances are guaranteed to be unique for a given address and a given managed object context, but you will get two different instances for servers with the same addresses on 2 separate contexts 
 + (GEZServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context;
 - (GEZServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context;

@@ -14,7 +14,7 @@ __END_LICENSE__ */
 
 /**
 
-The GEZServerBrowser is a private class. To use it, one should first retrieve the singleton instance using the class method 'sharedServerBrowser'. The singleton instance can them be used to browse for Xgrid controllers that advertise their services using the Bonjour technology in the local network. Servers found by the browser will then be added to the list of servers by calling the appropriate GEZServer methods. See the GEZServer class for more details: the server instances are saved in the default managed object context as defined by GEZFrameworkSettings.
+The GEZServerBrowser is a private class. To use it, one should first retrieve the singleton instance using the class method 'sharedServerBrowser'. The singleton instance can them be used to browse for Xgrid controllers that advertise their services using the Bonjour technology in the local network. Servers found by the browser will then be added to the list of servers by calling the appropriate GEZServer methods. See the GEZServer class for more details: the server instances are saved in the default managed object context as defined by GEZManager.
 */
 
 @class GEZServer;
