@@ -31,8 +31,9 @@ void DLog(NSString *identifier, int level, NSString *fmt,...)
 {
 	//check the verbose level
 	id currentVerboseLevel = [[NSUserDefaults standardUserDefaults] valueForKey:@"DebugLogVerboseLevel"];
-	if ( currentVerboseLevel != nil && level > [currentVerboseLevel intValue] )
+	if ( ( currentVerboseLevel != nil ) && ( level > [currentVerboseLevel intValue] ) )
 		return;
+	// printf("current verbose level = %s = %d < %d = %s\n", [[currentVerboseLevel description] UTF8String], [currentVerboseLevel intValue], level, ( level > [currentVerboseLevel intValue] )?"yes":"no");
 	
 	//check the identifer
 	NSArray *ids = identifiers();

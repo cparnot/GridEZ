@@ -43,6 +43,8 @@ __END_LICENSE__ */
 	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(validateForDelete:),@selector(GRIDEZ_DEBUG_validateForDelete:));
 	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(validateValue:forKey:error:),@selector(GRIDEZ_DEBUG_validateValue:forKey:error:));
 	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(dealloc),@selector(GRIDEZ_DEBUG_dealloc));
+	MethodSwizzle(NSClassFromString(@"NSManagedObject"),@selector(initWithEntity:insertIntoManagedObjectContext:),@selector(GRIDEZ_DEBUG_initWithEntity:insertIntoManagedObjectContext:));
+	
 #endif
 	
 }
