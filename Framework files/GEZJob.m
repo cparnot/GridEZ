@@ -266,13 +266,14 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	if ( state != GEZJobStateUninitialized && state != GEZJobStateSubmitting && state != GEZJobStateDeleted )
 		return;
 
-	//make sure the newGrid is in the right managedObjectContext
-	if ( [self managedObjectContext] != [newGrid managedObjectContext] )
-		newGrid = [GEZGrid gridWithIdentifier:[newGrid identifier] server:[[newGrid server] serverInManagedObjectContext:[self managedObjectContext]]];
-	
+	// special case = no change
 	GEZGrid *oldGrid = [self primitiveValueForKey:@"grid"];
 	if ( newGrid == oldGrid )
 		return;
+	
+	//make sure the newGrid is in the right managedObjectContext
+	if ( newGrid != nil && [self managedObjectContext] != [newGrid managedObjectContext] )
+		newGrid = [GEZGrid gridWithIdentifier:[newGrid identifier] server:[[newGrid server] serverInManagedObjectContext:[self managedObjectContext]]];
 	
 	//set up the new grid
 	if ( oldGrid != nil )
@@ -601,7 +602,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 	
 	// Get invalid jobs out of the way
 	GEZJobState state = [self state];
-	if ( /* state == GEZJobStateUninitialized || */ state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateInvalid || [[self identifier] intValue] < 1 || [self grid] == nil ) {
+	if ( /* state == GEZJobStateUninitialized || */ state == GEZJobStateSubmitting || state == GEZJobStateSubmitted || state == GEZJobStateDeleted || state == GEZJobStateInvalid || [[self identifier] intValue] < 1 || [self grid] == nil ) {
 		[self setState:GEZJobStateInvalid];
 		[self deleteFromStoreSoon];
 		return;
@@ -609,6 +610,7 @@ NSString *GEZJobResultsStandardErrorKey = @"stderr";
 
 	// Initializations only for valid jobs
 	countDeletionAttempts = 0;
+	didSubmitRecently = NO;
 	[self hookSoon];
 }
 
