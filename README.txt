@@ -1,4 +1,4 @@
-GridEZ.framework version 0.4.5
+GridEZ.framework version 0.4.6
 
 Created by Charles Parnot.
 
@@ -20,6 +20,14 @@ The GridEZ framework is released under the terms of the GNU Lesser General Publi
 ---------
 Changelog
 ---------
+
+version 0.4.6
+(December 2007)
+
+* Fixes for "Leopard compatibility" (the CoreData validation was not working without these fixes, which could have been considered bugs in Tiger, but were never exposed at runtime, probably due to slight modifications in the way CoreData now works in Leopard):
+	* GEZManager fixes
+	* GEZJob fixes
+
 
 Version 0.4.5
 (August 2007)
