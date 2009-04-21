@@ -59,6 +59,9 @@
 		562D37390AC0977D00B4A99D /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563827800CB98F5C00C38A3E /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638277E0CB98F5C00C38A3E /* MethodSwizzle.m */; };
 		563827810CB98F5C00C38A3E /* MethodSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638277F0CB98F5C00C38A3E /* MethodSwizzle.h */; };
+		563AD4ED0F9D922C00DDBCBA /* GEZResourceObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 5606BEF80AB8C0F100CA3CAE /* GEZResourceObserver.h */; };
+		563AD4EE0F9D922D00DDBCBA /* GEZServerHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */; };
+		563AD4EF0F9D922D00DDBCBA /* GEZGridHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */; };
 		563DC39B0B8C1B5700FD8F7D /* resetResults.png in Resources */ = {isa = PBXBuildFile; fileRef = 563DC39A0B8C1B5700FD8F7D /* resetResults.png */; };
 		564488DD0B98C1520058A309 /* GEZFileDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 564488DB0B98C1520058A309 /* GEZFileDownloadManager.m */; };
 		56720AB60AAF89B400066417 /* GEZMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720AB40AAF89B400066417 /* GEZMetaTask.m */; };
@@ -180,7 +183,7 @@
 		5617D25709625F0000505CDC /* GEZDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZDefines.h; path = "Framework files/GEZDefines.h"; sourceTree = "<group>"; };
 		5617D25809625F0000505CDC /* GEZDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZDefines.m; path = "Framework files/GEZDefines.m"; sourceTree = "<group>"; };
 		5617D3120963565A00505CDC /* Xgrid Controllers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xgrid Controllers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5617D3140963565B00505CDC /* XgridControllersApp_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = XgridControllersApp_Info.plist; path = Tests/XgridControllersApp/XgridControllersApp_Info.plist; sourceTree = "<group>"; };
+		5617D3140963565B00505CDC /* XgridControllersApp_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = XgridControllersApp_Info.plist; path = Tests/XgridControllersApp/XgridControllersApp_Info.plist; sourceTree = "<group>"; };
 		5617D3220963579B00505CDC /* XgridControllersApp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XgridControllersApp_Prefix.pch; path = Tests/XgridControllersApp/XgridControllersApp_Prefix.pch; sourceTree = "<group>"; };
 		5617D3340963584000505CDC /* XgridControllersApp_main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XgridControllersApp_main.m; path = Tests/XgridControllersApp/XgridControllersApp_main.m; sourceTree = "<group>"; };
 		5617D3B709635CEF00505CDC /* XgridControllersAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XgridControllersAppDelegate.h; path = Tests/XgridControllersApp/XgridControllersAppDelegate.h; sourceTree = "<group>"; };
@@ -250,7 +253,7 @@
 		5695AEBB09DBBBA700C92AF7 /* PolyShell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyShell.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		569CD3D20974E07E009E977F /* Targets-used-for-testing.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Targets-used-for-testing.markdown"; path = "Docs/Dev docs/Targets-used-for-testing.markdown"; sourceTree = "<group>"; };
 		569CD3F40974E393009E977F /* PolyShell-MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = "PolyShell-MainMenu.nib"; path = "Tests/PolyShell/PolyShell-MainMenu.nib"; sourceTree = "<group>"; };
-		569CD3F50974E393009E977F /* PolyShell-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = "PolyShell-Info.plist"; path = "Tests/PolyShell/PolyShell-Info.plist"; sourceTree = "<group>"; };
+		569CD3F50974E393009E977F /* PolyShell-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = "PolyShell-Info.plist"; path = "Tests/PolyShell/PolyShell-Info.plist"; sourceTree = "<group>"; };
 		569CD3F60974E393009E977F /* PolyShell-main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "PolyShell-main.m"; path = "Tests/PolyShell/PolyShell-main.m"; sourceTree = "<group>"; };
 		569CD4230974E551009E977F /* PolyShell-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "PolyShell-Prefix.pch"; path = "Tests/PolyShell/PolyShell-Prefix.pch"; sourceTree = "<group>"; };
 		569CD4370974E5D2009E977F /* PolyShellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolyShellDelegate.h; path = Tests/PolyShell/PolyShellDelegate.h; sourceTree = "<group>"; };
@@ -268,7 +271,7 @@
 		56BFC496095FB37400463A1F /* GEZServerBrowser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZServerBrowser.m; path = "Framework files/GEZServerBrowser.m"; sourceTree = "<group>"; };
 		56BFC497095FB37400463A1F /* GEZServerHook.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = GEZServerHook.h; path = "Framework files/GEZServerHook.h"; sourceTree = "<group>"; };
 		56BFC498095FB37400463A1F /* GEZServerHook.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = GEZServerHook.m; path = "Framework files/GEZServerHook.m"; sourceTree = "<group>"; };
-		56BFC4B2095FB4CB00463A1F /* GridEZ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GridEZ.framework; path = ../../../Library/Frameworks/GridEZ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56BFC4B2095FB4CB00463A1F /* GridEZ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GridEZ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56BFC4C2095FB57100463A1F /* GridEZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GridEZ.h; path = "Framework files/GridEZ.h"; sourceTree = "<group>"; };
 		56BFC50A095FBD3300463A1F /* GEZGridHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEZGridHook.h; path = "Framework files/GEZGridHook.h"; sourceTree = "<group>"; };
 		56BFC50B095FBD3300463A1F /* GEZGridHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEZGridHook.m; path = "Framework files/GEZGridHook.m"; sourceTree = "<group>"; };
@@ -321,7 +324,7 @@
 		56FB07A60A37701F0022B65C /* shot7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot7.png; sourceTree = "<group>"; };
 		56FB07A70A37701F0022B65C /* shot8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot8.png; sourceTree = "<group>"; };
 		56FB07A80A37701F0022B65C /* shot9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shot9.png; sourceTree = "<group>"; };
-		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* GridEZ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GridEZ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -559,12 +562,6 @@
 				5617D25809625F0000505CDC /* GEZDefines.m */,
 				56BFC495095FB37400463A1F /* GEZServerBrowser.h */,
 				56BFC496095FB37400463A1F /* GEZServerBrowser.m */,
-				5606BEF80AB8C0F100CA3CAE /* GEZResourceObserver.h */,
-				5606BEF90AB8C0F100CA3CAE /* GEZResourceObserver.m */,
-				56BFC497095FB37400463A1F /* GEZServerHook.h */,
-				56BFC498095FB37400463A1F /* GEZServerHook.m */,
-				56BFC50A095FBD3300463A1F /* GEZGridHook.h */,
-				56BFC50B095FBD3300463A1F /* GEZGridHook.m */,
 				564488DA0B98C1510058A309 /* GEZFileDownloadManager.h */,
 				564488DB0B98C1520058A309 /* GEZFileDownloadManager.m */,
 				5678207909907ED500D78584 /* GEZResults.h */,
@@ -594,6 +591,12 @@
 				56F0A5A009ABEDD0004FB9E1 /* GEZTask.m */,
 				560F8E490AA6641900D97702 /* GEZMetaJob.h */,
 				560F8E4A0AA6641A00D97702 /* GEZMetaJob.m */,
+				5606BEF80AB8C0F100CA3CAE /* GEZResourceObserver.h */,
+				5606BEF90AB8C0F100CA3CAE /* GEZResourceObserver.m */,
+				56BFC497095FB37400463A1F /* GEZServerHook.h */,
+				56BFC498095FB37400463A1F /* GEZServerHook.m */,
+				56BFC50A095FBD3300463A1F /* GEZGridHook.h */,
+				56BFC50B095FBD3300463A1F /* GEZGridHook.m */,
 			);
 			name = Public;
 			sourceTree = "<group>";
@@ -721,6 +724,9 @@
 				5617D25909625F0000505CDC /* GEZDefines.h in Headers */,
 				560F8E4B0AA6641A00D97702 /* GEZMetaJob.h in Headers */,
 				563827810CB98F5C00C38A3E /* MethodSwizzle.h in Headers */,
+				563AD4ED0F9D922C00DDBCBA /* GEZResourceObserver.h in Headers */,
+				563AD4EE0F9D922D00DDBCBA /* GEZServerHook.h in Headers */,
+				563AD4EF0F9D922D00DDBCBA /* GEZGridHook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,10 +1163,10 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/TestServerHook/TestServerHook-Prefix.pch";
 				INSTALL_PATH = /usr/local/bin;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1186,10 +1192,10 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/TestServerHook/TestServerHook-Prefix.pch";
 				INSTALL_PATH = /usr/local/bin;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1214,10 +1220,10 @@
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Tests/TestServerHook/TestServerHook-Prefix.pch";
 				INSTALL_PATH = /usr/local/bin;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",

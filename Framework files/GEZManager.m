@@ -186,7 +186,9 @@ BOOL CreateFolder (NSString *path)
 	}
 	
 	//create the stack for the managed object context
-    NSURL *url = [NSURL fileURLWithPath: [[applicationSupportFolder stringByAppendingPathComponent: @"GridStuffer"] stringByAppendingPathExtension:storeExtension]];
+	NSString *applicationName = [[[[NSBundle mainBundle] bundlePath] lastPathComponent] stringByDeletingPathExtension];
+	NSString *databaseName = [NSString stringWithFormat:@"%@-GridEZ", applicationName];
+    NSURL *url = [NSURL fileURLWithPath: [[applicationSupportFolder stringByAppendingPathComponent:databaseName] stringByAppendingPathExtension:storeExtension]];
 	NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     NSError *error;
 	

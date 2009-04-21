@@ -1,8 +1,8 @@
-GridEZ.framework version 0.4.6
+GridEZ.framework version 0.4.7
 
 Created by Charles Parnot.
 
-Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
+Copyright Charles Parnot 2005, 2006, 2007, 2008, 2009. All rights reserved.
 
 
 Contact:
@@ -20,6 +20,15 @@ The GridEZ framework is released under the terms of the GNU Lesser General Publi
 ---------
 Changelog
 ---------
+
+version 0.4.7
+(April 2009)
+
+* The following classes are now public:
+	* GEZServerHook
+	* GEZGridHook
+	* GEZResourceObserver
+* GEZManager fix: the Application Support folder was always created with the name "GridStuffer", now created with a name based on the application that is using GridEZ.
 
 version 0.4.6
 (December 2007)
