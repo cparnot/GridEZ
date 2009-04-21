@@ -59,9 +59,9 @@
 		562D37390AC0977D00B4A99D /* GEZManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5617D11E09621D8200505CDC /* GEZManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563827800CB98F5C00C38A3E /* MethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638277E0CB98F5C00C38A3E /* MethodSwizzle.m */; };
 		563827810CB98F5C00C38A3E /* MethodSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 5638277F0CB98F5C00C38A3E /* MethodSwizzle.h */; };
-		563AD4ED0F9D922C00DDBCBA /* GEZResourceObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 5606BEF80AB8C0F100CA3CAE /* GEZResourceObserver.h */; };
-		563AD4EE0F9D922D00DDBCBA /* GEZServerHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */; };
-		563AD4EF0F9D922D00DDBCBA /* GEZGridHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */; };
+		563AD4ED0F9D922C00DDBCBA /* GEZResourceObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 5606BEF80AB8C0F100CA3CAE /* GEZResourceObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		563AD4EE0F9D922D00DDBCBA /* GEZServerHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC497095FB37400463A1F /* GEZServerHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		563AD4EF0F9D922D00DDBCBA /* GEZGridHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 56BFC50A095FBD3300463A1F /* GEZGridHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		563DC39B0B8C1B5700FD8F7D /* resetResults.png in Resources */ = {isa = PBXBuildFile; fileRef = 563DC39A0B8C1B5700FD8F7D /* resetResults.png */; };
 		564488DD0B98C1520058A309 /* GEZFileDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 564488DB0B98C1520058A309 /* GEZFileDownloadManager.m */; };
 		56720AB60AAF89B400066417 /* GEZMetaTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 56720AB40AAF89B400066417 /* GEZMetaTask.m */; };
@@ -724,9 +724,9 @@
 				5617D25909625F0000505CDC /* GEZDefines.h in Headers */,
 				560F8E4B0AA6641A00D97702 /* GEZMetaJob.h in Headers */,
 				563827810CB98F5C00C38A3E /* MethodSwizzle.h in Headers */,
-				563AD4ED0F9D922C00DDBCBA /* GEZResourceObserver.h in Headers */,
 				563AD4EE0F9D922D00DDBCBA /* GEZServerHook.h in Headers */,
 				563AD4EF0F9D922D00DDBCBA /* GEZGridHook.h in Headers */,
+				563AD4ED0F9D922C00DDBCBA /* GEZResourceObserver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
