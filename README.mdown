@@ -1,3 +1,10 @@
+GridEZ
+======
+
+A framework for Mac OS X developers interested in developing an Xgrid-enabled application. The GridEZ.framework provides a set of classes and methods to replace XgridFoundation, the Xgrid framework provided by Apple, and provide the developer with a simpler way of using Xgrid. The GridEZ.framework is used by GridStuffer and Xgrid FUSE to provide the Xgrid functionality.
+
+---
+
 GridEZ.framework version 0.4.7
 
 Created by Charles Parnot.
@@ -14,7 +21,7 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridEZ.html
 
 
-The GridEZ framework is released under the terms of the GNU Lesser General Public License (a.k.a. LGPL). The examples and tests programs distributed with GridEZ are released under the modified BSD License. The GridEZ framework uses the MethodSwizzle code from Tildesoft for debugging. Please read the text of the licenses included with the project for more details.
+The GridEZ framework is released under the terms of the modified BSD License. The examples and tests programs distributed with GridEZ are released under the modified BSD License. The GridEZ framework uses the MethodSwizzle code from Tildesoft for debugging. Please read the text of the licenses included with the project for more details.
 
 
 ---------
